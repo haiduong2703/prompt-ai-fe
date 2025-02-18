@@ -29,6 +29,7 @@ const api = {
     getCategories: async () => {
         return axios.get(`${API_URL}/categories`);
     }
+
 };
 
 export default api;
