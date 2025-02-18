@@ -1,8 +1,12 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate  } from "react-router-dom";
 import AdminLayout from "../pages/admin/AdminLayout";
 import Dashboard from "../pages/admin/Dashboard";
-import PromptLibrary from "../components/user/PromptLibrary";
+import PromptLibrary from "../components/user/Prompt/PromptLibrary";
+import UserLayout from "../pages/user/UserLayout/UserLayout";
+import Pricing from "../components/user/Pricing/Pricing";
+import Contact from "../components/user/Contact/Contact";
+import UserHome from "../components/user/UserHome/Home";
 
 const RoutesMain = () => {
   // Giả sử có một cách để xác định role (có thể từ context/redux store)
@@ -16,7 +20,14 @@ const RoutesMain = () => {
           {/* Thêm các route admin khác ở đây */}
         </Route>
       ) : (
-        <Route path="/" element={<PromptLibrary />} />
+        <Route path="/" element={<UserLayout />}>
+          <Route index element={<Navigate to="/home" replace />} />
+          <Route path="home" element={<UserHome />} />
+          <Route path="prompts" element={<PromptLibrary />} />
+          <Route path="pricing" element={<Pricing />} />
+          <Route path="contact" element={<Contact />} />
+      </Route>
+
       )}
     </Routes>
   );

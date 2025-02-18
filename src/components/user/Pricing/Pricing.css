@@ -1,0 +1,87 @@
+/* Container chính */
+.user-pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  
+  /* Tiêu đề chính */
+  .user-pricing-header {
+    margin-bottom: 50px;
+  }
+  
+  .user-pricing-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .user-pricing-icon {
+    font-size: 40px;
+    margin-right: 10px;
+  }
+  
+  /* Phần FEATURED */
+  .user-pricing-featured {
+    margin-top: 40px;
+  }
+  
+  .user-pricing-featured h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .user-pricing-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .user-pricing-logos img {
+    height: 40px;
+  }
+  
+  /* Các lựa chọn Pricing */
+  .user-pricing-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+  }
+  
+  .user-pricing-btn {
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .user-pricing-monthly {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+  
+  .user-pricing-monthly:hover {
+    background-color: #f3f3f3;
+  }
+  
+  .user-pricing-lifetime {
+    background-color: #4a148c;
+    color: white;
+    border: none;
+  }
+  
+  .user-pricing-lifetime:hover {
+    background-color: #350a68;
+  }
+  

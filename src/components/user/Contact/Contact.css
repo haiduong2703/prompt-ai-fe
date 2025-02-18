@@ -1,0 +1,137 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .contact-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 50px;
+  }
+  
+  .contact-image {
+    flex: 1;
+  }
+  
+  .contact-image img {
+    width: 100%;
+    display: block;
+  }
+  
+  .contact-form {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .contact-title {
+    color: black;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .contact-badge {
+    background-color: black;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .contact-description {
+    color: black;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+/* Điều khoản */
+.form-terms {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+  
+  .form-terms input {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border: 1px solid #f4b400;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .form-terms input::after {
+    content: "✔";
+    font-size: 18px;
+    color: #f4b400;
+    font-weight: bold;
+    display: none;
+  }
+  
+  .form-terms input:checked::after {
+    display: block;
+  }
+  
+  .form-terms label {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .contact-button {
+    width: 100%;
+    background-color: #f4b400;
+    color: black;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-button:hover {
+    background-color: #e5a300;
+  }
+  
