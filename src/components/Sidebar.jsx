@@ -26,10 +26,10 @@ const Sidebar = () => {
       </div>
       <Menu theme="dark" mode="inline">
         <Menu.Item key="1" icon={<DashboardOutlined />}>
-          <Link to="/">Dashboard</Link>
+          <Link to="/">Quản lý Prompts</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<AppstoreOutlined />}>
-          <Link to="/components">Components</Link>
+          <Link to="/category">Quản lý thể loại</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<TableOutlined />}>
           <Link to="/tables">Tables</Link>
