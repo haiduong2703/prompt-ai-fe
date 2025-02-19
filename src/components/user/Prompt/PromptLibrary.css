@@ -1,6 +1,7 @@
 /* Tổng thể */
 .user-container {
     min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
   }
 
   /* Hero Section */
@@ -29,21 +30,44 @@
   
   /* Hero Text */
   .user-hero-text h1 {
-    font-size: 50px;
+    font-size: 56px;
     font-weight: bold;
   }
   
   .user-highlight-box {
     display: inline-block;
-    background-color: #6a1b9a;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-left: 10px;
+    background-color: #0f0020;
+    padding-left: 12.5px;
+    padding-right: 12.5px;
+    border-radius: 14px;
+    color: white;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 10px;
   }
-  
+  .user-txt-holder-center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 20px;
+    margin-top: 10px;
+  }
   .user-description {
-    max-width: 700px;
-    margin: auto;
+    text-align: center;
+    letter-spacing: -1px;
+    max-width: 770px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    font-size: 24px;
+    line-height: 140%;
+    box-sizing: border-box;
+    font-weight: 500;
   }
   
   /* AI Tools */

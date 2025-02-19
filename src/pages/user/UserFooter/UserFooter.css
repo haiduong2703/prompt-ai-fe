@@ -1,0 +1,110 @@
+.user-footer {
+    background-color: #111;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    rid-column-gap: 0px;
+    grid-row-gap: 40px;
+    flex-wrap: wrap;
+    place-content: stretch space-between;
+    place-items: flex-start stretch;
+  }
+  .footer-logo {
+    width: 22%;
+  }
+  .footer-logo img{
+    max-height: 100px;
+  }
+  .footer-logo img:hover{
+    transform: scale3d(.97, .97, 1.01);
+    max-height: 100px;
+  }
+  .footer-section {
+    max-width: 25%;
+  }
+    
+  .footer-section h3 {
+    font-size: 23px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  .footer-section p {
+    color: #eff0f6;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    unicode-bidi: isolate;
+    text-align: left;
+  }
+
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-section ul li a {
+    color: #eff0f6;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .footer-section ul li a:hover {
+    color: white;
+  }
+  
+  .footer-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-align: left;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .footer-social-icons a{
+    background-color: #fff;
+    border-radius: 100%;
+    flex-direction: column;
+    flex: none;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 12px;
+    transition: background-color .26s;
+    display: flex
+  }
+
+  .footer-social-icons a:hover {
+    background: #fcc201;
+  }
+  
+  .footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    font-size: 14px;
+    color: #aaa;
+  }
+  
