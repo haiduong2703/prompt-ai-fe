@@ -9,7 +9,7 @@ const AdminLayout = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
       <Layout>
-        <Navbar />
+        {/* <Navbar /> */}
         <div style={{ padding: "20px" }}>
           <Outlet />
         </div>

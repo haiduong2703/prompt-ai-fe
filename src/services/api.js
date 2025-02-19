@@ -28,8 +28,20 @@ const api = {
     // Category APIs
     getCategories: async () => {
         return axios.get(`${API_URL}/categories`);
+    },
+    getCategoriesPage: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/categories/list?page=${page}&pageSize=${pageSize}`);
+    },
+    //Contact APIS
+    getContacts: async () => {
+        return axios.get(`${API_URL}/contact`);
+    },
+    getContactsPage: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/contact/list?page=${page}&pageSize=${pageSize}`);
+    },
+    sendContacts: async (data) => {
+        return axios.post(`${API_URL}/contact`, data);
     }
-
 };
 
 export default api;

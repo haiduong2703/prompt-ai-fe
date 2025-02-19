@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Select, Switch, Spin, message } from "antd";
 import MDEditor from "@uiw/react-md-editor";
-import api from "../../services/api";
+import api from "../../../services/api";
 
 const { Option } = Select;
 
@@ -154,7 +154,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         </Select>
       </Form.Item>
 
-      <Form.Item name="is_type" label="Kiểu">
+      <Form.Item name="is_type" label="Mức độ bài viết">
         <Select placeholder="Chọn kiểu">
           {isType.map((type) => (
             <Option key={type.value} value={type.value}>
@@ -166,7 +166,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
 
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={submitting}>
-          {isEditMode ? "Update Prompt" : "Create Prompt"}
+          {isEditMode ? "Cập nhập" : "Tạo mới"}
         </Button>
       </Form.Item>
     </Form>

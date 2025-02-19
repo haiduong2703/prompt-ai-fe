@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import Sidebar from "./components/admin/Sidebar";
 import Navbar from "./components/admin/Navbar";
 import Dashboard from "./pages/admin/Dashboard";
+import "antd/dist/antd.css";
 
 const App = () => {
     return (

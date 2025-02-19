@@ -18,7 +18,7 @@ import {
   DeleteOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import api from "../../services/api";
+import api from "../../../services/api";
 import PromptForm from "./PromptForm";
 import PromptDetail from "./PromptDetail";
 
@@ -139,8 +139,10 @@ const PromptList = () => {
   const columns = [
     {
       title: "STT",
-      dataIndex: "id",
-      key: "id",
+      key: "index",
+      render: (text, record, index) => {
+        return (page - 1) * pageSize + index + 1;
+      },
     },
     {
       title: "Tiêu đề",
@@ -184,7 +186,7 @@ const PromptList = () => {
             size="small"
             onClick={() => showViewModal(record)}
           >
-            View
+            Xem
           </Button>
           <Button
             type="default"
@@ -192,7 +194,7 @@ const PromptList = () => {
             size="small"
             onClick={() => showEditModal(record)}
           >
-            Edit
+            Sửa
           </Button>
           <Popconfirm
             title="Are you sure you want to delete this prompt?"
@@ -201,7 +203,7 @@ const PromptList = () => {
             cancelText="No"
           >
             <Button type="danger" icon={<DeleteOutlined />} size="small">
-              Delete
+              Xóa
             </Button>
           </Popconfirm>
         </Space>
@@ -225,11 +227,11 @@ const PromptList = () => {
           icon={<PlusOutlined />}
           onClick={showCreateModal}
         >
-          Thêm mới Prompt
+          Thêm mới
         </Button>
       </div>
 
-      <div style={{ marginBottom: 16, display: "flex", gap: 16 }}>
+      {/* <div style={{ marginBottom: 16, display: "flex", gap: 16 }}>
         <Search
           placeholder="Search prompts"
           onSearch={handleSearch}
@@ -257,7 +259,7 @@ const PromptList = () => {
           <Option value={1}>Active</Option>
           <Option value={0}>Inactive</Option>
         </Select>
-      </div>
+      </div> */}
 
       <Table
         columns={columns}
@@ -273,14 +275,14 @@ const PromptList = () => {
             setPageSize(pageSize);
           },
           showSizeChanger: true,
-          showTotal: (total) => `Total ${total} items`,
+          showTotal: (total) => `Tổng ${total} bản ghi`,
         }}
       />
 
       {/* Create Modal */}
       <Modal
         title="Tạo mới Prompt"
-        visible={isCreateModalVisible}
+        open={isCreateModalVisible}
         onCancel={handleModalCancel}
         width={1000}
         footer={null}
@@ -290,8 +292,8 @@ const PromptList = () => {
 
       {/* Edit Modal */}
       <Modal
-        title="Edit Prompt"
-        visible={isEditModalVisible}
+        title="Sửa thông tin Prompt"
+        open={isEditModalVisible}
         onCancel={handleModalCancel}
         width={1000}
         footer={null}
@@ -307,13 +309,13 @@ const PromptList = () => {
 
       {/* View Modal */}
       <Modal
-        title="Prompt Details"
-        visible={isViewModalVisible}
+        title="Thông tin Prompts"
+        open={isViewModalVisible}
         onCancel={handleModalCancel}
         width={1000}
         footer={[
           <Button key="close" onClick={handleModalCancel}>
-            Close
+            Đóng
           </Button>,
           currentPrompt && (
             <Button
@@ -324,7 +326,7 @@ const PromptList = () => {
                 showEditModal(currentPrompt);
               }}
             >
-              Edit
+              Sửa
             </Button>
           ),
         ]}

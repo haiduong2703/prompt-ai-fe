@@ -32,7 +32,7 @@ const Sidebar = () => {
           <Link to="/category">Quản lý thể loại</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<TableOutlined />}>
-          <Link to="/tables">Tables</Link>
+          <Link to="/contact">Quản lý liên hệ</Link>
         </Menu.Item>
         <Menu.Item key="4" icon={<FormOutlined />}>
           <Link to="/forms">Forms</Link>
