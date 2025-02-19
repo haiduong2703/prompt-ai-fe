@@ -23,25 +23,30 @@ const PromptLibrary = () => {
       <div className="user-hero">
         <div className="user-hero-header">
           <img
-            src="/api/placeholder/96/96"
+            src="/prompts_img.avif"
             alt="God of Prompt Logo"
             className="user-logo-img"
           />
+          <div className="user-hero-text">
+            <h1>
+              The Biggest AI <br />
+              <span className="user-highlight-box">Prompt Library</span>
+            </h1>
+            <div className="user-txt-holder-center">
+              <div>by God of Prompt</div>
+            </div>
+          </div>
           <div className="user-icon-wrapper">
-            <LightningIcon />
+            <img
+              src="/promtpts_img_2.avif"
+              alt="God of Prompt Logo"
+              className="user-logo-img"
+            />
           </div>
         </div>
-
-        <div className="user-hero-text">
-          <h1>
-            The Biggest AI
-            <div className="user-highlight-box">Prompt Library</div>
-          </h1>
-          <p>by God of Prompt</p>
-          <p className="user-description">
-            Discover the best AI prompts for ChatGPT & Midjourney designed to
-            supercharge your business and boost your productivity.
-          </p>
+        <div className="user-description">
+          Discover the best AI prompts for ChatGPT & Midjourney designed to
+          supercharge your business and boost your productivity.
         </div>
 
         {/* AI Tools */}
