@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { message } from "antd";
-import { notification } from "antd";
 import api from "../../../services/api";
 import "./Contact.css";
 
