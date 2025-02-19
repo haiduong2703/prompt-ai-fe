@@ -3,12 +3,12 @@ import './PromptLibrary.css'; // Import file CSS
 
 // Custom Lightning SVG component
 const LightningIcon = () => (
-  <svg 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
     strokeLinejoin="round"
     className="user-icon"
   >
@@ -23,23 +23,26 @@ const PromptLibrary = () => {
       {/* Hero Section */}
       <div className="user-hero">
         <div className="user-hero-header">
-          <img src="/api/placeholder/96/96" alt="God of Prompt Logo" className="user-logo-img"/>
+          <img src="/prompts_img.avif" alt="God of Prompt Logo" className="user-logo-img" />
+          <div className="user-hero-text">
+            <h1>
+              The Biggest AI <br />
+              <span className="user-highlight-box">Prompt Library</span>
+            </h1>
+            <div className='user-txt-holder-center'>
+              <div>by God of Prompt</div>
+            </div>
+          </div>
           <div className="user-icon-wrapper">
-            <LightningIcon />
+            <img src="/promtpts_img_2.avif" alt="God of Prompt Logo" className="user-logo-img" />
           </div>
         </div>
-
-        <div className="user-hero-text">
-          <h1>
-            The Biggest AI
-            <div className="user-highlight-box">Prompt Library</div>
-          </h1>
-          <p>by God of Prompt</p>
-          <p className="user-description">
+        <div className="user-description">
             Discover the best AI prompts for ChatGPT & Midjourney designed
             to supercharge your business and boost your productivity.
-          </p>
         </div>
+
+
 
         {/* AI Tools */}
         <div className="user-ai-tools">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import './UserLayout.css';
-
+import UserFooter from '../UserFooter/UserFooter';
 const UserLayout = ({ children }) => {
   const location = useLocation();
 
@@ -72,6 +72,8 @@ const UserLayout = ({ children }) => {
       <main className="user-main-content">
         <Outlet />
       </main>
+            {/* Thêm Footer */}
+            <UserFooter />
     </div>
   );
 };
