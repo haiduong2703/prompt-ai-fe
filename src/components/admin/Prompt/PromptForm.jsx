@@ -343,7 +343,13 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
           ))}
         </Select>
       </Form.Item>
-
+      <Form.Item name="is_type" label="Mức độ bài viết">
+        <Select placeholder="Chọn kiểu">
+          <Option value={1}>Free</Option>
+          <Option value={2}>Premium</Option>
+          <Option value={3}>Plus</Option>
+        </Select>
+      </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={submitting}>
           {isEditMode ? "Cập nhật" : "Tạo mới"}
