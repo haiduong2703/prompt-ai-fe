@@ -26,7 +26,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
   const [markdownContent, setMarkdownContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const isEditMode = !!promptId;
-
+  const [htmlContent, setHtmlContent] = useState("");
   useEffect(() => {
     if (isEditMode) {
       fetchPromptDetails();
@@ -130,7 +130,13 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
           autoSize={{ minRows: 3, maxRows: 6 }}
         />
       </Form.Item>
-
+      <Form.Item label="Nội dung 2" required>
+        <ReactQuill
+          value={htmlContent}
+          onChange={setHtmlContent}
+          theme="snow"
+        />
+      </Form.Item>
       <Form.Item
         label="Nội dung"
         required
