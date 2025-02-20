@@ -8,7 +8,9 @@ const api = {
     getPrompts: async (page = 1, pageSize = 10) => {
         return axios.get(`${API_URL}/prompts?page=${page}&pageSize=${pageSize}`);
     },
-
+    uploadImage: async (data) => {
+        return axios.post(`${API_URL}/prompts/upload`, data);
+    },
     getPromptById: async (id) => {
         return axios.get(`${API_URL}/prompts/${id}`);
     },

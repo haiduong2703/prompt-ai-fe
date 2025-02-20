@@ -1,41 +1,161 @@
-// src/components/PromptForm.jsx
-import React, { useState, useEffect, useRef } from "react";
-import { Form, Input, Button, Select, Switch, Spin, message } from "antd";
-import MDEditor from "@uiw/react-md-editor";
-import api from "../../../services/api";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { Form, Input, Button, Select, Spin, message } from "antd";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Đảm bảo import CSS để hiển thị đúng
+import "react-quill/dist/quill.snow.css";
+import api from "../../../services/api";
+
 const { Option } = Select;
+
+// 🖊 Component riêng cho mỗi Form.Item chứa ReactQuill
+const QuillEditorItem = ({ label, value, onChange }) => {
+  const quillRef = useRef(null);
+
+  const imageHandler = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+          const response = await api.uploadImage(formData);
+          const url = response.data.imageUrls[0];
+          const quill = quillRef.current.getEditor();
+          const range = quill.getSelection();
+          quill.insertEmbed(range.index, "image", url);
+        } catch (error) {
+          message.error("Lỗi khi upload ảnh");
+          console.error(error);
+        }
+      }
+    };
+  };
+
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          ["bold", "italic", "underline", "strike"],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+            { indent: "-1" },
+            { indent: "+1" },
+          ],
+          ["image", "link"],
+          [
+            {
+              color: [
+                "#000000",
+                "#e60000",
+                "#ff9900",
+                "#ffff00",
+                "#008a00",
+                "#0066cc",
+                "#9933ff",
+                "#ffffff",
+                "#facccc",
+                "#ffebcc",
+                "#ffffcc",
+                "#cce8cc",
+                "#cce0f5",
+                "#ebd6ff",
+                "#bbbbbb",
+                "#f06666",
+                "#ffc266",
+                "#ffff66",
+                "#66b966",
+                "#66a3e0",
+                "#c285ff",
+                "#888888",
+                "#a10000",
+                "#b26b00",
+                "#b2b200",
+                "#006100",
+                "#0047b2",
+                "#6b24b2",
+                "#444444",
+                "#5c0000",
+                "#663d00",
+                "#666600",
+                "#003700",
+                "#002966",
+                "#3d1466",
+              ],
+            },
+          ],
+        ],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+    }),
+    []
+  );
+
+  return (
+    <Form.Item label={label}>
+      <ReactQuill
+        ref={quillRef}
+        value={value}
+        onChange={onChange}
+        theme="snow"
+        modules={modules}
+        onFocus={() => {
+          const quill = quillRef.current?.getEditor();
+          if (quill) {
+            setTimeout(() => {
+              quill.focus();
+            }, 0);
+          }
+        }}
+      />
+    </Form.Item>
+  );
+};
 
 const PromptForm = ({ promptId, categories, onSuccess }) => {
   const [form] = Form.useForm();
-  const quillRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [isType, setIsType] = useState([
-    {
-      label: "Free",
-      value: 1,
-    },
-    {
-      label: "Premium",
-      value: 2,
-    },
-    {
-      label: "Plus",
-      value: 3,
-    },
-  ]);
-  const [markdownContent, setMarkdownContent] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [contentValues, setContentValues] = useState({
+    content: "",
+    what: "",
+    tips: "",
+    text: "",
+    how: "",
+    input: "",
+    output: "",
+    OptimationGuide: "",
+    addtip: "",
+    addinformation: "",
+  });
+
   const isEditMode = !!promptId;
-  const [htmlContent, setHtmlContent] = useState("");
+
   useEffect(() => {
     if (isEditMode) {
       fetchPromptDetails();
     } else {
-      // Reset form for create mode
       form.resetFields();
-      setMarkdownContent("");
+      setContentValues({
+        content: "",
+        what: "",
+        tips: "",
+        text: "",
+        how: "",
+        input: "",
+        output: "",
+        OptimationGuide: "",
+        addtip: "",
+        addinformation: "",
+      });
     }
   }, [promptId, form]);
 
@@ -49,13 +169,23 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         title: prompt.title,
         short_description: prompt.short_description,
         category_id: prompt.category_id,
-        is_type: prompt.is_type === 1,
-        status: prompt.status === 1,
+        is_type: prompt.is_type,
       });
-      setHtmlContent(prompt.content);
-      setMarkdownContent(prompt.content);
+
+      setContentValues({
+        content: prompt.content,
+        what: prompt.what,
+        tips: prompt.tips,
+        text: prompt.text,
+        how: prompt.how,
+        input: prompt.input,
+        output: prompt.output,
+        OptimationGuide: prompt.OptimationGuide,
+        addtip: prompt.addtip,
+        addinformation: prompt.addinformation,
+      });
     } catch (error) {
-      message.error("Failed to fetch prompt details");
+      message.error("Lỗi khi lấy dữ liệu");
       console.error(error);
     } finally {
       setLoading(false);
@@ -65,27 +195,31 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
   const handleSubmit = async (values) => {
     try {
       setSubmitting(true);
-      const promptData = {
-        ...values,
-        content: htmlContent,
-        is_type: values.is_type ? 1 : 0,
-        status: values.status ? 1 : 0,
-      };
+      const promptData = { ...values, ...contentValues };
 
       if (isEditMode) {
         await api.updatePrompt(promptId, promptData);
-        message.success("Prompt updated successfully");
+        message.success("Cập nhật thành công!");
       } else {
         await api.createPrompt(promptData);
-        setHtmlContent("");
-        message.success("Prompt created successfully");
+        setContentValues({
+          content: "",
+          what: "",
+          tips: "",
+          text: "",
+          how: "",
+          input: "",
+          output: "",
+          OptimationGuide: "",
+          addtip: "",
+          addinformation: "",
+        });
+        message.success("Tạo mới thành công!");
       }
 
       if (onSuccess) onSuccess();
     } catch (error) {
-      message.error(
-        isEditMode ? "Failed to update prompt" : "Failed to create prompt"
-      );
+      message.error("Lỗi khi lưu dữ liệu");
       console.error(error);
     } finally {
       setSubmitting(false);
@@ -101,60 +235,18 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
       </div>
     );
   }
-  // Xử lý upload ảnh
-  const handleImageUpload = () => {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
-    input.click();
 
-    input.onchange = async () => {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        const quill = quillRef.current.getEditor();
-        const range = quill.getSelection();
-        quill.insertEmbed(range.index, "image", reader.result);
-      };
-
-      if (file) {
-        reader.readAsDataURL(file); // Đọc file dưới dạng base64 (hoặc upload lên server)
-      }
-    };
-  };
-  const modules = {
-    toolbar: {
-      container: [
-        [{ header: [1, 2, 3, false] }],
-        ["bold", "italic", "underline", "strike"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ align: [] }],
-        ["link", "image"],
-        ["clean"],
-      ],
-      handlers: {
-        image: handleImageUpload,
-      },
-    },
-    clipboard: {
-      matchVisual: false,
-    },
-  };
   return (
     <Form
       form={form}
       layout="vertical"
       onFinish={handleSubmit}
-      initialValues={{
-        is_type: true,
-        status: true,
-      }}
+      initialValues={{}}
     >
       <Form.Item
         name="title"
         label="Tiêu đề"
-        rules={[{ required: true, message: "Please enter the title" }]}
+        rules={[{ required: true, message: "Nhập tiêu đề" }]}
       >
         <Input placeholder="Nhập tiêu đề" />
       </Form.Item>
@@ -162,37 +254,85 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
       <Form.Item
         name="short_description"
         label="Mô tả ngắn"
-        rules={[
-          { required: true, message: "Vui lfong nhập mô tả ngắn" },
-          { max: 500, message: "Mô tả ngắn ít hơn 500 từ" },
-        ]}
+        rules={[{ required: true, message: "Nhập mô tả ngắn" }]}
       >
         <Input.TextArea
-          placeholder="Nhập mô tả ngắn"
+          placeholder="Nhập mô tả"
           autoSize={{ minRows: 3, maxRows: 6 }}
         />
       </Form.Item>
-      <Form.Item label="Nội dung" required>
-        <ReactQuill
-          ref={quillRef}
-          value={htmlContent}
-          onChange={setHtmlContent}
-          theme="snow"
-          modules={modules}
-        />
-      </Form.Item>
-      {/* <Form.Item
+
+      {/* 🖊 Không dùng map, gọi từng component riêng biệt */}
+      <QuillEditorItem
         label="Nội dung"
-        required
-        rules={[{ required: true, message: "Vui lòng nhập nội dung" }]}
-      >
-        <MDEditor
-          value={markdownContent}
-          onChange={setMarkdownContent}
-          height={300}
-          preview="edit"
-        />
-      </Form.Item> */}
+        value={contentValues.content}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, content: value }))
+        }
+      />
+      <QuillEditorItem
+        label="What"
+        value={contentValues.what}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, what: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Tips"
+        value={contentValues.tips}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, tips: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Text"
+        value={contentValues.text}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, text: value }))
+        }
+      />
+      <QuillEditorItem
+        label="How"
+        value={contentValues.how}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, how: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Input"
+        value={contentValues.input}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, input: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Output"
+        value={contentValues.output}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, output: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Optimization Guide"
+        value={contentValues.OptimationGuide}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, OptimationGuide: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Additional Tips"
+        value={contentValues.addtip}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, addtip: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Additional Information"
+        value={contentValues.addinformation}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, addinformation: value }))
+        }
+      />
 
       <Form.Item name="category_id" label="Thể loại">
         <Select placeholder="Chọn thể loại">
@@ -204,23 +344,12 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         </Select>
       </Form.Item>
 
-      <Form.Item name="is_type" label="Mức độ bài viết">
-        <Select placeholder="Chọn kiểu">
-          {isType.map((type) => (
-            <Option key={type.value} value={type.value}>
-              {type.label}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={submitting}>
-          {isEditMode ? "Cập nhập" : "Tạo mới"}
+          {isEditMode ? "Cập nhật" : "Tạo mới"}
         </Button>
       </Form.Item>
     </Form>
   );
 };
-
 export default PromptForm;
