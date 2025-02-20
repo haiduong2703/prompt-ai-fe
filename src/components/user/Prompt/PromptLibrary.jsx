@@ -1,21 +1,6 @@
 import React from "react";
 import "./PromptLibrary.css"; // Import file CSS
 
-// Custom Lightning SVG component
-const LightningIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="user-icon"
-  >
-    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-  </svg>
-);
-
 const PromptLibrary = () => {
   return (
     <div className="user-container">
