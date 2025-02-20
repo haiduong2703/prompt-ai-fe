@@ -1,13 +1,15 @@
 // src/components/PromptForm.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Input, Button, Select, Switch, Spin, message } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 import api from "../../../services/api";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Đảm bảo import CSS để hiển thị đúng
 const { Option } = Select;
 
 const PromptForm = ({ promptId, categories, onSuccess }) => {
   const [form] = Form.useForm();
+  const quillRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [isType, setIsType] = useState([
     {
@@ -50,7 +52,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         is_type: prompt.is_type === 1,
         status: prompt.status === 1,
       });
-
+      setHtmlContent(prompt.content);
       setMarkdownContent(prompt.content);
     } catch (error) {
       message.error("Failed to fetch prompt details");
@@ -65,7 +67,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
       setSubmitting(true);
       const promptData = {
         ...values,
-        content: markdownContent,
+        content: htmlContent,
         is_type: values.is_type ? 1 : 0,
         status: values.status ? 1 : 0,
       };
@@ -75,6 +77,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         message.success("Prompt updated successfully");
       } else {
         await api.createPrompt(promptData);
+        setHtmlContent("");
         message.success("Prompt created successfully");
       }
 
@@ -98,7 +101,46 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
       </div>
     );
   }
+  // Xử lý upload ảnh
+  const handleImageUpload = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
 
+    input.onchange = async () => {
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const quill = quillRef.current.getEditor();
+        const range = quill.getSelection();
+        quill.insertEmbed(range.index, "image", reader.result);
+      };
+
+      if (file) {
+        reader.readAsDataURL(file); // Đọc file dưới dạng base64 (hoặc upload lên server)
+      }
+    };
+  };
+  const modules = {
+    toolbar: {
+      container: [
+        [{ header: [1, 2, 3, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ align: [] }],
+        ["link", "image"],
+        ["clean"],
+      ],
+      handlers: {
+        image: handleImageUpload,
+      },
+    },
+    clipboard: {
+      matchVisual: false,
+    },
+  };
   return (
     <Form
       form={form}
@@ -130,14 +172,16 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
           autoSize={{ minRows: 3, maxRows: 6 }}
         />
       </Form.Item>
-      <Form.Item label="Nội dung 2" required>
+      <Form.Item label="Nội dung" required>
         <ReactQuill
+          ref={quillRef}
           value={htmlContent}
           onChange={setHtmlContent}
           theme="snow"
+          modules={modules}
         />
       </Form.Item>
-      <Form.Item
+      {/* <Form.Item
         label="Nội dung"
         required
         rules={[{ required: true, message: "Vui lòng nhập nội dung" }]}
@@ -148,7 +192,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
           height={300}
           preview="edit"
         />
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item name="category_id" label="Thể loại">
         <Select placeholder="Chọn thể loại">

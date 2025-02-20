@@ -11,7 +11,7 @@ import UserHome from "../components/user/UserHome/Home";
 import ContactManager from "../components/admin/Contact/ContactAdmin";
 const RoutesMain = () => {
   // Giả sử có một cách để xác định role (có thể từ context/redux store)
-  const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
+  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
 
   return (
     <Routes>
