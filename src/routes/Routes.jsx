@@ -9,9 +9,11 @@ import Pricing from "../components/user/Pricing/Pricing";
 import Contact from "../components/user/Contact/Contact";
 import UserHome from "../components/user/UserHome/Home";
 import ContactManager from "../components/admin/Contact/ContactAdmin";
+import Login from "../pages/user/Login";
+import Register from "../pages/user/register";
 const RoutesMain = () => {
   // Giả sử có một cách để xác định role (có thể từ context/redux store)
-  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
+  const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
 
   return (
     <Routes>
@@ -24,10 +26,12 @@ const RoutesMain = () => {
       ) : (
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
+          <Route path="login" element={<Login />} />
           <Route path="home" element={<UserHome />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="signup" element={<Register />} />
         </Route>
       )}
     </Routes>

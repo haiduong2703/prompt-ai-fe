@@ -12,6 +12,13 @@ body {
   /* background-color: white; */
 }
 
+.user-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Chiều cao tối thiểu là 100% viewport */
+}
+
 /* --- Navbar --- */
 .user-navbar {
   position: fixed;
@@ -176,6 +183,9 @@ body {
 
 /* --- Nội dung chính --- */
 .user-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding-top: 30px;
   background-color: white;
 }

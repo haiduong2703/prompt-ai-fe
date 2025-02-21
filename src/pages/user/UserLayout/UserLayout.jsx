@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
-import './UserLayout.css';
-import UserFooter from '../UserFooter/UserFooter';
+import React from "react";
+import { Link, useLocation, Outlet } from "react-router-dom";
+import "./UserLayout.css";
+import UserFooter from "../UserFooter/UserFooter";
 const UserLayout = ({ children }) => {
   const location = useLocation();
 
@@ -10,12 +10,16 @@ const UserLayout = ({ children }) => {
       {/* Navbar */}
       <nav className="user-navbar">
         <div className="user-nav-left">
-          <Link to="/" className="user-logo">&gt;-</Link>
+          <Link to="/" className="user-logo">
+            &gt;-
+          </Link>
 
           <div className="user-nav-links">
-            <Link 
-              to="/prompts" 
-              className={`user-nav-item ${location.pathname === '/prompts' ? 'user-active' : ''}`}
+            <Link
+              to="/prompts"
+              className={`user-nav-item ${
+                location.pathname === "/prompts" ? "user-active" : ""
+              }`}
             >
               Prompts
             </Link>
@@ -23,43 +27,57 @@ const UserLayout = ({ children }) => {
             <div className="user-dropdown">
               <button className="user-dropdown-btn">Tools ▼</button>
               <div className="user-dropdown-menu">
-                <Link to="/tool1" className="user-dropdown-item">Prompts Generator</Link>
-                <Link to="/tool2" className="user-dropdown-item">GPTs</Link>
+                <Link to="/tool1" className="user-dropdown-item">
+                  Prompts Generator
+                </Link>
+                <Link to="/tool2" className="user-dropdown-item">
+                  GPTs
+                </Link>
               </div>
             </div>
 
-            <Link 
-              to="/products" 
-              className={`user-nav-item ${location.pathname === '/products' ? 'user-active' : ''}`}
+            <Link
+              to="/products"
+              className={`user-nav-item ${
+                location.pathname === "/products" ? "user-active" : ""
+              }`}
             >
               Products
             </Link>
 
-            <Link 
-              to="/pricing" 
-              className={`user-nav-item ${location.pathname === '/pricing' ? 'user-active' : ''}`}
+            <Link
+              to="/pricing"
+              className={`user-nav-item ${
+                location.pathname === "/pricing" ? "user-active" : ""
+              }`}
             >
               Pricing
             </Link>
 
-            <Link 
-              to="/contact" 
-              className={`user-nav-item ${location.pathname === '/contact' ? 'user-active' : ''}`}
+            <Link
+              to="/contact"
+              className={`user-nav-item ${
+                location.pathname === "/contact" ? "user-active" : ""
+              }`}
             >
               Contact Us
             </Link>
 
-            <Link 
-              to="/blog" 
-              className={`user-nav-item ${location.pathname === '/blog' ? 'user-active' : ''}`}
+            <Link
+              to="/blog"
+              className={`user-nav-item ${
+                location.pathname === "/blog" ? "user-active" : ""
+              }`}
             >
               Blog
             </Link>
           </div>
         </div>
-        
+
         <div className="user-nav-right">
-          <Link to="/logout" className="user-logout">Log out</Link>
+          <Link to="/logout" className="user-logout">
+            Log out
+          </Link>
           <button className="user-menu-btn">☰</button>
           <div className="user-avatar"></div>
         </div>
@@ -72,8 +90,8 @@ const UserLayout = ({ children }) => {
       <main className="user-main-content">
         <Outlet />
       </main>
-            {/* Thêm Footer */}
-            <UserFooter />
+      {/* Thêm Footer */}
+      <UserFooter />
     </div>
   );
 };
