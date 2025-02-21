@@ -7,7 +7,7 @@
 .user-hero {
   max-width: 1200px;
   margin: auto;
-  padding: 80px 20px;
+  padding: 30px 20px;
   text-align: center;
 }
 
@@ -64,6 +64,7 @@
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 90px;
   display: block;
   font-size: 24px;
   line-height: 140%;
@@ -74,30 +75,76 @@
 /* AI Tools */
 .user-ai-tools {
   display: flex;
+  margin-top: 20px;
   justify-content: center;
-  gap: 15px;
-  margin: 30px 0;
 }
 
 .user-tool {
-  background-color: black;
-  padding: 12px 24px;
-  border-radius: 50px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid #333;
+  gap: 8px;
+  padding: 15px 20px;
+  border-radius: 50px;
+  background: white;
+  color: black;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 16px;
+  line-height: 120%;
+}
+
+.user-tool img {
+  width: 20px;
+  height: 20px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.user-tool.active {
+  background: black;
+  color: white;
+}
+
+.user-tool.active img:not(.no-invert) {
+  filter: invert(1);
+}
+
+.user-tool:hover {
+  background-color: #ddd;
 }
 
 /* Categories */
 .user-categories {
   margin-top: 50px;
 }
-
-.user-category-grid {
+.user-categories h2 {
+  color: var(--black);
+  text-align: left !important;
+  margin-bottom: 0;
+  font-size: 28px;
+  line-height: 130%;
+  display: inline;
+}
+.category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột mỗi dòng */
+  gap: 30px; /* Khoảng cách giữa các card */
+  padding-top: 30px;
+}
+.category-grid p {
+  text-align: left;
+}
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 card trên 1 dòng khi màn hình nhỏ hơn 1024px */
+  }
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 card trên 1 dòng khi màn hình nhỏ hơn 768px */
+  }
 }
 
 .user-category-card {
@@ -106,7 +153,11 @@
   border-radius: 10px;
   text-align: left;
 }
-
+.user-categories-title {
+  border-bottom: 1px solid black;
+  padding-bottom: 10px;
+  text-align: left;
+}
 .user-category-card h3 {
   font-size: 18px;
   font-weight: bold;
