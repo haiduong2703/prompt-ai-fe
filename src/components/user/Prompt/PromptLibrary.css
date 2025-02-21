@@ -107,7 +107,7 @@
   color: white;
 }
 
-.user-tool.active img:not(.no-invert) {
+.user-tool.active img {
   filter: invert(1);
 }
 
