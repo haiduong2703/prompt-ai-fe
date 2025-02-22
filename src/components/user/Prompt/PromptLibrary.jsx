@@ -89,10 +89,12 @@ const PromptLibrary = () => {
               categories.map((category) => (
                 <CategoryCard
                   key={category.id}
+                  categoryId={category.id}
+                  activeSection={activeSection}
                   title={category.name}
                   count={category.prompt_count}
                   icon={category.image}
-                  link={`/categories/${category.id}`}
+                  link={`/prompts/list-prompts`}
                   createdAt={category.created_at}
                 />
               ))

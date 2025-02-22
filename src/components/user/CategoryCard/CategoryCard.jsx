@@ -1,7 +1,8 @@
 import React from "react";
 import "./CategoryCard.css";
+import { Link } from "react-router-dom";
 
-const CategoryCard = ({ title, count, icon, link, createdAt }) => {
+const CategoryCard = ({ title, count, icon, link, createdAt, categoryId, activeSection }) => {
   // Chuyển đổi ngày `created_at` thành đối tượng Date
   const createdDate = new Date(createdAt);
   const currentDate = new Date();
@@ -14,7 +15,10 @@ const CategoryCard = ({ title, count, icon, link, createdAt }) => {
 
   return (
     <div role="listitem" className="collection-item-card">
-      <a href={link} className="category-item">
+      <Link 
+      to={link} 
+      state={{count, title, categoryId, activeSection, icon}}
+      className="category-item">
         <div className="user-category-card-title">
           <img loading="lazy" src={icon} alt="category-icon" className="user-category-card-img" />
           <h2 className="user-category-card-content-title">{title}</h2>
@@ -32,7 +36,7 @@ const CategoryCard = ({ title, count, icon, link, createdAt }) => {
             <img loading="lazy" src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/67095c33c8685276d0b21e0e_arrow-btn.svg" alt="arrow-icon" className="arrow-img" />
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

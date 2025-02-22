@@ -28,7 +28,12 @@ const api = {
     deletePrompt: async (id) => {
         return axios.delete(`${API_URL}/prompts/${id}`);
     },
-
+    getPromptsByCategoryId: async (page = 1, pageSize = 12, category_id, content, search_text, is_type) => {
+        return axios.get(`${API_URL}/prompts/by-category?page=${page}&pageSize=${pageSize}&category_id=${category_id}&content=${content}&search_text=${search_text}&is_type=${is_type}`)
+    },
+    getPromptsContentByCategoryId: async (category_id) => {
+        return axios.get(`${API_URL}/prompts/contents/by-category?category_id=${category_id}`)
+    },
     // Category APIs
     getCategories: async () => {
         return axios.get(`${API_URL}/categories`);
@@ -56,6 +61,10 @@ const api = {
     //Sub
     getSubPage: async (page = 1, pageSize = 10) => {
         return axios.get(`${API_URL}/subscriptions/list?page=${page}&pageSize=${pageSize}`);
+    },
+    //Blogs
+    getBlogPage: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/blog/list?page=${page}&pageSize=${pageSize}`);
     },
 };
 
