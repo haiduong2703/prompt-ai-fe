@@ -1,3 +1,10 @@
+.list-prompts-component {
+  margin: auto;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0000;
+  justify-items: center;
+}
 .list-prompts-container {
   text-align: center;
   max-width: 85%;
@@ -173,3 +180,47 @@
 .pagination_list_prompts .ant-pagination-item-active a{
   color: black ;
 }
+/* phần list dưới */
+.newest-prompts-container {
+  width: 90%;
+  margin-top: 50px;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 50px;
+}
+.newest-prompts-title-box {
+  width: 95%;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  display: flex;
+  justify-items: center;
+}
+.newest-prompts-title-box h2 {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  font-size: 28px;
+}
+.newest-prompts-title-box h2:hover {
+  transform: scale(1.05);
+}
+.newest-prompt-list-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 14px;
+}
+
+.newest-prompt-list {
+  width: 100%;
+  padding: 20px;
+  min-height: 100%;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+
+
