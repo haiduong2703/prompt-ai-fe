@@ -9,29 +9,41 @@ import Pricing from "../components/user/Pricing/Pricing";
 import Contact from "../components/user/Contact/Contact";
 import UserHome from "../components/user/UserHome/Home";
 import ContactManager from "../components/admin/Contact/ContactAdmin";
+import Login from "../pages/user/Login";
+import Register from "../pages/user/register";
+import SubscriptionManager from "../components/admin/Subscription";
 import ListPrompts from "../components/user/Prompt/ListPrompts/ListPrompts";
 import DetailPrompt from "../components/user/Prompt/DetailPrompt/DetailPrompt";
+import BlogLayout from "../pages/user/Blog";
 const RoutesMain = () => {
   // Giả sử có một cách để xác định role (có thể từ context/redux store)
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  // const isAdmin = user && user.role == 2 ? true : false; // Thay đổi logic này theo cách bạn xác định role
   const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
-
+  console.log(isAdmin);
   return (
     <Routes>
       {isAdmin ? (
-        <Route path="/" element={<AdminLayout />}>
-          <Route path="/prompt" element={<PromptList />} />
-          <Route path="/category" element={<CategoryManager />} />
-          <Route path="/contact" element={<ContactManager />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="prompt" element={<PromptList />} />
+          <Route path="category" element={<CategoryManager />} />
+          <Route path="contact" element={<ContactManager />} />
+          <Route path="sub" element={<SubscriptionManager />} />
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
+          <Route path="login" element={<Login />} />
           <Route path="home" element={<UserHome />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />}/>
           <Route path="prompts/detail-prompts" element={<DetailPrompt/>}/>
+          <Route path="signup" element={<Register />} />
+          <Route path="blog" element={<BlogLayout />} />
+          <Route path="prompts/list-prompts" element={<ListPrompts />} />
         </Route>
       )}
     </Routes>

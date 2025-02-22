@@ -1,0 +1,84 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.auth-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.auth-form {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 260px;
+    text-align: center;
+    padding: 5px;
+    color: white;
+    background-color: #000;
+    border-radius: 10px;
+}
+
+.auth-form label {
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+}
+
+.auth-form .btn-yellow {
+    width: 100%;
+    background: #fadb14;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.auth-form .btn-social {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-text {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.signin-text a {
+    color: #1890ff;
+    font-weight: bold;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Khoảng cách giữa checkbox và text */
+    font-size: 14px;
+}
+
+.checkbox-item a {
+    color: #1890ff;
+    /* Màu link mặc định của Ant Design */
+}
