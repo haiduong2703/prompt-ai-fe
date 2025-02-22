@@ -60,7 +60,11 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(data.user));
 
         // 🟢 Chuyển sang trang Home
-        navigate("/home");
+        if (data.user.role === 2) {
+          navigate("/admin");
+        } else {
+          navigate("/home");
+        }
       } else {
         message.error(data.error || "Invalid OTP");
       }

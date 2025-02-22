@@ -52,7 +52,11 @@ const api = {
     },
     sendContacts: async (data) => {
         return axios.post(`${API_URL}/contact`, data);
-    }
+    },
+    //Sub
+    getSubPage: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/subscriptions/list?page=${page}&pageSize=${pageSize}`);
+    },
 };
 
 export default api;

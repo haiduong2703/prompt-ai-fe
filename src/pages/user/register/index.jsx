@@ -85,6 +85,7 @@ const Register = () => {
           <>
             <strong>Full Name*</strong>
             <Input
+              style={{ marginTop: "10px", marginBottom: "20px" }}
               type="text"
               placeholder="Enter your full name"
               value={fullName}
@@ -92,6 +93,7 @@ const Register = () => {
             />
             <strong>Email Address*</strong>
             <Input
+              style={{ marginTop: "10px", marginBottom: "20px" }}
               type="email"
               placeholder="Enter your email"
               value={email}
@@ -99,6 +101,7 @@ const Register = () => {
             />
             <strong>Password*</strong>
             <Input.Password
+              style={{ marginTop: "10px", marginBottom: "20px" }}
               placeholder="Create your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

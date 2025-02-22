@@ -4,7 +4,7 @@ import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 const UserLayout = ({ children }) => {
   const location = useLocation();
-
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="user-container">
       {/* Navbar */}
@@ -75,11 +75,39 @@ const UserLayout = ({ children }) => {
         </div>
 
         <div className="user-nav-right">
-          <Link to="/logout" className="user-logout">
-            Log out
-          </Link>
+          {user ? (
+            <>
+              <Link to="/logout" className="user-logout">
+                Log out
+              </Link>
+              <div className="user-avatar">
+                <img src={user.avatar} alt="Avatar" />
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                  borderRight: "1px solid white",
+                  paddingRight: "20px",
+                }}
+                className="user-login"
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                style={{ textDecoration: "none", color: "#fff" }}
+                className="user-signup"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
           <button className="user-menu-btn">☰</button>
-          <div className="user-avatar"></div>
         </div>
       </nav>
 

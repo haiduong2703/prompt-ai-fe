@@ -11,17 +11,22 @@ import UserHome from "../components/user/UserHome/Home";
 import ContactManager from "../components/admin/Contact/ContactAdmin";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/register";
+import SubscriptionManager from "../components/admin/Subscription";
 const RoutesMain = () => {
   // Giả sử có một cách để xác định role (có thể từ context/redux store)
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  // const isAdmin = user && user.role == 2 ? true : false; // Thay đổi logic này theo cách bạn xác định role
   const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
-
+  console.log(isAdmin);
   return (
     <Routes>
       {isAdmin ? (
-        <Route path="/" element={<AdminLayout />}>
-          <Route path="/prompt" element={<PromptList />} />
-          <Route path="/category" element={<CategoryManager />} />
-          <Route path="/contact" element={<ContactManager />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="prompt" element={<PromptList />} />
+          <Route path="category" element={<CategoryManager />} />
+          <Route path="contact" element={<ContactManager />} />
+          <Route path="sub" element={<SubscriptionManager />} />
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
