@@ -1,6 +1,7 @@
 import React from "react";
 import "./PromptCard.css";
 import { StarFilled, HeartFilled, LockFilled } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 const PromptCard = ({ prompt, image_section, image_category }) => {
   const createdDate = new Date(prompt.created_at);
   const currentDate = new Date();
@@ -19,7 +20,8 @@ const PromptCard = ({ prompt, image_section, image_category }) => {
             <img src={image_category} alt="Category Icon" className="prompt-icon" />
           </div>
           <div className="premium-tag-div">
-            <span className="premium-tag"><StarFilled style={{ color: "yellow" }} /> Premium</span>
+            {prompt.is_type == 2 && <span className="premium-tag"><StarFilled style={{ color: "yellow" }} /> Premium</span>}
+            {prompt.is_type == 1 && <span className="premium-tag"><HeartFilled style={{ color: "white" }} /> Free</span>}
           </div>
         </div>
         <div className="prompt-card-body">
@@ -28,12 +30,15 @@ const PromptCard = ({ prompt, image_section, image_category }) => {
           <p className="prompt-description">{prompt.short_description}</p>
         </div>
       </div>
-      <div className="prompt-card-topic">{prompt.content || "Unknown"}</div>
+      <div className="prompt-card-topic">{prompt?.Topic?.name || "Unknown"}</div>
       <div className="prompt-card-footer">
         <div className="prompt-card-footer-link">
-          <a href={`/chatgpt-premium/task-management/${prompt.id}`} className="view-prompt-button">
+          <Link 
+          to={`/prompts/detail-prompts`} 
+          state={{promptId: prompt.id}}
+          className="view-prompt-button">
             <LockFilled style={{ fontSize: "12px", color: "black" }} /> View Prompt
-          </a>
+          </Link>
         </div>
         <div className="like-link-holder">
           <div className="like-link-holder-div-child">          

@@ -7,7 +7,7 @@
   transition: 0.3s;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Đảm bảo card có chiều cao cố định */
+  height: 430px;/* Đảm bảo card có chiều cao cố định */
 }
 .prompt-card-container:hover {
   transform: scale(1.05);

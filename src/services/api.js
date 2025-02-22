@@ -28,11 +28,15 @@ const api = {
     deletePrompt: async (id) => {
         return axios.delete(`${API_URL}/prompts/${id}`);
     },
-    getPromptsByCategoryId: async (page = 1, pageSize = 12, category_id, content, search_text, is_type) => {
-        return axios.get(`${API_URL}/prompts/by-category?page=${page}&pageSize=${pageSize}&category_id=${category_id}&content=${content}&search_text=${search_text}&is_type=${is_type}`)
+    getPromptsByCategoryId: async (page = 1, pageSize = 12, category_id, topic_id, search_text, is_type) => {
+        return axios.get(`${API_URL}/prompts/by-category?page=${page}&pageSize=${pageSize}&category_id=${category_id}&topic_id=${topic_id}&search_text=${search_text}&is_type=${is_type}`)
     },
     getPromptsContentByCategoryId: async (category_id) => {
-        return axios.get(`${API_URL}/prompts/contents/by-category?category_id=${category_id}`)
+        return axios.get(`${API_URL}/prompts/topics/by-category?category_id=${category_id}`)
+    },
+    getNewestPromptsByCategoryId: async (category_id) => {
+        return axios.get(`${API_URL}/prompts/newest?category_id=${category_id}`)
+
     },
     // Category APIs
     getCategories: async () => {
@@ -48,6 +52,7 @@ const api = {
     getSections: async () => {
         return axios.get(`${API_URL}/sections`);
     },
+    //Topic APIS
     //Contact APIS
     getContacts: async () => {
         return axios.get(`${API_URL}/contact`);
