@@ -13,6 +13,7 @@ import Login from "../pages/user/Login";
 import Register from "../pages/user/register";
 import SubscriptionManager from "../components/admin/Subscription";
 import ListPrompts from "../components/user/Prompt/ListPrompts/ListPrompts";
+import DetailPrompt from "../components/user/Prompt/DetailPrompt/DetailPrompt";
 import BlogLayout from "../pages/user/Blog";
 import { UserContext } from "../context/AuthContext";
 import BlogManager from "../components/admin/Blog";
@@ -45,6 +46,8 @@ const RoutesMain = () => {
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="prompts/list-prompts" element={<ListPrompts />}/>
+          <Route path="prompts/detail-prompts/:id" element={<DetailPrompt/>}/>
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />

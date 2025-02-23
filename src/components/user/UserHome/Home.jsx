@@ -29,10 +29,7 @@ const UserHome = () => {
   };
   return (
     <div style={{display: "flex", justifyContent: "center", padding: "20px", gap: "20px"}}>
-      <PromptCard prompt={examplePrompt1}/>
-      <PromptCard prompt={examplePrompt2}/>
-      <PromptCard prompt={examplePrompt3}/>
-      <PromptCard prompt={examplePrompt2}/>
+
     </div>
   );
 };

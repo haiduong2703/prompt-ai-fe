@@ -1,7 +1,8 @@
 import React from "react";
 import "./PromptCard.css";
 import { StarFilled, HeartFilled, LockFilled } from "@ant-design/icons";
-const PromptCard = ({ prompt, image_section, image_category }) => {
+import { Link } from "react-router-dom";
+const PromptCard = ({ prompt, image_category, activeSection }) => {
   const createdDate = new Date(prompt.created_at);
   const currentDate = new Date();
 
@@ -15,28 +16,32 @@ const PromptCard = ({ prompt, image_section, image_category }) => {
       <div className="prompt-card">
         <div className="prompt-card-header">
           <div className="prompt-card-image-block">
-            <img src={image_section} alt="ChatGPT Logo" className="prompt-icon" style={{backgroundColor: "white", borderRadius: "15px", padding: "5px"}} />
-            <img src={image_category} alt="Category Icon" className="prompt-icon" />
+            <img src={activeSection?.description} alt="ChatGPT Logo" className="prompt-icon" style={{ backgroundColor: "white", borderRadius: "15px", padding: "5px" }} />
+            <img src={prompt?.Category?.image_card} alt="Category Icon" className="prompt-icon" />
           </div>
           <div className="premium-tag-div">
-            <span className="premium-tag"><StarFilled style={{ color: "yellow" }} /> Premium</span>
+            {prompt.is_type == 2 && <span className="premium-tag"><StarFilled style={{ color: "yellow" }} /> Premium</span>}
+            {prompt.is_type == 1 && <span className="premium-tag"><HeartFilled style={{ color: "white" }} /> Free</span>}
           </div>
         </div>
         <div className="prompt-card-body">
-        {isNew && <div className="promt-card-red-new-tag">NEW</div>}
+          {isNew && <div className="promt-card-red-new-tag">NEW</div>}
           <h3 className="prompt-title">{prompt.title}</h3>
           <p className="prompt-description">{prompt.short_description}</p>
         </div>
       </div>
-      <div className="prompt-card-topic">{prompt.content || "Unknown"}</div>
+      <div className="prompt-card-topic">{prompt?.Topic?.name || "Unknown"}</div>
       <div className="prompt-card-footer">
         <div className="prompt-card-footer-link">
-          <a href={`/chatgpt-premium/task-management/${prompt.id}`} className="view-prompt-button">
+          <Link
+            to={`/prompts/detail-prompts/${prompt.id}`}
+            state={{ image_category, activeSection, topicName: prompt?.Topic?.name }}
+            className="view-prompt-button">
             <LockFilled style={{ fontSize: "12px", color: "black" }} /> View Prompt
-          </a>
+          </Link>
         </div>
         <div className="like-link-holder">
-          <div className="like-link-holder-div-child">          
+          <div className="like-link-holder-div-child">
             <HeartFilled />
           </div>
         </div>

@@ -1,11 +1,46 @@
+.list-prompts-component {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+  padding-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0000;
+  justify-items: center;
+}
 .list-prompts-container {
   text-align: center;
   max-width: 85%;
   margin: auto;
-  padding: 20px;
+  padding-top: 0;
   font-family: 'Montserrat', sans-serif;
   background-color: #0000;
+  justify-content: center;
+  box-sizing: border-box; /* Tránh padding làm tràn */
 }
+.prompt-list-title {
+  width: 100%;
+  height: fit-content;
+  margin-top: 50px;
+  text-align: left;
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 10px; /* Tạo khoảng cách giữa hình ảnh và tiêu đề */
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+.prompt-list-title h2 {
+  display: flex;
+  align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+  font-weight: 700;  
+  gap: 8px; /* Khoảng cách giữa ảnh và chữ */
+}
+.prompt-list-title img {
+  height: 24px; /* Điều chỉnh chiều cao của ảnh */
+  width: auto;
+}
+
+
+
 
 /* Grid layout để mỗi hàng có 4 card */
 .prompt-list {
@@ -46,7 +81,7 @@
 }
 
 /* Tiêu đề */
-.title {
+.list-prompts-container-title {
   font-size: 56px;
   font-weight: 700;
 }
@@ -62,8 +97,7 @@
 .filter-buttons {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
-  background-color: white;
+  margin: 40px 0;
 }
 
 .premium-btn,
@@ -88,21 +122,19 @@
 
 
 /* Ô tìm kiếm */
-.search-bar {
+.list-prompt-search-bar {
   width: 80%;
   height: 50px;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 50px;
   border: none;
-  margin: 20px 0;
   font-size: 16px;
-  background-color: rgb(247, 247, 247);
   justify-content: center;
   text-align: center;
   color: black;
   font-weight: 500;
 }
-.search-bar:focus {
+.list-prompt-search-bar:focus {
   outline: none;
   border: none;
 }
@@ -112,6 +144,8 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  margin-top: 30px;
+
 }
 
 .category-tag {
@@ -173,3 +207,47 @@
 .pagination_list_prompts .ant-pagination-item-active a{
   color: black ;
 }
+/* phần list dưới */
+.newest-prompts-container {
+  width: 90%;
+  margin-top: 50px;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 50px;
+}
+.newest-prompts-title-box {
+  width: 95%;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  display: flex;
+  justify-items: center;
+}
+.newest-prompts-title-box h2 {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  font-size: 28px;
+}
+.newest-prompts-title-box h2:hover {
+  transform: scale(1.05);
+}
+.newest-prompt-list-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 14px;
+}
+
+.newest-prompt-list {
+  width: 100%;
+  padding: 20px;
+  min-height: 100%;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+
+

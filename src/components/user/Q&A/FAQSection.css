@@ -1,11 +1,17 @@
 .faq-section {
-    max-width: 900px;
+    width: 100%;
+    max-width: 800px;
     margin: 50px auto;
     font-family: 'Montserrat', sans-serif;
   }
+  @media (max-width: 768px) {
+    .faq-section {
+      max-width: 90%; /* Giới hạn chiều rộng trên màn hình nhỏ */
+    }
+  }
   
   .faq-title {
-    text-align: center;
+    text-align: left;
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -51,11 +57,25 @@
     background: black;
     color: white;
     font-size: 16px;
-    line-height: 1.5;
-    display: none;
-  }
-  
+    line-height: 1.6;
+    border-top: 1px solid #444;
+    text-align: left; /* Căn trái nội dung */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
   .faq-item.open .faq-answer {
     display: block;
   }
+  .faq-answer ul {
+    padding-left: 20px;
+    list-style-type: none;
+  }
+  
+  .faq-answer ul li {
+    margin-bottom: 5px;
+    list-style-type: disc; /* Hoặc "decimal" nếu muốn số 1, 2, 3 */
+    list-style-type: none;
+  }
+  
   
