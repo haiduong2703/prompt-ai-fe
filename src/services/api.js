@@ -36,7 +36,9 @@ const api = {
     },
     getNewestPromptsByCategoryId: async (category_id) => {
         return axios.get(`${API_URL}/prompts/newest?category_id=${category_id}`)
-
+    },
+    getRelatedPrompts: async (current_id, category_id, topic_id) => {
+        return axios.get(`${API_URL}/prompts/related?current_id=${current_id}&category_id=${category_id}&topic_id=${topic_id}`)
     },
     // Category APIs
     getCategories: async () => {

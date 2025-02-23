@@ -2,9 +2,9 @@ import React from "react";
 import "./CategoryCard.css";
 import { Link } from "react-router-dom";
 
-const CategoryCard = ({ title, count, icon, link, createdAt, categoryId, activeSection }) => {
+const CategoryCard = ({ category, link, activeSection }) => {
   // Chuyển đổi ngày `created_at` thành đối tượng Date
-  const createdDate = new Date(createdAt);
+  const createdDate = new Date(category.created_at);
   const currentDate = new Date();
 
   // Tính khoảng cách ngày giữa `created_at` và hiện tại
@@ -17,17 +17,17 @@ const CategoryCard = ({ title, count, icon, link, createdAt, categoryId, activeS
     <div role="listitem" className="collection-item-card">
       <Link 
       to={link} 
-      state={{count, title, categoryId, activeSection, icon}}
+      state={{category: category, activeSection}}
       className="category-item">
         <div className="user-category-card-title">
-          <img loading="lazy" src={icon} alt="category-icon" className="user-category-card-img" />
-          <h2 className="user-category-card-content-title">{title}</h2>
+          <img loading="lazy" src={category?.image} alt="category-icon" className="user-category-card-img" />
+          <h2 className="user-category-card-content-title">{category?.name}</h2>
           {isNew && <div className="red-new-tag">NEW!</div>}
         </div>
 
         <div className="user-category-card-main-content">
           <div className="user-category-card-content">
-            <div className="user-category-card-number-of-prompts">{count}</div>
+            <div className="user-category-card-number-of-prompts">{category?.prompt_count}</div>
             <div className="user-category-card-word-prompts">&nbsp;Prompts</div>
           </div>
 
