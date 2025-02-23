@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, Divider, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../context/AuthContext";
 import "./index.css";
 
 const Login = () => {
@@ -8,6 +9,7 @@ const Login = () => {
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   // 🟢 Gửi OTP khi đăng nhập
   const handleSendOtp = async () => {
@@ -55,11 +57,7 @@ const Login = () => {
       const data = await response.json();
       if (response.ok) {
         message.success("Login successful!");
-
-        // 🟢 Lưu user vào localStorage
-        localStorage.setItem("user", JSON.stringify(data.user));
-
-        // 🟢 Chuyển sang trang Home
+        setUser(data.user); // Cập nhật trạng thái người dùng
         if (data.user.role === 2) {
           navigate("/admin");
         } else {

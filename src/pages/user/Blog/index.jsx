@@ -19,7 +19,7 @@ const BlogList = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const response = await api.getBlogPage(currentPage, 10);
+      const response = await api.getBlogPage(currentPage, 6, searchTerm);
       setBlogs(response.data.blogs);
       setTotalPages(response.data.totalPages);
     } catch (error) {

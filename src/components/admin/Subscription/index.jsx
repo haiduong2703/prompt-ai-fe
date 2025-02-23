@@ -288,18 +288,17 @@ const SubscriptionManager = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="description" label="Mô tả">
-            <ReactQuill
-              ref={quillRef}
-              modules={modules}
-              key={isModalOpen ? "new" : editingCategory?.id} // Thay đổi key khi mở modal
-              theme="snow"
-              value={description || ""} // Đảm bảo giá trị không bị undefined hoặc null
-              onChange={(value, delta, source, editor) => {
-                setDescription(editor.getHTML()); // Lấy nội dung HTML
-              }}
-            />
-          </Form.Item>
+          <label>Mô tả</label>
+          <ReactQuill
+            ref={quillRef}
+            modules={modules}
+            key={isModalOpen ? "new" : editingCategory?.id} // Thay đổi key khi mở modal
+            theme="snow"
+            value={description || ""} // Đảm bảo giá trị không bị undefined hoặc null
+            onChange={(value, delta, source, editor) => {
+              setDescription(editor.getHTML()); // Lấy nội dung HTML
+            }}
+          />
           <Form.Item
             name="price"
             label="Giá gói"
@@ -316,7 +315,7 @@ const SubscriptionManager = () => {
           >
             <Select>
               <Select.Option value="1">Tháng</Select.Option>
-              <Select.Option value="2">Vĩnh viên</Select.Option>
+              <Select.Option value="2">Vĩnh viễn</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item

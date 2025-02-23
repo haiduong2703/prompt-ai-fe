@@ -7,15 +7,15 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useUser } from "../../context/AuthContext";
 const { Sider } = Layout;
 
 const Sidebar = () => {
   const navigate = useNavigate();
-
+  const { user, logout } = useUser(); // Lấy user và hàm logout từ Context
   // Hàm xử lý đăng xuất
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Xóa user khỏi localStorage
+    logout(); // Gọi hàm logout
     navigate("/login"); // Chuyển hướng về trang đăng nhập
   };
 
@@ -47,11 +47,15 @@ const Sidebar = () => {
           <Link to="sub">Quản lý gói đăng ký</Link>
         </Menu.Item>
         <Menu.Item key="5" icon={<FormOutlined />}>
-          <Link to="/forms">Forms</Link>
+          <Link to="blog">Quản lý blog</Link>
         </Menu.Item>
+        <Menu.Item key="6" icon={<FormOutlined />}>
+          <Link to="blogcategory">Quản lý loại blog</Link>
+        </Menu.Item>
+
         {/* Nút đăng xuất */}
         <Menu.Item
-          key="6"
+          key="7"
           icon={<LogoutOutlined />}
           onClick={handleLogout} // Xử lý đăng xuất
         >

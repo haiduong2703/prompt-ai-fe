@@ -62,9 +62,40 @@ const api = {
     getSubPage: async (page = 1, pageSize = 10) => {
         return axios.get(`${API_URL}/subscriptions/list?page=${page}&pageSize=${pageSize}`);
     },
+    createSub: async (promptData) => {
+        return axios.post(`${API_URL}/subscriptions`, promptData);
+    },
+
+    updateSub: async (id, promptData) => {
+        return axios.put(`${API_URL}/subscriptions/${id}`, promptData);
+    },
     //Blogs
-    getBlogPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/blog/list?page=${page}&pageSize=${pageSize}`);
+    getBlogPage: async (page = 1, pageSize = 10, search) => {
+        return axios.get(`${API_URL}/blog/list?page=${page}&pageSize=${pageSize}&search=${search}`);
+    },
+    createBlog: async (promptData) => {
+        return axios.post(`${API_URL}/blog`, promptData);
+    },
+
+    updateBlog: async (id, promptData) => {
+        return axios.put(`${API_URL}/blog/${id}`, promptData);
+    },
+    //Blogs Categories
+    getBlogCategory: async () => {
+        return axios.get(`${API_URL}/blogcategory`);
+    },
+    getBlogCategoryPage: async () => {
+        return axios.get(`${API_URL}/blogcategory/list`);
+    },
+    createBlogCategory: async (promptData) => {
+        return axios.post(`${API_URL}/blogcategory`, promptData);
+    },
+
+    updateBlogCategory: async (id, promptData) => {
+        return axios.put(`${API_URL}/blogcategory/${id}`, promptData);
+    },
+    deleteBlogCategory: async (id) => {
+        return axios.delete(`${API_URL}/blogcategory/${id}`);
     },
 };
 

@@ -1,34 +1,27 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-export const AuthContext = createContext({
-    user: null,
-    login: () => { },
-    logout: () => { },
-});
+const UserContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+export const UserProvider = ({ children }) => {
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+    const logout = () => {
+        setUser(null); // Cập nhật user về null
+        localStorage.removeItem("user"); // Xóa user khỏi localStorage
+    };
 
     useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("user"));
-        if (storedUser) {
-            setUser(storedUser);
-        }
-    }, []);
-
-    const login = (userData) => {
-        localStorage.setItem("user", JSON.stringify(userData));
-        setUser(userData);
-    };
-
-    const logout = () => {
-        localStorage.removeItem("user");
-        setUser(null);
-    };
+        localStorage.setItem("user", JSON.stringify(user));
+    }, [user]);
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, setUser, logout }}>
             {children}
-        </AuthContext.Provider>
+        </UserContext.Provider>
     );
 };
+
+export const useUser = () => useContext(UserContext);
+export { UserContext }; // Thêm dòng này

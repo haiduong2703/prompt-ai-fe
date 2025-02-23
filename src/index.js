@@ -4,12 +4,16 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import RoutesMain from './routes/Routes';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { UserProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
-    <RoutesMain />
-  </Router>
+  <UserProvider>
+    <Router>
+      <RoutesMain />
+    </Router>
+  </UserProvider>
+
 );
 
 reportWebVitals();

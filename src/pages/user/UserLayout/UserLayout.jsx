@@ -1,10 +1,17 @@
 import React from "react";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
+import { useUser } from "../../../context/AuthContext";
 const UserLayout = ({ children }) => {
   const location = useLocation();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const userLocal = JSON.parse(localStorage.getItem("user"));
+  const { user, logout } = useUser(); // Lấy user và hàm logout từ Context API
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout(); // Gọi hàm logout từ Context API
+    navigate("/login"); // Chuyển hướng về trang đăng nhập
+  };
   return (
     <div className="user-container">
       {/* Navbar */}
@@ -75,13 +82,16 @@ const UserLayout = ({ children }) => {
         </div>
 
         <div className="user-nav-right">
-          {user ? (
+          {userLocal ? (
             <>
-              <Link to="/logout" className="user-logout">
+              {/* <Link to="/logout" className="user-logout">
                 Log out
-              </Link>
+              </Link> */}
+              <button onClick={handleLogout} className="user-logout">
+                Log out
+              </button>
               <div className="user-avatar">
-                <img src={user.avatar} alt="Avatar" />
+                <img src={userLocal.avatar} alt="Avatar" />
               </div>
             </>
           ) : (

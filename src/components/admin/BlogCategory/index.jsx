@@ -19,7 +19,7 @@ import {
 } from "@ant-design/icons";
 import api from "../../../services/api";
 const { Title } = Typography;
-const CategoryManager = () => {
+const BlogCategoryManager = () => {
   const [categories, setCategories] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [total, setTotal] = useState(0);
@@ -35,7 +35,7 @@ const CategoryManager = () => {
   const fetchCategories = async () => {
     try {
       console.log("helloo");
-      const response = await api.getCategoriesPage(page, pageSize);
+      const response = await api.getBlogCategoryPage(page, pageSize);
       setCategories(response.data.categories);
       setTotal(response.data.totalPages);
     } catch (error) {
@@ -62,7 +62,7 @@ const CategoryManager = () => {
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await api.deleteBlogCategory(id);
       message.success("Xóa thành công");
       fetchCategories();
     } catch (error) {
@@ -74,13 +74,10 @@ const CategoryManager = () => {
     try {
       const values = await form.validateFields();
       if (editingCategory) {
-        await axios.put(
-          `http://localhost:5000/api/categories/${editingCategory.id}`,
-          values
-        );
+        await api.updateBlogCategory(editingCategory.id, values);
         message.success("Cập nhật thành công");
       } else {
-        await axios.post("http://localhost:5000/api/categories", values);
+        await api.createBlogCategory(values);
         message.success("Thêm mới thành công");
       }
       fetchCategories();
@@ -99,7 +96,6 @@ const CategoryManager = () => {
       },
     },
     { title: "Tên danh mục", dataIndex: "name", key: "name" },
-    { title: "Mô tả", dataIndex: "description", key: "description" },
 
     {
       title: "Thao tác",
@@ -147,7 +143,7 @@ const CategoryManager = () => {
           marginBottom: 16,
         }}
       >
-        <Title level={2}>Quản lý thể loại</Title>
+        <Title level={2}>Quản lý thể loại blog</Title>
         <Button
           type="primary"
           icon={<PlusOutlined />}
@@ -217,13 +213,10 @@ const CategoryManager = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="description" label="Mô tả">
-            <Input.TextArea />
-          </Form.Item>
         </Form>
       </Modal>
       <Modal
-        title="Thông tin thể loại"
+        title="Thông tin thể loại blog"
         open={isViewModalVisible}
         onCancel={handleModalCancel}
         width={1000}
@@ -241,13 +234,10 @@ const CategoryManager = () => {
           >
             <Input disabled />
           </Form.Item>
-          <Form.Item name="description" label="Mô tả">
-            <Input.TextArea disabled />
-          </Form.Item>
         </Form>
       </Modal>
     </div>
   );
 };
 
-export default CategoryManager;
+export default BlogCategoryManager;

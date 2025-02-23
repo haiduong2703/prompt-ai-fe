@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import PromptList from "../components/admin/Prompt/PromptList";
 import CategoryManager from "../components/admin/Category/CategoryAdmin";
@@ -14,13 +14,18 @@ import Register from "../pages/user/register";
 import SubscriptionManager from "../components/admin/Subscription";
 import ListPrompts from "../components/user/Prompt/ListPrompts/ListPrompts";
 import BlogLayout from "../pages/user/Blog";
+import { UserContext } from "../context/AuthContext";
+import BlogManager from "../components/admin/Blog";
+import BlogCategoryManager from "../components/admin/BlogCategory";
 const RoutesMain = () => {
-  // Giả sử có một cách để xác định role (có thể từ context/redux store)
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
-  // const isAdmin = user && user.role == 2 ? true : false; // Thay đổi logic này theo cách bạn xác định role
-  const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
+  //Giả sử có một cách để xác định role (có thể từ context/redux store)
+  const { user } = useContext(UserContext); // Lấy user từ Context API
+  const isAdmin = user && user.role === 2; // Kiểm tra role
+  // const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
+  useEffect(() => {
+    document.title = "Promp";
+  }, []);
   return (
     <Routes>
       {isAdmin ? (
@@ -29,6 +34,8 @@ const RoutesMain = () => {
           <Route path="category" element={<CategoryManager />} />
           <Route path="contact" element={<ContactManager />} />
           <Route path="sub" element={<SubscriptionManager />} />
+          <Route path="blog" element={<BlogManager />} />
+          <Route path="blogcategory" element={<BlogCategoryManager />} />
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
