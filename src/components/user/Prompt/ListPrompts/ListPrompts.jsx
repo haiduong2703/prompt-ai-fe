@@ -54,7 +54,11 @@ const ListPrompts = () => {
             console.error("Error fetching newest prompts:", error);
         }
     }
-
+    const getCurrentMonthYear = () => {
+        const date = new Date();
+        const options = { month: "long", year: "numeric" };
+        return date.toLocaleDateString("en-US", options);
+    };
     return (
         <div className="list-prompts-component">
             <div className="list-prompts-container">
@@ -64,7 +68,7 @@ const ListPrompts = () => {
                         <HomeOutlined style={{ fontSize: "20px" }} />
                     </Link>
                     <span>
-                        &gt; <img src={activeSection?.description} alt="section" />
+                        &gt; <img src={activeSection?.description} alt="" />
                         {activeSection?.name} Prompts for {category?.name}
                     </span>
                 </div>
@@ -115,6 +119,9 @@ const ListPrompts = () => {
                 </div>
 
                 {/* Danh sách Prompt Cards */}
+                <div className="prompt-list-title">
+                    <h2><img src={activeSection?.description} alt="" /> Best {activeSection?.name} Prompts for {category?.name}, {getCurrentMonthYear()} </h2>
+                </div>
                 <div className="prompt-list">
                     {prompts.length === 0 ? (
                         <p>No prompts found</p>

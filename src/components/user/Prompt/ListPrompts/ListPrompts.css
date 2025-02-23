@@ -11,13 +11,36 @@
   text-align: center;
   max-width: 85%;
   margin: auto;
-  padding: 20px;
   padding-top: 0;
   font-family: 'Montserrat', sans-serif;
   background-color: #0000;
   justify-content: center;
   box-sizing: border-box; /* Tránh padding làm tràn */
 }
+.prompt-list-title {
+  width: 100%;
+  height: fit-content;
+  margin-top: 50px;
+  text-align: left;
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 10px; /* Tạo khoảng cách giữa hình ảnh và tiêu đề */
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+}
+.prompt-list-title h2 {
+  display: flex;
+  align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+  font-weight: 700;  
+  gap: 8px; /* Khoảng cách giữa ảnh và chữ */
+}
+.prompt-list-title img {
+  height: 24px; /* Điều chỉnh chiều cao của ảnh */
+  width: auto;
+}
+
+
+
 
 /* Grid layout để mỗi hàng có 4 card */
 .prompt-list {
