@@ -1,0 +1,237 @@
+.detail-prompt-component {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f8f8;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.detail-prompt-container {
+    max-width: 84%;
+    padding: 40px;
+    padding-top: 10px;
+    border-radius: 12px;
+    justify-items: center;
+}
+
+.detail-prompt-breadcrumb {
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 10px 15px; /* Thêm padding để dễ nhìn */
+}
+
+.detail-prompt-breadcrumb a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center; /* Đảm bảo text và icon trong link cũng căn giữa */
+    gap: 5px;
+    font-weight: 500;
+}
+.detail-prompt-breadcrumb span {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center; /* Đảm bảo text và icon trong link cũng căn giữa */
+    gap: 5px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.detail-prompt-content {
+    align-items: center;
+    width: 62%;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.detail-prompt-header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.detail-prompt-header-section {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+}
+.detail-prompt-header-category {
+    width: 50px;
+    height: 50px;
+}
+.detail-prompt-premium-tag {
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    float: right;
+    margin-left: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.detail-prompt-title {
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.detail-prompt-title h1 {
+    width: fit-content;
+    font-size: 36px;
+    background-color: #0f0020;
+    color: white;
+    font-weight: 700;
+    line-height: 110%;
+    border-radius: 13.75px;
+    padding-left: 12.5px;
+    padding-right: 12.5px;
+}
+.detail-prompt-title h2 {
+    color: #121212;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 0;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 110%;
+}
+
+/* tới phần content */
+.detail-prompt-content-note {
+    grid-column-gap: 12px;
+    grid-row-gap: 12px;
+    background-color: #f8db7b;
+    border-radius: 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    font-weight: 500;
+}
+
+.detail-prompt-paragraph {
+    padding: 20px;
+    /* margin-top: 20px; */
+    font-size: 18px;
+}
+
+.prompt-sub-title-paragraph {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+.detail-prompt-paragraph-content {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 500;
+}
+.detail-prompt-paragraph-special-content {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 500;
+    color: white;
+    background-color: #0f0020;
+}
+.detail-prompt-paragraph-special {
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.prompt-sub-title-paragraph-special {
+    margin-block-start: 0;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-top: 0;
+    display: flex;
+
+}
+
+.detail-prompt-paragraph-special-content-box {
+    position: relative; /* Thêm dòng này để nút COPY có điểm neo */
+    padding: 45px 65px;
+    border-radius: 24px;
+    background-color:#0f0020;
+    color: white;
+}
+
+/* Thêm CSS cho nút COPY */
+
+.copy-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ffd700;
+    color: #121212;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #f3c623;
+}
+
+/* phần list dưới */
+.related-prompts-container {
+    width: 90%;
+    margin-top: 50px;
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 50px;
+  }
+  .related-prompts-title-box {
+    width: 95%;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    display: flex;
+    justify-items: center;
+  }
+  .related-prompts-title-box h2 {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
+    font-size: 28px;
+  }
+  .related-prompts-title-box h2:hover {
+    transform: scale(1.05);
+  }
+  .related-prompt-list-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px 14px;
+  }
+  
+  .related-prompt-list {
+    width: 100%;
+    padding: 20px;
+    min-height: 100%;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+  }
+  

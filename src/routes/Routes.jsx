@@ -40,7 +40,7 @@ const RoutesMain = () => {
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />}/>
-          <Route path="prompts/detail-prompts" element={<DetailPrompt/>}/>
+          <Route path="prompts/detail-prompts/:id" element={<DetailPrompt/>}/>
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />

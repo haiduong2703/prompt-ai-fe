@@ -8,7 +8,7 @@ import PromptCard from "./PromptCard/PromptCard";
 
 const ListPrompts = () => {
     const location = useLocation();
-    const { count, title, categoryId, activeSection, icon } = location.state || {};
+    const { category, activeSection } = location.state || {};
 
     const [prompts, setPrompts] = useState([]);
     const [topics, setTopics] = useState([]);
@@ -20,12 +20,12 @@ const ListPrompts = () => {
     const [newestPrompts, setNewestPrompts] = useState([]);
 
     useEffect(() => {
-        fetchListTopic(categoryId);
-        getListNewestPrompts(categoryId);
+        fetchListTopic(category?.id);
+        getListNewestPrompts(category?.id);
     }, [])
     useEffect(() => {
         getListPrompts(topicId, searchText.trim(), isType, currentPage);
-    }, [categoryId, isType, searchText, topicId, currentPage]);
+    }, [category?.id, isType, searchText, topicId, currentPage]);
 
     const fetchListTopic = async (category_id) => {
         try {
@@ -38,7 +38,7 @@ const ListPrompts = () => {
 
     const getListPrompts = async (topic_id, search_text, is_type, page) => {
         try {
-            const resp = await api.getPromptsByCategoryId(page, 12, categoryId, topic_id, search_text, is_type);
+            const resp = await api.getPromptsByCategoryId(page, 12, category?.id, topic_id, search_text, is_type);
             setPrompts(resp.data?.data || []);
             setTotalPages(Math.ceil(resp.data?.total / 12));
         } catch (error) {
@@ -65,13 +65,13 @@ const ListPrompts = () => {
                     </Link>
                     <span>
                         &gt; <img src={activeSection?.description} alt="section" />
-                        {activeSection?.name} Prompts for {title}
+                        {activeSection?.name} Prompts for {category?.name}
                     </span>
                 </div>
 
                 {/* Tiêu đề */}
-                <h1 className="title">
-                    <span className="count">{count}</span> {activeSection?.name} Prompts for <br /> {title}
+                <h1 className="list-prompts-container-title">
+                    <span className="count">{category?.prompt_count}</span> {activeSection?.name} Prompts for <br /> {category?.name}
                 </h1>
 
                 {/* Nút chọn Premium / Free */}
@@ -94,7 +94,7 @@ const ListPrompts = () => {
 
                 {/* Ô tìm kiếm */}
                 <input
-                    className="search-bar"
+                    className="list-prompt-search-bar"
                     type="text"
                     placeholder="Search prompts..."
                     value={searchText}
@@ -123,8 +123,8 @@ const ListPrompts = () => {
                             <PromptCard
                                 key={prompt.id}
                                 prompt={prompt}
-                                image_category={icon}
-                                image_section={activeSection?.description}
+                                image_category={category?.image_card}
+                                activeSection={activeSection}
                             />
                         ))
                     )}
@@ -147,7 +147,7 @@ const ListPrompts = () => {
             {/* Danh sách prompt mới nhất */}
             <div className="newest-prompts-container">
                 <div className="newest-prompts-title-box">
-                    <h2><img src="/675f6a3795417f518282f233_ni-bell-plus.svg" alt="" style={{marginRight: "10px", paddingTop: "5px"}}/>Newest {activeSection?.name} Prompts for {title}:</h2>
+                    <h2><img src="/675f6a3795417f518282f233_ni-bell-plus.svg" alt="" style={{ marginRight: "10px", paddingTop: "5px" }} />Newest {activeSection?.name} Prompts for {category?.name}:</h2>
                 </div>
                 <div className="newest-prompt-list-wrapper">
                     <div className="newest-prompt-list">
@@ -155,8 +155,8 @@ const ListPrompts = () => {
                             <PromptCard
                                 key={prompt.id}
                                 prompt={prompt}
-                                image_category={icon}
-                                image_section={activeSection?.description}
+                                image_category={category?.image_card}
+                                activeSection={activeSection}
                             />))}
                     </div>
                 </div>

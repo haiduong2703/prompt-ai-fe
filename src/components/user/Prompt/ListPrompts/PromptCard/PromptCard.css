@@ -61,6 +61,14 @@
     font-size: 0.9rem;
     opacity: 0.8;
     line-height: 150%;
+        /* Giới hạn số dòng hiển thị */
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* Số dòng tối đa trước khi thêm "..." */
+        -webkit-box-orient: vertical;
+        
+        /* Ẩn phần dư thừa và hiển thị dấu "..." */
+        overflow: hidden;
+        text-overflow: ellipsis;
   }
   
   .prompt-card-topic {
