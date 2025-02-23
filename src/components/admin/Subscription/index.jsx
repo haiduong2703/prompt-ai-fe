@@ -106,7 +106,7 @@ const SubscriptionManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/subscriptions/${id}`);
+      await api.deleteSub(id);
       message.success("Xóa thành công");
       fetchCategories();
     } catch (error) {
@@ -120,19 +120,14 @@ const SubscriptionManager = () => {
       values.description = description; // Add description from ReactQuill
 
       if (editingCategory) {
-        await axios.put(
-          `http://localhost:5000/api/subscriptions/${editingCategory.id}`,
-          values
-        );
-
+        await api.updateSub(editingCategory.id, values);
         message.success("Cập nhật thành công");
       } else {
-        await axios.post("http://localhost:5000/api/subscriptions", {
+        await api.createBlog({
           ...values,
           type: Number(values.type),
           duration: Number(values.duration),
         });
-
         message.success("Thêm mới thành công");
       }
       form.resetFields();

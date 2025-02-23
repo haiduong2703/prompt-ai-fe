@@ -62,7 +62,7 @@ const CategoryManager = () => {
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await api.deleteCategories(id);
       message.success("Xóa thành công");
       fetchCategories();
     } catch (error) {
@@ -74,13 +74,10 @@ const CategoryManager = () => {
     try {
       const values = await form.validateFields();
       if (editingCategory) {
-        await axios.put(
-          `http://localhost:5000/api/categories/${editingCategory.id}`,
-          values
-        );
+        await api.updateCategories(editingCategory.id, values);
         message.success("Cập nhật thành công");
       } else {
-        await axios.post("http://localhost:5000/api/categories", values);
+        await api.createCategories(values);
         message.success("Thêm mới thành công");
       }
       fetchCategories();

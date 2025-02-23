@@ -50,6 +50,17 @@ const api = {
     getCategoriesBySection: async (sectionId) => {
         return axios.get(`${API_URL}/categories/by-sectionId/${sectionId}`);
     },
+    createCategories: async (promptData) => {
+        return axios.post(`${API_URL}/categories`, promptData);
+    },
+
+    updateCategories: async (id, promptData) => {
+        return axios.put(`${API_URL}/categories/${id}`, promptData);
+    },
+
+    deleteCategories: async (id) => {
+        return axios.delete(`${API_URL}/categories/${id}`);
+    },
     //Section APIS
     getSections: async () => {
         return axios.get(`${API_URL}/sections`);
@@ -75,6 +86,9 @@ const api = {
 
     updateSub: async (id, promptData) => {
         return axios.put(`${API_URL}/subscriptions/${id}`, promptData);
+    },
+    deleteSub: async (id) => {
+        return axios.delete(`${API_URL}/subscriptions/${id}`);
     },
     //Blogs
     getBlogPage: async (page = 1, pageSize = 10, search) => {

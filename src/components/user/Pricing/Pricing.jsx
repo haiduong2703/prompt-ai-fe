@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Pricing.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../../../services/api";
 const PricingCard = ({
   title = "Free",
   price = "$0",
@@ -54,9 +55,7 @@ const PricingSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/subscriptions/by-duration?duration=${duration}`
-        );
+        const response = await api.getSubDuration(duration);
         setPlans(response.data); // Lưu dữ liệu vào state
         setLoading(false); // Tắt trạng thái loading
       } catch (error) {
