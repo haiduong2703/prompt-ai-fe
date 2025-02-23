@@ -3,6 +3,7 @@ import { Input, Button, Divider, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/AuthContext";
 import "./index.css";
+import api from "../../../services/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,11 +20,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const response = await api.loginUser(email);
 
       const data = await response.json();
       if (response.ok) {
@@ -45,14 +42,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/users/login-verify",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, otp }),
-        }
-      );
+      const response = await api.verifyLogin(email, otp);
 
       const data = await response.json();
       if (response.ok) {

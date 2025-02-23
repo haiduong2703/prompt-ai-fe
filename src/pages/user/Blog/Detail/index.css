@@ -1,0 +1,135 @@
+/* src/pages/user/Blog/Detail/BlogDetail.css */
+.blog-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.blog-detail-article {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-detail-header {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+.blog-detail-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.blog-detail-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.blog-detail-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.publish-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.blog-detail-share {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.share-button {
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: #f3f4f6;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.share-button:hover {
+    background: #e5e7eb;
+}
+
+.blog-detail-image {
+    margin-bottom: 2rem;
+}
+
+.blog-detail-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.blog-detail-content {
+    padding: 0 1.5rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.blog-detail-content h2 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+}
+
+.blog-detail-content p {
+    margin-bottom: 1.5rem;
+}
+
+.blog-detail-toc {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.blog-detail-toc h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .blog-detail-container {
+        padding: 1rem;
+    }
+
+    .blog-detail-title {
+        font-size: 2rem;
+    }
+}

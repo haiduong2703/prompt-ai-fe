@@ -76,6 +76,11 @@ const api = {
     sendContacts: async (data) => {
         return axios.post(`${API_URL}/contact`, data);
     },
+    repContacts: async (id, data) => {
+        return axios.put(`${API_URL}/contact/${id}`, {
+            reply: data
+        });
+    },
     //Sub
     getSubPage: async (page = 1, pageSize = 10) => {
         return axios.get(`${API_URL}/subscriptions/list?page=${page}&pageSize=${pageSize}`);
@@ -90,7 +95,14 @@ const api = {
     deleteSub: async (id) => {
         return axios.delete(`${API_URL}/subscriptions/${id}`);
     },
+    getSubDuration: async (duration) => {
+        return axios.get(`${API_URL}/subscriptions/by-duration?duration=${duration}`);
+    },
     //Blogs
+
+    getBlogById: async (id) => {
+        return axios.get(`${API_URL}/blog/${id}`);
+    },
     getBlogPage: async (page = 1, pageSize = 10, search) => {
         return axios.get(`${API_URL}/blog/list?page=${page}&pageSize=${pageSize}&search=${search}`);
     },
@@ -117,6 +129,22 @@ const api = {
     },
     deleteBlogCategory: async (id) => {
         return axios.delete(`${API_URL}/blogcategory/${id}`);
+    },
+    //User 
+    loginUser: async (email) => {
+        return axios.post(`${API_URL}/users/login`, { email }, {
+            headers: { "Content-Type": "application/json" }
+        });
+    },
+    verifyLogin: async (email, otp) => {
+        return axios.post(`${API_URL}/users/login-verify`, { email, otp }, {
+            headers: { "Content-Type": "application/json" }
+        });
+    },
+    registerUser: async (fullName, email, password) => {
+        return axios.post(`${API_URL}/users/register`, { full_name: fullName, email, password }, {
+            headers: { "Content-Type": "application/json" }
+        });
     },
 };
 

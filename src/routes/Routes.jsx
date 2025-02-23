@@ -18,6 +18,7 @@ import BlogLayout from "../pages/user/Blog";
 import { UserContext } from "../context/AuthContext";
 import BlogManager from "../components/admin/Blog";
 import BlogCategoryManager from "../components/admin/BlogCategory";
+import BlogDetailPage from "../pages/user/Blog/Detail";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
@@ -46,10 +47,11 @@ const RoutesMain = () => {
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="prompts/list-prompts" element={<ListPrompts />}/>
-          <Route path="prompts/detail-prompts/:id" element={<DetailPrompt/>}/>
+          <Route path="prompts/list-prompts" element={<ListPrompts />} />
+          <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
+          <Route path="blog/:id" element={<BlogDetailPage />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />
         </Route>
       )}

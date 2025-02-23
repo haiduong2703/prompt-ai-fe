@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, Divider, Checkbox, message } from "antd";
 import "./index.css";
+import api from "../../../services/api";
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
@@ -18,11 +19,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ full_name: fullName, email, password }),
-      });
+      const response = await api.registerUser(fullName, email, password);
 
       const data = await response.json();
       if (response.ok) {
@@ -44,14 +41,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/users/verify-otp",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, otp }),
-        }
-      );
+      const response = await api.verifyLogin(email, otp);
 
       const data = await response.json();
       if (response.ok) {

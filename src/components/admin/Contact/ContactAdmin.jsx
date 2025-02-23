@@ -63,15 +63,7 @@ const CategoryManager = () => {
   const handleModalCancel = () => {
     setIsViewModalVisible(false);
   };
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
-      message.success("Xóa thành công");
-      fetchCategories();
-    } catch (error) {
-      message.error("Lỗi khi xóa");
-    }
-  };
+  const handleDelete = async (id) => {};
   const getStatus = (status) => {
     switch (status) {
       case 1:
@@ -82,32 +74,13 @@ const CategoryManager = () => {
         return <Tag color="red">Chưa phản hồi</Tag>;
     }
   };
-  const handleSave = async () => {
-    try {
-      const values = await form.validateFields();
-      if (editingCategory) {
-        await axios.put(
-          `http://localhost:5000/api/categories/${editingCategory.id}`,
-          values
-        );
-        message.success("Cập nhật thành công");
-      } else {
-        await axios.post("http://localhost:5000/api/categories", values);
-        message.success("Thêm mới thành công");
-      }
-      fetchCategories();
-      setIsModalOpen(false);
-    } catch (error) {
-      message.error("Lỗi khi lưu");
-    }
-  };
+  const handleSave = async () => {};
   const handleReply = async () => {
     try {
       const values = await form.validateFields();
       const { id } = form.getFieldsValue();
-      await axios.put(`http://localhost:5000/api/contact/${idReply}`, {
-        reply: values.reply,
-      });
+
+      await api.repContacts(idReply, values.reply);
       message.success("Phản hồi thành công");
       setIsViewModalVisible(false);
       fetchCategories();
