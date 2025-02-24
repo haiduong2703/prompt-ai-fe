@@ -1,6 +1,6 @@
 import React from "react";
 import "./PromptCard.css";
-import { StarFilled, HeartFilled, LockFilled } from "@ant-design/icons";
+import { StarFilled, HeartFilled, LockFilled, UnlockFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const PromptCard = ({ prompt, image_category, activeSection }) => {
   const createdDate = new Date(prompt.created_at);
@@ -30,23 +30,28 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
           <p className="prompt-description">{prompt.short_description}</p>
         </div>
       </div>
-      <div className="prompt-card-topic">{prompt?.Topic?.name || "Unknown"}</div>
-      <div className="prompt-card-footer">
-        <div className="prompt-card-footer-link">
-          <Link
-            to={`/prompts/detail-prompts/${prompt.id}`}
-            state={{ image_category, activeSection, topicName: prompt?.Topic?.name }}
-            className="view-prompt-button">
-            <LockFilled style={{ fontSize: "12px", color: "black" }} /> View Prompt
-          </Link>
-        </div>
-        <div className="like-link-holder">
-          <div className="like-link-holder-div-child">
-            <HeartFilled />
+      <div className="prompt-card-under-box">
+        <div className="prompt-card-topic">{prompt?.Topic?.name || "Unknown"}</div>
+        <div className="prompt-card-footer">
+          <div className="prompt-card-footer-link">
+            <Link
+              to={`/prompts/detail-prompts/${prompt.id}`}
+              state={{ image_category, activeSection, topicName: prompt?.Topic?.name }}
+              className="view-prompt-button">
+              {prompt.is_type == 2 && <LockFilled style={{ fontSize: "12px", color: "black", marginRight: "5px" }} />}
+              {prompt.is_type == 1 && <UnlockFilled style={{ fontSize: "12px", color: "black", marginRight: "5px" }} />}
+              View Prompt
+            </Link>
           </div>
-        </div>
+          <div className="like-link-holder">
+            <div className="like-link-holder-div-child">
+              <HeartFilled />
+            </div>
+          </div>
 
+        </div>
       </div>
+
     </div>
   );
 };
