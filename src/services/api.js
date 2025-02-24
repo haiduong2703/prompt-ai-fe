@@ -1,8 +1,8 @@
 // src/services/api.js
 import axios from 'axios';
 
-// const API_URL = 'http://160.25.80.25:5000/api';
-const API_URL = 'http://backend:5000/api';
+const API_URL = 'http://160.25.80.25:5000/api';
+// const API_URL = '/api';
 // const API_URL = 'http://localhost:5000/api';
 
 
