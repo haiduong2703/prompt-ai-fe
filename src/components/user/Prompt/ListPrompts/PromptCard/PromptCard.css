@@ -7,8 +7,7 @@
   transition: 0.3s;
   display: flex;
   flex-direction: column;
-  height: 430px;
-  /* Đảm bảo card có chiều cao cố định */
+  min-height: 430px;
 }
 
 .prompt-card-container:hover {
@@ -20,7 +19,6 @@
   color: #fff;
   border-radius: 10px;
   width: 300px;
-  height: 65%;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -70,17 +68,10 @@
   font-size: 0.9rem;
   opacity: 0.8;
   line-height: 150%;
-  /* Giới hạn số dòng hiển thị */
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  /* Số dòng tối đa trước khi thêm "..." */
-  -webkit-box-orient: vertical;
-
-  /* Ẩn phần dư thừa và hiển thị dấu "..." */
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-
+.prompt-card-under-box {
+  margin-top: auto;
+}
 .prompt-card-topic {
   background-color: white;
   color: black;
