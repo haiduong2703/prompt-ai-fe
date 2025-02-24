@@ -25,14 +25,14 @@ const RoutesMain = () => {
   const { user } = useContext(UserContext); // Lấy user từ Context API
   //const isAdmin = user && user.role === 2; // Kiểm tra role
   const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
-  console.log(isAdmin);
+  console.log("isAdmin", isAdmin);
   useEffect(() => {
     document.title = "Promp";
   }, []);
   return (
     <Routes>
       {isAdmin ? (
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/" element={<AdminLayout />}>
           <Route path="topic" element={<TopicAdmin />} />
           <Route path="prompt" element={<PromptList />} />
           <Route path="category" element={<CategoryManager />} />
