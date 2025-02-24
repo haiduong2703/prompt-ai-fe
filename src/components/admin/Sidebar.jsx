@@ -34,6 +34,9 @@ const Sidebar = () => {
         ElaAdmin
       </div>
       <Menu theme="dark" mode="inline">
+        <Menu.Item key="8" icon={<DashboardOutlined />}>
+          <Link to="topic">Quản lý chủ đề</Link>
+        </Menu.Item>
         <Menu.Item key="1" icon={<DashboardOutlined />}>
           <Link to="prompt">Quản lý Prompts</Link>
         </Menu.Item>

@@ -19,11 +19,12 @@ import { UserContext } from "../context/AuthContext";
 import BlogManager from "../components/admin/Blog";
 import BlogCategoryManager from "../components/admin/BlogCategory";
 import BlogDetailPage from "../pages/user/Blog/Detail";
+import TopicAdmin from "../components/admin/Topic";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
-  const isAdmin = user && user.role === 2; // Kiểm tra role
-  // const isAdmin = false; // Thay đổi logic này theo cách bạn xác định role
+  //const isAdmin = user && user.role === 2; // Kiểm tra role
+  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
   useEffect(() => {
     document.title = "Promp";
@@ -32,6 +33,7 @@ const RoutesMain = () => {
     <Routes>
       {isAdmin ? (
         <Route path="/admin" element={<AdminLayout />}>
+          <Route path="topic" element={<TopicAdmin />} />
           <Route path="prompt" element={<PromptList />} />
           <Route path="category" element={<CategoryManager />} />
           <Route path="contact" element={<ContactManager />} />

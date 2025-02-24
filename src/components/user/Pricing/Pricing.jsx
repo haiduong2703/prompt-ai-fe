@@ -63,7 +63,6 @@ const PricingSection = () => {
         setLoading(false); // Tắt trạng thái loading
       }
     };
-
     fetchData();
   }, [duration]); // Gọi lại khi duration thay đổi
 

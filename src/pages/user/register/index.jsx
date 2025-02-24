@@ -51,6 +51,7 @@ const Register = () => {
         message.error(data.error || "Invalid OTP");
       }
     } catch (error) {
+      console.log(error);
       message.error("Server error, please try again");
     }
   };

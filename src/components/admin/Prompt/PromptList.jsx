@@ -33,6 +33,8 @@ const PromptList = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [categories, setCategories] = useState([]);
+  const [topic, setTopic] = useState([]);
+
   const [filters, setFilters] = useState({
     search: "",
     category: null,
@@ -48,6 +50,7 @@ const PromptList = () => {
   useEffect(() => {
     fetchCategories();
     fetchPrompts();
+    fetchTopics();
   }, [page, pageSize, filters]);
 
   const fetchCategories = async () => {
@@ -59,7 +62,16 @@ const PromptList = () => {
       console.error(error);
     }
   };
-
+  const fetchTopics = async () => {
+    try {
+      const topicRes = await api.getTopics();
+      console.log(topicRes.data);
+      setTopic(topicRes.data);
+    } catch (error) {
+      message.error("Failed to fetch categories");
+      console.error(error);
+    }
+  };
   const fetchPrompts = async () => {
     setLoading(true);
     try {
@@ -287,7 +299,11 @@ const PromptList = () => {
         width={1000}
         footer={null}
       >
-        <PromptForm categories={categories} onSuccess={handleFormSuccess} />
+        <PromptForm
+          categories={categories}
+          topic={topic}
+          onSuccess={handleFormSuccess}
+        />
       </Modal>
 
       {/* Edit Modal */}
@@ -302,6 +318,7 @@ const PromptList = () => {
           <PromptForm
             promptId={currentPrompt.id}
             categories={categories}
+            topic={topic}
             onSuccess={handleFormSuccess}
           />
         )}

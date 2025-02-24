@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // const API_URL = 'http://160.25.80.25:5000/api';
-const API_URL = 'http://backend:5000/api';
-// const API_URL = 'http://localhost:5000/api';
+//const API_URL = 'http://backend:5000/api';
+const API_URL = 'http://localhost:5000/api';
 
 
 const api = {
@@ -67,6 +67,23 @@ const api = {
         return axios.get(`${API_URL}/sections`);
     },
     //Topic APIS
+    getTopics: async () => {
+        return axios.get(`${API_URL}/topic`);
+    },
+    getTopicsPage: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/topic/list?page=${page}&pageSize=${pageSize}`);
+    },
+    createTopics: async (promptData) => {
+        return axios.post(`${API_URL}/topic`, promptData);
+    },
+
+    updateTopics: async (id, promptData) => {
+        return axios.put(`${API_URL}/topic/${id}`, promptData);
+    },
+
+    deleteTopics: async (id) => {
+        return axios.delete(`${API_URL}/topic/${id}`);
+    },
     //Contact APIS
     getContacts: async () => {
         return axios.get(`${API_URL}/contact`);

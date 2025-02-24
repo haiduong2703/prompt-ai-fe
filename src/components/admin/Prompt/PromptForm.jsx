@@ -120,8 +120,9 @@ const QuillEditorItem = ({ label, value, onChange }) => {
   );
 };
 
-const PromptForm = ({ promptId, categories, onSuccess }) => {
+const PromptForm = ({ topic, promptId, categories, onSuccess }) => {
   const [form] = Form.useForm();
+  console.log(topic);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [contentValues, setContentValues] = useState({
@@ -162,6 +163,7 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
   const fetchPromptDetails = async () => {
     try {
       setLoading(true);
+
       const response = await api.getPromptById(promptId);
       const prompt = response.data;
 
@@ -270,8 +272,32 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
           setContentValues((prev) => ({ ...prev, content: value }))
         }
       />
+      <Form.Item name="category_id" label="Thể loại">
+        <Select placeholder="Chọn thể loại">
+          {categories.map((category) => (
+            <Option key={category.id} value={category.id}>
+              {category.name}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item name="topic_id" label="Chủ đề">
+        <Select placeholder="Chọn chủ đề">
+          {topic.map((category) => (
+            <Option key={category.id} value={category.id}>
+              {category.name}
+            </Option>
+          ))}
+        </Select>
+      </Form.Item>
+      <Form.Item name="is_type" label="Mức độ bài viết">
+        <Select placeholder="Chọn kiểu">
+          <Option value={1}>Free</Option>
+          <Option value={2}>Premium</Option>
+        </Select>
+      </Form.Item>
       <QuillEditorItem
-        label="What"
+        label="What This Prompt Does"
         value={contentValues.what}
         onChange={(value) =>
           setContentValues((prev) => ({ ...prev, what: value }))
@@ -292,33 +318,35 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         }
       />
       <QuillEditorItem
-        label="How"
-        value={contentValues.how}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, how: value }))
-        }
-      />
-      <QuillEditorItem
-        label="Input"
-        value={contentValues.input}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, input: value }))
-        }
-      />
-      <QuillEditorItem
-        label="Output"
-        value={contentValues.output}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, output: value }))
-        }
-      />
-      <QuillEditorItem
         label="Optimization Guide"
         value={contentValues.OptimationGuide}
         onChange={(value) =>
           setContentValues((prev) => ({ ...prev, OptimationGuide: value }))
         }
       />
+
+      <QuillEditorItem
+        label="How To Use The Prompt"
+        value={contentValues.how}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, how: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Example Input"
+        value={contentValues.input}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, input: value }))
+        }
+      />
+      <QuillEditorItem
+        label="Example Output"
+        value={contentValues.output}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, output: value }))
+        }
+      />
+
       <QuillEditorItem
         label="Additional Tips"
         value={contentValues.addtip}
@@ -334,22 +362,6 @@ const PromptForm = ({ promptId, categories, onSuccess }) => {
         }
       />
 
-      <Form.Item name="category_id" label="Thể loại">
-        <Select placeholder="Chọn thể loại">
-          {categories.map((category) => (
-            <Option key={category.id} value={category.id}>
-              {category.name}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-      <Form.Item name="is_type" label="Mức độ bài viết">
-        <Select placeholder="Chọn kiểu">
-          <Option value={1}>Free</Option>
-          <Option value={2}>Premium</Option>
-          <Option value={3}>Plus</Option>
-        </Select>
-      </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={submitting}>
           {isEditMode ? "Cập nhật" : "Tạo mới"}

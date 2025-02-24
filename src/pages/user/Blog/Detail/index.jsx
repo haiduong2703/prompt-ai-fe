@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BlogDetail from "./detail";
 import api from "../../../../services/api";
-import img from "../../../../asset/imgae/1.png";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
