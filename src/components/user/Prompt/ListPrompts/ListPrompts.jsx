@@ -14,7 +14,7 @@ const ListPrompts = () => {
     const [topics, setTopics] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [isType, setIsType] = useState(1);
-    const [topicId, setTopicId] = useState("");
+    const [topicId, setTopicId] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [newestPrompts, setNewestPrompts] = useState([]);
@@ -25,7 +25,7 @@ const ListPrompts = () => {
     }, [])
     useEffect(() => {
         getListPrompts(topicId, searchText.trim(), isType, currentPage);
-    }, [category?.id, isType, searchText, topicId, currentPage]);
+    }, [category?.id, isType, currentPage]);
 
     const fetchListTopic = async (category_id) => {
         try {
@@ -45,7 +45,24 @@ const ListPrompts = () => {
             console.error("Error fetching prompts:", error);
         }
     };
-
+    const handelSearch = async (value) => {
+        try {
+            setCurrentPage(1);
+            setSearchText(value);
+            getListPrompts (topicId, value.trim(), isType, currentPage)
+        } catch (error) {
+            
+        }
+    }
+    const handelSearchByTopic = async (value) => {
+        try {
+            setCurrentPage(1);
+            setTopicId(value);
+            getListPrompts (value, searchText, isType, currentPage)
+        } catch (error) {
+            
+        }
+    }
     const getListNewestPrompts = async (category_id) => {
         try {
             const resp = await api.getNewestPromptsByCategoryId(category_id);
@@ -102,7 +119,7 @@ const ListPrompts = () => {
                     type="text"
                     placeholder="Search prompts..."
                     value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
+                    onChange={(e) => handelSearch(e.target.value)}
                 />
 
                 {/* Danh sách danh mục con */}
@@ -111,7 +128,8 @@ const ListPrompts = () => {
                         <span
                             key={topic.id}
                             className={`category-tag ${topicId === topic.id ? "active" : ""}`}
-                            onClick={() => setTopicId(topicId === topic.id ? 0 : topic.id)}
+                            onClick={() => handelSearchByTopic(topicId === topic.id ? 0 : topic.id)}
+                            // onClick={() => setTopicId(topicId === topic.id ? 0 : topic.id)}
                         >
                             {topic?.name}
                         </span>
