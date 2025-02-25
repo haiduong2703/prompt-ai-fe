@@ -87,9 +87,9 @@ const UserLayout = ({ children }) => {
               {/* <Link to="/logout" className="user-logout">
                 Log out
               </Link> */}
-              <button onClick={handleLogout} className="user-logout">
+              <p onClick={handleLogout} className="user-logout">
                 Log out
-              </button>
+              </p>
               <div className="user-avatar">
                 <img src={userLocal.avatar} alt="Avatar" />
               </div>

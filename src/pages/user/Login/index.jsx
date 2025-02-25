@@ -21,15 +21,15 @@ const Login = () => {
 
     try {
       const response = await api.loginUser(email);
-
-      const data = await response.json();
-      if (response.ok) {
+      const data = await response.data;
+      if (data.message) {
         message.success("OTP sent to your email");
         setIsOtpSent(true);
       } else {
-        message.error(data.error || "Failed to send OTP");
+        message.error("Failed to send OTP");
       }
     } catch (error) {
+      console.log(error);
       message.error("Server error, please try again");
     }
   };
@@ -44,8 +44,8 @@ const Login = () => {
     try {
       const response = await api.verifyLogin(email, otp);
 
-      const data = await response.json();
-      if (response.ok) {
+      const data = await response.data;
+      if (data) {
         message.success("Login successful!");
         setUser(data.user); // Cập nhật trạng thái người dùng
         if (data.user.role === 2) {

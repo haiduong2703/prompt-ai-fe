@@ -137,7 +137,7 @@ body {
   font-size: 16px;
   padding: 8px 12px;
   transition: color 0.2s ease-in-out;
-  border-right: 1px white solid;
+  background-color: #000;
 }
 
 .user-logout:hover {
