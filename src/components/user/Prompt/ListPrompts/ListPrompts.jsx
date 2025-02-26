@@ -24,7 +24,12 @@ const ListPrompts = () => {
         getListNewestPrompts(category?.id);
     }, [])
     useEffect(() => {
-        getListPrompts(topicId, searchText.trim(), isType, currentPage);
+        if (topicId == undefined) {
+            getListPrompts("", searchText.trim(), isType, currentPage);
+        } else {
+            getListPrompts(topicId, searchText.trim(), isType, currentPage);
+        }
+
     }, [category?.id, isType, currentPage]);
 
     const fetchListTopic = async (category_id) => {
@@ -49,7 +54,11 @@ const ListPrompts = () => {
         try {
             setCurrentPage(1);
             setSearchText(value);
-            getListPrompts (topicId, value.trim(), isType, currentPage)
+            if (topicId == undefined) {
+                getListPrompts (topicId, value.trim(), isType, currentPage)
+            }
+            getListPrompts ("", value.trim(), isType, currentPage)
+
         } catch (error) {
             
         }
@@ -62,6 +71,13 @@ const ListPrompts = () => {
         } catch (error) {
             
         }
+    }
+    const handleChangeTypeSub = async (value) => {
+        setCurrentPage(1);
+        if (topicId == undefined) {
+            setTopicId("");
+        }
+        setIsType(value);
     }
     const getListNewestPrompts = async (category_id) => {
         try {
@@ -76,6 +92,11 @@ const ListPrompts = () => {
         const options = { month: "long", year: "numeric" };
         return date.toLocaleDateString("en-US", options);
     };
+    const handleChangePage = (page) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    
     return (
         <div className="list-prompts-component">
             <div className="list-prompts-container">
@@ -99,14 +120,14 @@ const ListPrompts = () => {
                 <div className="filter-buttons">
                     <button
                         className={`premium-btn ${isType === 2 ? "active" : ""}`}
-                        onClick={() => setIsType(2)}
+                        onClick={() => handleChangeTypeSub(2)}
                     >
                         <StarFilled style={{ color: "yellow" }} /> Premium
                     </button>
 
                     <button
                         className={`free-btn ${isType === 1 ? "active" : ""}`}
-                        onClick={() => setIsType(1)}
+                        onClick={() => handleChangeTypeSub(1)}
                     >
                         <HeartOutlined /> Free
                     </button>
@@ -161,7 +182,7 @@ const ListPrompts = () => {
                     current={currentPage}
                     total={totalPages * 10}
                     pageSize={10}
-                    onChange={(page) => setCurrentPage(page)}
+                    onChange={handleChangePage}
                     showSizeChanger={false}
                     showQuickJumper
                 />
