@@ -5,10 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans';
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Plus Jakarta Sans';
   /* background-color: white; */
 }
 
@@ -21,37 +22,36 @@ body {
 
 /* --- Navbar --- */
 .user-navbar {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a1a1a;
+  background-color: white;
+  font-weight: 500;
   padding: 15px 40px;
-  /* Tăng khoảng cách hai bên */
-  border-bottom: 1px solid #2d2d2d;
+  height: auto;
+  /* border-bottom: 1px solid #2d2d2d; */
   z-index: 50;
 }
-
+.user-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 10%;
+}
 /* --- Left Side (Logo + Menu Items) --- */
 .user-nav-left {
+  width: 80%;
   display: flex;
   align-items: center;
   flex: 1;
   /* Đảm bảo nó không chiếm toàn bộ không gian */
 }
 
-.user-logo {
-  color: #ffc107;
-  font-size: 24px;
-  font-family: monospace;
-  text-decoration: none;
-  flex-grow: 0;
-  /* Đẩy menu ra giữa */
-  padding-left: 20%;
-}
+
 
 .user-nav-links {
   display: flex;
@@ -63,7 +63,7 @@ body {
 }
 
 .user-nav-item {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 16px;
   padding: 8px 12px;
@@ -73,7 +73,8 @@ body {
 
 .user-nav-item:hover,
 .user-active {
-  color: #ffc107;
+  color: #5700C6;
+  font-weight: 700;
 }
 
 /* --- Dropdown --- */
@@ -84,15 +85,20 @@ body {
 .user-dropdown-btn {
   background: none;
   border: none;
-  color: white;
+  color: black;
+  font-weight: 500; 
   font-size: 16px;
   cursor: pointer;
   padding: 8px 12px;
   transition: color 0.2s ease-in-out;
+  display: flex;
+  gap: 5px;
 }
 
 .user-dropdown-btn:hover {
-  color: #ffc107;
+  color: #5700C6;
+  font-weight: 700;
+
 }
 
 .user-dropdown-menu {
@@ -127,12 +133,12 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
+  width: 15%;
   /* Điều chỉnh khoảng cách giữa logout, icon menu, avatar */
-  margin-right: 10%;
 }
 
 .user-logout {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 16px;
   padding: 8px 12px;
@@ -141,27 +147,38 @@ body {
 }
 
 .user-logout:hover {
-  color: #ffc107;
+  color: #5700C6;
+  font-weight: 700;
 }
+.user-login:hover {
+  color: #5700C6;
+  font-weight: 700;
 
+}
+.user-signup:hover {
+  color: #5700C6;
+  font-weight: 700;
+
+}
 .user-menu-btn {
   background: none;
   border: none;
   font-size: 24px;
-  color: white;
+  color: black;
   cursor: pointer;
   padding: 8px;
 }
 
 .user-menu-btn:hover {
-  color: #ffc107;
+  color: #5700C6;
+  font-weight: 700;
 }
 
 /* --- Avatar --- */
 .user-avatar {
   width: 45px;
   height: 45px;
-  background-color: #ffc107;
+  background-color: #5700C6;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -187,5 +204,5 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 30px;
-  background-color: #f8f8f8;
+  /* background-color: #f8f8f8; */
 }
