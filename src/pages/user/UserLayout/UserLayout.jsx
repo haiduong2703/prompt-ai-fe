@@ -3,6 +3,8 @@ import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
+import logoImg from "../../../asset/imgae/logo.svg"
+import arrowExpand from "../../../asset/icon/arow_expand.svg"
 const UserLayout = ({ children }) => {
   const location = useLocation();
   const userLocal = JSON.parse(localStorage.getItem("user"));
@@ -16,23 +18,29 @@ const UserLayout = ({ children }) => {
     <div className="user-container">
       {/* Navbar */}
       <nav className="user-navbar">
+        <div className="user-logo">
+          <img src={logoImg} alt="" style={{ color: "#5700C6" }} /> <span style={{ fontSize: "28px", fontWeight: "600" }}>Prom</span>
+        </div>
         <div className="user-nav-left">
-          <Link to="/" className="user-logo">
-            &gt;-
-          </Link>
 
           <div className="user-nav-links">
             <Link
-              to="/prompts"
-              className={`user-nav-item ${
-                location.pathname === "/prompts" ? "user-active" : ""
-              }`}
+              to="/home"
+              className={`user-nav-item ${location.pathname === "/home" ? "user-active" : ""
+                }`}
             >
-              Prompts
+              Home
+            </Link>
+            <Link
+              to="/prompts"
+              className={`user-nav-item ${location.pathname === "/prompts" ? "user-active" : ""
+                }`}
+            >
+              Prompt
             </Link>
 
             <div className="user-dropdown">
-              <button className="user-dropdown-btn">Tools ▼</button>
+              <button className="user-dropdown-btn">Tools <img src={arrowExpand} alt="" /></button>
               <div className="user-dropdown-menu">
                 <Link to="/tool1" className="user-dropdown-item">
                   Prompts Generator
@@ -45,39 +53,35 @@ const UserLayout = ({ children }) => {
 
             <Link
               to="/products"
-              className={`user-nav-item ${
-                location.pathname === "/products" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/products" ? "user-active" : ""
+                }`}
             >
               Products
             </Link>
-
+            <Link
+              to="/blog"
+              className={`user-nav-item ${location.pathname === "/blog" ? "user-active" : ""
+                }`}
+            >
+              Blog
+            </Link>
             <Link
               to="/pricing"
-              className={`user-nav-item ${
-                location.pathname === "/pricing" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/pricing" ? "user-active" : ""
+                }`}
             >
               Pricing
             </Link>
 
             <Link
               to="/contact"
-              className={`user-nav-item ${
-                location.pathname === "/contact" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/contact" ? "user-active" : ""
+                }`}
             >
-              Contact Us
+              Contact
             </Link>
 
-            <Link
-              to="/blog"
-              className={`user-nav-item ${
-                location.pathname === "/blog" ? "user-active" : ""
-              }`}
-            >
-              Blog
-            </Link>
+
           </div>
         </div>
 
@@ -100,20 +104,20 @@ const UserLayout = ({ children }) => {
                 to="/login"
                 style={{
                   textDecoration: "none",
-                  color: "#fff",
-                  borderRight: "1px solid white",
+                  color: "black",
+                  borderRight: "1px solid black",
                   paddingRight: "20px",
                 }}
-                className="user-login"
+                
               >
-                Login
+                <span className="user-login">Login</span>
               </Link>
               <Link
                 to="/signup"
-                style={{ textDecoration: "none", color: "#fff" }}
-                className="user-signup"
+                style={{ textDecoration: "none", color: "black" }}
+                
               >
-                Sign up
+                <span className="user-signup">Sign up</span>
               </Link>
             </>
           )}
@@ -122,7 +126,7 @@ const UserLayout = ({ children }) => {
       </nav>
 
       {/* Spacer để tránh navbar che nội dung */}
-      <div className="user-spacer"></div>
+      {/* <div className="user-spacer"></div> */}
 
       {/* Nội dung chính */}
       <main className="user-main-content">
