@@ -1,9 +1,12 @@
 // src/services/api.js
 import axios from 'axios';
 
+const API_URL = 'https://prom.vn/api';
+// const API_URL = 'http://backend:5000/api';
+// const API_URL = 'http://localhost:5000/api';
 // const API_URL = 'https://www.prom.vn/api';
 // const API_URL = 'http://backend:5000/api';
-const API_URL = 'http://localhost:5000/api';
+//const API_URL = 'http://localhost:5000/api';
 
 
 const api = {
