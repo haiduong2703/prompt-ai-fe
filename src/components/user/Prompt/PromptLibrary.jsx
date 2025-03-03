@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./PromptLibrary.css";
 import api from "../../../services/api";
 import CategoryCard from "../CategoryCard/CategoryCard";
-import FAQSection from "../Q&A/FAQSection";
+import FAQSection from "../../Q&A/FAQSection";
 const PromptLibrary = () => {
   const [sections, setSections] = useState([]);
   const [categories, setCategories] = useState([]);
