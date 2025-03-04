@@ -133,5 +133,40 @@
     border: 2px solid #FFFFFF;
     letter-spacing: 0.8px;
 }
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  .pricing-card {
+      width: 90%; /* Cho card rộng hơn khi màn hình nhỏ */
+      padding: 15px;
+      margin: 10px auto;
+  }
+
+  .pricing-card-title {
+      font-size: 18px;
+  }
+
+  .pricing-card-price {
+      font-size: 28px;
+  }
+
+  .pricing-card-features {
+      font-size: 14px;
+  }
+
+  .pricing-card-feature {
+      font-size: 13px;
+  }
+
+  .pricing-card-access-button,
+  .pricing-card-signup-button {
+      font-size: 14px;
+      padding: 12px;
+  }
+
+  .popular-badge {
+      font-size: 10px;
+      padding: 5px 12px;
+  }
+}
 
   
