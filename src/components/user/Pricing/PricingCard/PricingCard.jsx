@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./PricingCard.css"; // Import CSS
-
+import xCicle from "../../../../asset/icon/x_circle.svg";
+import checkCircle from "../../../../asset/icon/check_circle.svg"
 const PricingCard = ({ title, price, period, features, buttonText, highlightColor, isPopular }) => {
   return (
     <div className={`pricing-card ${isPopular ? "popular-card" : ""}`}>
@@ -15,7 +16,7 @@ const PricingCard = ({ title, price, period, features, buttonText, highlightColo
         {features.items.map((item, index) => (
           <li key={index} className="pricing-card-feature">
             <span className={item.included ? "pricing-card-icon pricing-icon-check" : "pricing-card-icon pricing-icon-cross"}>
-              {item.included ? "✔" : "✖"}
+              {item.included ? <img src={checkCircle} alt="" /> : <img src={xCicle} alt="" />}
             </span> 
             {item.text}
           </li>
