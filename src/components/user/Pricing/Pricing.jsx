@@ -10,7 +10,10 @@ const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState("Monthly");
   const [dataSub, setDataSub] = useState([]);
   const { user } = useContext(UserContext); // Lấy user từ Context API
-  const isAdmin = user && user.role === 2;
+
+  useEffect(() => {
+    console.log("user", user);
+  }, [])
   useEffect(() => {
     fetchDataSub(selectedPlan);
   }, [selectedPlan]);
@@ -51,7 +54,7 @@ const Pricing = () => {
               key={sub.id}
               title={sub.name_sub}
               price={`${parseFloat(sub.price).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`}
-              period={sub.duration == 30 ? "tháng" : sub.duration == 365 ? "năm" : "vĩnh viễn"}
+              period={sub.type == 1 ? "tháng" : sub.type == 2 ? "năm" : "vĩnh viễn"}
               features={{
                 description: sub.description || "Không có mô tả",
                 items: sub.ContentSubscriptions?.map((item) => ({
@@ -59,8 +62,7 @@ const Pricing = () => {
                   included: item.included,
                 })) || [],
               }}
-              buttonText={sub.type != 1 ? "Get Access" : user != null ? "Current" : "Sign up"} // Free có type = 1
-              highlightColor={index === 0 ? "#ffffff" : "#5700C6"}
+              buttonText={sub.id === user.userSub.sub_id ? "Current" : (user === null && sub.name_sub === "Free") ? "Sign up" : (user !== null && sub.name_sub === "Free") ? "Current" :"Get Access"}
               isPopular={sub.is_popular}
             />
           ))
