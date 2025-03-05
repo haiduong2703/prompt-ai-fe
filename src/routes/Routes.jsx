@@ -8,6 +8,7 @@ import UserLayout from "../pages/user/UserLayout/UserLayout";
 import Pricing from "../components/user/Pricing/Pricing";
 import Contact from "../components/user/Contact/Contact";
 import UserHome from "../components/user/UserHome/Home";
+import Home from "../pages/user/Home";
 import ContactManager from "../components/admin/Contact/ContactAdmin";
 import Login from "../pages/user/Login";
 import Register from "../pages/user/register";
@@ -23,8 +24,8 @@ import TopicAdmin from "../components/admin/Topic";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
-  const isAdmin = user && user.role === 2; // Kiểm tra role
-  //const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
+  // const isAdmin = user && user.role === 2; // Kiểm tra role
+  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
   useEffect(() => {
     document.title = "Promp";
@@ -45,7 +46,7 @@ const RoutesMain = () => {
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
           <Route path="login" element={<Login />} />
-          <Route path="home" element={<UserHome />} />
+          <Route path="home" element={<Home />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
