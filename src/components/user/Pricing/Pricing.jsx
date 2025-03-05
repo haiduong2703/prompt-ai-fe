@@ -62,7 +62,7 @@ const Pricing = () => {
                   included: item.included,
                 })) || [],
               }}
-              buttonText={sub.id === user.userSub.sub_id ? "Current" : (user === null && sub.name_sub === "Free") ? "Sign up" : (user !== null && sub.name_sub === "Free") ? "Current" :"Get Access"}
+              buttonText={(user === null && sub.name_sub === "Free") ? "Sign up" : sub.id === user?.userSub?.sub_id ? "Current" : (user !== null && sub.name_sub === "Free") ? "Current" :"Get Access"}
               isPopular={sub.is_popular}
             />
           ))
