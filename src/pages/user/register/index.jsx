@@ -21,8 +21,8 @@ const Register = () => {
     try {
       const response = await api.registerUser(fullName, email, password);
 
-      const data = await response.json();
-      if (response.ok) {
+      const data = await response.data;
+      if (data) {
         message.success("OTP sent to your email");
         setIsOtpSent(true);
       } else {
@@ -43,8 +43,8 @@ const Register = () => {
     try {
       const response = await api.verifyLogin(email, otp);
 
-      const data = await response.json();
-      if (response.ok) {
+      const data = await response.data;
+      if (data) {
         message.success("Account verified successfully");
         setIsVerified(true);
       } else {

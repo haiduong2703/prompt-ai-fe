@@ -2,11 +2,11 @@
 import axios from 'axios';
 
 const API_URL = 'https://prom.vn/api';
+// const API_URL = 'http://160.25.80.25:5000/api';
 // const API_URL = 'http://backend:5000/api';
+
 // const API_URL = 'http://localhost:5000/api';
-// const API_URL = 'https://www.prom.vn/api';
-// const API_URL = 'http://backend:5000/api';
-// const API_URL = 'http://localhost:5000/api';
+
 
 
 const api = {
@@ -49,7 +49,7 @@ const api = {
         return axios.get(`${API_URL}/categories`);
     },
     getCategoriesPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/categories/list?page=${page}&pageSize=${pageSize}`);
+        return axios.get(`${API_URL}/categories?page=${page}&pageSize=${pageSize}`);
     },
     getCategoriesBySection: async (sectionId) => {
         return axios.get(`${API_URL}/categories/by-sectionId/${sectionId}`);
