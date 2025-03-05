@@ -14,7 +14,7 @@ const ListPrompts = () => {
     const [topics, setTopics] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [isType, setIsType] = useState(1);
-    const [topicId, setTopicId] = useState("");
+    const [topicId, setTopicId] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [newestPrompts, setNewestPrompts] = useState([]);
@@ -24,8 +24,13 @@ const ListPrompts = () => {
         getListNewestPrompts(category?.id);
     }, [])
     useEffect(() => {
-        getListPrompts(topicId, searchText.trim(), isType, currentPage);
-    }, [category?.id, isType, searchText, topicId, currentPage]);
+        if (topicId == undefined) {
+            getListPrompts("", searchText.trim(), isType, currentPage);
+        } else {
+            getListPrompts(topicId, searchText.trim(), isType, currentPage);
+        }
+
+    }, [category?.id, isType, currentPage]);
 
     const fetchListTopic = async (category_id) => {
         try {
@@ -45,7 +50,35 @@ const ListPrompts = () => {
             console.error("Error fetching prompts:", error);
         }
     };
+    const handelSearch = async (value) => {
+        try {
+            setCurrentPage(1);
+            setSearchText(value);
+            if (topicId == undefined) {
+                getListPrompts (topicId, value.trim(), isType, currentPage)
+            }
+            getListPrompts ("", value.trim(), isType, currentPage)
 
+        } catch (error) {
+            
+        }
+    }
+    const handelSearchByTopic = async (value) => {
+        try {
+            setCurrentPage(1);
+            setTopicId(value);
+            getListPrompts (value, searchText, isType, currentPage)
+        } catch (error) {
+            
+        }
+    }
+    const handleChangeTypeSub = async (value) => {
+        setCurrentPage(1);
+        if (topicId == undefined) {
+            setTopicId("");
+        }
+        setIsType(value);
+    }
     const getListNewestPrompts = async (category_id) => {
         try {
             const resp = await api.getNewestPromptsByCategoryId(category_id);
@@ -59,6 +92,11 @@ const ListPrompts = () => {
         const options = { month: "long", year: "numeric" };
         return date.toLocaleDateString("en-US", options);
     };
+    const handleChangePage = (page) => {
+        setCurrentPage(page);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+    
     return (
         <div className="list-prompts-component">
             <div className="list-prompts-container">
@@ -82,14 +120,14 @@ const ListPrompts = () => {
                 <div className="filter-buttons">
                     <button
                         className={`premium-btn ${isType === 2 ? "active" : ""}`}
-                        onClick={() => setIsType(2)}
+                        onClick={() => handleChangeTypeSub(2)}
                     >
                         <StarFilled style={{ color: "yellow" }} /> Premium
                     </button>
 
                     <button
                         className={`free-btn ${isType === 1 ? "active" : ""}`}
-                        onClick={() => setIsType(1)}
+                        onClick={() => handleChangeTypeSub(1)}
                     >
                         <HeartOutlined /> Free
                     </button>
@@ -102,7 +140,7 @@ const ListPrompts = () => {
                     type="text"
                     placeholder="Search prompts..."
                     value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
+                    onChange={(e) => handelSearch(e.target.value)}
                 />
 
                 {/* Danh sách danh mục con */}
@@ -111,7 +149,8 @@ const ListPrompts = () => {
                         <span
                             key={topic.id}
                             className={`category-tag ${topicId === topic.id ? "active" : ""}`}
-                            onClick={() => setTopicId(topicId === topic.id ? 0 : topic.id)}
+                            onClick={() => handelSearchByTopic(topicId === topic.id ? 0 : topic.id)}
+                            // onClick={() => setTopicId(topicId === topic.id ? 0 : topic.id)}
                         >
                             {topic?.name}
                         </span>
@@ -143,7 +182,7 @@ const ListPrompts = () => {
                     current={currentPage}
                     total={totalPages * 10}
                     pageSize={10}
-                    onChange={(page) => setCurrentPage(page)}
+                    onChange={handleChangePage}
                     showSizeChanger={false}
                     showQuickJumper
                 />

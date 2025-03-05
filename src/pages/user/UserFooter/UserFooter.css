@@ -1,119 +1,143 @@
 .user-footer {
   /* position: fixed; */
+  font-family: 'Plus Jakarta Sans';
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #111;
-  color: white;
+  background-color: #FBFBFB;
+  color: black;
   padding: 40px 20px;
   text-align: center;
   z-index: 1000;
+  justify-items: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.footer-container {
+.footer-up-container {
+  width: 75%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
   margin: auto;
-  rid-column-gap: 0px;
-  grid-row-gap: 40px;
-  flex-wrap: wrap;
-  place-content: stretch space-between;
-  place-items: flex-start stretch;
 }
-
+.footer-up-left-box {
+  text-align: left;
+  width: 50%;
+}
+.footer-up-left-box h1 {
+  font-weight: 500;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.footer-contact-button {
+  width: fit-content;
+  padding: 10px 30px;
+  display: block;
+  background-color: #5700C6;
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+  border-radius: 100px;
+  margin-bottom: 40px;
+}
+.footer-up-right-box {
+  width: 75%;
+  display: flex;
+  gap: 90px;
+  justify-content: flex-end;
+}
+.footer-up-right-box h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+.footer-up-right-box p {
+  line-height: 180%;
+  font-weight: 400;
+}
+.footer-up-right-paragraph {
+  text-align: left;
+  float: right;
+  right: 0;
+}
+/* phần dưới */
+.footer-down-container {
+  width: 75%;
+  justify-content: space-between;
+  display: flex;
+  margin-bottom: 30px;
+}
 .footer-logo {
-  width: 22%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 10%;
+  font-size: 38px;
+}
+.footer-down-center {
+  color: black !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  /* Menu sẽ tự căn giữa */
+  gap: 25px;
+  font-weight: 500;
+}
+.footer-down-center a{
+  color: black;
+}
+.user-dropdown-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-weight: 500; 
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: color 0.2s ease-in-out;
+  display: flex;
+  gap: 5px;
 }
 
-.footer-logo img {
-  max-height: 100px;
-}
+.user-dropdown-btn:hover {
+  color: #5700C6;
+  font-weight: 700;
 
-.footer-logo img:hover {
-  transform: scale3d(.97, .97, 1.01);
-  max-height: 100px;
 }
-
+.footer-social-connect {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.footer-social-connect a {
+  text-decoration: none;
+}
+.footer-social-connect img {
+  height: 20px;
+}
 .footer-section {
   max-width: 25%;
 }
 
-.footer-section h3 {
-  font-size: 23px;
-  margin-bottom: 10px;
-  text-align: left;
-}
-
-.footer-section p {
-  color: #eff0f6;
-  letter-spacing: 1px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 30px;
-  unicode-bidi: isolate;
-  text-align: left;
-}
-
-
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-}
-
-.footer-section ul li {
-  margin-bottom: 8px;
-}
-
-.footer-section ul li a {
-  color: #eff0f6;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.footer-section ul li a:hover {
-  color: white;
-}
-
-.footer-social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  text-align: left;
-  justify-content: flex-start;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.footer-social-icons a {
-  background-color: #fff;
-  border-radius: 100%;
-  flex-direction: column;
-  flex: none;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 12px;
-  transition: background-color .26s;
-  display: flex
-}
-
-.footer-social-icons a:hover {
-  background: #fcc201;
-}
-
 .footer-bottom {
+  width: 75%;
   margin-top: 20px;
-  border-top: 1px solid #444;
-  padding-top: 10px;
-  font-size: 14px;
-  color: #aaa;
+  border-top: 1px solid #E0E0E0;
+  padding-top: 20px;
+  font-size: 14px;  
+  color: #1D1E25;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-botton-right {
+  display: flex;
+  gap: 30px;
+}
+.footer-botton-right a {
+  text-decoration: none;
+  color: black;
 }

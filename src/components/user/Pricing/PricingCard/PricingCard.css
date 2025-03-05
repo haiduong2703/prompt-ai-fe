@@ -1,0 +1,174 @@
+.pricing-card {
+    position: relative;
+    width: 300px;
+    background: linear-gradient(to bottom, #FFFFFF, #E2D0FF);
+    border-radius: 36px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 500;
+    transition: 0.3s;
+  }
+.pricing-card:hover {
+    transform: scale(1.02);
+}
+  
+  .pricing-card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1D1E25;
+  }
+  
+  .pricing-card-price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  .pricing-card-price span {
+    font-size: 14px;
+  }
+  
+  .pricing-card-subtitle {
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .pricing-card-divider {
+    margin: 15px 0;
+    border: none;
+    height: 1px;
+    background: #ddd;
+  }
+  
+  .pricing-card-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  .pricing-card-feature {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+    margin: 6px 0;
+  }
+  
+  .pricing-card-icon {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: flex;
+
+  }
+    
+  .pricing-icon-check {
+    color: #00ff00;
+  }
+  
+  .pricing-icon-cross {
+    color: #ff4d4d;
+  }
+  .pricing-card-access-button {
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 36px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 700;
+  }
+  
+  .pricing-card-acesss-button:hover {
+    opacity: 0.9;
+  }
+  .pricing-card-signup-button {
+    width: 100%;
+    color: #5700C6;
+    border: none;
+    padding: 10px;
+    border-radius: 36px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .pricing-card-signup-button:hover {
+    opacity: 0.9;
+  }
+  /* Khi là thẻ popular, toàn bộ chữ sẽ là màu trắng */
+.popular-card {
+    background: #111116;
+    color: white;
+}
+
+.popular-card .pricing-card-title,
+.popular-card .pricing-card-price,
+.popular-card .pricing-card-price span,
+.popular-card .pricing-card-subtitle,
+.popular-card .pricing-card-feature {
+    color: white;
+    font-weight: 500;
+}
+
+.popular-card .divider {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Badge "Most Popular" */
+.popular-badge {  
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #F0E8FF 0%, #5700C6 100%);
+    color: white;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 2px solid #FFFFFF;
+    letter-spacing: 0.8px;
+}
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+  .pricing-card {
+      width: 90%; /* Cho card rộng hơn khi màn hình nhỏ */
+      padding: 15px;
+      margin: 10px auto;
+  }
+
+  .pricing-card-title {
+      font-size: 18px;
+  }
+
+  .pricing-card-price {
+      font-size: 28px;
+  }
+
+  .pricing-card-features {
+      font-size: 14px;
+  }
+
+  .pricing-card-feature {
+      font-size: 13px;
+  }
+
+  .pricing-card-access-button,
+  .pricing-card-signup-button {
+      font-size: 14px;
+      padding: 12px;
+  }
+
+  .popular-badge {
+      font-size: 10px;
+      padding: 5px 12px;
+  }
+}
+
+  
