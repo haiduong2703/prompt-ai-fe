@@ -20,18 +20,21 @@
   justify-content: space-between;
   margin: auto;
 }
+
 .footer-up-left-box {
   text-align: left;
   width: 50%;
 }
+
 .footer-up-left-box h1 {
   font-weight: 500;
   font-size: 40px;
   margin-bottom: 20px;
 }
+
 .footer-contact-button {
   width: fit-content;
-  padding: 10px 30px;
+  padding: 12px 32px;
   display: block;
   background-color: #5700C6;
   font-size: 16px;
@@ -39,42 +42,83 @@
   font-weight: 500;
   border-radius: 100px;
   margin-bottom: 40px;
+  text-decoration: none;
 }
+
 .footer-up-right-box {
   width: 75%;
   display: flex;
   gap: 90px;
   justify-content: flex-end;
 }
+
 .footer-up-right-box h2 {
   font-size: 18px;
   font-weight: 700;
   margin-top: 5px;
   margin-bottom: 15px;
 }
+
 .footer-up-right-box p {
   line-height: 180%;
   font-weight: 400;
 }
+
 .footer-up-right-paragraph {
   text-align: left;
   float: right;
   right: 0;
 }
-/* phần dưới */
+
+.mobile-view {
+  display: none;
+}
+
+/* Ant Design Collapse Customization */
+.mobile-view .ant-collapse {
+  width: 100%;
+  background: transparent;
+}
+
+.mobile-view .ant-collapse>.ant-collapse-item {
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.mobile-view .ant-collapse>.ant-collapse-item>.ant-collapse-header {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 0;
+  color: #1D1E25;
+}
+
+.mobile-view .ant-collapse-content {
+  background: transparent;
+}
+
+.mobile-view .collapse-item {
+  padding: 8px 0;
+  color: #1D1E25;
+  font-size: 14px;
+}
+
+/* Footer Down Section */
 .footer-down-container {
   width: 75%;
   justify-content: space-between;
   display: flex;
-  margin-bottom: 30px;
+  margin: 40px auto;
 }
+
 .footer-logo {
   display: flex;
   align-items: center;
   gap: 10px;
   width: 10%;
   font-size: 38px;
+  text-decoration: none;
+  color: inherit;
 }
+
 .footer-down-center {
   color: black !important;
   display: flex;
@@ -85,14 +129,17 @@
   gap: 25px;
   font-weight: 500;
 }
-.footer-down-center a{
+
+.footer-down-center a {
   color: black;
+  text-decoration: none;
 }
+
 .user-dropdown-btn {
   background: none;
   border: none;
   color: black;
-  font-weight: 500; 
+  font-weight: 500;
   font-size: 16px;
   cursor: pointer;
   padding: 8px 12px;
@@ -106,27 +153,31 @@
   font-weight: 700;
 
 }
+
 .footer-social-connect {
   display: flex;
   gap: 20px;
   align-items: center;
 }
+
 .footer-social-connect a {
   text-decoration: none;
 }
+
 .footer-social-connect img {
   height: 20px;
 }
+
 .footer-section {
   max-width: 25%;
 }
 
 .footer-bottom {
   width: 75%;
-  margin-top: 20px;
+  margin: 20px auto 0;
   border-top: 1px solid #E0E0E0;
   padding-top: 20px;
-  font-size: 14px;  
+  font-size: 14px;
   color: #1D1E25;
   font-weight: 400;
   display: flex;
@@ -137,7 +188,109 @@
   display: flex;
   gap: 30px;
 }
+
 .footer-botton-right a {
   text-decoration: none;
   color: black;
+}
+
+@media (max-width: 768px) {
+  .user-footer {
+    padding: 40px 20px;
+    text-align: left;
+  }
+
+  .footer-up-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .footer-up-left-box {
+    width: 100%;
+  }
+
+  .footer-up-left-box h1 {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+
+  .footer-contact-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .footer-up-right-box {
+    width: 100%;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .footer-up-right-paragraph {
+    float: none;
+  }
+
+  .footer-up-right-box h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .footer-up-right-box h2::after {
+    content: ">";
+    transform: rotate(90deg);
+    font-size: 20px;
+  }
+
+  .footer-up-right-box p {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .footer-down-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 32px;
+    margin: 40px 0;
+  }
+
+  .footer-logo {
+    width: auto;
+    font-size: 28px;
+  }
+
+  .footer-down-center {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-social-connect {
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .footer-botton-right {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
+    width: 100%;
+  }
 }

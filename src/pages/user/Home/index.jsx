@@ -140,12 +140,12 @@ const blogPosts = [
       "We are the top digital marketing agency for branding corp. We offer a full range engine.",
     readTime: "5 min read",
   },
-  // {
-  //   title: "Maximizing Prompt with the Expertise of a Digital Marketing Agency",
-  //   description:
-  //     "We are the top digital marketing agency for branding corp. We offer a full range engine.",
-  //   readTime: "5 min read",
-  // },
+  {
+    title: "Maximizing Prompt with the Expertise of a Digital Marketing Agency",
+    description:
+      "We are the top digital marketing agency for branding corp. We offer a full range engine.",
+    readTime: "5 min read",
+  },
 ];
 
 // Dữ liệu cho FAQs
@@ -222,6 +222,12 @@ const Home = () => {
     children: <p>{faq.answer}</p>,
   }));
 
+  const scrollContainer = (containerId, direction) => {
+    const container = document.getElementById(containerId);
+    const scrollAmount = direction === "next" ? 600 : -600;
+    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
   return (
     <div className="app">
       <main>
@@ -292,17 +298,39 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="marketplace-cards">
-            {marketplaceCards.map((card, index) => (
-              <div key={index} className="marketplace-card">
-                <div className="card-content">
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
+          <div className="marketplace-container">
+            <button
+              className="scroll-nav-button prev"
+              onClick={() => scrollContainer("marketplace-cards", "prev")}
+            >
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <div className="marketplace-cards" id="marketplace-cards">
+              {marketplaceCards.map((card, index) => (
+                <div key={index} className="marketplace-card">
+                  <div className="card-content">
+                    <h3>{card.title}</h3>
+                    <p>{card.description}</p>
+                  </div>
+                  <img
+                    src={card.imgSrc}
+                    alt={card.title}
+                    className="card-img"
+                  />
+                  <div className={`card-bg ${card.bgColor}`}></div>
                 </div>
-                <img src={card.imgSrc} alt={card.title} className="card-img" />
-                <div className={`card-bg ${card.bgColor}`}></div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              className="scroll-nav-button next"
+              onClick={() => scrollContainer("marketplace-cards", "next")}
+            >
+              <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
+            </button>
           </div>
         </section>
         {/* best prompts for you */}
@@ -388,22 +416,40 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="blog-posts">
-            {blogPosts.map((post, index) => (
-              <div key={index} className="blog-post">
-                <div className="blog-dot"></div>
-                <div className="blog-content">
-                  <span className="blog-read-time">{post.readTime}</span>
-                  <h3>{post.title}</h3>
-                  <div className="blog-footer">
-                    <p>{post.description}</p>
-                    <button className="blog-button">
-                      <ArrowRightOutlined />
-                    </button>
+          <div className="blog-container">
+            <button
+              className="scroll-nav-button prev"
+              onClick={() => scrollContainer("blog-posts", "prev")}
+            >
+              <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <div className="blog-posts" id="blog-posts">
+              {blogPosts.map((post, index) => (
+                <div key={index} className="blog-post">
+                  <div className="blog-dot"></div>
+                  <div className="blog-content">
+                    <span className="blog-read-time">{post.readTime}</span>
+                    <h3>{post.title}</h3>
+                    <div className="blog-footer">
+                      <p>{post.description}</p>
+                      <button className="blog-button">
+                        <ArrowRightOutlined />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <button
+              className="scroll-nav-button next"
+              onClick={() => scrollContainer("blog-posts", "next")}
+            >
+              <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+              </svg>
+            </button>
           </div>
         </section>
 
@@ -445,41 +491,68 @@ const Home = () => {
               <h2 className="testimonials-title">People say about us</h2>
             </div>
 
-            <div className="testimonials-container">
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="testimonial-card">
-                  <div className="testimonial-rating">
-                    {[...Array(5)].map((_, i) => (
-                      <span
-                        key={i}
-                        className={
-                          i < testimonial.rating ? "star-filled" : "star-empty"
-                        }
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                  <div className="testimonial-text">"{testimonial.text}"</div>
-                  <div className="testimonial-author">
-                    <div className="author-avatar">
-                      <img
-                        src={testimonial.author.avatar}
-                        alt={testimonial.author.name}
-                      />
+            <div className="testimonials-wrapper">
+              <button
+                className="scroll-nav-button prev"
+                onClick={() =>
+                  scrollContainer("testimonials-container", "prev")
+                }
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+              </button>
+              <div
+                className="testimonials-container"
+                id="testimonials-container"
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="testimonial-card">
+                    <div className="testimonial-rating">
+                      {[...Array(5)].map((_, i) => (
+                        <span
+                          key={i}
+                          className={
+                            i < testimonial.rating
+                              ? "star-filled"
+                              : "star-empty"
+                          }
+                        >
+                          ★
+                        </span>
+                      ))}
                     </div>
-                    <div className="author-info">
-                      <div className="author-name">
-                        {testimonial.author.name}
+                    <div className="testimonial-text">"{testimonial.text}"</div>
+                    <div className="testimonial-author">
+                      <div className="author-avatar">
+                        <img
+                          src={testimonial.author.avatar}
+                          alt={testimonial.author.name}
+                        />
                       </div>
-                      <div className="author-title">
-                        {testimonial.author.title}
+                      <div className="author-info">
+                        <div className="author-name">
+                          {testimonial.author.name}
+                        </div>
+                        <div className="author-title">
+                          {testimonial.author.title}
+                        </div>
                       </div>
                     </div>
+                    <div className="quote-icon">"</div>
                   </div>
-                  <div className="quote-icon">"</div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <button
+                className="scroll-nav-button next"
+                onClick={() =>
+                  scrollContainer("testimonials-container", "next")
+                }
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+              </button>
             </div>
           </div>
         </section>

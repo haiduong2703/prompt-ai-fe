@@ -1,51 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
-import logoImg from "../../../asset/imgae/logo.svg"
-import arrowExpand from "../../../asset/icon/arow_expand.svg"
+import logoImg from "../../../asset/imgae/logo.svg";
+import arrowExpand from "../../../asset/icon/arow_expand.svg";
+
 const UserLayout = ({ children }) => {
   const location = useLocation();
   const userLocal = JSON.parse(localStorage.getItem("user"));
-  const { user, logout } = useUser(); // Lấy user và hàm logout từ Context API
+  const { user, logout } = useUser();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const handleLogout = () => {
-    logout(); // Gọi hàm logout từ Context API
-    navigate("/login"); // Chuyển hướng về trang đăng nhập
+    logout();
+    navigate("/login");
   };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <div className="user-container">
-      {/* Navbar */}
       <nav className="user-navbar">
-        <div className="user-logo">
-          <img src={logoImg} alt="" style={{ color: "#5700C6" }} /> <span style={{ fontSize: "28px", fontWeight: "600" }}>Prom</span>
-        </div>
-        <div className="user-nav-left">
-
+        <Link to="/home" className="user-logo">
+          <img src={logoImg} alt="" style={{ color: "#5700C6" }} />
+          <span style={{ fontSize: "28px", fontWeight: "600" }}>Prom</span>
+        </Link>
+        <div
+          className={`user-nav-left ${isMobileMenuOpen ? "mobile-open" : ""}`}
+        >
           <div className="user-nav-links">
             <Link
               to="/home"
-              className={`user-nav-item ${location.pathname === "/home" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/home" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/prompts"
-              className={`user-nav-item ${location.pathname === "/prompts" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/prompts" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Prompt
             </Link>
 
             <div className="user-dropdown">
-              <button className="user-dropdown-btn">Tools <img src={arrowExpand} alt="" /></button>
+              <button className="user-dropdown-btn">
+                Tools <img src={arrowExpand} alt="" />
+              </button>
               <div className="user-dropdown-menu">
-                <Link to="/tool1" className="user-dropdown-item">
+                <Link
+                  to="/tool1"
+                  className="user-dropdown-item"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   Prompts Generator
                 </Link>
-                <Link to="/tool2" className="user-dropdown-item">
+                <Link
+                  to="/tool2"
+                  className="user-dropdown-item"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   GPTs
                 </Link>
               </div>
@@ -53,44 +76,65 @@ const UserLayout = ({ children }) => {
 
             <Link
               to="/products"
-              className={`user-nav-item ${location.pathname === "/products" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/products" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Products
             </Link>
             <Link
               to="/blog"
-              className={`user-nav-item ${location.pathname === "/blog" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/blog" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
               to="/pricing"
-              className={`user-nav-item ${location.pathname === "/pricing" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/pricing" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Pricing
             </Link>
 
             <Link
               to="/contact"
-              className={`user-nav-item ${location.pathname === "/contact" ? "user-active" : ""
-                }`}
+              className={`user-nav-item ${
+                location.pathname === "/contact" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact
             </Link>
 
-
+            {/* Mobile Menu Auth Buttons */}
+            <div className="mobile-auth-buttons">
+              <Link
+                to="/login"
+                className="mobile-login-btn"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Login
+              </Link>
+              <Link
+                to="/signup"
+                className="mobile-signup-btn"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Sign up
+              </Link>
+            </div>
           </div>
         </div>
 
         <div className="user-nav-right">
           {userLocal ? (
             <>
-              {/* <Link to="/logout" className="user-logout">
-                Log out
-              </Link> */}
               <p onClick={handleLogout} className="user-logout">
                 Log out
               </p>
@@ -102,37 +146,36 @@ const UserLayout = ({ children }) => {
             <>
               <Link
                 to="/login"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  borderRight: "1px solid black",
-                  paddingRight: "20px",
-                }}
-                
+                className="user-login-link"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="user-login">Login</span>
               </Link>
               <Link
                 to="/signup"
-                style={{ textDecoration: "none", color: "black" }}
-                
+                className="user-signup-link"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="user-signup">Sign up</span>
+                <button className="signup-button">Sign up</button>
+              </Link>
+              <Link
+                to="/signup"
+                className="mobile-header-signup"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <button className="signup-button">Sign up</button>
               </Link>
             </>
           )}
-          <button className="user-menu-btn">☰</button>
+          <button className="user-menu-btn" onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? "✕" : "☰"}
+          </button>
         </div>
       </nav>
 
-      {/* Spacer để tránh navbar che nội dung */}
-      {/* <div className="user-spacer"></div> */}
-
-      {/* Nội dung chính */}
       <main className="user-main-content">
         <Outlet />
       </main>
-      {/* Thêm Footer */}
       <UserFooter />
     </div>
   );
