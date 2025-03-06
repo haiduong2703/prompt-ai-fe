@@ -9,7 +9,7 @@ import howIcon from "../../../../asset/imgae/icon_what.svg";
 import inputIcon from "../../../../asset/imgae/input_icon.svg";
 import outputIcon from "../../../../asset/imgae/output_icon.svg";
 import PromptCard from "../ListPrompts/PromptCard/PromptCard";
-
+import copyIcon from "../../../../asset/icon/copy_icon.svg";
 const DetailPrompt = () => {
     const location = useLocation();
     const { activeSection, image_category, topicName } = location.state || {};
@@ -56,21 +56,6 @@ const DetailPrompt = () => {
     return (
         <div className="detail-prompt-component">
             <div className="detail-prompt-container">
-                {/* Breadcrumb */}
-                <div className="detail-prompt-breadcrumb">
-                    <Link to="/prompts">
-                        <HomeOutlined style={{ fontSize: "22px" }} />
-                    </Link>
-                    <span>
-                        &gt; <img src={activeSection?.description} alt="" style={{ width: "22px", height: "22px" }} /> {activeSection?.name} Prompts for Sales
-                    </span>
-                    <span>
-                        &gt; {topicName}
-                    </span>
-                    <span style={{ fontWeight: "700" }}>
-                        &gt; {prompt.title}
-                    </span>
-                </div>
                 <div className="detail-prompt-content">
                     <div className="detail-prompt-header">
                         <img src={activeSection?.description} alt="" className="detail-prompt-header-section" />
@@ -121,7 +106,7 @@ const DetailPrompt = () => {
                                     className="copy-button"
                                     onClick={copyToClipboard}
                                 >
-                                    {copyStatus ? "COPIED" : "COPY"}
+                                    {copyStatus ? "Copied" : "Copy"}
                                 </button>
                                 <div
                                     className="detail-prompt-paragraph-special-content"
