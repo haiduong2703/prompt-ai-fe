@@ -173,6 +173,7 @@ const PromptForm = ({ topic, promptId, categories, onSuccess }) => {
         short_description: prompt.short_description,
         category_id: prompt.category_id,
         is_type: prompt.is_type,
+        topic_id: prompt.topic_id,
       });
 
       setContentValues({
