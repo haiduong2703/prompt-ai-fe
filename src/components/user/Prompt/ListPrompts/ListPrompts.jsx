@@ -5,7 +5,8 @@ import { HomeOutlined, StarFilled, HeartOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import api from "../../../../services/api";
 import PromptCard from "./PromptCard/PromptCard";
-
+import search_icon from "../../../../asset/icon/search_icon.svg";
+import astronault from "../../../../asset/imgae/astronault.png";
 const ListPrompts = () => {
     const location = useLocation();
     const { category, activeSection } = location.state || {};
@@ -100,29 +101,21 @@ const ListPrompts = () => {
     return (
         <div className="list-prompts-component">
             <div className="list-prompts-container">
-                {/* Breadcrumb */}
-                <div className="breadcrumb">
-                    <Link to="/prompts" style={{ color: "black" }}>
-                        <HomeOutlined style={{ fontSize: "20px" }} />
-                    </Link>
-                    <span>
-                        &gt; <img src={activeSection?.description} alt="" />
-                        {activeSection?.name} Prompts for {category?.name}
-                    </span>
-                </div>
-
                 {/* Tiêu đề */}
                 <h1 className="list-prompts-container-title">
-                    <span className="count">{category?.prompt_count}</span> {activeSection?.name} Prompts for <br /> {category?.name}
+                    {category?.prompt_count} {activeSection?.name} Prompts for {category?.name}
                 </h1>
+                <p className="list-prompts-container-description">
+                    Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge your business and boost your productivity.
+                </p>
 
                 {/* Nút chọn Premium / Free */}
-                <div className="filter-buttons">
+                <div className={`filter-buttons ${isType === 2 ? 'premium-active' : 'free-active'}`}>
                     <button
                         className={`premium-btn ${isType === 2 ? "active" : ""}`}
                         onClick={() => handleChangeTypeSub(2)}
                     >
-                        <StarFilled style={{ color: "yellow" }} /> Premium
+                        <StarFilled /> Premium
                     </button>
 
                     <button
@@ -131,24 +124,26 @@ const ListPrompts = () => {
                     >
                         <HeartOutlined /> Free
                     </button>
-
                 </div>
 
                 {/* Ô tìm kiếm */}
-                <input
-                    className="list-prompt-search-bar"
-                    type="text"
-                    placeholder="Search prompts..."
-                    value={searchText}
-                    onChange={(e) => handelSearch(e.target.value)}
-                />
+                <div className="search-container-list-prompt">
+                    <img src={search_icon} alt="search" className="search-icon-list-prompt" />
+                    <input
+                        className="list-prompt-search-bar"
+                        type="text"
+                        placeholder="Search proms"
+                        value={searchText}
+                        onChange={(e) => handelSearch(e.target.value)}
+                    />
+                </div>
 
                 {/* Danh sách danh mục con */}
-                <div className="category-tags">
+                <div className="category-tags-list-prompt">
                     {topics?.map((topic) => (
                         <span
                             key={topic.id}
-                            className={`category-tag ${topicId === topic.id ? "active" : ""}`}
+                            className={`category-tag-list-prompt ${topicId === topic.id ? "active" : ""}`}
                             onClick={() => handelSearchByTopic(topicId === topic.id ? 0 : topic.id)}
                             // onClick={() => setTopicId(topicId === topic.id ? 0 : topic.id)}
                         >
@@ -158,9 +153,6 @@ const ListPrompts = () => {
                 </div>
 
                 {/* Danh sách Prompt Cards */}
-                <div className="prompt-list-title">
-                    <h2><img src={activeSection?.description} alt="" /> Best {activeSection?.name} Prompts for {category?.name}, {getCurrentMonthYear()} </h2>
-                </div>
                 <div className="prompt-list">
                     {prompts.length === 0 ? (
                         <p>No prompts found</p>
@@ -193,9 +185,12 @@ const ListPrompts = () => {
             {/* Danh sách prompt mới nhất */}
             <div className="newest-prompts-container">
                 <div className="newest-prompts-title-box">
-                    <h2><img src="/675f6a3795417f518282f233_ni-bell-plus.svg" alt="" style={{ marginRight: "10px", paddingTop: "5px" }} />Newest {activeSection?.name} Prompts for {category?.name}:</h2>
+                    <h2>Newest ChatGPT Proms for Sales</h2>
                 </div>
                 <div className="newest-prompt-list-wrapper">
+                    <div className="astronaut-image">
+                        <img src={astronault} alt="Astronaut" />
+                    </div>
                     <div className="newest-prompt-list">
                         {newestPrompts.map((prompt) => (
                             <PromptCard
@@ -203,7 +198,8 @@ const ListPrompts = () => {
                                 prompt={prompt}
                                 image_category={category?.image_card}
                                 activeSection={activeSection}
-                            />))}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

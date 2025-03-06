@@ -1,196 +1,207 @@
-/* Tổng thể */
-.user-container {
+.prompt-library {
+  width: 100%;
   min-height: 100vh;
-  font-family: 'Montserrat', sans-serif;
-}
-/* Hero Section */
-.user-hero {
-  width: 1200px;
-  margin: auto;
-  padding: 30px 20px;
-  text-align: center;
-}
-
-.user-hero-header {
+  background-color: #fff;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
-.user-logo-img {
-  width: 96px;
-}
-
-.user-icon-wrapper {
-  width: 48px;
-  color: yellow;
-}
-
-/* Hero Text */
-.user-hero-text h1 {
-  font-size: 56px;
-  font-weight: bold;
-}
-
-.user-highlight-box {
-  display: inline-block;
-  background-color: #0f0020;
-  padding-left: 12.5px;
-  padding-right: 12.5px;
-  border-radius: 14px;
-  color: white;
-  box-sizing: border-box;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.user-txt-holder-center {
   justify-content: center;
-  align-items: center;
-  display: flex;
-  color: black;
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 20px;
-  margin-top: 10px;
+  padding: 48px 24px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1D1E25;
 }
 
-.user-description {
-  text-align: center;
-  letter-spacing: -1px;
-  max-width: 770px;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 90px;
-  display: block;
-  font-size: 24px;
-  line-height: 140%;
-  box-sizing: border-box;
-  font-weight: 500;
+.prompt-library-container {
+  max-width: 1200px;
+  width: 100%;
 }
 
-/* AI Tools */
-.user-ai-tools {
+.prompt-library-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.prompt-library-header h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1D1E25;
+  margin-bottom: 16px;
+  line-height: 56px;
+}
+
+
+.subtitle {
+  font-size: 16px;
+  color:#1D1E25;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+  line-height: 24px;
+}
+.ai-tools-container {
+  width: 100%;
   display: flex;
-  margin-top: 20px;
   justify-content: center;
 }
+.ai-tools {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  border-radius: 300px;
+  background: #F5F5F5;
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+}
 
-.user-tool {
+.tool-button {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 15px 20px;
-  border-radius: 50px;
-  background: white;
-  color: black;
-  font-weight: 600;
-  border: none;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-size: 16px;
-  line-height: 120%;
+  border: none;
+  background: none;
+  color: #1D1E25;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
+  width: 160px;
+  justify-content: center;
 }
 
-.user-tool img {
+/* Pseudo-element cho background di chuyển */
+.ai-tools::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 160px; /* Chiều rộng bằng với button */
+  height: calc(100% - 16px);
+  background: #DACDFF;
+  border-radius: 300px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Vị trí background cho từng trạng thái */
+.ai-tools.chatgpt::before {
+  transform: translateX(0);
+}
+
+.ai-tools.midjourney::before {
+  transform: translateX(172px); /* 160px (width) + 12px (gap) */
+}
+
+.tool-button img {
   width: 20px;
   height: 20px;
-  transition: filter 0.3s ease-in-out;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.user-tool.active {
-  background: black;
-  color: white;
+.tool-button.active {
+  color: #5700C6;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
 }
 
-.user-tool.active img {
-  filter: invert(1);
+.tool-button:hover {
+  color: #5700C6;
 }
 
-.user-tool:hover {
-  background-color: #ddd;
+.tool-button.active img,
+.tool-button:hover img {
+  filter: brightness(0) saturate(100%) invert(10%) sepia(97%) saturate(6407%) hue-rotate(272deg) brightness(77%) contrast(124%);
+  transform: scale(1.05);
 }
 
-/* Categories */
-.user-categories {
-  margin-top: 50px;
+.categories-section {
+  margin-top: 48px;
 }
-.user-categories h2 {
-  color: var(--black);
-  text-align: left !important;
-  margin-bottom: 0;
-  font-size: 28px;
-  line-height: 130%;
-  display: inline;
-}
+
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cột mỗi dòng */
-  gap: 30px; /* Khoảng cách giữa các card */
-  padding-top: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
 }
-.category-grid p {
-  text-align: left;
+
+.no-categories {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin-top: 24px;
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
   .category-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 card trên 1 dòng khi màn hình nhỏ hơn 1024px */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .prompt-library {
+    padding: 15px;
+    text-align: center;
+    max-width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .prompt-library-header h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .ai-tools {
+    width: fit-content !important;
+    margin: 0 auto;
+    flex-direction: row;
+  }
+
+  .tool-button {
+    width: 140px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  /* Điều chỉnh background cho mobile */
+  .ai-tools::before {
+    width: 140px;
+    top: 8px;
+    left: 8px;
+  }
+
+  .ai-tools.midjourney::before {
+    transform: translateX(152px); /* 140px (width) + 12px (gap) */
+  }
+
   .category-grid {
-    grid-template-columns: repeat(1, 1fr); /* 1 card trên 1 dòng khi màn hình nhỏ hơn 768px */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
-.user-category-card {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: left;
-}
-.user-categories-title {
-  border-bottom: 1px solid black;
-  padding-bottom: 10px;
-  text-align: left;
-}
-.user-category-card h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.user-badge {
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-/* Custom Prompt Button */
-.user-float-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
-.user-float-button button {
-  background-color: black;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid #555;
-  cursor: pointer;
-}
-
-.user-float-button button:hover {
-  background-color: #222;
+@media (max-width: 480px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }

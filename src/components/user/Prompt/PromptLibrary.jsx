@@ -3,6 +3,7 @@ import "./PromptLibrary.css";
 import api from "../../../services/api";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import FAQSection from "../../Q&A/FAQSection";
+
 const PromptLibrary = () => {
   const [sections, setSections] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -35,78 +36,58 @@ const PromptLibrary = () => {
   };
 
   return (
-    <div className="user-container">
-      <div className="user-hero">
-        <div className="user-hero-header">
-          <img src="/prompts_img.avif" alt="God of Prompt Logo" className="user-logo-img" />
-          <div className="user-hero-text">
-            <h1>
-              The Biggest AI <br />
-              <span className="user-highlight-box">Prompt Library</span>
-            </h1>
-            <div className="user-txt-holder-center">by God of Prompt</div>
-          </div>
-          <div className="user-icon-wrapper">
-            <img src="/promtpts_img_2.avif" alt="God of Prompt Icon" className="user-logo-img" />
-          </div>
-        </div>
-        <div className="user-description">
-          Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge your business and boost your productivity.
+    <div className="prompt-library">
+      <div className="prompt-library-container">
+        <div className="prompt-library-header">
+          <h1>The Biggest AI Prom Library</h1>
+          <p className="subtitle">
+            Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge
+            your business and boost your productivity.
+          </p>
         </div>
 
-        {/* AI Tools */}
-        <div className="user-ai-tools">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              className={`user-tool ${activeSection?.id === section.id ? "active" : ""}`}
-              onClick={() => {
-                if (activeSection?.id !== section.id) {
-                  setActiveSection(section);
-                  fetchCategories(section.id);
-                }
-              }}
-            >
-              <img
-                src={section.description}
-                alt={section.name}
-                className={`user-tool-icon ${section.name === "ChatGPT" ? "no-invert" : ""}`}
-              />
-              {section.name}
-            </button>
-
-
-          ))}
+        <div className="ai-tools-container">
+          <div className={`ai-tools ${activeSection?.name?.toLowerCase() || 'chatgpt'}`}>
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                className={`tool-button ${activeSection?.id === section.id ? "active" : ""}`}
+                onClick={() => {
+                  if (activeSection?.id !== section.id) {
+                    setActiveSection(section);
+                    fetchCategories(section.id);
+                  }
+                }}
+              >
+                <img
+                  src={section.description}
+                  alt={section.name}
+                  className={section.name === "ChatGPT" ? "no-invert" : ""}
+                />
+                {section.name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Categories Section */}
-        <div className="user-categories">
-          <div className="user-categories-title">
-            <h2>Prompt Library Categories:</h2>
-          </div>
-          <div className="category-grid">
-            {categories.length > 0 ? (
-              categories.map((category) => (
+        <div className="categories-section">
+          {categories.length > 0 ? (
+            <div className="category-grid">
+              {categories.map((category) => (
                 <CategoryCard
                   key={category.id}
                   category={category}
                   link={`/prompts/list-prompts`}
                   activeSection={activeSection}
                 />
-              ))
-            ) : (
-              <p>No categories available!</p>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <p className="no-categories">No categories available!</p>
+          )}
         </div>
-        <FAQSection/>
-        {/* Custom Prompt Button */}
-        <div className="user-float-button">
-          <button>
-            <span>✨</span>
-            Custom Prompt?
-          </button>
-        </div>
+
+        <FAQSection />
       </div>
     </div>
   );

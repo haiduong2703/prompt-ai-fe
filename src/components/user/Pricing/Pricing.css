@@ -4,7 +4,7 @@ html, body {
   max-width: 100vw;
 }
 .user-pricing-container {
-  font-family: 'Plus Jakarta Sans';
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 500;
   font-size: 16px;
   justify-items: center;

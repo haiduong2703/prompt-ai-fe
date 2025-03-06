@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     background-color: #f8f8f8;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .detail-prompt-container {
@@ -11,35 +11,6 @@
     padding-top: 10px;
     border-radius: 12px;
     justify-items: center;
-}
-
-.detail-prompt-breadcrumb {
-    width: 100%;
-    font-size: 16px;
-    color: #333;
-    display: flex;
-    align-items: center; /* Căn giữa theo chiều dọc */
-    gap: 8px;
-    margin-bottom: 20px;
-    padding: 10px 15px; /* Thêm padding để dễ nhìn */
-}
-
-.detail-prompt-breadcrumb a {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center; /* Đảm bảo text và icon trong link cũng căn giữa */
-    gap: 5px;
-    font-weight: 500;
-}
-.detail-prompt-breadcrumb span {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center; /* Đảm bảo text và icon trong link cũng căn giữa */
-    gap: 5px;
-    font-weight: 500;
-    cursor: pointer;
 }
 
 .detail-prompt-content {
@@ -144,7 +115,7 @@
     line-height: 150%;
     font-weight: 500;
     color: white;
-    background-color: #0f0020;
+    background-color: #310070;
 }
 .detail-prompt-paragraph-special {
     padding: 20px;
@@ -165,7 +136,7 @@
     position: relative; /* Thêm dòng này để nút COPY có điểm neo */
     padding: 45px 65px;
     border-radius: 24px;
-    background-color:#0f0020;
+    background-color:#310070;
     color: white;
 }
 
@@ -175,12 +146,13 @@
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: #ffd700;
-    color: #121212;
+    background-color: #FFFFFF;
+    color: #5700C6;
     border: none;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
     border-radius: 20px;
     cursor: pointer;
     display: flex;
@@ -190,7 +162,7 @@
 }
 
 .copy-button:hover {
-    background-color: #f3c623;
+    background-color: #DACDFF;
 }
 
 /* phần list dưới */
