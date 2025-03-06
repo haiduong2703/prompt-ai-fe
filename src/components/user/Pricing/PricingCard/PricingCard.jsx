@@ -27,9 +27,9 @@ const PricingCard = ({ title, price, period, features, buttonText, isPopular }) 
           {buttonText}
         </button></Link>
       ) : (
-        <button className="pricing-card-access-button" style={{ backgroundColor: "#5700C6" }}>
+        <Link to={buttonText === "Access" ? "" : ""}><button className="pricing-card-access-button" style={{ backgroundColor: "#5700C6" }}>
           {buttonText}
-        </button>
+        </button></Link>
       )}
     </div>
   );
