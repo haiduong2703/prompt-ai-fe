@@ -10,35 +10,39 @@
     --purple-gradient: linear-gradient(to right, #5700C6, #001AFF);
 }
 
-/* * {
+/* CSS Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-  }
-  
-  body {
-    background-color: var(--white);
-    color: var(--dark-text);
-    overflow-x: hidden;
-  }
-  
-  .app {
+}
+
+/* App Container */
+.app {
     position: relative;
     width: 100%;
     overflow-x: hidden;
-  }
-   */
+    -webkit-overflow-scrolling: touch;
+}
+
 /* Header */
 .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     padding: 20px 5%;
-    background-color: var(--purple-lightest);
-
+    background-color: var(--purple-lightest, #F4F0FF);
     position: relative;
     z-index: 10;
+    width: 100%;
 }
 
 .logo {
@@ -100,17 +104,25 @@
 
 /* Hero Section */
 .hero-section {
+    background: -webkit-linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%);
     background: linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%);
     padding: 40px;
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .hero-wrap {
     max-width: 1200px;
     margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     gap: 40px;
 }
@@ -231,6 +243,9 @@
     }
 
     .hero-wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
         flex-direction: column-reverse;
         gap: 24px;
     }
@@ -338,27 +353,46 @@
 }
 
 /* Marketplace Cards */
-.marketplace-cards {
+.marketplace-cards,
+.blog-posts,
+.testimonials-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    gap: 40px;
+    gap: 20px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
-    margin: 0 -20px;
-    padding: 0 20px 20px;
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+    -webkit-scroll-behavior: smooth;
+    scroll-behavior: smooth;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: -webkit-grab;
     cursor: grab;
+    -ms-touch-action: pan-x;
     touch-action: pan-x;
+    width: 100%;
 }
 
-.marketplace-cards:active {
+.marketplace-cards:active,
+.blog-posts:active,
+.testimonials-container:active {
+    cursor: -webkit-grabbing;
     cursor: grabbing;
 }
 
-.marketplace-cards::-webkit-scrollbar {
-    display: none;
+.marketplace-card,
+.blog-post,
+.testimonial-card {
+    -ms-scroll-snap-align: start;
+    scroll-snap-align: start;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
 }
 
 .marketplace-card {
@@ -370,8 +404,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     border: 2px solid #e5e7eb;
-    scroll-snap-align: start;
-    flex-shrink: 0;
 }
 
 .marketplace-card:hover {
@@ -1583,18 +1615,27 @@
 .scroll-nav-button {
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background: white;
     border: none;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     z-index: 10;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
 
@@ -1624,18 +1665,8 @@
     position: relative;
     padding: 0 20px;
     margin: 0 auto;
-    /* max-width: 1200px; */
-}
-
-.marketplace-cards,
-.blog-posts,
-.testimonials-container {
-    position: relative;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    cursor: grab;
+    width: 100%;
+    max-width: 1200px;
 }
 
 @media (max-width: 768px) {
