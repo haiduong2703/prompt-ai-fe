@@ -33,7 +33,7 @@ const CategoryCard = ({ category, link, activeSection }) => {
       </Link>
       <div className="category-image-container">
         <img
-          src={category_image}
+          src={category?.image}
           alt={category?.name}
           className="category-image"
           loading="lazy"
