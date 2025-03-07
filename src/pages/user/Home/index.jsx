@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import { Collapse } from "antd"; // Import Collapse từ Ant Design
 import { ArrowRightOutlined } from "@ant-design/icons";
@@ -212,6 +212,24 @@ const testimonials = [
       avatar: imgAvt3,
     },
   },
+  {
+    rating: 4.5,
+    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    author: {
+      name: "Kristin Watson",
+      title: "Web Designer",
+      avatar: imgAvt3,
+    },
+  },
+  {
+    rating: 4,
+    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    author: {
+      name: "Kristin Watson",
+      title: "Web Designer",
+      avatar: imgAvt3,
+    },
+  },
 ];
 
 // Component Home
@@ -226,6 +244,36 @@ const Home = () => {
     const container = document.getElementById(containerId);
     const scrollAmount = direction === "next" ? 600 : -600;
     container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  };
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  const totalSlides = Math.ceil(testimonials.length / slidesPerView);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSlidesPerView(1);
+      } else {
+        setSlidesPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    if (currentSlide < totalSlides - 1) {
+      setCurrentSlide((prev) => prev + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide((prev) => prev - 1);
+    }
   };
 
   return (
@@ -302,6 +350,7 @@ const Home = () => {
             <button
               className="scroll-nav-button prev"
               onClick={() => scrollContainer("marketplace-cards", "prev")}
+              aria-label="Previous"
             >
               <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -326,6 +375,7 @@ const Home = () => {
             <button
               className="scroll-nav-button next"
               onClick={() => scrollContainer("marketplace-cards", "next")}
+              aria-label="Next"
             >
               <svg viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
@@ -420,6 +470,7 @@ const Home = () => {
             <button
               className="scroll-nav-button prev"
               onClick={() => scrollContainer("blog-posts", "prev")}
+              aria-label="Previous"
             >
               <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -445,6 +496,7 @@ const Home = () => {
             <button
               className="scroll-nav-button next"
               onClick={() => scrollContainer("blog-posts", "next")}
+              aria-label="Next"
             >
               <svg viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
@@ -485,7 +537,7 @@ const Home = () => {
             {" "}
             <img src={imgFeed} alt="Astronaut" className="astronaut-image" />
           </div>
-          <div>
+          <div className="testimonials-content">
             <div className="testimonials-header">
               <div className="testimonials-label">TESTIMONIALS</div>
               <h2 className="testimonials-title">People say about us</h2>
@@ -497,6 +549,7 @@ const Home = () => {
                 onClick={() =>
                   scrollContainer("testimonials-container", "prev")
                 }
+                aria-label="Previous"
               >
                 <svg viewBox="0 0 24 24">
                   <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -548,6 +601,7 @@ const Home = () => {
                 onClick={() =>
                   scrollContainer("testimonials-container", "next")
                 }
+                aria-label="Next"
               >
                 <svg viewBox="0 0 24 24">
                   <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />

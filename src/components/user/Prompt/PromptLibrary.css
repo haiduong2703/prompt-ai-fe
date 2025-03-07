@@ -30,17 +30,19 @@
 
 .subtitle {
   font-size: 16px;
-  color:#1D1E25;
+  color: #1D1E25;
   max-width: 600px;
   margin: 0 auto;
   font-weight: 400;
   line-height: 24px;
 }
+
 .ai-tools-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
+
 .ai-tools {
   width: fit-content;
   display: flex;
@@ -79,7 +81,8 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  width: 160px; /* Chiều rộng bằng với button */
+  width: 160px;
+  /* Chiều rộng bằng với button */
   height: calc(100% - 16px);
   background: #DACDFF;
   border-radius: 300px;
@@ -92,7 +95,8 @@
 }
 
 .ai-tools.midjourney::before {
-  transform: translateX(172px); /* 160px (width) + 12px (gap) */
+  transform: translateX(172px);
+  /* 160px (width) + 12px (gap) */
 }
 
 .tool-button img {
@@ -190,7 +194,8 @@
   }
 
   .ai-tools.midjourney::before {
-    transform: translateX(152px); /* 140px (width) + 12px (gap) */
+    transform: translateX(152px);
+    /* 140px (width) + 12px (gap) */
   }
 
   .category-grid {

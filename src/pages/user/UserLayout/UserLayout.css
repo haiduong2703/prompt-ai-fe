@@ -5,8 +5,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakar  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-ta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakar  font-family: ' Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+ ta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
 }
 
 body {
@@ -468,5 +469,15 @@ body {
   .user-dropdown-item {
     padding: 15px;
     border-bottom: 1px solid #eee;
+  }
+}
+
+@media (forced-colors: active) {
+
+  .button,
+  .nav-link,
+  .header,
+  .footer {
+    forced-color-adjust: none;
   }
 }
