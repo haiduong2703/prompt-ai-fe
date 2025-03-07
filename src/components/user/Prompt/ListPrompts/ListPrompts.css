@@ -5,13 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 24px;
+  padding: 48px 5%;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .list-prompts-container {
-  max-width: 1200px;
   width: 100%;
+  max-width: 1440px;
   text-align: center;
 }
 
@@ -151,7 +151,7 @@
 .prompt-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 24px;
   justify-content: center;
   margin-top: 20px;
 }
@@ -230,7 +230,7 @@
 /* phần list dưới */
 .newest-prompts-container {
   width: 100%;
-  max-width: 1200px;
+  min-width: 1200px;
   margin: 48px auto;
 }
 
@@ -304,6 +304,155 @@
 .newest-prompt-list {
   scrollbar-width: thin;
   scrollbar-color: #DACDFF #F4F0FF;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .list-prompts-container {
+    max-width: 960px;
+  }
+
+  .prompt-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .newest-prompts-container {
+    max-width: 960px;
+  }
+
+  .list-prompts-container-title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .list-prompts-container {
+    max-width: 720px;
+  }
+
+  .prompt-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .search-container-list-prompt {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .newest-prompts-container {
+    max-width: 720px;
+  }
+
+  .newest-prompt-list > * {
+    flex: 0 0 300px;
+  }
+
+  .list-prompts-container-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-prompts-container {
+    max-width: 540px;
+  }
+
+  .prompt-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .search-container-list-prompt {
+    max-width: 400px;
+    height: 40px;
+  }
+
+  .newest-prompts-container {
+    max-width: 540px;
+  }
+
+  .newest-prompt-list > * {
+    flex: 0 0 260px;
+  }
+
+  .newest-prompts-title-box h2 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .category-tags-list-prompt {
+    gap: 8px;
+  }
+
+  .category-tag-list-prompt {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .list-prompts-component {
+    padding: 24px 16px;
+  }
+
+  .prompt-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .search-container-list-prompt {
+    max-width: 100%;
+    height: 40px;
+    padding: 0 16px;
+  }
+
+  .list-prompts-container-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .list-prompts-container-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .newest-prompts-container {
+    margin: 32px auto;
+  }
+
+  .newest-prompt-list-wrapper {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .newest-prompt-list-wrapper .astronaut-image {
+    width: 200px;
+  }
+
+  .newest-prompt-list > * {
+    flex: 0 0 240px;
+  }
+
+  .newest-prompts-title-box h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .filter-buttons {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .premium-btn,
+  .free-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 120px;
+  }
 }
 
 
