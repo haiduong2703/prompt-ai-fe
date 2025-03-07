@@ -6,7 +6,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
-    font-family: 'Plus Jakarta Sans';
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     transition: 0.3s;
   }
