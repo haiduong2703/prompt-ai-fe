@@ -11,8 +11,8 @@ const API_URL = 'http://localhost:5000/api';
 
 const api = {
     // Prompt APIs
-    getPrompts: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/prompts?page=${page}&pageSize=${pageSize}`);
+    getPrompts: async (query) => {
+        return axios.get(`${API_URL}/prompts?${query}`);
     },
     uploadImage: async (data) => {
         return axios.post(`${API_URL}/prompts/upload`, data);

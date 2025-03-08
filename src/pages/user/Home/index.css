@@ -46,10 +46,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 5%;
-    background-color: var(--purple-lightest);
-
+    background: linear-gradient(180deg, #F4F0FF 0%, #F4F0FF 100%);
     position: relative;
     z-index: 10;
+    border-bottom: none;
 }
 
 .logo {
@@ -109,208 +109,298 @@
     color: var(--white);
 }
 
+/* Đảm bảo trang home có màu nền phù hợp */
+.home-page {
+    background: white;
+    /* Đặt màu nền mặc định là trắng */
+}
+
+/* Hero Container */
+.hero-container {
+    background: linear-gradient(-90deg, #E9DAFF 0%, #EAFDFC 100%);
+    width: 100%;
+}
+
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%);
+    background: transparent;
+    /* Đổi thành transparent để lấy màu nền từ hero-container */
     padding: 40px;
+    padding-top: 20px;
     position: relative;
     overflow: hidden;
+    margin-top: 0;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .hero-wrap {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /* align-items: center; */
+    justify-content: center;
     gap: 40px;
+    /* flex-direction: row-reverse; */
+    /* Đảo ngược thứ tự để hình ảnh ở bên trái */
 }
 
 .hero-content {
-    flex: 1;
+    /* flex: 1; */
+    z-index: 2;
 }
 
 .hero-text {
-    max-width: 600px;
+    /* max-width: 600px; */
 }
 
 .hero-text h1 {
-    font-size: 64px;
+    font-size: 60px;
+    font-weight: 800;
     line-height: 1.2;
     margin-bottom: 24px;
-    font-weight: 700;
+    text-transform: uppercase;
 }
 
+/* Phương pháp sử dụng SVG cho text gradient */
+.svg-gradient-text {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    fill: url(#purple-gradient);
+}
+
+/* Cải thiện phương pháp hiện tại */
 .purple-text {
+    background-image: linear-gradient(to right, #5700C6 0%, #001AFF 100%);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    /* text-fill-color: transparent; */
+    font-family: 'SFU FranklinGothic', sans-serif;
+    /* Use a common sans-serif font */
     color: #5700C6;
+    /* Fallback cho trình duyệt không hỗ trợ */
+    font-weight: 800;
+    display: inline-block;
+    /* Đảm bảo gradient áp dụng đúng cho từng dòng */
+}
+
+/* Đảm bảo gradient text hoạt động trên Firefox */
+@-moz-document url-prefix() {
+    .purple-text {
+        background: linear-gradient(to right, #5700C6 0%, #001AFF 100%);
+        /* -moz-background-clip: text; */
+        -moz-text-fill-color: transparent;
+    }
 }
 
 .hero-text p {
-    font-size: 24px;
-    line-height: 1.5;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #4A4A4A;
     margin-bottom: 32px;
-    color: #1A1A1A;
 }
 
 .get-started-btn {
-    background: #5700C6;
-    color: white;
+    background-color: #fff;
+    color: #5700C6;
     border: none;
-    padding: 16px 32px;
-    border-radius: 30px;
-    font-size: 18px;
+    border-radius: 90px;
+    padding: 14px 28px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.get-started-btn span {
+    font-size: 20px;
 }
 
 .get-started-btn:hover {
-    background: #4a00a8;
+    background-color: #4a00a8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(87, 0, 198, 0.2);
 }
 
 .hero-image {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 .astronaut {
-    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
     height: auto;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 /* Partners Bar */
 .partners-bar {
-    margin-top: 40px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    /* padding: 20px;
+        background: white; */
+    /* border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    justify-content: center;
+    gap: 10px;
 }
 
 .users-count {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    /* padding: 20px; */
+    background: white;
+    border-radius: 16px;
+    height: 100px;
+}
+
+.users-count-item {
+    max-width: 200px;
+    padding: 10px;
 }
 
 .count {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 700;
-    color: #1A1A1A;
+    color: #5700C6;
+    text-align: center;
 }
 
 .label {
     font-size: 16px;
-    color: #666;
+    text-align: center;
+    color: #4A4A4A;
 }
 
 .badge {
-    background: #5700C6;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
+    max-width: 100px;
+    height: 100%;
+    background-color: #5700C6;
+    color: #fff;
     font-size: 12px;
     font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 0px 16px 16px 0px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .partners-logos {
     display: flex;
+    padding: 20px;
+    background: white;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    justify-content: space-between;
+    max-width: 1000px;
+    overflow-x: auto;
+    border-radius: 16px;
+    align-items: center;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.partners-logos::-webkit-scrollbar {
+    display: none;
 }
 
 .partner {
     display: flex;
     align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    color: #6E6E6E;
+    font-size: 14px;
 }
 
 .partner img {
     height: 24px;
-    width: auto;
+    object-fit: contain;
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
     .hero-section {
-        padding: 24px 20px;
-        text-align: left;
+        padding: 20px;
     }
 
     .hero-wrap {
-        flex-direction: column-reverse;
-        gap: 24px;
-    }
-
-    .hero-text {
-        max-width: 100%;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .hero-text h1 {
-        font-size: 40px;
+        font-size: 32px;
         margin-bottom: 16px;
     }
 
     .hero-text p {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 24px;
     }
 
     .get-started-btn {
         width: 100%;
         justify-content: center;
-        padding: 14px 24px;
-        font-size: 16px;
     }
 
     .hero-image {
-        margin: -24px -20px 0;
-        overflow: hidden;
+        order: -1;
     }
 
     .astronaut {
-        width: 100%;
-        max-width: none;
-        transform: scale(1.2);
+        max-width: 200px;
     }
 
     .partners-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 24px;
-        margin-top: 32px;
+        margin-top: 20px;
+        padding: 16px;
     }
 
     .partners-logos {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 16px;
-        gap: 24px;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-
-    .partners-logos::-webkit-scrollbar {
-        display: none;
-    }
-
-    .partner {
-        flex-shrink: 0;
-    }
-
-    .partner img {
-        height: 20px;
+        gap: 16px;
     }
 }
 
 /* Collection Section */
 .collection-section {
     margin-top: 50px;
-    padding: 0 20px;
+    background: white;
+    max-width: 1600px;
+    margin: 20px auto;
 }
 
 .collection-header {
@@ -575,6 +665,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 1600px;
 }
 
 .best-prompts-section h2 {
@@ -802,6 +893,8 @@
     background: linear-gradient(to right, #FBF7EB, #C9EDF9);
     border-radius: 20px;
     overflow: hidden;
+    max-width: 1600px;
+    margin: 20px auto;
 }
 
 .prompts-left {
@@ -966,9 +1059,10 @@
 
 /* Prompt Blog Section */
 .prompt-blog {
-    padding: 40px 20px;
+    /* padding: 40px 20px; */
     margin: 0 auto;
-    /* max-width: 1200px; */
+    max-width: 1600px;
+    background: white;
 }
 
 .blog-header-container {
@@ -1130,10 +1224,10 @@
 
 /* FAQs Section */
 .faqs-section {
-    padding: 40px 20px;
+    /* padding: 40px 20px; */
     background-color: #fff;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1600px;
 }
 
 .faqs-container {
@@ -1252,6 +1346,8 @@
     background: linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%);
     margin-top: 40px;
     display: flex;
+    max-width: 1600px;
+    margin: 20px auto;
 }
 
 .testimonials-header {
@@ -1272,6 +1368,10 @@
     font-weight: 700;
     color: #2D1A4B;
     margin: 0;
+}
+
+.testimonials-content {
+    max-width: 1200px;
 }
 
 .testimonials-container {
@@ -1493,6 +1593,7 @@
     padding: 40px 20px;
     margin: 40px auto;
     max-width: 1200px;
+    background: white;
 }
 
 .hire-creator-card {
@@ -1690,4 +1791,74 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+}
+
+.create-prompt-btn {
+    background-color: #8A63D2;
+    color: white;
+    border: none;
+    border-radius: 90px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.create-prompt-btn:hover {
+    background-color: #6F42C1;
+}
+
+.top-powered {
+    position: absolute;
+    background-color: #00C853;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    top: 300px;
+    left: 260px;
+    z-index: 10;
+}
+
+.fill-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #8A63D2 0%, #5700C6 100%);
+    padding: 4px 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 0 0 0 8px;
+    z-index: 10;
+}
+
+/* Phương pháp thay thế cho text gradient */
+.gradient-text {
+    position: relative;
+    display: inline-block;
+    color: #5700C6;
+    /* Màu mặc định */
+}
+
+.gradient-text::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: linear-gradient(to right, #5700C6 0%, #001AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* text-fill-color: transparent; */
 }

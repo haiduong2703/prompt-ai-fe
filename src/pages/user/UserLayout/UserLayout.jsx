@@ -23,7 +23,11 @@ const UserLayout = ({ children }) => {
   };
 
   return (
-    <div className="user-container">
+    <div
+      className={`user-container ${
+        location.pathname === "/home" ? "home-page" : ""
+      }`}
+    >
       <nav className="user-navbar">
         <Link to="/home" className="user-logo">
           <img src={logoImg} alt="" style={{ color: "#5700C6" }} />
@@ -176,6 +180,7 @@ const UserLayout = ({ children }) => {
       <main className="user-main-content">
         <Outlet />
       </main>
+
       <UserFooter />
     </div>
   );

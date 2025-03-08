@@ -20,6 +20,8 @@ import imgAvt1 from "../../../asset/imgae/avt1.png";
 import imgAvt2 from "../../../asset/imgae/avt2.png";
 import imgAvt3 from "../../../asset/imgae/avt3.png";
 import imgSuperman from "../../../asset/imgae/imgsuper.png";
+import imgDeep from "../../../asset/imgae/imgdeep.png";
+import imgGrok from "../../../asset/imgae/imggrok.png";
 // Dữ liệu prompts
 const prompts = [
   {
@@ -280,51 +282,60 @@ const Home = () => {
     <div className="app">
       <main>
         {/* hero */}
-        <section className="hero-section">
-          <div className="hero-wrap">
-            <div className="hero-image">
-              <img src={img} alt="Astronaut" className="astronaut" />
-            </div>
-            <div className="hero-content">
-              <div className="hero-text">
-                <h1>
-                  <span className="purple-text">PROMPT IT.</span>
-                  <br />
-                  <span className="purple-text">OWN IT</span>
-                </h1>
-                <p>
-                  Explore 170,000+ curated AI prompts made by expert AI creators
-                </p>
-                <button className="get-started-btn">
-                  Get Started <span>→</span>
-                </button>
+        <div className="hero-container">
+          <section className="hero-section">
+            <div className="hero-wrap">
+              <div className="hero-image">
+                <img src={img} alt="Astronaut" className="astronaut" />
+              </div>
+              <div className="hero-content">
+                <div className="hero-text">
+                  <h1>
+                    <span className="purple-text">KHÁM PHÁ NGAY</span>
+                    <br />
+                    <span className="purple-text">THƯ VIỆN PROMPT</span>
+                    <br />
+                    <span className="purple-text">LỚN NHẤT VIỆT NAM</span>
+                  </h1>
+                  <p>Hơn 25.000+ Prompt tạo ra từ các chuyên gia về AI</p>
+                  <button className="get-started-btn">
+                    Bắt đầu ngay <span>→</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="partners-bar">
-            <div className="users-count">
-              <span className="count">125k+</span>
-              <span className="label">Happy Users</span>
-              <span className="badge">Beta</span>
+            <div className="partners-bar">
+              <div className="users-count">
+                <div className="users-count-item">
+                  <p className="count">125k+</p>
+                  <p className="label">Hãy trở thành một trong số họ</p>
+                </div>
+                <div className="badge">Tham gia ngay</div>
+              </div>
+              <div className="partners-logos">
+                <div className="partner">
+                  <img src={imgGPT} alt="ChatGPT" />
+                </div>
+                <div className="partner">
+                  <img src={imgMid} alt="Midjourney" />
+                </div>
+                <div className="partner">
+                  <img src={imgGen} alt="Gemini" />
+                </div>
+                <div className="partner">
+                  <img src={imgDeep} alt="DeepSeek" />
+                </div>
+                <div className="partner">
+                  <img src={imgGrok} alt="Grok" />
+                </div>
+                <div className="partner">
+                  <img src={imgDall} alt="DALL-E" />
+                </div>
+                <div className="partner">and more...</div>
+              </div>
             </div>
-            <div className="partners-logos">
-              <div className="partner">AI Prompt Marketplace</div>
-              <div className="partner">
-                <img src={imgGPT} alt="ChatGPT" />
-              </div>
-              <div className="partner">
-                <img src={imgMid} alt="Midjourney" />
-              </div>
-              <div className="partner">
-                <img src={imgGen} alt="Gemini" />
-              </div>
-              <div className="partner">
-                <img src={imgDall} alt="DALL-E" />
-              </div>
-              <div className="partner">and more...</div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
         {/* The Biggest Collection */}
         <section className="collection-section">
           <div className="collection-header">
@@ -417,7 +428,7 @@ const Home = () => {
           </div>
         </section>
         {/* Create a prompts */}
-        <div className="best-prompts">
+        <section className="best-prompts">
           <div className="prompts-left">
             <h2>Create a Prompt marketplace for your community</h2>
             <p>
@@ -451,7 +462,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Thêm section Prompt Blog */}
         <section className="prompt-blog">

@@ -39,6 +39,7 @@ const PromptList = () => {
     search: "",
     category: null,
     status: null,
+    is_type: null,
   });
 
   // Modal states
@@ -81,9 +82,10 @@ const PromptList = () => {
         ...(filters.search && { search: filters.search }),
         ...(filters.category && { category_id: filters.category }),
         ...(filters.status !== null && { status: filters.status }),
+        ...(filters.is_type !== null && { is_type: filters.is_type }),
       }).toString();
 
-      const response = await api.getPrompts(page, pageSize);
+      const response = await api.getPrompts(query);
       setPrompts(response.data.data);
       setTotal(response.data.total);
     } catch (error) {
@@ -117,6 +119,11 @@ const PromptList = () => {
 
   const handleStatusFilter = (value) => {
     setFilters({ ...filters, status: value });
+    setPage(1);
+  };
+
+  const handleTypeFilter = (value) => {
+    setFilters({ ...filters, is_type: value });
     setPage(1);
   };
 
@@ -169,6 +176,18 @@ const PromptList = () => {
       dataIndex: "Category",
       key: "category",
       render: (category) => category?.name || "N/A",
+    },
+    {
+      title: "Chủ đề ",
+      dataIndex: "topic",
+      key: "topic",
+      render: (topic) => topic?.name || "N/A",
+    },
+    {
+      title: "Mức độ bài viết",
+      dataIndex: "is_type",
+      key: "is_type",
+      render: (is_type) => (is_type === 1 ? "Free" : "Premium"),
     },
     {
       title: "Mô tả ngắn",
@@ -243,7 +262,7 @@ const PromptList = () => {
         </Button>
       </div>
 
-      {/* <div style={{ marginBottom: 16, display: "flex", gap: 16 }}>
+      <div style={{ marginBottom: 16, display: "flex", gap: 16 }}>
         <Search
           placeholder="Search prompts"
           onSearch={handleSearch}
@@ -264,14 +283,14 @@ const PromptList = () => {
         </Select>
         <Select
           style={{ width: 150 }}
-          placeholder="Filter by status"
-          onChange={handleStatusFilter}
+          placeholder="Filter by type"
+          onChange={handleTypeFilter}
           allowClear
         >
-          <Option value={1}>Active</Option>
-          <Option value={0}>Inactive</Option>
+          <Option value="1">Free</Option>
+          <Option value="2">Premium</Option>
         </Select>
-      </div> */}
+      </div>
 
       <Table
         columns={columns}
