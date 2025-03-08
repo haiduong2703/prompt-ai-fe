@@ -13,6 +13,9 @@
 body {
   font-family: 'Plus Jakarta Sans';
   /* background-color: white; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .user-container {
@@ -480,4 +483,9 @@ body {
   .footer {
     forced-color-adjust: none;
   }
+}
+
+/* Fix for text-decoration-skip */
+a {
+  text-decoration-skip-ink: auto;
 }

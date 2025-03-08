@@ -210,3 +210,15 @@
     gap: 16px;
   }
 }
+
+/* Fix for text-decoration-skip */
+a {
+  text-decoration-skip-ink: auto;
+}
+
+/* Ensure proper text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

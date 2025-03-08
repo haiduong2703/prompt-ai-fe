@@ -38,6 +38,7 @@ const CategoryManager = () => {
   const [imageUrl, setImageUrl] = useState(null); // Lưu URL preview
   const [imageCardUrl, setImageCardUrl] = useState(null); // Lưu URL preview
   const [fileList, setFileList] = useState([]);
+  const [fileListCard, setFileListCard] = useState([]);
 
   useEffect(() => {
     fetchCategories();
@@ -60,6 +61,8 @@ const CategoryManager = () => {
     setImageCardFile(null);
     setImageUrl(null);
     setImageCardUrl(null);
+    setFileList([]);
+    setFileListCard([]);
     setIsModalOpen(true);
   };
 
@@ -77,6 +80,8 @@ const CategoryManager = () => {
     setImageCardUrl(category.image_card);
     setImageFile(null);
     setImageCardFile(null);
+    setFileList([]);
+    setFileListCard([]);
     setIsModalOpen(true);
   };
 
@@ -87,6 +92,8 @@ const CategoryManager = () => {
     setImageCardFile(null);
     setImageUrl(null);
     setImageCardUrl(null);
+    setFileList([]);
+    setFileListCard([]);
   };
 
   const handleDelete = async (id) => {
@@ -123,11 +130,7 @@ const CategoryManager = () => {
       const values = await form.validateFields();
       const formData = new FormData();
       Object.keys(values).forEach((key) => {
-        if (key === "featured_image") {
-          if (fileList[0]?.originFileObj) {
-            formData.append(key, fileList[0].originFileObj);
-          }
-        } else {
+        if (key !== "image" && key !== "image_card") {
           formData.append(key, values[key]);
         }
       });
@@ -135,12 +138,13 @@ const CategoryManager = () => {
       // Upload ảnh khi nhấn Lưu
       if (imageFile) formData.append("image", imageFile);
       if (imageCardFile) formData.append("image_card", imageCardFile);
+      console.log(formData);
 
       if (editingCategory) {
-        await api.updateCategory(editingCategory.id, formData);
+        await api.updateCategories(editingCategory.id, formData);
         message.success("Cập nhật thành công");
       } else {
-        await api.createCategory(formData);
+        await api.createCategories(formData);
         message.success("Thêm mới thành công");
       }
       fetchCategories();
@@ -173,17 +177,58 @@ const CategoryManager = () => {
         // Create preview URL only for valid file
         const url = URL.createObjectURL(newFileList[0].originFileObj);
         setImageUrl(url);
+        setImageFile(newFileList[0].originFileObj);
         // Clean up the old URL
         return () => URL.revokeObjectURL(url);
       } else {
         setImageUrl("");
+        setImageFile(null);
       }
     },
     onRemove: () => {
       setImageUrl("");
       setFileList([]);
+      setImageFile(null);
     },
   };
+
+  const uploadPropsCard = {
+    maxCount: 1,
+    fileList: fileListCard,
+    beforeUpload: (file) => {
+      const isImage = file.type.startsWith("image/");
+      if (!isImage) {
+        message.error("Chỉ có thể tải lên file ảnh!");
+        return false;
+      }
+      const isLt5M = file.size / 1024 / 1024 < 5;
+      if (!isLt5M) {
+        message.error("Ảnh phải nhỏ hơn 5MB!");
+        return false;
+      }
+      return false; // Return false to prevent auto upload
+    },
+    onChange: ({ fileList: newFileList }) => {
+      setFileListCard(newFileList);
+      if (newFileList.length > 0 && newFileList[0].originFileObj) {
+        // Create preview URL only for valid file
+        const url = URL.createObjectURL(newFileList[0].originFileObj);
+        setImageCardUrl(url);
+        setImageCardFile(newFileList[0].originFileObj);
+        // Clean up the old URL
+        return () => URL.revokeObjectURL(url);
+      } else {
+        setImageCardUrl("");
+        setImageCardFile(null);
+      }
+    },
+    onRemove: () => {
+      setImageCardUrl("");
+      setFileListCard([]);
+      setImageCardFile(null);
+    },
+  };
+
   const columns = [
     {
       title: "ID",
@@ -305,20 +350,7 @@ const CategoryManager = () => {
           >
             <Input placeholder="Nhập ID section" />
           </Form.Item>
-          <Form.Item label="Hình ảnh">
-            <Upload
-              beforeUpload={() => false} // Ngăn upload trực tiếp
-              onChange={(info) => handleFileChange(info, "image")}
-              showUploadList={false}
-              accept="image/*" // Chỉ cho phép upload hình ảnh
-            >
-              <Button icon={<UploadOutlined />}>Upload Image</Button>
-            </Upload>
-            {imageUrl && (
-              <Image src={imageUrl} width={100} alt="Category Image" />
-            )}
-          </Form.Item>
-          <Form.Item name="featured_image" label="Hình ảnh">
+          <Form.Item name="image" label="Hình ảnh">
             <Upload {...uploadProps} listType="picture">
               <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
             </Upload>
@@ -335,18 +367,21 @@ const CategoryManager = () => {
               />
             )}
           </Form.Item>
-          <Form.Item label="Hình ảnh thẻ">
-            <Upload
-              beforeUpload={() => false} // Ngăn upload trực tiếp
-              onChange={(info) => handleFileChange(info, "image_card")}
-              showUploadList={false}
-              accept="image/*" // Chỉ cho phép upload hình ảnh
-            >
-              <Button icon={<UploadOutlined />}>Upload Image Card</Button>
+          <Form.Item name="image_card" label="Hình ảnh thẻ">
+            <Upload {...uploadPropsCard} listType="picture">
+              <Button icon={<UploadOutlined />}>Tải ảnh lên</Button>
             </Upload>
-
             {imageCardUrl && (
-              <Image src={imageCardUrl} width={100} alt="Category Card Image" />
+              <img
+                src={imageCardUrl}
+                alt="preview"
+                style={{
+                  marginTop: 8,
+                  maxWidth: 200,
+                  maxHeight: 200,
+                  objectFit: "cover",
+                }}
+              />
             )}
           </Form.Item>
         </Form>
