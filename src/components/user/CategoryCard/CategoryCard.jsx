@@ -1,7 +1,7 @@
 import React from "react";
 import "./CategoryCard.css";
 import { Link } from "react-router-dom";
-import arrow_category_card from "../../../asset/icon/arrow_category_card.svg";
+import category_image from "../../../asset/imgae/category_img_card.png";
 const CategoryCard = ({ category, link, activeSection }) => {
   // Chuyển đổi ngày `created_at` thành đối tượng Date
   const createdDate = new Date(category.created_at);
@@ -22,27 +22,23 @@ const CategoryCard = ({ category, link, activeSection }) => {
       >
         <div className="user-category-card-title">
           <h2 className="user-category-card-content-title">{category?.name}</h2>
-          {isNew && <div className="red-new-tag">New</div>}
+          {/* {isNew && <div className="red-new-tag">New</div>} */}
         </div>
 
         <div className="user-category-card-main-content">
           <div className="user-category-card-content">
-            <span className="user-category-card-number-of-prompts">{category?.prompt_count}</span>
-            <span className="user-category-card-word-prompts">Proms</span>
-          </div>
-          <div className="category-image-container">
-            <img
-              src={category?.image}
-              alt=""
-              className="category-image"
-              loading="lazy"
-            />
-          </div>
-          <div className="user-category-card-arrow-btn">
-            <img loading="lazy" src={arrow_category_card} alt="arrow-icon" className="arrow-img" />
+            <span>{category?.prompt_count} Proms</span>
           </div>
         </div>
       </Link>
+      <div className="category-image-container">
+        <img
+          src={category?.image}
+          alt={category?.name}
+          className="category-image"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };

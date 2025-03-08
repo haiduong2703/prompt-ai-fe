@@ -16,7 +16,7 @@
 }
 
 .component-prompt-card {
-  padding: 24px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -46,6 +46,7 @@
 
 .component-premium-tag {
   height: 36px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,6 +62,7 @@
 }
 .component-free-tag {
   height: 36px;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,12 +76,13 @@
   border: none;
 }
 .component-new-tag {
+  width: 64px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 12px;
   background: #ED2828;
-  border-radius: 100px;
+  border-radius: 300px;
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 500;
@@ -122,6 +125,7 @@
   font-weight: 700;
   line-height: 26px;
   color: #1D1E25;
+  text-align: center;
 }
 
 .component-prompt-card-footer {
