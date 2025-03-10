@@ -216,17 +216,90 @@
   font-weight: 700;
   color: black;
 }
+
 .pagination_list_prompts {
   justify-content: center;
   font-weight: 600;
   margin-top: 30px;
 }
+
+.pagination_list_prompts .ant-pagination-item {
+  border: none;
+  background: transparent;
+  min-width: 32px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 100px;
+  margin: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination_list_prompts .ant-pagination-item a {
+  color: #1D1E25;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 16px;
+}
+
 .pagination_list_prompts .ant-pagination-item-active {
-  border-color: #5700C6;
+  background: #F4F0FF;
 }
-.pagination_list_prompts .ant-pagination-item-active a{
-  color: black ;
+
+.pagination_list_prompts .ant-pagination-item-active a {
+  color: #5700C6;
+  padding: 4px 12px;
 }
+
+.pagination-arrow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination-arrow-btn:hover {
+  background: #F4F0FF;
+}
+
+.pagination-arrow-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination-arrow-btn.prev img {
+  transform: rotate(180deg);
+}
+
+.pagination_list_prompts .ant-pagination-prev,
+.pagination_list_prompts .ant-pagination-next {
+  display: flex;
+  align-items: center;
+}
+
+.pagination_list_prompts .ant-pagination-prev button,
+.pagination_list_prompts .ant-pagination-next button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ellipsis style */
+.pagination_list_prompts .ant-pagination-item-ellipsis {
+  color: #1D1E25 !important;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
 /* phần list dưới */
 .newest-prompts-container {
   width: 100%;
@@ -259,6 +332,7 @@
 .newest-prompt-list-wrapper .astronaut-image {
   width: 343px;
   flex-shrink: 0;
+  opacity: 1;
 }
 
 .newest-prompt-list-wrapper .astronaut-image img {

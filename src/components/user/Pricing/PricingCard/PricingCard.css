@@ -1,7 +1,8 @@
 .pricing-card {
     position: relative;
     width: 300px;
-    background: linear-gradient(to bottom, #FFFFFF, #E2D0FF);
+    min-width: 300px;
+    background: linear-gradient(154.91deg, #FFFFFF 8.79%, #E2D0FF 94.56%);
     border-radius: 36px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -9,70 +10,94 @@
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
     transition: 0.3s;
-  }
-.pricing-card:hover {
-    transform: scale(1.02);
+}
+
+.pricing-card-header {
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
   
-  .pricing-card-title {
+.pricing-card-title {
     font-size: 20px;
     font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
     color: #1D1E25;
-  }
+    margin: 0;
+    margin-top: 10px;
+}
   
-  .pricing-card-price {
-    font-size: 32px;
+.pricing-card-price {
+    margin-top: 15px;
+    font-size: 46px;
+    line-height: 100%;
+    letter-spacing: -3%;
     font-weight: 700;
-    color: #000;
-  }
+    color: #1D1E25;
+    margin-bottom: 0;
+}
   
-  .pricing-card-price span {
+.pricing-card-price span {
     font-size: 14px;
-  }
+    line-height: 100%;
+    font-weight: 500;
+    letter-spacing: 0%;
+    color: #111116;
+}
   
-  .pricing-card-subtitle {
-    color: #666;
-    margin-top: 5px;
-  }
+.pricing-card-subtitle {
+    color: #1D1E25;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 0;
+}
   
-  .pricing-card-divider {
+.pricing-card-divider {
     margin: 15px 0;
     border: none;
     height: 1px;
-    background: #ddd;
-  }
+    background: #1D1E25;
+    opacity: 0.1;
+}
   
-  .pricing-card-features {
+.pricing-card-features {
     list-style: none;
     padding: 0;
     text-align: left;
     font-weight: 500;
-  }
+}
   
-  .pricing-card-feature {
+.pricing-card-feature {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    justify-items: center;
     font-size: 14px;
     color: #555;
-    margin: 6px 0;
-  }
+    margin: 15px 0;
+}
   
-  .pricing-card-icon {
+.pricing-card-icon {
     font-size: 16px;
     font-weight: bold;
     margin-right: 8px;
     display: flex;
-
-  }
+}
     
-  .pricing-icon-check {
+.pricing-icon-check {
     color: #00ff00;
-  }
+}
   
-  .pricing-icon-cross {
+.pricing-icon-cross {
     color: #ff4d4d;
-  }
-  .pricing-card-access-button {
+}
+
+.pricing-card-access-button {
     width: 100%;
     color: white;
     border: none;
@@ -82,12 +107,12 @@
     cursor: pointer;
     margin-top: 15px;
     font-weight: 700;
-  }
+}
   
-  .pricing-card-acesss-button:hover {
+.pricing-card-acesss-button:hover {
     opacity: 0.9;
-  }
-  .pricing-card-signup-button {
+}
+.pricing-card-signup-button {
     width: 100%;
     color: #5700C6;
     border: none;
@@ -96,12 +121,12 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: 15px;
-  }
+}
   
-  .pricing-card-signup-button:hover {
+.pricing-card-signup-button:hover {
     opacity: 0.9;
-  }
-  /* Khi là thẻ popular, toàn bộ chữ sẽ là màu trắng */
+}
+/* Khi là thẻ popular, toàn bộ chữ sẽ là màu trắng */
 .popular-card {
     background: #111116;
     color: white;
@@ -126,14 +151,18 @@
     top: -14px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, #F0E8FF 0%, #5700C6 100%);
-    color: white;
-    padding: 6px 14px;
+    background: linear-gradient(0deg, #5700C6, #5700C6), linear-gradient(90deg, rgba(240, 232, 255, 0) 0%, #3F09A8 100%);
+    color: #FFFFFF;
+    padding: 6px 24px;
     font-size: 12px;
     font-weight: 500;
-    border-radius: 12px;
+    border-radius: 100px;
     border: 2px solid #FFFFFF;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    line-height: 16px;
+    letter-spacing: -1%;
+    margin-bottom: 10px;
 }
 /* Responsive cho điện thoại */
 @media (max-width: 768px) {
@@ -142,7 +171,9 @@
       padding: 15px;
       margin: 10px auto;
   }
-
+  .pricing-card-header {
+    min-height: 90px;
+}
   .pricing-card-title {
       font-size: 18px;
   }
@@ -171,4 +202,8 @@
   }
 }
 
+.popular-card .pricing-card-divider {
+    opacity: 0.2;
+    background: #FFFFFF;
+}
   

@@ -42,24 +42,38 @@
 .component-premium-tag-div {
   display: flex;
   gap: 8px;
+  align-items: center;
 }
 
-.component-premium-tag {
+.component-premium-tag-div button {
+  width: 36px;
   height: 36px;
-  width: 100px;
+  border-radius: 100px;
+  background: #FFFFFF;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 4px 12px;
-  background: #FFC046;
-  border-radius: 300px;
-  color: #1D1E25;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 22px;
-  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
+.component-premium-tag-div button:hover {
+  background: #5700C6;
+}
+
+.component-premium-tag-div button .anticon {
+  font-size: 20px;
+  color: #5700C6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.component-premium-tag-div button:hover .anticon {
+  color: #FFFFFF;
+}
+
 .component-free-tag {
   height: 36px;
   width: 100px;

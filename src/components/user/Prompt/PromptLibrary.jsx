@@ -87,7 +87,7 @@ const PromptLibrary = () => {
           )}
         </div>
 
-        <FAQSection />
+        {/* <FAQSection /> */}
       </div>
     </div>
   );

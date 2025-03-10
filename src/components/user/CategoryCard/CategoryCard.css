@@ -1,7 +1,8 @@
 .collection-item-card {
   background: linear-gradient(90deg, #F7F4FF 0%, #E1CFFF 100%);
   border-radius: 24px;
-  padding: 25px 32px;
+  padding: 12px 24px;
+  padding-bottom: 32px;
   color: #1D1E25;
   width: 100%;
   height: 200px;
@@ -30,12 +31,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  justify-content: space-between;
 }
 
 .user-category-card-content-title {
   font-size: 32px;
   font-weight: 700;
-  line-height: 40px;
+  line-height: 44px;
   margin: 0;
 }
 
@@ -74,7 +76,7 @@
 /* Category Image */
 .category-image-container {
   position: absolute;
-  right: 32px;
+  right: 10%;
   bottom: -60px;
   width: 180px;
   height: 180px;
@@ -153,7 +155,7 @@
   .category-image-container {
     width: 70px;
     height: 140px;
-    right: 6px;
+    right: 10px;
     bottom: -55px;
   }
 
@@ -166,5 +168,10 @@
     padding: 2px 6px;
     font-size: 10px;
     line-height: 16px;
+  }
+  .category-arrow-icon img {
+    font-size: 5px;
+    width: 16px;
+    height: 16px;
   }
 }

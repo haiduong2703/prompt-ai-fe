@@ -77,7 +77,7 @@ const DetailPrompt = () => {
                     <div className="detail-prompt-header">
                         <div className="detail-prompt-header-section">
                             <img src={activeSection?.description} alt="ChatGPT" />
-                            <span>ChatGPT Proms</span>
+                            <span>ChatGPT Prompts</span>
                         </div>
                         <div className="detail-prompt-premium-tag">
                             <div className="detail-prompt-premium-tag-new">New</div>

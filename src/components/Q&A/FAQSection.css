@@ -1,11 +1,13 @@
 .faq-section {
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
   margin: 50px auto;
   font-family: 'Plus Jakarta Sans';
   border: 1px solid #E0E0E0;
   border-radius: 36px;
   padding: 40px 50px;
+  color: #1D1E25;
 }
 
 .faq-left {
@@ -22,9 +24,11 @@
 
 .faq-description {
   font-size: 16px;
-  color: #666;
+  color: #1D1E25;
   text-align: left;
+  font-weight: 400;
   margin-bottom: 20px;
+  line-height: 24px;
 }
 
 .faq-buttons {
@@ -68,15 +72,17 @@
 }
 
 .faq-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #1D1E25;
   padding: 15px 0;
 }
 
 .faq-question {
   width: 100%;
   text-align: left;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  font-weight: 700;
   background: none;
   color: #1D1E25;
   padding: 10px 0;
@@ -93,20 +99,67 @@
 }
 
 .faq-icon {
-  font-size: 22px;
-  font-weight: bold;
-  color: #5700C6;
+  font-size: 26px;
+  font-weight: 400;
+  color: #1D1E25;
 }
 
 .faq-answer {
   padding-top: 10px;
   font-size: 16px;
-  color: #666;
-  line-height: 1.6;
+  color: #1D1E25;
+  line-height: 24px;
   transition: max-height 0.3s ease-in-out;
   text-align: left;
+  letter-spacing: 0%;
   font-weight: 400;
 }
+
+.faq-more-action {
+  flex-basis: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.faq-more-action-container {
+  border: 1px solid #5700C6;
+  border-radius: 24px;
+  padding: 24px;
+  width: fit-content;
+}
+
+.faq-more-action-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1D1E25;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.faq-contact-list {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.faq-contact-item {
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  color: #1D1E25;
+  font-size: 14px;
+  font-weight: 500;
+}
+.faq-contact-item-title {
+  font-weight: 400;
+  line-height: 24px;
+}
+.faq-contact-item-content {
+  font-weight: 700;
+  line-height: 24px;
+}
+
 @media (max-width: 768px) {
   .faq-section {
     flex-direction: column;
@@ -114,5 +167,37 @@
   }
   .faq-left {
     max-width: 100%;
+  }
+  .faq-contact-list {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .faq-more-action-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .faq-more-action-title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .faq-more-action {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .faq-more-action-container {
+    padding: 16px;
+  }
+  
+  .faq-more-action-title {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .faq-contact-item {
+    font-size: 12px;
   }
 }

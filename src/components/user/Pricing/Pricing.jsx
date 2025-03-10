@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Pricing.css";
 import PricingCard from "./PricingCard/PricingCard";
-import pricingToolImg from "../../../asset/imgae/pricing-tools.svg"
+import pricingToolImg from "../../../asset/imgae/pricing_img.png"
+import pricingImgMobile from "../../../asset/imgae/pricing_img_mobile.png";
 import FAQSection from "../../Q&A/FAQSection";
 import api from "../../../services/api";
 import { UserContext } from "../../../context/AuthContext";
@@ -9,11 +10,22 @@ import { UserContext } from "../../../context/AuthContext";
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState("Monthly");
   const [dataSub, setDataSub] = useState([]);
-  const { user } = useContext(UserContext); // Lấy user từ Context API
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     console.log("user", user);
   }, [])
+  
   useEffect(() => {
     fetchDataSub(selectedPlan);
   }, [selectedPlan]);
@@ -28,12 +40,12 @@ const Pricing = () => {
   return (
     <div className="user-pricing-container">
       <div className="user-pricing-header">
-        <h1>Pricing To Fit Your Need</h1>
-        <p>Get full access to all apps & features from only $0.33 per day - Cancel anytime</p>
+        <h1>Gấp đôi hiệu năng làm việc với gói<br/> PromptX phù hợp</h1>
+        <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
         <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
-          {["Yearly", "Monthly", "Lifetime"].map((plan) => (
+          {["Monthly", "Yearly"].map((plan) => (
             <button
               key={plan}
               className={selectedPlan === plan ? "active" : ""}
@@ -67,11 +79,11 @@ const Pricing = () => {
             />
           ))
         ) : (
-          <p>Đang tải dữ liệu...</p>
+          <p>Chưa có thông tin gói dịch vụ...</p>
         )}
       </div>
       <div className="user-pricing-card-list-tools">
-        <img src={pricingToolImg} alt="" />
+        <img src={isMobile ? pricingImgMobile : pricingToolImg} alt="" />
       </div>
       <div className="user-pricing-faq">
         <FAQSection />
