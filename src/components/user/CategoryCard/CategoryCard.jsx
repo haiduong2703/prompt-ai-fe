@@ -2,6 +2,7 @@ import React from "react";
 import "./CategoryCard.css";
 import { Link } from "react-router-dom";
 import category_image from "../../../asset/imgae/category_img_card.png";
+import arrowIcon from "../../../asset/icon/arrow_category_card.svg";
 const CategoryCard = ({ category, link, activeSection }) => {
   // Chuyển đổi ngày `created_at` thành đối tượng Date
   const createdDate = new Date(category.created_at);
@@ -23,11 +24,12 @@ const CategoryCard = ({ category, link, activeSection }) => {
         <div className="user-category-card-title">
           <h2 className="user-category-card-content-title">{category?.name}</h2>
           {/* {isNew && <div className="red-new-tag">New</div>} */}
+          <div className="category-arrow-icon"><img src={arrowIcon} alt="" /></div>
         </div>
 
         <div className="user-category-card-main-content">
           <div className="user-category-card-content">
-            <span>{category?.prompt_count} Proms</span>
+            <span>{category?.prompt_count} Prompt</span>
           </div>
         </div>
       </Link>

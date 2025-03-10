@@ -7,6 +7,9 @@ import api from "../../../../services/api";
 import PromptCard from "./PromptCard/PromptCard";
 import search_icon from "../../../../asset/icon/search_icon.svg";
 import astronault from "../../../../asset/imgae/astronault.png";
+import leftArrowPagin from "../../../../asset/icon/left_arrow_pagin.svg";
+import rightArrowPagin from "../../../../asset/icon/right_arrow_pagin.svg"; 
+
 const ListPrompts = () => {
     const location = useLocation();
     const { category, activeSection } = location.state || {};
@@ -108,9 +111,8 @@ const ListPrompts = () => {
                 <p className="list-prompts-container-description">
                     Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge your business and boost your productivity.
                 </p>
-
                 {/* Nút chọn Premium / Free */}
-                <div className={`filter-buttons ${isType === 2 ? 'premium-active' : 'free-active'}`}>
+                {/* <div className={`filter-buttons ${isType === 2 ? 'premium-active' : 'free-active'}`}>
                     <button
                         className={`premium-btn ${isType === 2 ? "active" : ""}`}
                         onClick={() => handleChangeTypeSub(2)}
@@ -124,7 +126,7 @@ const ListPrompts = () => {
                     >
                         <HeartOutlined /> Free
                     </button>
-                </div>
+                </div> */}
 
                 {/* Ô tìm kiếm */}
                 <div className="search-container-list-prompt">
@@ -132,7 +134,7 @@ const ListPrompts = () => {
                     <input
                         className="list-prompt-search-bar"
                         type="text"
-                        placeholder="Search proms"
+                        placeholder="Search prompts"
                         value={searchText}
                         onChange={(e) => handelSearch(e.target.value)}
                     />
@@ -176,7 +178,15 @@ const ListPrompts = () => {
                     pageSize={10}
                     onChange={handleChangePage}
                     showSizeChanger={false}
-                    showQuickJumper
+                    itemRender={(_, type, originalElement) => {
+                        if (type === 'prev') {
+                            return <button className="pagination-arrow-btn prev"><img src={leftArrowPagin} alt="Previous"/></button>;
+                        }
+                        if (type === 'next') {
+                            return <button className="pagination-arrow-btn next"><img src={rightArrowPagin} alt="Next" /></button>;
+                        }
+                        return originalElement;
+                    }}
                 />
 
 
@@ -185,7 +195,7 @@ const ListPrompts = () => {
             {/* Danh sách prompt mới nhất */}
             <div className="newest-prompts-container">
                 <div className="newest-prompts-title-box">
-                    <h2>Newest ChatGPT Proms for Sales</h2>
+                    <h2>Newest ChatGPT Prompts for Sales</h2>
                 </div>
                 <div className="newest-prompt-list-wrapper">
                     <div className="astronaut-image">

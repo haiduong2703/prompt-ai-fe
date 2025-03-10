@@ -25,7 +25,7 @@ html, body {
 .user-pricing-header p {
   font-weight: 400;
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 /* Style cho tab chọn gói */
@@ -47,7 +47,7 @@ html, body {
   position: absolute;
   top: 5px;
   left: 8px;
-  width: 33%;
+  width: calc(50% - 12px);
   height: 80%;
   background: #DACDFF;
   border-radius: 300px;
@@ -68,25 +68,20 @@ html, body {
   flex: 1;
   position: relative;
   z-index: 2;
+  min-width: 120px;
 }
 
 .user-pricing-header-options button.active {
   color: #5700C6;
 }
 
-.user-pricing-header-options.yearly::before {
+.user-pricing-header-options.monthly::before {
   left: 8px;
 }
 
-.user-pricing-header-options.monthly::before {
-  left: 50%;
-  transform: translateX(-50%);
+.user-pricing-header-options.yearly::before {
+  left: calc(50% + 4px);
 }
-
-.user-pricing-header-options.lifetime::before {
-  left: calc(100% - 33% - 8px);
-}
-
 
 /* Text giảm giá */
 .discount-text {
@@ -100,16 +95,30 @@ html, body {
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .user-pricing-card-list-tools {
-  margin-top: 80px;
-  margin-bottom: 40px;
-  height: 50px;
+  max-width: 1270px;
+  width: 100%;
+  margin: 40px auto 40px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.user-pricing-card-list-tools img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .user-pricing-faq {
-  width: 80%;
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Responsive cho điện thoại */
@@ -143,10 +152,6 @@ html, body {
     justify-content: center;
     justify-items: center;
     padding: 0 10px;
-  }
-
-  .user-pricing-card-list-tools img {
-    max-width: 80%;
   }
 
   .user-pricing-faq {
