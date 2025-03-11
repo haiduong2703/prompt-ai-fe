@@ -22,6 +22,12 @@ import imgAvt3 from "../../../asset/imgae/avt3.png";
 import imgSuperman from "../../../asset/imgae/imgsuper.png";
 import imgDeep from "../../../asset/imgae/imgdeep.png";
 import imgGrok from "../../../asset/imgae/imggrok.png";
+import imgBack1 from "../../../asset/imgae/imgback1.png";
+import imgBack2 from "../../../asset/imgae/imgback2.jpg";
+import imgKhoi1 from "../../../asset/imgae/imgkhoi1.png";
+import imgKhoi2 from "../../../asset/imgae/imgkhoi2.png";
+import imgKhoi3 from "../../../asset/imgae/imgkhoi3.png";
+
 // Dữ liệu prompts
 const prompts = [
   {
@@ -307,8 +313,8 @@ const Home = () => {
             <div className="partners-bar">
               <div className="users-count">
                 <div className="users-count-item">
-                  <p className="count">125k+</p>
-                  <p className="label">Hãy trở thành một trong số họ</p>
+                  <p className="count">10k+</p>
+                  <p className="label">khác hàng hài lòng</p>
                 </div>
                 <div className="badge">Tham gia ngay</div>
               </div>
@@ -646,6 +652,63 @@ const Home = () => {
 
             <div className="hire-creator-decoration decoration-1"></div>
             <div className="hire-creator-decoration decoration-2"></div>
+          </div>
+        </section>
+
+        {/* Giải pháp toàn diện section */}
+        <section className="solutions-section">
+          <div className="solutions-container">
+            <h2 className="section-title">Giải pháp toàn diện cho bạn</h2>
+            <p className="section-description">
+              Khám phá những Prom tốt nhất cho ChatGPT & Midjourney được thiết
+              kế để thúc đẩy doanh nghiệp & dự án cá nhân của bạn tăng năng
+              suất.
+            </p>
+
+            <div className="solutions-tags">
+              <span className="tag">Solopreneur</span>
+              <span className="tag">Content Marketers</span>
+              <span className="tag">Performance Marketers</span>
+              <span className="tag">SEO Marketer</span>
+              <span className="tag">PR & Communications</span>
+              <span className="tag">Sales</span>
+            </div>
+
+            <div className="solutions-content">
+              <div className="cards-left">
+                <div className="solution-card midjourney">
+                  <span className="card-label">Midjourney</span>
+                  <h3>Midjourney Prompt for Pixel Art</h3>
+                  <p>
+                    Specifying bit rate, location, artist, and aspect ratio
+                    allows you to craft high-definition cinematic stills,
+                    perfectly capturing vintage style.
+                  </p>
+                </div>
+              </div>
+
+              <div className="solution-image">
+                <img src={imgBack2} alt="Solutions" className="main-image" />
+              </div>
+
+              <div className="cards-right">
+                <div className="solution-card chatgpt">
+                  <span className="card-label">Chat GPT</span>
+                  <h3>Build Predictive Analytics for Sales</h3>
+                  <p>
+                    Boost your sales growth with this ChatGPT mega-prompt,
+                    providing a detailed referral-based sales strategy covering
+                    partner identification, incentive structures, and
+                    performance evaluation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <img src={imgBack1} alt="" className="decoration back1" />
+            <img src={imgKhoi1} alt="" className="decoration khoi1" />
+            <img src={imgKhoi2} alt="" className="decoration khoi2" />
+            <img src={imgKhoi3} alt="" className="decoration khoi3" />
           </div>
         </section>
       </main>
