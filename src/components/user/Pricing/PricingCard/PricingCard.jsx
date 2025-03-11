@@ -4,7 +4,7 @@ import "./PricingCard.css"; // Import CSS
 import xCicle from "../../../../asset/icon/x_circle.svg";
 import checkCircle from "../../../../asset/icon/check_circle.svg";
 import checkCirclePopular from "../../../../asset/icon/check_circle_popular.svg";
-
+import eclipsePricing from "../../../../asset/imgae/eclipse_pricing_card.png";
 const PricingCard = ({ title, price, period, features, buttonText, isPopular }) => {
   return (
     <div className={`pricing-card ${isPopular ? "popular-card" : ""}`}>
@@ -38,6 +38,7 @@ const PricingCard = ({ title, price, period, features, buttonText, isPopular }) 
           {buttonText}
         </button></Link>
       )}
+      {isPopular && <img src={eclipsePricing} alt="" className="eclipse-image" />}
     </div>
   );
 };

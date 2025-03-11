@@ -5,10 +5,10 @@ import { HomeOutlined, StarFilled, HeartOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import api from "../../../../services/api";
 import PromptCard from "./PromptCard/PromptCard";
-import search_icon from "../../../../asset/icon/search_icon_kinh_lup.svg";
 import astronault from "../../../../asset/imgae/astronault_list_prom.png";
-import leftArrowPagin from "../../../../asset/icon/left_arrow_pagin.svg";
-import rightArrowPagin from "../../../../asset/icon/right_arrow_pagin.svg"; 
+import arrow_prev from "../../../../asset/icon/arrow_prev.png";
+import arrow_next from "../../../../asset/icon/arrow_next.png";
+import kinh_lup from "../../../../asset/icon/kinh_lup.png";
 
 const ListPrompts = () => {
     const location = useLocation();
@@ -130,7 +130,7 @@ const ListPrompts = () => {
 
                 {/* Ô tìm kiếm */}
                 <div className="search-container-list-prompt">
-                    <img src={search_icon} alt="search" className="search-icon-list-prompt" />
+                    <img src={kinh_lup} alt="search" className="search-icon-list-prompt" />
                     <input
                         className="list-prompt-search-bar"
                         type="text"
@@ -180,10 +180,10 @@ const ListPrompts = () => {
                     showSizeChanger={false}
                     itemRender={(_, type, originalElement) => {
                         if (type === 'prev') {
-                            return <button className="pagination-arrow-btn prev"><img src={leftArrowPagin} alt="Previous"/></button>;
+                            return <button className="pagination-arrow-btn prev"><img src={arrow_prev} alt="Previous"/></button>;
                         }
                         if (type === 'next') {
-                            return <button className="pagination-arrow-btn next"><img src={rightArrowPagin} alt="Next" /></button>;
+                            return <button className="pagination-arrow-btn next"><img src={arrow_next} alt="Next" /></button>;
                         }
                         return originalElement;
                     }}

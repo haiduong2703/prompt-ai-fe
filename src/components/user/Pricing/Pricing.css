@@ -8,18 +8,20 @@ html, body {
   font-weight: 500;
   font-size: 16px;
   justify-items: center;
+  margin-top: 50px;
 }
 
 .user-pricing-header {
   justify-items: center;
   color: #1D1E25;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 .user-pricing-header h1 {
   font-size: 48px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .user-pricing-header p {
@@ -60,7 +62,7 @@ html, body {
   background: none;
   font-size: 16px;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 15px 40px;
   border-radius: 300px;
   cursor: pointer;
   color: #333;
@@ -69,6 +71,9 @@ html, body {
   position: relative;
   z-index: 2;
   min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-pricing-header-options button.active {
@@ -76,11 +81,13 @@ html, body {
 }
 
 .user-pricing-header-options.monthly::before {
-  left: 8px;
+  left: 10px;
+  top: 6.5px;
 }
 
 .user-pricing-header-options.yearly::before {
   left: calc(50% + 4px);
+  top: 6.5px;
 }
 
 /* Text giảm giá */

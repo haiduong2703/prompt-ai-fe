@@ -1,19 +1,18 @@
 .pricing-card {
     position: relative;
-    width: 300px;
+    width: 320px;
     min-width: 300px;
     background: linear-gradient(154.91deg, #FFFFFF 8.79%, #E2D0FF 94.56%);
     border-radius: 36px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 20px;
-    /* font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
     font-weight: 500;
     transition: 0.3s;
 }
 
 .pricing-card-header {
-    min-height: 130px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -55,6 +54,7 @@
     line-height: 100%;
     letter-spacing: 0%;
     margin-bottom: 0;
+    white-space: nowrap;
 }
   
 .pricing-card-divider {
@@ -103,10 +103,11 @@
     border: none;
     padding: 10px;
     border-radius: 36px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     margin-top: 15px;
     font-weight: 700;
+    line-height: 24px;
 }
   
 .pricing-card-acesss-button:hover {
@@ -116,11 +117,13 @@
     width: 100%;
     color: #5700C6;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 36px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     margin-top: 15px;
+    line-height: 20px;
+    font-weight: 700;
 }
   
 .pricing-card-signup-button:hover {
@@ -130,6 +133,17 @@
 .popular-card {
     background: #111116;
     color: white;
+    position: relative;
+    isolation: isolate;
+}
+
+.popular-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #111116;
+    z-index: -2;
+    border-radius: 36px;
 }
 
 .popular-card .pricing-card-title,
@@ -139,6 +153,12 @@
 .popular-card .pricing-card-feature {
     color: white;
     font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.popular-card .pricing-card-price {
+    font-weight: 700;
 }
 
 .popular-card .divider {
@@ -192,10 +212,9 @@
 
   .pricing-card-access-button,
   .pricing-card-signup-button {
-      font-size: 14px;
       padding: 12px;
+      font-size: 14px;
   }
-
   .popular-badge {
       font-size: 10px;
       padding: 5px 12px;
@@ -205,5 +224,17 @@
 .popular-card .pricing-card-divider {
     opacity: 0.2;
     background: #FFFFFF;
+}
+
+.eclipse-image {
+    position: absolute;
+    bottom: 25%;
+    right: -20px;
+    width: 200px;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+    transform: rotate(17deg);
 }
   
