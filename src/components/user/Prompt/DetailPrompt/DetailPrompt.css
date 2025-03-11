@@ -1,7 +1,7 @@
 .detail-prompt-component {
     display: flex;
     justify-content: center;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
     color: #1D1E25;
     padding: 48px 24px;
 }

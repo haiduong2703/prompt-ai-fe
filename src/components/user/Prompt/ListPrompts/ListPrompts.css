@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   padding: 48px 5%;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
 }
 
 .list-prompts-container {
