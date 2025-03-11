@@ -5,8 +5,8 @@ import { HomeOutlined, StarFilled, HeartOutlined } from "@ant-design/icons";
 import { Pagination } from "antd";
 import api from "../../../../services/api";
 import PromptCard from "./PromptCard/PromptCard";
-import search_icon from "../../../../asset/icon/search_icon.svg";
-import astronault from "../../../../asset/imgae/astronault.png";
+import search_icon from "../../../../asset/icon/search_icon_kinh_lup.svg";
+import astronault from "../../../../asset/imgae/astronault_list_prom.png";
 import leftArrowPagin from "../../../../asset/icon/left_arrow_pagin.svg";
 import rightArrowPagin from "../../../../asset/icon/right_arrow_pagin.svg"; 
 
