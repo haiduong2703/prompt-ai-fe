@@ -1,6 +1,6 @@
 import React from "react";
 import "./PromptCard.css";
-import { StarFilled, HeartFilled } from "@ant-design/icons";
+import { StarFilled, HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const PromptCard = ({ prompt, image_category, activeSection }) => {
@@ -22,7 +22,12 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
           </div>
           <div className="component-premium-tag-div">
             {isNew && <span className="component-new-tag">New</span>}
-            {prompt.is_type === 2 && (
+            <div>
+              <button>
+                <HeartOutlined />
+              </button>
+            </div>
+            {/* {prompt.is_type === 2 && (
               <span className="component-premium-tag">
                 <StarFilled />
                 Premium
@@ -32,12 +37,12 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
               <span className="component-free-tag">
                 Free
               </span>
-            )}
+            )} */}
           </div>
         </div>
 
         <div className="component-prompt-card-body">
-          <p className="component-prompt-card-body-title">{activeSection.name}</p>
+          {/* <p className="component-prompt-card-body-title">{activeSection.name}</p> */}
           <h3 className="component-prompt-title">{prompt.title}</h3>
           <p className="component-prompt-description">{prompt.short_description}</p>
         </div>

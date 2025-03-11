@@ -4,29 +4,29 @@ import "./FAQSection.css";
 
 const faqData = [
   {
-    question: "What is an AI Prompt Library and why do I need one?",
+    question: "Thư viện Al Prompt là gì và tại sao bạn cần nó?",
     answer:
-      "An AI Prompt Library is a curated collection of pre-written prompts designed to help businesses get optimal results from AI tools like ChatGPT and Midjourney. Think of it as your playbook for AI success – instead of spending hours figuring out how to phrase requests, you get instant access to proven prompts that deliver results.",
+      "Thư viện nhắc nhở AI là một bộ sưu tập được tuyển chọn gồm các nhắc nhở được viết sẵn được thiết kế để giúp các doanh nghiệp có được kết quả tối ưu từ các công cụ AI như ChatGPT và Midjourney. Hãy coi đây là cẩm nang thành công của bạn về AI – thay vì dành hàng giờ để tìm cách diễn đạt yêu cầu, bạn có thể truy cập ngay vào các nhắc nhở đã được chứng minh mang lại kết quả.",
   },
   {
-    question: "How can the AI Prompt Library help my business grow?",
+    question: "Thư viện AI Prompt có thể giúp doanh nghiệp phát triển như thế nào?",
     answer:
-      "Our comprehensive AI Prompt Library covers crucial business areas including marketing, SEO, content creation, and productivity.",
+      "Thư viện nhắc nhở AI toàn diện của chúng tôi bao gồm các lĩnh vực quan trọng trong kinh doanh như marketing, SEO, content creation, and productivity.",
   },
   {
-    question: "Which categories in the AI Prompt Library are most valuable for small businesses?",
+    question: "Những danh mục nào trong Thư viện nhắc nhở AI có giá trị nhất đối với các doanh nghiệp nhỏ?",
     answer:
-      "The most impactful categories include Business, Marketing, SEO, Writing, Solopreneurs, and Productivity.",
+      "Các danh mục có tác động lớn nhất bao gồm Kinh doanh, Marketing, SEO, Viết lách, Doanh nhân cá nhân và Năng suất làm việc.",
   },
   {
-    question: "How do I get the most value from an AI Prompt Library?",
+    question: "Làm thế nào để tận dụng tối đa giá trị của Thư viện nhắc nhở AI?",
     answer:
-      "Start with your immediate business needs, test different prompts, customize them to your industry, and combine them for comprehensive results.",
+      "Bắt đầu với những nhu cầu kinh doanh cấp thiết của bạn, thử nghiệm các lời nhắc khác nhau, tùy chỉnh chúng theo ngành của bạn và kết hợp chúng để có kết quả toàn diện.",
   },
   {
-    question: "What makes a good AI prompt for business use?",
+    question: "Điều gì tạo nên lời nhắc AI tốt cho mục đích kinh doanh?",
     answer:
-      "Effective business prompts should be clear, specific, adaptable, results-oriented, and easy to customize.",
+      "Prompts AI hiệu quả trong kinh doanh cần rõ ràng, cụ thể, linh hoạt, hướng đến kết quả và dễ dàng tùy chỉnh.",
   },
 ];
 
@@ -40,9 +40,9 @@ export default function FAQSection() {
   return (
     <div className="faq-section">
       <div className="faq-left">
-        <h2 className="faq-title">FAQs</h2>
+        <h2 className="faq-title">Câu hỏi</h2>
         <p className="faq-description">
-          Your Guide to Mastering Prompts. Still have questions? Explore our guides or try crafting a prompt now!
+          Những hướng dẫn giúp bạn làm chủ cách viết Prompt. Vẫn còn thắc mắc? Hãy khám phá các hướng dẫn của chúng tôi hoặc thử tạo một Prompt ngay bây giờ!
         </p>
         <div className="faq-buttons">
           <Link to="/contact"><button className="faq-btn primary">More Questions</button></Link>
@@ -60,6 +60,29 @@ export default function FAQSection() {
             {openIndex === index && <div className="faq-answer">{item.answer}</div>}
           </div>
         ))}
+      </div>
+
+      <div className="faq-more-action">
+        <div className="faq-more-action-container">
+          <h3 className="faq-more-action-title">Bạn có những thắc mắc?</h3>
+          <div className="faq-contact-list">
+            <div className="faq-contact-item">
+              {/* <img src={zaloIcon} alt="Zalo" /> */}
+              <span className="faq-contact-item-title">Zalo</span><br/>
+              <span className="faq-contact-item-content">0909.107.018</span>
+            </div>
+            <div className="faq-contact-item">
+              {/* <img src={emailIcon} alt="Email" /> */}
+              <span className="faq-contact-item-title">Email</span><br/>
+              <span className="faq-contact-item-content">contact@prom.io</span>
+            </div>
+            <div className="faq-contact-item">
+              {/* <img src={discordIcon} alt="Discord" /> */}
+              <span className="faq-contact-item-title">Discord</span><br/>
+              <span className="faq-contact-item-content">@support_prom.io</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
