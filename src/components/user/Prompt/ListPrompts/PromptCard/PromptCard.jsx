@@ -48,7 +48,7 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
         </div>
 
       </div>
-      <div className="component-prompt-card-topic">{prompt?.Topic?.name || "Unknown"}</div>
+      <div className="component-prompt-card-topic">{prompt?.topic?.name || "Unknown"}</div>
 
       <div className="component-prompt-card-footer">
         <Link
