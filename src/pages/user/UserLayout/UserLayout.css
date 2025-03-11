@@ -39,7 +39,7 @@ body {
 
 /* Thêm class đặc biệt cho trang home */
 .home-page .user-navbar {
-  background: linear-gradient(-90deg, #E9DAFF 0%, #EAFDFC 100%);
+  background: linear-gradient(90deg, #E1F6FF 0%, #e6b8ff 100%);
 }
 
 /* Các trang khác vẫn giữ màu trắng */

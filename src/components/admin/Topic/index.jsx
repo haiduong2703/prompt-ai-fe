@@ -30,14 +30,14 @@ const TopicAdmin = () => {
   const [pageSize, setPageSize] = useState(10);
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [page, pageSize]);
 
   const fetchCategories = async () => {
     try {
       console.log("helloo");
       const response = await api.getTopicsPage(page, pageSize);
       setCategories(response.data.topics);
-      setTotal(response.data.totalPages);
+      setTotal(response.data.totalItems);
     } catch (error) {
       message.error("Lỗi khi tải danh sách danh mục");
     }

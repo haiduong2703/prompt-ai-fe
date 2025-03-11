@@ -29,7 +29,9 @@ import imgKhoi2 from "../../../asset/imgae/imgkhoi2.png";
 import imgKhoi3 from "../../../asset/imgae/imgkhoi3.png";
 import FAQSection from "../../../components/Q&A/FAQSection";
 import PromptCard from "../../../components/user/Prompt/ListPrompts/PromptCard/PromptCard";
+import logoClaude from "../../../asset/imgae/logoclaude.png";
 import api from "../../../services/api";
+import imgArrowUp from "../../../asset/imgae/arrow-up.png";
 // Dữ liệu prompts
 const prompts = [
   {
@@ -192,7 +194,7 @@ const faqs = [
 const testimonials = [
   {
     rating: 5,
-    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    text: "Trang web rất hữu ích, tiện dụng, dùng rất thích, có thể hỗ trợ công việc cho mình rất nhanh chóng nhé, nên mua dùng đi mọi người ơi!",
     author: {
       name: "Kristin Watson",
       title: "Web Designer",
@@ -317,7 +319,12 @@ const Home = () => {
                   </h1>
                   <p>Hơn 25.000+ Prompt tạo ra từ các chuyên gia về AI</p>
                   <button className="get-started-btn">
-                    Bắt đầu ngay <span>→</span>
+                    Bắt đầu ngay{" "}
+                    <img
+                      style={{ marginLeft: "10px" }}
+                      src={imgArrowUp}
+                      alt="Arrow Up"
+                    />
                   </button>
                 </div>
               </div>
@@ -328,7 +335,7 @@ const Home = () => {
                   <p className="count">10k+</p>
                   <p className="label">khác hàng hài lòng</p>
                 </div>
-                <div className="badge">Tham gia ngay</div>
+                <div className="badge">Trở thành 1 trong số họ</div>
               </div>
               <div className="partners-logos">
                 <div className="partner">
@@ -345,6 +352,9 @@ const Home = () => {
                 </div>
                 <div className="partner">
                   <img src={imgGrok} alt="Grok" />
+                </div>
+                <div className="partner">
+                  <img src={logoClaude} alt="Claude" />
                 </div>
                 <div className="partner">
                   <img src={imgDall} alt="DALL-E" />
