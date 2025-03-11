@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 40px;
   margin: 50px auto;
-  font-family: 'Plus Jakarta Sans';
+  /* font-family: 'Plus Jakarta Sans'; */
   border: 1px solid #E0E0E0;
   border-radius: 36px;
   padding: 40px 50px;
@@ -151,10 +151,12 @@
   font-size: 14px;
   font-weight: 500;
 }
+
 .faq-contact-item-title {
   font-weight: 400;
   line-height: 24px;
 }
+
 .faq-contact-item-content {
   font-weight: 700;
   line-height: 24px;
@@ -165,23 +167,26 @@
     flex-direction: column;
     gap: 20px;
   }
+
   .faq-left {
     max-width: 100%;
   }
+
   .faq-contact-list {
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .faq-more-action-container {
     width: 100%;
     padding: 20px;
   }
-  
+
   .faq-more-action-title {
     font-size: 18px;
     margin-bottom: 20px;
   }
+
   .faq-more-action {
     margin-top: 32px;
   }
@@ -191,12 +196,12 @@
   .faq-more-action-container {
     padding: 16px;
   }
-  
+
   .faq-more-action-title {
     font-size: 16px;
     margin-bottom: 16px;
   }
-  
+
   .faq-contact-item {
     font-size: 12px;
   }
