@@ -1,11 +1,13 @@
-## Build stage ##
-FROM node:18.18-alpine AS build
+##### Dockerfile #####
+## build stage ##
+FROM node:18.18-alpine as build
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
 
-## Run stage ##
+## run stage ##
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
+RUN mkdir -p /run
+COPY --from=build /app/build /run
 COPY nginx.conf /etc/nginx/nginx.conf
