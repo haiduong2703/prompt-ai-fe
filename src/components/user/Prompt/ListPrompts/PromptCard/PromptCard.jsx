@@ -53,7 +53,7 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
       <div className="component-prompt-card-footer">
         <Link
           to={`/prompts/detail-prompts/${prompt.id}`}
-          state={{ image_category, activeSection, topicName: prompt?.Topic?.name }}
+          state={{ image_category, activeSection, topicName: prompt?.topic?.name }}
           className="component-view-prompt-button"
         >
           View Prompt

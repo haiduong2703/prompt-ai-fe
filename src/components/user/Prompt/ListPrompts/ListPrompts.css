@@ -120,7 +120,7 @@
 .search-icon-list-prompt {
   width: 24px;
   height: 24px;
-  opacity: 0.4;
+  opacity: 0.9;
 }
 
 .list-prompt-search-bar {
@@ -136,7 +136,8 @@
 
 .list-prompt-search-bar::placeholder {
   color: #1D1E25;
-  opacity: 0.6;
+  opacity: 0.9;
+  font-weight: 400;
 }
 
 .list-prompt-search-bar:focus {
@@ -144,7 +145,7 @@
 }
 
 .list-prompt-search-bar:focus::placeholder {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* Grid layout để mỗi hàng có 4 card */
@@ -221,15 +222,17 @@
   justify-content: center;
   font-weight: 600;
   margin-top: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .pagination_list_prompts .ant-pagination-item {
   border: none;
   background: transparent;
-  min-width: 32px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: 100px;
+  min-width: 48px;
+  height: 48px;
+  line-height: 48px;
+  border-radius: 50%;
   margin: 0 4px;
   display: flex;
   align-items: center;
@@ -241,7 +244,11 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  padding: 8px 16px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pagination_list_prompts .ant-pagination-item-active {
@@ -250,20 +257,20 @@
 
 .pagination_list_prompts .ant-pagination-item-active a {
   color: #5700C6;
-  padding: 4px 12px;
 }
 
 .pagination-arrow-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border: none;
-  border-radius: 6px;
+  border-radius: 50%;
   background: transparent;
   cursor: pointer;
   transition: all 0.3s;
+  font-size: 16px;
 }
 
 .pagination-arrow-btn:hover {
@@ -271,22 +278,24 @@
 }
 
 .pagination-arrow-btn img {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
-
-.pagination-arrow-btn.prev img {
+/* .pagination-arrow-btn.prev img {
   transform: rotate(180deg);
-}
-
+} */
 .pagination_list_prompts .ant-pagination-prev,
 .pagination_list_prompts .ant-pagination-next {
   display: flex;
   align-items: center;
+  width: 48px;
+  height: 48px;
 }
 
 .pagination_list_prompts .ant-pagination-prev button,
 .pagination_list_prompts .ant-pagination-next button {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
