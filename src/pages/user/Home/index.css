@@ -180,7 +180,7 @@
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     /* text-fill-color: transparent; */
-    /* font-family: 'Inter Tight', sans-serif !important; */
+    font-family: 'Inter Tight', sans-serif !important;
     /* Use a common sans-serif font */
     color: #5700C6;
     /* Fallback cho trình duyệt không hỗ trợ */
@@ -938,7 +938,7 @@
 .prompt-card-create {
     min-width: 300px;
     background: #fff;
-    height: 600px;
+    height: 650px;
     border-radius: 12px;
     border: 3px solid;
     overflow: hidden;
@@ -1096,13 +1096,14 @@
 .blog-posts {
     display: flex;
     gap: 20px;
-    overflow-x: auto;
+    justify-content: space-around;
+    /* overflow-x: auto; */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 20px;
     margin: 0 -20px;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
@@ -1121,9 +1122,9 @@
     background: #F4F0FF;
     border-radius: 10px;
     padding: 20px;
-    min-width: 540px;
-    width: 540px;
-    height: 260px;
+    min-width: 500px;
+    width: 500px;
+    height: 320px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start;
@@ -1350,6 +1351,7 @@
     display: flex;
     max-width: 1600px;
     margin: 20px auto;
+    justify-content: flex-end;
 }
 
 .testimonials-header {
@@ -1358,7 +1360,7 @@
 
 .testimonials-label {
     color: #6F42C1;
-    font-size: 14px;
+    font-size: 16px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
@@ -1373,7 +1375,8 @@
 }
 
 .testimonials-content {
-    max-width: 1200px;
+    margin-left: 50px;
+    max-width: 1000px;
 }
 
 .testimonials-container {
@@ -1396,7 +1399,7 @@
 .testimonials-wrapper {
     display: flex;
     gap: 20px;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -1428,6 +1431,14 @@
     flex-direction: column;
     min-height: 280px;
     transition: transform 0.3s ease;
+}
+
+.scroll-nav-button prev {
+    left: -20px;
+}
+
+.scroll-nav-button next {
+    right: 0px;
 }
 
 .testimonial-card:hover {
@@ -1504,10 +1515,9 @@
 }
 
 .astronaut-image {
-    width: 400px;
+    width: 300px;
     height: auto;
     z-index: 0;
-    opacity: 0.8;
 }
 
 @media (max-width: 768px) {
@@ -1910,11 +1920,14 @@ body {
 
 .tag {
     background: rgba(138, 99, 210, 0.1);
-    color: #6F42C1;
+    color: #5700C6;
+    background-color: #fff;
     padding: 8px 16px;
+    border: 1px solid #A273FF;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
+    font-weight: 600;
 }
 
 .solutions-content {
@@ -2094,4 +2107,53 @@ body {
     .tag {
         white-space: nowrap;
     }
+}
+
+.prompt-list-container {
+    text-align: center;
+    margin-top: 50px;
+    /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; */
+    width: 100%;
+}
+
+.prompt-list-container h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #2D1A4B;
+    margin-bottom: 50px;
+}
+
+.prompt-list-home {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    justify-content: center;
+    margin-top: 20px;
+    margin: 0 auto;
+    max-width: 1600px;
+}
+
+.button-prompts {
+    text-align: center;
+    color: #5700C6;
+    background-color: #F4F0FF;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 20px;
+
 }

@@ -27,7 +27,9 @@ import imgBack2 from "../../../asset/imgae/imgback2.jpg";
 import imgKhoi1 from "../../../asset/imgae/imgkhoi1.png";
 import imgKhoi2 from "../../../asset/imgae/imgkhoi2.png";
 import imgKhoi3 from "../../../asset/imgae/imgkhoi3.png";
-
+import FAQSection from "../../../components/Q&A/FAQSection";
+import PromptCard from "../../../components/user/Prompt/ListPrompts/PromptCard/PromptCard";
+import api from "../../../services/api";
 // Dữ liệu prompts
 const prompts = [
   {
@@ -130,29 +132,24 @@ const bestPrompts = [
 const blogPosts = [
   {
     title:
-      "Here are our 100 best Midjourney prompts for the month of January 2025",
+      "Dưới đây là 100 Prom Midjourney hay nhất của chúng tôi trong tháng 1 năm 2025",
     description:
-      "We are the top digital marketing agency for branding corp. We offer a full range engine.",
-    readTime: "5 min read",
+      "Hãy thử và trải nghiệm những Prom mới nhất, trending nhất mà...",
+    readTime: "5 phút trước",
   },
   {
     title:
-      "The Latest Trends Prompt and Strategies with a Digital Marketing Agency",
+      "Những xu hướng mới nhất và chiến lược với một nhóm Prom mà bạn cần biết",
     description:
-      "We are the top digital marketing agency for branding corp. We offer a full range engine.",
-    readTime: "5 min read",
+      "Hãy thử và trải nghiệm những Prom mới nhất, trending nhất mà...",
+    readTime: "5 phút trước",
   },
   {
-    title: "Maximizing Prompt with the Expertise of a Digital Marketing Agency",
+    title:
+      "Điều gì khiến bạn loay hoay khi sử dụng Prom? Hãy thử điều chỉnh lại",
     description:
-      "We are the top digital marketing agency for branding corp. We offer a full range engine.",
-    readTime: "5 min read",
-  },
-  {
-    title: "Maximizing Prompt with the Expertise of a Digital Marketing Agency",
-    description:
-      "We are the top digital marketing agency for branding corp. We offer a full range engine.",
-    readTime: "5 min read",
+      "Hãy thử và trải nghiệm những Prom mới nhất, trending nhất mà...",
+    readTime: "5 phút trước",
   },
 ];
 
@@ -257,9 +254,24 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const totalSlides = Math.ceil(testimonials.length / slidesPerView);
+  const [newestPrompts, setNewestPrompts] = useState([]);
+  const getListNewestPrompts = async () => {
+    try {
+      const query = new URLSearchParams({
+        page: 1,
+        pageSize: 8,
+      }).toString();
 
+      const response = await api.getPrompts(query);
+      console.log("hiii", response.data.data);
+      setNewestPrompts(response.data.data);
+    } catch (error) {
+      console.error("Error fetching newest prompts:", error);
+    }
+  };
   useEffect(() => {
     const handleResize = () => {
+      getListNewestPrompts();
       if (window.innerWidth < 768) {
         setSlidesPerView(1);
       } else {
@@ -401,90 +413,109 @@ const Home = () => {
           </div>
         </section>
         {/* best prompts for you */}
-        <section className="best-prompts-section">
-          <h2>Best Prompts for you</h2>
-          <p>
-            Discover the best AI prompts for ChatGPT & Midjourney designed to
-            supercharge your business and boost your productivity.
-          </p>
+        <section className="solutions-section">
+          <div className="solutions-container">
+            <h2 className="section-title">Giải pháp toàn diện cho bạn</h2>
+            <p className="section-description">
+              Khám phá những Prom tốt nhất cho ChatGPT & Midjourney được thiết
+              kế để thúc đẩy doanh nghiệp & dự án cá nhân của bạn tăng năng
+              suất.
+            </p>
 
-          <div className="tabs">
-            <button className="tab active">
-              <img src={imgGPT} alt="ChatGPT Icon" />
-              <span>ChatGPT</span>
-            </button>
-            <button className="tab">
-              <img src={imgMid} alt="Midjourney Icon" />
-              <span>Midjourney</span>
-            </button>
-          </div>
+            <div className="solutions-tags">
+              <span className="tag">Solopreneur</span>
+              <span className="tag">Content Marketers</span>
+              <span className="tag">Performance Marketers</span>
+              <span className="tag">SEO Marketer</span>
+              <span className="tag">PR & Communications</span>
+              <span className="tag">Sales</span>
+            </div>
 
-          <div className="prompt-cards">
-            {bestPrompts.map((prompt, index) => (
-              <div key={index} className="prompt-card">
-                <div className="card-label">{prompt.label}</div>
-                <h3>{prompt.title}</h3>
-                {prompt.description && <p>{prompt.description}</p>}
-                <div className="card-image">
-                  <img src={prompt.imgSrc} alt={prompt.title} />
+            <div className="solutions-content">
+              <div className="cards-left">
+                <div className="solution-card midjourney">
+                  <span className="card-label">Midjourney</span>
+                  <h3>Midjourney Prompt for Pixel Art</h3>
+                  <p>
+                    Specifying bit rate, location, artist, and aspect ratio
+                    allows you to craft high-definition cinematic stills,
+                    perfectly capturing vintage style.
+                  </p>
                 </div>
-                <button className="solution-btn">{prompt.buttonText}</button>
               </div>
-            ))}
+
+              <div className="solution-image">
+                <img src={imgBack2} alt="Solutions" className="main-image" />
+              </div>
+
+              <div className="cards-right">
+                <div className="solution-card chatgpt">
+                  <span className="card-label">Chat GPT</span>
+                  <h3>Build Predictive Analytics for Sales</h3>
+                  <p>
+                    Boost your sales growth with this ChatGPT mega-prompt,
+                    providing a detailed referral-based sales strategy covering
+                    partner identification, incentive structures, and
+                    performance evaluation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <img src={imgBack1} alt="" className="decoration back1" />
+            <img src={imgKhoi1} alt="" className="decoration khoi1" />
+            <img src={imgKhoi2} alt="" className="decoration khoi2" />
+            <img src={imgKhoi3} alt="" className="decoration khoi3" />
           </div>
         </section>
         {/* Create a prompts */}
-        <section className="best-prompts">
-          <div className="prompts-left">
-            <h2>Create a Prompt marketplace for your community</h2>
-            <p>
-              Discover the best AI prompts for ChatGPT & Midjourney designed to
-              supercharge your business and boost your productivity.
-            </p>
-            <button className="view-more">View more →</button>
-          </div>
-          <div className="prompts-grid">
-            {prompts.map((prompt) => (
-              <div
+        {/*List prompts */}
+        {/* <div className="newest-prompts-container">
+          <div className="newest-prompt-list">
+            {newestPrompts.map((prompt) => (
+              <PromptCard
                 key={prompt.id}
-                className="prompt-card-create"
-                style={{ border: `10px solid ${prompt.borderColor}` }}
-              >
-                <img
-                  style={{ borderBottom: `10px solid ${prompt.borderColor}` }}
-                  src={prompt.imgSrc}
-                  alt={prompt.title}
-                />
-                <div className="prompt-content">
-                  <span className="prompt-subtitle">{prompt.subtitle}</span>
-                  <h3>{prompt.title}</h3>
-                  <ul>
-                    {prompt.description.map((item, index) => (
-                      <li key={index}>✅ {item}</li>
-                    ))}
-                  </ul>
-                  <button className="prompt-btn">View more →</button>
-                </div>
-              </div>
+                prompt={prompt}
+                // image_category={category?.image_card}
+                // activeSection={activeSection}
+              />
             ))}
           </div>
-        </section>
-
+        </div> */}
+        <div className="prompt-list-container">
+          <h1>Xu hướng Prompts nổi bật</h1>
+          <div className="prompt-list-home">
+            {newestPrompts.length === 0 ? (
+              <p>No prompts found</p>
+            ) : (
+              newestPrompts.map((prompt) => (
+                <PromptCard
+                  key={prompt.id}
+                  prompt={prompt}
+                  // image_category={category?.image_card}
+                  // activeSection={activeSection}
+                />
+              ))
+            )}
+          </div>
+          <button className="button-prompts">
+            Tìm hiểu thêm! <span>→</span>
+          </button>
+        </div>
         {/* Thêm section Prompt Blog */}
         <section className="prompt-blog">
           <div className="blog-header-container">
-            <h2>Prompt Blog</h2>
+            <h2>Chúng tôi nói về Prompt</h2>
             <div className="blog-header-container-content">
               <p>
                 {" "}
-                We are the top digital marketing agency for branding corp. We
-                offer a full range of services to help clients improve their
-                search engine rankings and drive more traffic to their websites.
+                Các bài viết cập nhật các tin tức mới nhất liên quan đến Prompts
+                và AI.
               </p>
             </div>
           </div>
           <div className="blog-container">
-            <button
+            {/* <button
               className="scroll-nav-button prev"
               onClick={() => scrollContainer("blog-posts", "prev")}
               aria-label="Previous"
@@ -492,7 +523,7 @@ const Home = () => {
               <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
               </svg>
-            </button>
+            </button> */}
             <div className="blog-posts" id="blog-posts">
               {blogPosts.map((post, index) => (
                 <div key={index} className="blog-post">
@@ -510,7 +541,7 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <button
+            {/* <button
               className="scroll-nav-button next"
               onClick={() => scrollContainer("blog-posts", "next")}
               aria-label="Next"
@@ -518,36 +549,17 @@ const Home = () => {
               <svg viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
               </svg>
-            </button>
+            </button> */}
           </div>
         </section>
 
         {/* Thêm section FAQs với Collapse từ Ant Design */}
-        <section className="faqs-section">
-          <div className="faqs-container">
-            <div className="faqs-header">
-              <h2>FAQs</h2>
-              <p>
-                Your Guide to Mastering Prompts. Still have questions? Explore
-                our guides or try crafting a prompt now!
-              </p>
-              <div className="faqs-actions">
-                <button className="faqs-button">More Questions</button>
-                <button className="faqs-button">Contact Us</button>
-              </div>
-            </div>
-            <div className="faqs-content">
-              <Collapse
-                items={faqItems}
-                defaultActiveKey={[]}
-                bordered={false}
-                expandIconPosition="right"
-                className="custom-collapse"
-              />
-            </div>
-          </div>
-        </section>
-
+        <div
+          className="home-faq"
+          style={{ maxWidth: "1600px", margin: "0 auto" }}
+        >
+          <FAQSection />
+        </div>
         {/* Testimonials Section */}
         <section className="testimonials-section">
           <div>
@@ -556,8 +568,8 @@ const Home = () => {
           </div>
           <div className="testimonials-content">
             <div className="testimonials-header">
-              <div className="testimonials-label">TESTIMONIALS</div>
-              <h2 className="testimonials-title">People say about us</h2>
+              <div className="testimonials-label">PHẢN HỒI CỦA NGƯỜI DÙNG</div>
+              <h2 className="testimonials-title">Họ nói gì về chúng tôi?</h2>
             </div>
 
             <div className="testimonials-wrapper">
@@ -656,61 +668,6 @@ const Home = () => {
         </section>
 
         {/* Giải pháp toàn diện section */}
-        <section className="solutions-section">
-          <div className="solutions-container">
-            <h2 className="section-title">Giải pháp toàn diện cho bạn</h2>
-            <p className="section-description">
-              Khám phá những Prom tốt nhất cho ChatGPT & Midjourney được thiết
-              kế để thúc đẩy doanh nghiệp & dự án cá nhân của bạn tăng năng
-              suất.
-            </p>
-
-            <div className="solutions-tags">
-              <span className="tag">Solopreneur</span>
-              <span className="tag">Content Marketers</span>
-              <span className="tag">Performance Marketers</span>
-              <span className="tag">SEO Marketer</span>
-              <span className="tag">PR & Communications</span>
-              <span className="tag">Sales</span>
-            </div>
-
-            <div className="solutions-content">
-              <div className="cards-left">
-                <div className="solution-card midjourney">
-                  <span className="card-label">Midjourney</span>
-                  <h3>Midjourney Prompt for Pixel Art</h3>
-                  <p>
-                    Specifying bit rate, location, artist, and aspect ratio
-                    allows you to craft high-definition cinematic stills,
-                    perfectly capturing vintage style.
-                  </p>
-                </div>
-              </div>
-
-              <div className="solution-image">
-                <img src={imgBack2} alt="Solutions" className="main-image" />
-              </div>
-
-              <div className="cards-right">
-                <div className="solution-card chatgpt">
-                  <span className="card-label">Chat GPT</span>
-                  <h3>Build Predictive Analytics for Sales</h3>
-                  <p>
-                    Boost your sales growth with this ChatGPT mega-prompt,
-                    providing a detailed referral-based sales strategy covering
-                    partner identification, incentive structures, and
-                    performance evaluation.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <img src={imgBack1} alt="" className="decoration back1" />
-            <img src={imgKhoi1} alt="" className="decoration khoi1" />
-            <img src={imgKhoi2} alt="" className="decoration khoi2" />
-            <img src={imgKhoi3} alt="" className="decoration khoi3" />
-          </div>
-        </section>
       </main>
     </div>
   );
