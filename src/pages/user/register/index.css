@@ -29,7 +29,7 @@
     color: #1D1E25;
 }
 
-strong {
+.register-page-container strong {
     display: block;
     text-align: left;
     margin-bottom: 8px;
@@ -37,16 +37,27 @@ strong {
     color: #333;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+.register-page-container input[type="text"],
+.register-page-container input[type="email"] {
     width: 100%;
     padding: 10px 10px;
-    border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     background-color: #F5F5F5;
     padding-left: 20px;
+    border: none;
 }
+.ant-input-password {
+    border: none;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #F5F5F5;
+}
+.register-page-container input[type="password"] {
 
+}
 .register-page-btn-yellow {
     background-color: #5700C6;
     color: white;

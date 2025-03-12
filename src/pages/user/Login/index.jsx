@@ -66,7 +66,7 @@ const Login = () => {
     <div className="login-page-container">
       <div className="login-page-form">
         <h2 className="login-page-title">Đăng nhập</h2>
-        <p style={{ marginBottom: "20px" }}>
+        <p style={{ marginBottom: "40px" }}>
           Nhập địa chỉ email để nhận mã xác thực gồm 6 chữ số
         </p>
         {!isOtpSent ? (
