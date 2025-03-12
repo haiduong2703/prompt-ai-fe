@@ -29,7 +29,7 @@
     color: #1D1E25;
 }
 
-strong {
+.login-page-container strong {
     display: block;
     text-align: left;
     margin-bottom: 8px;
@@ -37,13 +37,17 @@ strong {
     color: #1D1E25;
 }
 
-input[type="email"], input[type="text"] {
+.login-page-container input[type="email"], 
+.login-page-container input[type="text"] {
     width: 100%;
-    padding: 12px;
+    padding: 10px 10px;
+    padding-left: 20px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 16px;
+    background-color: #F5F5F5;
+    border: none;
+
 }
 
 .login-page-btn-yellow {
