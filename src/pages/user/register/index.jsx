@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input, Button, Divider, Checkbox, message } from "antd";
 import "./index.css";
 import api from "../../../services/api";
-
+import { Link } from "react-router-dom";
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,47 +57,44 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-image">
-        <img
-          src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/675f4b4479874b35a71a514f_Login%20God-p-800.avif"
-          alt="Register Illustration"
-        />
-      </div>
+    <div className="register-page-container">
 
-      <div className="auth-form">
-        <h2 className="auth-title">Create an Account</h2>
-        <p style={{ marginBottom: "20px" }}>
-          Please complete the form below to create your account.
-        </p>
+      <div className="register-page-form">
+        <h2 className="register-page-title">Đăng ký</h2>
 
         {/* Hiển thị form đăng ký nếu chưa gửi OTP */}
         {!isOtpSent && (
           <>
-            <strong>Full Name*</strong>
+            <strong>Tên hiển thị</strong>
             <Input
-              style={{ marginTop: "10px", marginBottom: "20px" }}
+              style={{  marginBottom: "20px", padding: "10px 15px"}}
               type="text"
-              placeholder="Enter your full name"
+              placeholder="Nhập tên của bạn"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
             />
-            <strong>Email Address*</strong>
+            <strong>Email đăng nhập</strong>
             <Input
-              style={{ marginTop: "10px", marginBottom: "20px" }}
+              style={{ marginBottom: "20px", padding: "10px 15px"}}
               type="email"
-              placeholder="Enter your email"
+              placeholder="Nhập email của bạn"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <strong>Password*</strong>
+            <strong>Mật khẩu</strong>
             <Input.Password
-              style={{ marginTop: "10px", marginBottom: "20px" }}
-              placeholder="Create your password"
+              style={{ marginBottom: "20px", padding: "10px 15px"}}
+              placeholder="Nhập mật khẩu"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="checkbox-item">
+              <Checkbox />
+              <span>
+                Ghi nhớ mật khẩu
+              </span>
+            </div>
+            {/* <div className="checkbox-item">
               <Checkbox />
               <span>
                 I agree to the <a href="#">Terms of Use & Privacy Policy</a>.
@@ -106,13 +103,13 @@ const Register = () => {
             <div className="checkbox-item">
               <Checkbox />
               <span>Send me product updates & newsletters</span>
-            </div>
+            </div> */}
             <Button
               type="primary"
-              className="btn-yellow"
+              className="register-page-btn-yellow"
               onClick={handleRegister}
             >
-              Continue
+              Tiếp tục
             </Button>
           </>
         )}
@@ -120,7 +117,7 @@ const Register = () => {
         {/* Hiển thị ô nhập OTP nếu đã gửi */}
         {isOtpSent && !isVerified && (
           <>
-            <strong>Enter OTP Code*</strong>
+            <strong>Nhập mã xác thực OTP</strong>
             <Input
               type="text"
               placeholder="Enter OTP sent to your email"
@@ -129,10 +126,10 @@ const Register = () => {
             />
             <Button
               type="primary"
-              className="btn-yellow"
+              className="register-page-btn-yellow"
               onClick={handleVerifyOtp}
             >
-              Verify OTP
+              Xác thực OTP
             </Button>
           </>
         )}
@@ -141,14 +138,14 @@ const Register = () => {
         {isVerified && (
           <>
             <p style={{ color: "green", fontWeight: "bold" }}>
-              🎉 Account verified! You can now <a href="/login">Login here</a>.
+              🎉 Bạn đã đăng ký thành công! <a href="/login">Đăng nhập</a>.
             </p>
           </>
         )}
 
-        <Divider>OR</Divider>
-        <p className="signin-text">
-          Already have an account? <a href="/login">Login here</a>
+        <Divider>Hoặc</Divider>
+        <p className="register-page-signin-text">
+          Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
         </p>
       </div>
     </div>
