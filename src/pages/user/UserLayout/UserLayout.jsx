@@ -44,7 +44,7 @@ const UserLayout = ({ children }) => {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Home
+              Trang chủ
             </Link>
             <Link
               to="/prompts"
@@ -56,7 +56,16 @@ const UserLayout = ({ children }) => {
               Prompt
             </Link>
 
-            <div className="user-dropdown">
+            {/* <Link
+              to="/products"
+              className={`user-nav-item ${
+                location.pathname === "/products" ? "user-active" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Tài Liệu AI
+            </Link> */}
+            {/* <div className="user-dropdown">
               <button className="user-dropdown-btn">
                 Tools <img src={arrowExpand} alt="" />
               </button>
@@ -76,18 +85,8 @@ const UserLayout = ({ children }) => {
                   GPTs
                 </Link>
               </div>
-            </div>
-
-            <Link
-              to="/products"
-              className={`user-nav-item ${
-                location.pathname === "/products" ? "user-active" : ""
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Products
-            </Link>
-            <Link
+            </div> */}
+            {/* <Link
               to="/blog"
               className={`user-nav-item ${
                 location.pathname === "/blog" ? "user-active" : ""
@@ -95,7 +94,7 @@ const UserLayout = ({ children }) => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
-            </Link>
+            </Link> */}
             <Link
               to="/pricing"
               className={`user-nav-item ${
@@ -103,18 +102,18 @@ const UserLayout = ({ children }) => {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Pricing
+              Gói Dịch Vụ
             </Link>
 
-            <Link
+            {/* <Link
               to="/contact"
               className={`user-nav-item ${
                 location.pathname === "/contact" ? "user-active" : ""
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Contact
-            </Link>
+              Liên Hệ
+            </Link> */}
 
             {/* Mobile Menu Auth Buttons */}
             <div className="mobile-auth-buttons">
@@ -123,14 +122,14 @@ const UserLayout = ({ children }) => {
                 className="mobile-login-btn"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Login
+                Đăng Nhập
               </Link>
               <Link
                 to="/signup"
                 className="mobile-signup-btn"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Sign up
+                Đăng Ký
               </Link>
             </div>
           </div>
@@ -140,7 +139,7 @@ const UserLayout = ({ children }) => {
           {userLocal ? (
             <>
               <p onClick={handleLogout} className="user-logout">
-                Log out
+                Đăng Xuất
               </p>
               <div className="user-avatar">
                 <img src={userLocal.avatar} alt="Avatar" />
@@ -153,21 +152,21 @@ const UserLayout = ({ children }) => {
                 className="user-login-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className="user-login">Login</span>
+                <span className="user-login">Đăng Nhập</span>
               </Link>
               <Link
                 to="/signup"
                 className="user-signup-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <button className="signup-button">Sign up</button>
+                <button className="signup-button">Đăng Ký</button>
               </Link>
               <Link
                 to="/signup"
                 className="mobile-header-signup"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <button className="signup-button">Sign up</button>
+                <button className="signup-button">Đăng Ký</button>
               </Link>
             </>
           )}

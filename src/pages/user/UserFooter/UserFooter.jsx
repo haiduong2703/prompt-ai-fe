@@ -12,27 +12,32 @@ import igIcon from "../../../asset/icon/ig.svg";
 const { Panel } = Collapse;
 
 const UserFooter = () => {
-  const companyItems = ["Customer Help Center", "Careers", "FAQs"];
+  const companyItems = ["Dịch vụ khách hàng", "Tuyển dụng", "FAQs"];
 
-  const legalItems = ["Privacy Policy", "Terms of Services", "Cookies Policy"];
+  const legalItems = [
+    "Chính sách bảo mật",
+    "Điều khoản dịch vụ",
+    "Chính sách cookie",
+  ];
 
   return (
     <footer className="user-footer">
       <div className="footer-up-container">
         <div className="footer-up-left-box">
           <h1>
-            Are you interested with{" "}
+            Bạn muốn gia nhập team
+            <br />
             <span style={{ fontWeight: "700", color: "#1D1E25" }}>PROM?</span>
           </h1>
           <Link to="/contact" className="footer-contact-button">
-            Contact Now
+            Liên Hệ Ngay
           </Link>
         </div>
 
         {/* Desktop View */}
         <div className="footer-up-right-box desktop-view">
           <div className="footer-up-right-paragraph">
-            <h2 className="title-right-box">Company</h2>
+            <h2 className="title-right-box">Công ty</h2>
             <p>
               {companyItems.map((item, index) => (
                 <React.Fragment key={index}>
@@ -43,7 +48,7 @@ const UserFooter = () => {
             </p>
           </div>
           <div className="footer-up-right-paragraph">
-            <h2 className="title-right-box">Legal Information</h2>
+            <h2 className="title-right-box">Thông tin pháp lý</h2>
             <p>
               {legalItems.map((item, index) => (
                 <React.Fragment key={index}>
@@ -83,13 +88,13 @@ const UserFooter = () => {
         </Link>
 
         <div className="footer-down-center">
-          <Link to="/home">Home</Link>
+          <Link to="/home">Trang chủ</Link>
           <Link to="/prompts">Prompt</Link>
+          {/* <Link to="/products">Tài Liệu AI</Link>
           <Link to="/tools">Tools</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/pricing">Pricing</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/blog">Blog</Link> */}
+          <Link to="/pricing">Gói dịch vụ</Link>
+          {/* <Link to="/contact">Liên hệ</Link> */}
         </div>
 
         <div className="footer-social-connect">

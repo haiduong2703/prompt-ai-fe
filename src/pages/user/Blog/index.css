@@ -111,11 +111,11 @@ a {
     overflow: hidden;
 }
 
-.blog-footer {
+/* .blog-footer {
     border-top: 1px solid #eee;
-    padding-top: 15px;
-    margin-top: auto;
-}
+        padding-top: 15px;
+        margin-top: auto;
+} */
 
 .author-info {
     display: flex;

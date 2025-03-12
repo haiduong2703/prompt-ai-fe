@@ -27,11 +27,14 @@ import imgBack2 from "../../../asset/imgae/imgback2.jpg";
 import imgKhoi1 from "../../../asset/imgae/imgkhoi1.png";
 import imgKhoi2 from "../../../asset/imgae/imgkhoi2.png";
 import imgKhoi3 from "../../../asset/imgae/imgkhoi3.png";
+import imgDecor1 from "../../../asset/imgae/imgdecor1.png";
+import imgDecor2 from "../../../asset/imgae/imgdecor2.png";
 import FAQSection from "../../../components/Q&A/FAQSection";
 import PromptCard from "../../../components/user/Prompt/ListPrompts/PromptCard/PromptCard";
 import logoClaude from "../../../asset/imgae/logoclaude.png";
 import api from "../../../services/api";
 import imgArrowUp from "../../../asset/imgae/arrow-up.png";
+import imgBack3 from "../../../asset/imgae/imgback3.png";
 // Dữ liệu prompts
 const prompts = [
   {
@@ -75,32 +78,32 @@ const prompts = [
 // Dữ liệu marketplace cards
 const marketplaceCards = [
   {
-    title: "Explore the Marketplace",
-    description: "Discover 100K+ prompt collections",
+    title: "Khám Phá Thư Viện Prompts",
+    description: "Với hơn 25.000 Prompts",
     imgSrc: imgMarket,
     bgColor: "orange",
   },
   {
-    title: "AI prompt",
-    description: "Unlock more value with AI prompts",
+    title: "AI Prompt",
+    description: "Tối ưu hiệu suất với AI Prompts vượt trội",
     imgSrc: imgAI,
     bgColor: "orange",
   },
   {
     title: "Midjourney Prompts",
-    description: "Enhance image generation with prompts",
+    description: "Biến ý tưởng tànnh hình ảnh sống động với prompt",
     imgSrc: imgMidProm,
     bgColor: "blue",
   },
   {
-    title: "Chat GPT prompt",
-    description: "Explore 100K+ conversational prompts",
+    title: "Tài Liệu AI",
+    description: "Hướng dẫn AI mới nhất - Cập nhập mỗi tuần",
     imgSrc: imgGPTProm,
     bgColor: "teal",
   },
   {
-    title: "Google Bard",
-    description: "Enhance AI interactions",
+    title: "Prompt Tùy Chỉnh",
+    description: "Tạo Prompt cá nhân hóa theo mục đích của bạn",
     imgSrc: imgGenProm,
     bgColor: "teal",
   },
@@ -194,47 +197,76 @@ const faqs = [
 const testimonials = [
   {
     rating: 5,
-    text: "Trang web rất hữu ích, tiện dụng, dùng rất thích, có thể hỗ trợ công việc cho mình rất nhanh chóng nhé, nên mua dùng đi mọi người ơi!",
+    text: "Thư viện quá rộng lớn, chứa đầy những Prompts hữu ích, tôi đã đưa cho nhân viên dưới tôi những Prompts tương ứng với bộ phận của họ, hiệu suất tăng vọt trong thời gian rất ngắn!",
     author: {
-      name: "Kristin Watson",
-      title: "Web Designer",
+      name: "Jason Trịnh",
+      title: "CEO",
       avatar: imgAvt1,
     },
   },
   {
-    rating: 4,
-    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap",
+    rating: 5,
+    text: "Midjourney Prompts giúp tôi rất nhiều trong việc design web và tạo các element đẹp mắt! Đồng thời những prompt về Sales và Marketing hỗ trợ tôi bán hàng dễ hơn bao giờ hết!",
     author: {
-      name: "Kristin Watson",
+      name: "Phương Hoàng",
       title: "Web Designer",
       avatar: imgAvt2,
     },
   },
   {
     rating: 5,
-    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    text: "Trước đây tôi phải mất hàng giờ để soạn email chào hàng, giờ chỉ cần chọn prompt phù hợp là có ngay nội dung chuyên nghiệp, tối ưu tỉ lệ chuyển đổi!",
     author: {
-      name: "Kristin Watson",
-      title: "Web Designer",
+      name: "Minh Tú",
+      title: "Sales Executive",
       avatar: imgAvt3,
     },
   },
   {
-    rating: 4.5,
-    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    rating: 5,
+    text: "Prompt AI giúp tôi nhanh chóng tạo kịch bản gọi điện cho khách hàng tiềm năng. Không còn lo bị bí ý tưởng hay lúng túng khi chốt deal!",
     author: {
-      name: "Kristin Watson",
-      title: "Web Designer",
+      name: "Hải Nam",
+      title: "Account Manager",
+      avatar: imgAvt2,
+    },
+  },
+  {
+    rating: 5,
+    text: "Là giáo viên, tôi luôn muốn bài giảng hấp dẫn hơn. Các prompt trong thư viện giúp tôi tạo câu hỏi tương tác và nội dung giảng dạy cực kỳ hiệu quả!",
+    author: {
+      name: "Linh Đan",
+      title: "Giảng viên Đại học",
+      avatar: imgAvt3,
+    },
+  },
+
+  {
+    rating: 5,
+    text: "Tôi dùng prompt để tạo bài quiz và flashcard cho học sinh. Giờ đây, việc ôn tập trở nên thú vị hơn rất nhiều!",
+    author: {
+      name: "Trọng Nhân",
+      title: "Gia sư tiếng Anh",
+      avatar: imgAvt1,
+    },
+  },
+
+  {
+    rating: 5,
+    text: "Trước đây, tôi mất hàng giờ để viết caption hấp dẫn cho social media. Giờ chỉ cần chọn prompt phù hợp, tôi có ngay nội dung thu hút trong vài phút!",
+    author: {
+      name: "Lan Chi",
+      title: "Social Media Manager",
       avatar: imgAvt3,
     },
   },
   {
-    rating: 4,
-    text: "When an unknown printer took away gallery of type sweet awtch there are scrambled it to make a type many but also the leap into electronic",
+    rating: 5,
+    text: "Tạo nội dung email marketing chất lượng chưa bao giờ dễ dàng như thế! Tỉ lệ mở mail của tôi tăng hơn 35% nhờ prompt này.",
     author: {
-      name: "Kristin Watson",
-      title: "Web Designer",
-      avatar: imgAvt3,
+      name: "Thành Nam",
+      title: "Email Marketer",
+      avatar: imgAvt1,
     },
   },
 ];
@@ -304,6 +336,16 @@ const Home = () => {
         {/* hero */}
         <div className="hero-container">
           <section className="hero-section">
+            <img
+              src={imgDecor2}
+              alt="Decorative Shape 1"
+              className="decoration-left"
+            />
+            <img
+              src={imgDecor1}
+              alt="Decorative Shape 2"
+              className="decoration-bottom-right"
+            />
             <div className="hero-wrap">
               <div className="hero-image">
                 <img src={img} alt="Astronaut" className="astronaut" />
@@ -332,8 +374,11 @@ const Home = () => {
             <div className="partners-bar">
               <div className="users-count">
                 <div className="users-count-item">
-                  <p className="count">10k+</p>
-                  <p className="label">khác hàng hài lòng</p>
+                  <div className="count-container">
+                    <p className="count">10</p>
+                    <p className="count-unit">K+</p>
+                  </div>
+                  <p className="label">khách hàng hài lòng</p>
                 </div>
                 <div className="badge">Trở thành 1 trong số họ</div>
               </div>
@@ -359,7 +404,7 @@ const Home = () => {
                 <div className="partner">
                   <img src={imgDall} alt="DALL-E" />
                 </div>
-                <div className="partner">and more...</div>
+                <div className="partner">và nhiều hơn nữa!</div>
               </div>
             </div>
           </section>
@@ -369,18 +414,18 @@ const Home = () => {
           <div className="collection-header">
             <div className="collection-title">
               <h2>
-                The Biggest Collection
+                Thư Viện AI Lớn Nhất!
                 <br />
-                of AI Resources
+                Mọi Thứ Về AI!
               </h2>
             </div>
             <div className="collection-cta">
               <p>
-                Find Super Prompt, enhance your business or start to sell your
-                Prompt, 170K Prompt ready to download
+                Thúc đẩy doanh số, làm chủ doanh nghiệp, bứt phá qua vạch đích
+                với hàng nghìn prompts được viết bởi chuyên gia
               </p>
               <button className="view-more-btn">
-                View more <span>→</span>
+                Xem thêm<span>→</span>
               </button>
             </div>
           </div>
@@ -444,12 +489,14 @@ const Home = () => {
             <div className="solutions-content">
               <div className="cards-left">
                 <div className="solution-card midjourney">
-                  <span className="card-label">Midjourney</span>
-                  <h3>Midjourney Prompt for Pixel Art</h3>
+                  <span className="card-label">ChatGPT</span>
+                  <h3>
+                    Xác định những vấn đề khách hàng gặp phải để giải quyết
+                  </h3>
                   <p>
-                    Specifying bit rate, location, artist, and aspect ratio
-                    allows you to craft high-definition cinematic stills,
-                    perfectly capturing vintage style.
+                    Phân tích phản hồi của khách hàng và cải thiện sản phẩm của
+                    bạn bằng Prompt ChatGPT này, tập trung vào các điểm khó
+                    khăn, tác động kinh doanh và giải pháp.
                   </p>
                 </div>
               </div>
@@ -461,12 +508,10 @@ const Home = () => {
               <div className="cards-right">
                 <div className="solution-card chatgpt">
                   <span className="card-label">Chat GPT</span>
-                  <h3>Build Predictive Analytics for Sales</h3>
+                  <h3>Nghiên cứu quy mô thị trường và tiềm năng tăng trưởng</h3>
                   <p>
-                    Boost your sales growth with this ChatGPT mega-prompt,
-                    providing a detailed referral-based sales strategy covering
-                    partner identification, incentive structures, and
-                    performance evaluation.
+                    Phân tích xu hướng và cơ hội thị trường bằng Prompt ChatGPT,
+                    cung cấp thông tin chi tiết và dự báo chiến lược.
                   </p>
                 </div>
               </div>
@@ -515,7 +560,7 @@ const Home = () => {
         {/* Thêm section Prompt Blog */}
         <section className="prompt-blog">
           <div className="blog-header-container">
-            <h2>Chúng tôi nói về Prompt</h2>
+            <h2>Prom Blogs</h2>
             <div className="blog-header-container-content">
               <p>
                 {" "}
@@ -566,7 +611,7 @@ const Home = () => {
         {/* Thêm section FAQs với Collapse từ Ant Design */}
         <div
           className="home-faq"
-          style={{ maxWidth: "1600px", margin: "0 auto" }}
+          style={{ maxWidth: "1200px", margin: "0 auto" }}
         >
           <FAQSection />
         </div>
@@ -579,7 +624,7 @@ const Home = () => {
           <div className="testimonials-content">
             <div className="testimonials-header">
               <div className="testimonials-label">PHẢN HỒI CỦA NGƯỜI DÙNG</div>
-              <h2 className="testimonials-title">Họ nói gì về chúng tôi?</h2>
+              <h2 className="testimonials-title">Họ nói gì về PROM?</h2>
             </div>
 
             <div className="testimonials-wrapper">
@@ -622,7 +667,7 @@ const Home = () => {
                           alt={testimonial.author.name}
                         />
                       </div>
-                      <div className="author-info">
+                      <div className="author-info-home">
                         <div className="author-name">
                           {testimonial.author.name}
                         </div>
@@ -655,19 +700,17 @@ const Home = () => {
           <div className="hire-creator-card">
             <div className="hire-creator-content">
               <h2 className="hire-creator-title">
-                Hire an AI creator for your next project
+                Hãy tạo những dự án tuyệt vời và chính xác từ Prom
               </h2>
               <p className="hire-creator-description">
-                Commission custom prompts and solutions from top prompt
-                engineers
+                Tạo nội dung cho chính bạn một cách nhanh chóng và chuẩn xác
+                nhất
               </p>
-              <button className="hire-creator-button">
-                Get Started Now! <span>→</span>
-              </button>
+              <button className="hire-creator-button">Bắt đầu ngay!!!🔥</button>
             </div>
-
+            <div className="solution-background"></div>
             <img
-              src={imgSuperman}
+              src={imgBack3}
               alt="AI Creator"
               className="hire-creator-image"
             />

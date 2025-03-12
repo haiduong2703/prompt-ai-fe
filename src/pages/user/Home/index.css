@@ -119,7 +119,7 @@
 .hero-container {
     background: linear-gradient(90deg, #E1F6FF 0%, #e6b8ff 100%);
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 }
 
 /* Hero Section */
@@ -140,7 +140,7 @@
     /* max-width: 1200px; */
     margin: 0 auto;
     display: flex;
-    margin-top: 50px;
+    margin-top: 100px;
     /* align-items: center; */
     justify-content: center;
     gap: 40px;
@@ -293,7 +293,20 @@
     border-radius: 16px;
     height: 100px;
     min-width: 314px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.35);
 
+}
+
+.count-container {
+    display: flex;
+}
+
+.count-unit {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5700C6;
+    text-transform: uppercase;
+    padding-top: 10px;
 }
 
 .users-count-item {
@@ -303,6 +316,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 }
 
 .count {
@@ -313,7 +327,8 @@
 }
 
 .label {
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
     text-align: center;
     color: #4A4A4A;
 }
@@ -336,15 +351,17 @@
 
 .partners-logos {
     display: flex;
-    /* padding: 20px; */
+    padding: 0 20px;
     background: white;
     align-items: center;
     /* gap: 24px; */
     justify-content: space-around;
-    min-width: 719px;
+    min-width: 750px;
     /* overflow-x: auto; */
     border-radius: 16px;
     align-items: center;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.35);
+    /* Thêm shadow */
     /* padding-bottom: 8px;
         scrollbar-width: none;
         -ms-overflow-style: none; */
@@ -414,10 +431,10 @@
 
 /* Collection Section */
 .collection-section {
-    margin-top: 50px;
+    margin-top: 100px;
     background: white;
     max-width: 1600px;
-    margin: 20px auto;
+    margin: 50px auto;
 }
 
 .collection-header {
@@ -445,13 +462,18 @@
 }
 
 .view-more-btn {
-    background: transparent;
+
+    width: 270px;
+    height: 56px;
+    background-color: #F4F0FF;
     border: none;
-    color: var(--purple-primary);
-    font-weight: 600;
+    color: #5700C6;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
+    border-radius: 96px;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -469,6 +491,7 @@
     scrollbar-width: none;
     cursor: grab;
     touch-action: pan-x;
+    /* border-radius: 18px; */
 }
 
 .marketplace-cards:active {
@@ -481,8 +504,9 @@
 
 .marketplace-card {
     position: relative;
-    min-width: 400px;
-    height: 400px;
+    min-width: 360px;
+    max-width: 360px;
+    height: 360px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1077,8 +1101,9 @@
 /* Prompt Blog Section */
 .prompt-blog {
     /* padding: 40px 20px; */
+    margin-top: 50px;
     margin: 0 auto;
-    max-width: 1600px;
+    max-width: 1200px;
     background: white;
 }
 
@@ -1098,7 +1123,7 @@
 }
 
 .blog-header-container-content {
-    max-width: 500px;
+    max-width: 350px;
 }
 
 .blog-header-container-content p {
@@ -1136,10 +1161,9 @@
 .blog-post {
     background: #F4F0FF;
     border-radius: 10px;
-    padding: 20px;
-    min-width: 500px;
-    width: 500px;
-    height: 320px;
+    padding: 20px 10px;
+    max-width: 380px;
+    /* height: 320px; */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: flex-start;
@@ -1152,7 +1176,6 @@
     height: 10px;
     background-color: #8a63d2;
     border-radius: 50%;
-    margin-right: 15px;
     margin-top: 5px;
 }
 
@@ -1179,7 +1202,7 @@
 .blog-post p {
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .blog-button {
@@ -1187,7 +1210,7 @@
     color: white;
     border: none;
     width: 160px;
-    height: 50px;
+    height: 40px;
     border-radius: 35px;
     cursor: pointer;
     font-size: 1rem;
@@ -1202,7 +1225,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: auto;
+    /* margin-top: auto; */
 }
 
 /* Responsive Design */
@@ -1361,10 +1384,10 @@
 /* Testimonials Section */
 .testimonials-section {
     padding: 80px 20px;
-    background: linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%);
+    background: linear-gradient(90deg, #e3d8ff 0%, #bfdffd 100%);
     margin-top: 40px;
     display: flex;
-    max-width: 1600px;
+    /* max-width: 1600px; */
     margin: 20px auto;
     justify-content: flex-end;
 }
@@ -1391,13 +1414,13 @@
 
 .testimonials-content {
     margin-left: 50px;
-    max-width: 1000px;
+    max-width: 1400px;
 }
 
 .testimonials-container {
     display: flex;
     gap: 24px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1449,7 +1472,7 @@
 }
 
 .scroll-nav-button prev {
-    left: -20px;
+    left: 0px;
 }
 
 .scroll-nav-button next {
@@ -1503,7 +1526,7 @@
     object-fit: cover;
 }
 
-.author-info {
+.author-info-home {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -1617,21 +1640,21 @@
 
 /* Hire AI Creator Section */
 .hire-creator-section {
-    padding: 40px 20px;
+    position: relative;
+    padding: 90px 60px;
     margin: 40px auto;
-    max-width: 1200px;
-    background: white;
+    max-width: 1500px;
+    background: linear-gradient(135deg, #6F42C1, #5727B0);
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 .hire-creator-card {
-    background: linear-gradient(135deg, #6F42C1, #5727B0);
-    border-radius: 20px;
-    padding: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
 
 .hire-creator-content {
@@ -1686,21 +1709,32 @@
 
 .hire-creator-image {
     position: absolute;
-    right: 150px;
-    width: 240px;
-    height: 444px;
-    bottom: -200px;
-    z-index: 1;
-    /* object-fit: cover; */
+    right: 200px;
+    top: -25px;
+    width: 300px;
+    height: auto;
+    z-index: 2;
 }
 
-/* .hire-creator-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-} */
+.solution-background {
+    position: absolute;
+    right: 105px;
+    /* top: -25px; */
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+    /* Radial gradient for glowing effect */
+    border-radius: 50%;
+    /* Circular shape for a natural glow */
+    z-index: -1;
+    /* Ensure it stays behind the main content */
+    opacity: 0.8;
+    /* Adjust opacity for a glowing effect */
+    filter: blur(20px);
+    /* Add blur for a softer glow */
+}
 
-.hire-creator-decoration {
+/* .hire-creator-decoration {
     position: absolute;
     opacity: 0.1;
     z-index: 0;
@@ -1722,7 +1756,7 @@
     height: 60px;
     border: 2px solid white;
     border-radius: 50%;
-}
+} */
 
 @media (max-width: 768px) {
     .hire-creator-card {
@@ -1800,7 +1834,6 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
-    border-radius: 10px;
 }
 
 @media (max-width: 768px) {
@@ -1898,6 +1931,7 @@ body {
     /* overflow: hidden; */
     max-width: 1600px;
     margin: 0 auto;
+    border-radius: 30px;
     background: linear-gradient(90deg, #F6EFFF 0%, #FFF8F2 100%);
 }
 
@@ -2004,7 +2038,8 @@ body {
     font-size: 24px;
     font-weight: 700;
     color: #2D1A4B;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
 .solution-card p {
@@ -2026,6 +2061,22 @@ body {
 }
 
 /* Decorative elements */
+.decoration-left {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 150px;
+    z-index: 3;
+}
+
+.decoration-bottom-right {
+    position: absolute;
+    bottom: 20%;
+    right: 5%;
+    width: 150px;
+    z-index: 3;
+}
+
 .khoi1 {
     position: absolute;
     top: 10%;
@@ -2132,7 +2183,8 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center; */
-    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
 }
 
 .prompt-list-container h1 {
@@ -2158,6 +2210,8 @@ body {
     color: #5700C6;
     background-color: #F4F0FF;
     border: none;
+    width: 240px;
+    height: 56px;
     padding: 12px 24px;
     border-radius: 30px;
     font-weight: 600;
@@ -2165,11 +2219,12 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    width: fit-content;
+    /* width: fit-content; */
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 20px;
+    margin-top: 50px;
 
 }

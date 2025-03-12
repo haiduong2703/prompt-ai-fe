@@ -71,13 +71,13 @@ body {
   justify-content: center;
   flex-grow: 1;
   /* Menu sẽ tự căn giữa */
-  gap: 25px;
+  gap: 35px;
 }
 
 .user-nav-item {
   color: black;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
   padding: 8px 12px;
   /* Điều chỉnh padding */
   transition: color 0.2s ease-in-out;
@@ -154,7 +154,9 @@ body {
   text-decoration: none;
   color: black;
   /* border-right: 1px solid black; */
-  padding-right: 20px;
+  /* padding-right: 20px; */
+  min-width: 120px;
+  font-size: 20px;
 }
 
 .user-signup-link {
@@ -234,8 +236,8 @@ body {
   border-radius: 90px;
   border: none;
   padding: 14px 20px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  /* font-weight: 600; */
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
