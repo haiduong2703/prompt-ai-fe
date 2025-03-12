@@ -7,6 +7,11 @@ import FAQSection from "../../Q&A/FAQSection";
 import api from "../../../services/api";
 import { UserContext } from "../../../context/AuthContext";
 
+const planLabels = {
+  Monthly: "Tháng",
+  Yearly: "Năm"
+};
+
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState("Monthly");
   const [dataSub, setDataSub] = useState([]);
@@ -40,23 +45,23 @@ const Pricing = () => {
   return (
     <div className="user-pricing-container">
       <div className="user-pricing-header">
-        <h1>Gấp đôi hiệu năng làm việc với gói<br/> PromptX phù hợp</h1>
-        <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
+        <h1>x10 hiệu năng làm việc với gói<br/> Prompt phù hợp</h1>
+        <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt đầu tiên Việt Nam!</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
         <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
-          {["Monthly", "Yearly"].map((plan) => (
+          {Object.keys(planLabels).map((plan) => (
             <button
               key={plan}
               className={selectedPlan === plan ? "active" : ""}
               onClick={() => setSelectedPlan(plan)}
             >
-              {plan}
+              {planLabels[plan]}
             </button>
           ))}
         </div>
 
-        <p><span className="discount-text">Save 33%</span> on a yearly subscription</p>
+        <p><span className="discount-text">Tiết kiệm 33%</span> khi đăng ký gói năm</p>
       </div>
 
       <div className="user-pricing-list-card">

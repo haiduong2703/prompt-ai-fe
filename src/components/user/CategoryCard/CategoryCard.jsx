@@ -29,7 +29,7 @@ const CategoryCard = ({ category, link, activeSection }) => {
 
         <div className="user-category-card-main-content">
           <div className="user-category-card-content">
-            <span>{category?.prompt_count} Prompt</span>
+            <span>{category?.prompt_count} Prompts</span>
           </div>
         </div>
       </Link>
