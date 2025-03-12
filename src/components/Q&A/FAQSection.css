@@ -16,10 +16,12 @@
 }
 
 .faq-title {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 48px;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: #1D1E25;
+  line-height: 56px;
+  color: #010205;
+  letter-spacing: 0%;
 }
 
 .faq-description {
@@ -74,6 +76,11 @@
 .faq-item {
   border-bottom: 1px solid #1D1E25;
   padding: 15px 0;
+}
+
+.faq-item:first-child {
+  border-top: 1px solid #1D1E25;
+  padding-top: 15px;
 }
 
 .faq-question {
