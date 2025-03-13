@@ -248,7 +248,7 @@
 
 .astronaut {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     height: auto;
     animation: float 6s ease-in-out infinite;
 }

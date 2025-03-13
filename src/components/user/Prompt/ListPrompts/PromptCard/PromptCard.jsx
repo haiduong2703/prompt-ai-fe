@@ -44,16 +44,23 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
         <div className="component-prompt-card-body">
           {/* <p className="component-prompt-card-body-title">{activeSection.name}</p> */}
           <h3 className="component-prompt-title">{prompt.title}</h3>
-          <p className="component-prompt-description">{prompt.short_description}</p>
+          <p className="component-prompt-description">
+            {prompt.short_description}
+          </p>
         </div>
-
       </div>
-      <div className="component-prompt-card-topic">{prompt?.topic?.name || "Unknown"}</div>
+      <div className="component-prompt-card-topic">
+        {prompt?.topic?.name || "Unknown"}
+      </div>
 
       <div className="component-prompt-card-footer">
         <Link
           to={`/prompts/detail-prompts/${prompt.id}`}
-          state={{ image_category, activeSection, topicName: prompt?.topic?.name }}
+          state={{
+            image_category,
+            activeSection,
+            topicName: prompt?.topic?.name,
+          }}
           className="component-view-prompt-button"
         >
           View Prompt
