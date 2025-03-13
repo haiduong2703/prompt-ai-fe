@@ -210,7 +210,7 @@ const testimonials = [
     author: {
       name: "Phương Hoàng",
       title: "Web Designer",
-      avatar: imgAvt2,
+      avatar: imgAvt3,
     },
   },
   {

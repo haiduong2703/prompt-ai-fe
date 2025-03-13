@@ -199,7 +199,7 @@ const ListPrompts = () => {
                 </div>
                 <div className="newest-prompt-list-wrapper">
                     <div className="astronaut-image">
-                        <img src={phi_hanh_gia} alt="Astronaut" />
+                        <img src="/phi_hanh_gia_alone.png" alt="Astronaut" />
                     </div>
                     <div className="newest-prompt-list">
                         {newestPrompts.map((prompt) => (

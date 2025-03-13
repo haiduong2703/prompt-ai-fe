@@ -44,11 +44,14 @@ const PromptCard = ({ prompt, activeSection }) => {
         <div className="component-prompt-card-body">
           {/* <p className="component-prompt-card-body-title">{activeSection.name}</p> */}
           <h3 className="component-prompt-title">{prompt.title}</h3>
-          <p className="component-prompt-description">{prompt.short_description}</p>
+          <p className="component-prompt-description">
+            {prompt.short_description}
+          </p>
         </div>
-
       </div>
-      <div className="component-prompt-card-topic">{prompt?.topic?.name || "Unknown"}</div>
+      <div className="component-prompt-card-topic">
+        {prompt?.topic?.name || "Unknown"}
+      </div>
 
       <div className="component-prompt-card-footer">
         <Link
