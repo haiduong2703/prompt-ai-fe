@@ -548,7 +548,7 @@ const Home = () => {
                   key={prompt.id}
                   prompt={prompt}
                   // image_category={category?.image_card}
-                  // activeSection={activeSection}
+                  activeSection={prompt?.Category?.Section}
                 />
               ))
             )}

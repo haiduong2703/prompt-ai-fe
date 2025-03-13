@@ -3,7 +3,7 @@ import "./PromptCard.css";
 import { StarFilled, HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const PromptCard = ({ prompt, image_category, activeSection }) => {
+const PromptCard = ({ prompt, activeSection }) => {
   const createdDate = new Date(prompt.created_at);
   const currentDate = new Date();
   const daysDiff = (currentDate - createdDate) / (1000 * 60 * 60 * 24);
@@ -53,7 +53,7 @@ const PromptCard = ({ prompt, image_category, activeSection }) => {
       <div className="component-prompt-card-footer">
         <Link
           to={`/prompts/detail-prompts/${prompt.id}`}
-          state={{ image_category, activeSection, topicName: prompt?.topic?.name }}
+          state={{ activeSection, topicName: prompt?.topic?.name }}
           className="component-view-prompt-button"
         >
           View Prompt
