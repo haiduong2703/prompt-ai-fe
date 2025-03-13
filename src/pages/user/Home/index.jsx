@@ -478,10 +478,10 @@ const Home = () => {
             </p>
 
             <div className="solutions-tags">
-              <span className="tag">Solopreneur</span>
-              <span className="tag">Content Marketers</span>
-              <span className="tag">Performance Marketers</span>
-              <span className="tag">SEO Marketer</span>
+              <span className="tag">Khởi Nghiệp</span>
+              <span className="tag">Tiktokers</span>
+              <span className="tag">Chủ Doanh Nghiệp</span>
+              <span className="tag">Làm Tự Do</span>
               <span className="tag">PR & Communications</span>
               <span className="tag">Sales</span>
             </div>
