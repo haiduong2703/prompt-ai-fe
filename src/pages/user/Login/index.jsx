@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input, Button, Divider, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/AuthContext";
+import { Link } from "react-router-dom";
 import "./index.css";
 import api from "../../../services/api";
 
@@ -62,41 +63,33 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-image">
-        <img
-          src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/675f4b4479874b35a71a514f_Login%20God-p-800.avif"
-          alt="Login Illustration"
-        />
-      </div>
-
-      <div className="login-form">
-        <h2 className="login-title">Login</h2>
-        <p style={{ marginBottom: "20px" }}>
-          Enter your email and receive a 6-digit code to login.
+    <div className="login-page-container">
+      <div className="login-page-form">
+        <h2 className="login-page-title">Đăng nhập</h2>
+        <p style={{ marginBottom: "40px" }}>
+          Nhập địa chỉ email để nhận mã xác thực gồm 6 chữ số
         </p>
-
         {!isOtpSent ? (
           <>
-            <strong>Email Address*</strong>
+            <strong>Email đăng nhập</strong>
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Nhập email đăng nhập của bạn"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Button
               type="primary"
-              className="btn-yellow"
+              className="login-page-btn-yellow"
               onClick={handleSendOtp}
             >
-              Get Confirmation Code
+              Lấy mã xác thực
             </Button>
           </>
         ) : (
           <>
             <p className="code-message">
-              A 6-digit code has been sent to your email. Enter it below.
+              Mã xác thực gồm 6 chữ số đã được gửi đến email của bạn. Nhập nó dưới đây.
             </p>
             <Input
               placeholder="123456"
@@ -105,19 +98,19 @@ const Login = () => {
             />
             <Button
               type="primary"
-              className="btn-yellow"
+              className="login-page-btn-yellow"
               onClick={handleVerifyOtp}
             >
-              Verify & Login
+              Xác thực và Đăng nhập
             </Button>
           </>
         )}
 
-        <Divider>OR</Divider>
-        <Button className="btn-yellow">Login with Password</Button>
+        <Divider>Hoặc</Divider>
+        <Button className="login-page-btn-yellow">Đăng nhập với mật khẩu</Button>
 
-        <p className="signup-text">
-          Don't have an account? <a href="/signup">Sign up</a>
+        <p className="login-page-signup-text">
+          Bạn chưa có tài khoản? <Link to="/signup">Đăng ký</Link>
         </p>
       </div>
     </div>

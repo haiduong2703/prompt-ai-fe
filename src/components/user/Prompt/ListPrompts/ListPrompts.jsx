@@ -9,7 +9,7 @@ import astronault from "../../../../asset/imgae/astronault_list_prom.png";
 import arrow_prev from "../../../../asset/icon/arrow_prev.png";
 import arrow_next from "../../../../asset/icon/arrow_next.png";
 import kinh_lup from "../../../../asset/icon/kinh_lup.png";
-
+import phi_hanh_gia from "../../../../asset/imgae/phi_hanh_gia.png";
 const ListPrompts = () => {
     const location = useLocation();
     const { category, activeSection } = location.state || {};
@@ -199,7 +199,7 @@ const ListPrompts = () => {
                 </div>
                 <div className="newest-prompt-list-wrapper">
                     <div className="astronaut-image">
-                        <img src={astronault} alt="Astronaut" />
+                        <img src="/phi_hanh_gia_alone.png" alt="Astronaut" />
                     </div>
                     <div className="newest-prompt-list">
                         {newestPrompts.map((prompt) => (

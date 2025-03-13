@@ -1,8 +1,9 @@
-.auth-container {
+.register-page-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    height: 688px;
+    background-color: #f0f0f0;
 }
 
 .auth-image img {
@@ -10,75 +11,98 @@
     height: auto;
 }
 
-.auth-form {
+.register-page-form {
     background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
 }
 
-.auth-title {
-    text-align: center;
-    font-size: 24px;
+.register-page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 28px;
+    letter-spacing: 0%;
+    color: #1D1E25;
+}
+
+.register-page-container strong {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
     font-weight: bold;
-    margin-bottom: 10px;
-    width: 260px;
-    text-align: center;
-    padding: 5px;
-    color: white;
-    background-color: #000;
-    border-radius: 10px;
+    color: #333;
 }
 
-.auth-form label {
-    margin: 10px 0 5px;
-    font-weight: 500;
-}
-
-.auth-form input {
+.register-page-container input[type="text"],
+.register-page-container input[type="email"] {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-}
-
-.auth-form .btn-yellow {
-    width: 100%;
-    background: #fadb14;
+    padding: 10px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #F5F5F5;
+    padding-left: 20px;
     border: none;
-    color: #000;
-    font-weight: bold;
-    margin-top: 15px;
 }
-
-.auth-form .btn-social {
+.ant-input-password {
+    border: none;
     width: 100%;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #F5F5F5;
 }
+.register-page-container input[type="password"] {
 
-.signin-text {
-    text-align: center;
+}
+.register-page-btn-yellow {
+    background-color: #5700C6;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 48px;
     margin-top: 15px;
+    font-weight: 500;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0px;
 }
 
-.signin-text a {
-    color: #1890ff;
+.register-page-btn-yellow:hover {
+    background-color: #4e00b3;
+}
+
+.register-page-signin-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-page-signin-text a {
+    color: #5700C6;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .checkbox-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Khoảng cách giữa checkbox và text */
     font-size: 14px;
+    margin-bottom: 15px;
 }
 
 .checkbox-item a {
-    color: #1890ff;
-    /* Màu link mặc định của Ant Design */
+    color: #5700C6;
+}
+
+.Divider {
+    margin: 20px 0;
+    color: #999;
 }
