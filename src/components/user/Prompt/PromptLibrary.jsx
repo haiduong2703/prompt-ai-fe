@@ -39,10 +39,10 @@ const PromptLibrary = () => {
     <div className="prompt-library">
       <div className="prompt-library-container">
         <div className="prompt-library-header">
-          <h1>The Biggest AI Prom Library</h1>
+          <h1>Thư Viện Prompt AI Lớn Nhất</h1>
           <p className="subtitle">
-            Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge
-            your business and boost your productivity.
+            Khám phá những AI Prompt tốt nhất cho ChatGPT & Midjourney, 
+            được thiết kế để tăng tốc doanh nghiệp của bạn và nâng cao hiệu suất làm việc.
           </p>
         </div>
 

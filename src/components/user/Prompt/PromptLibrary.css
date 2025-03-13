@@ -104,7 +104,9 @@
   height: 20px;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-
+.tool-button {
+  font-weight: 400;
+}
 .tool-button.active {
   color: #5700C6;
   font-weight: 700;
