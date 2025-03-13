@@ -83,7 +83,7 @@ const PromptLibrary = () => {
               ))}
             </div>
           ) : (
-            <p className="no-categories"></p>
+            <p className="no-categories">Không có danh mục nào!</p>
           )}
         </div>
 
