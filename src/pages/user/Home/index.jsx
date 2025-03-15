@@ -3,6 +3,7 @@ import { UserContext } from "../../../context/AuthContext";
 import "./index.css";
 import { Collapse } from "antd"; // Import Collapse từ Ant Design
 import { ArrowRightOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import img from "../../../asset/imgae/2.png";
 import imgGPT from "../../../asset/imgae/gpt.png";
 import imgMid from "../../../asset/imgae/mid.png";
@@ -280,7 +281,7 @@ const Home = () => {
     label: faq.question,
     children: <p>{faq.answer}</p>,
   }));
-
+  const navigate = useNavigate();
   const scrollContainer = (containerId, direction) => {
     const container = document.getElementById(containerId);
     const scrollAmount = direction === "next" ? 600 : -600;
@@ -376,7 +377,10 @@ const Home = () => {
                     <span className="purple-text">LỚN NHẤT VIỆT NAM</span>
                   </h1>
                   <p>Hơn 25.000+ Prompt tạo ra từ các chuyên gia về AI</p>
-                  <button className="get-started-btn">
+                  <button
+                    className="get-started-btn"
+                    onClick={() => navigate("/prompts")}
+                  >
                     Bắt đầu ngay{" "}
                     <img
                       style={{ marginLeft: "10px" }}

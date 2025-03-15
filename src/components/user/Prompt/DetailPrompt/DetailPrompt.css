@@ -148,11 +148,13 @@
     display: flex;
     align-items: center;
 }
+
 .detail-prompt-paragraph-content {
     font-size: 16px;
     line-height: 150%;
     font-weight: 400;
 }
+
 .detail-prompt-paragraph-special-content {
     font-size: 16px;
     line-height: 150%;
@@ -160,11 +162,13 @@
     color: white;
     background-color: #310070;
 }
+
 .detail-prompt-paragraph-special {
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 18px;
 }
+
 .prompt-sub-title-paragraph-special {
     margin-block-start: 0;
     font-size: 24px;
@@ -176,11 +180,12 @@
 }
 
 .detail-prompt-paragraph-special-content-box {
-    position: relative; /* Thêm dòng này để nút COPY có điểm neo */
+    position: relative;
+    /* Thêm dòng này để nút COPY có điểm neo */
     padding: 72px 48px;
     padding-bottom: 36px;
     border-radius: 16px;
-    background-color:#310070;
+    background-color: #310070;
     color: white;
 }
 
@@ -490,23 +495,27 @@
     align-items: center;
     justify-items: center;
     margin-bottom: 50px;
-  }
-  .related-prompts-title-box {
+}
+
+.related-prompts-title-box {
     padding-bottom: 20px;
     display: flex;
     justify-items: center;
-  }
-  .related-prompts-title-box h2 {
+}
+
+.related-prompts-title-box h2 {
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     display: inline-block;
     font-size: 48px;
     line-height: 56px;
-  }
-  .related-prompts-title-box h2:hover {
+}
+
+.related-prompts-title-box h2:hover {
     transform: scale(1.05);
-  }
-  .related-prompt-list-wrapper {
+}
+
+.related-prompt-list-wrapper {
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
@@ -516,6 +525,9 @@
 }
   
 .related-prompt-list {
+    width: 100%;
+    padding: 20px;
+    min-height: 100%;
     display: flex;
     gap: 20px;
     overflow-x: auto;
@@ -529,7 +541,7 @@
     flex: 0 0 calc(25% - 20px); /* Adjust the width to show 4 items */
     max-width: calc(25% - 20px); /* Ensure the width doesn't exceed the container */
 }
-  
+
 .detail-prompt-section {
     background: #DACDFFE5;
     border-radius: 16px;
@@ -572,6 +584,10 @@
     color: #1D1E25;
 }
 
+.detail-prompt-section-content img {
+    width: 100%;
+}
+
 .detail-prompt-section-content ul {
     margin: 0;
     padding-left: 20px;
@@ -594,10 +610,11 @@
         font-size: 14px;
         line-height: 22px;
     }
+
     .related-prompts-title-box h2 {
         font-size: 24px;
         line-height: 32px;
-      }
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -609,10 +626,11 @@
         width: 20px;
         height: 20px;
     }
+
     .related-prompts-title-box h2 {
         font-size: 24px;
         line-height: 32px;
-      }
+    }
 }
 
 .detail-prompt-paragraph-special-content-box.blurred {
@@ -659,4 +677,3 @@
         white-space: normal;
     }
 }
-  
