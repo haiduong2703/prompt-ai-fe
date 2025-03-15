@@ -33,7 +33,7 @@ const RoutesMain = () => {
   return (
     <Routes>
       {isAdmin ? (
-        <Route path="/" element={<AdminLayout />}>
+        <Route path="/admin" element={<AdminLayout />}>
           <Route path="topic" element={<TopicAdmin />} />
           <Route path="prompt" element={<PromptList />} />
           <Route path="category" element={<CategoryManager />} />
@@ -55,7 +55,6 @@ const RoutesMain = () => {
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />
-          <Route path="prompts/list-prompts" element={<ListPrompts />} />
         </Route>
       )}
     </Routes>
