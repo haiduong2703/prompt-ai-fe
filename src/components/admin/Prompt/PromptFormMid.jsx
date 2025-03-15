@@ -128,7 +128,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
   const [submitting, setSubmitting] = useState(false);
   const [contentValues, setContentValues] = useState({
     content: "",
-    what: "",
     tips: "",
     text: "",
     how: "",
@@ -138,9 +137,20 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
     addtip: "",
     addinformation: "",
   });
-
+  const [categoriesMid, setCategoriesMid] = useState([]);
+  const fetchCategories = async () => {
+    try {
+      const response = await api.getCategoriesBySection(3);
+      setCategoriesMid(response.data.categories);
+    } catch (error) {
+      message.error("Failed to fetch categories");
+      console.error(error);
+    }
+  };
   const isEditMode = !!promptId;
-
+  useEffect(() => {
+    fetchCategories();
+  }, []);
   useEffect(() => {
     if (isEditMode) {
       fetchPromptDetails();
@@ -148,7 +158,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       form.resetFields();
       setContentValues({
         content: "",
-        what: "",
         tips: "",
         text: "",
         how: "",
@@ -173,12 +182,12 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         short_description: prompt.short_description,
         category_id: prompt.category_id,
         is_type: prompt.is_type,
+        what: prompt.what,
         topic_id: prompt.topic_id,
       });
 
       setContentValues({
         content: prompt.content,
-        what: prompt.what,
         tips: prompt.tips,
         text: prompt.text,
         how: prompt.how,
@@ -199,9 +208,11 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
   const handleSubmit = async (values) => {
     try {
       setSubmitting(true);
+      console.log("hiii", values);
       const promptData = {
         ...values,
         short_description: "1",
+        what: values.what,
         ...contentValues,
       };
 
@@ -212,7 +223,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         await api.createPrompt(promptData);
         setContentValues({
           content: "",
-          what: "",
           tips: "",
           text: "",
           how: "",
@@ -280,22 +290,14 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       />
       <Form.Item name="category_id" label="Thể loại">
         <Select placeholder="Chọn thể loại">
-          {categories.map((category) => (
+          {categoriesMid.map((category) => (
             <Option key={category.id} value={category.id}>
               {category.name}
             </Option>
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="topic_id" label="Chủ đề">
-        <Select placeholder="Chọn chủ đề">
-          {topic.map((category) => (
-            <Option key={category.id} value={category.id}>
-              {category.name}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
+
       <Form.Item name="is_type" label="Mức độ bài viết">
         <Select placeholder="Chọn kiểu">
           <Option value={1}>Free</Option>
@@ -309,6 +311,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           setContentValues((prev) => ({ ...prev, what: value }))
         }
       /> */}
+      <QuillEditorItem
+        label="Ảnh nền phần bài viết"
+        value={contentValues.output}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, output: value }))
+        }
+      />
       <QuillEditorItem
         label="Tips"
         value={contentValues.tips}
@@ -352,12 +361,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           setContentValues((prev) => ({ ...prev, output: value }))
         }
       /> */}
+
       <Form.Item
         name="what"
         label="Example Prompt Text"
-        rules={[{ required: true, message: "Vui lòng nhập Example Prompt" }]}
+        rules={[{ required: true, message: "Nhập tiêu đề" }]}
       >
-        <Input placeholder="Nhập ID section" />
+        <Input placeholder="Nhập tiêu đề" />
       </Form.Item>
       <QuillEditorItem
         label="Example Prompt Image"

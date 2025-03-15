@@ -49,6 +49,7 @@ const PromptList = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isViewModalVisible, setIsViewModalVisible] = useState(false);
   const [currentPrompt, setCurrentPrompt] = useState(null);
+  const [currentPromptMid, setCurrentPromptMid] = useState(null);
   const [isCreateModalMidjourneyVisible, setIsCreateModalMidjourneyVisible] =
     useState(false);
 
@@ -122,7 +123,7 @@ const PromptList = () => {
     }
   };
   const showCreateModalMidjourney = () => {
-    // setCurrentPrompt(null);
+    setCurrentPromptMid(null);
     setIsCreateModalMidjourneyVisible(true);
   };
   const handleSearch = (value) => {
@@ -148,16 +149,20 @@ const PromptList = () => {
   // Modal handlers
   const showCreateModal = () => {
     setCurrentPrompt(null);
+    setCurrentPromptMid(null);
     setIsCreateModalVisible(true);
   };
 
   const showEditModal = (prompt) => {
     setCurrentPrompt(prompt);
+    setCurrentPromptMid(prompt);
+    // setCurrentPromptMid(null);
     setIsEditModalVisible(true);
   };
 
   const showViewModal = (prompt) => {
     setCurrentPrompt(prompt);
+    setCurrentPromptMid(prompt);
     setIsViewModalVisible(true);
   };
 
@@ -165,7 +170,9 @@ const PromptList = () => {
     setIsCreateModalVisible(false);
     setIsEditModalVisible(false);
     setIsViewModalVisible(false);
+    setIsCreateModalMidjourneyVisible(false);
     setCurrentPrompt(null);
+    setCurrentPromptMid(null);
   };
 
   const handleFormSuccess = () => {
@@ -391,9 +398,9 @@ const PromptList = () => {
         width={1000}
         footer={null}
       >
-        {currentPrompt && (
-          <PromptForm
-            promptId={currentPrompt.id}
+        {currentPromptMid && (
+          <PromptFormMid
+            promptId={currentPromptMid.id}
             categories={categories}
             topic={topic}
             onSuccess={handleFormSuccess}
