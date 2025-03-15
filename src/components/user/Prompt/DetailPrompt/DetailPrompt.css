@@ -1,13 +1,11 @@
 .detail-prompt-component {
     display: flex;
     justify-content: center;
-    /* font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif; */
     color: #1D1E25;
-    padding: 48px 24px;
+    padding: 48px 5%;
 }
 
 .detail-prompt-container {
-    max-width: 1200px;
     width: 100%;
 }
 
@@ -492,7 +490,7 @@
 
 /* phần list dưới */
 .related-prompts-container {
-    width: 90%;
+    width: 100%;
     margin-top: 50px;
     align-items: center;
     justify-items: center;
@@ -519,11 +517,13 @@
 
 .related-prompt-list-wrapper {
     width: 100%;
-    position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 20px 14px;
+    scrollbar-width: thin;
+    scrollbar-color: #DACDFF #F4F0FF;
 }
-
+  
 .related-prompt-list {
     width: 100%;
     padding: 20px;
@@ -533,6 +533,13 @@
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    padding-bottom: 16px;
+}
+
+.related-prompt-list > * {
+    flex: 0 0 calc(25% - 20px); /* Adjust the width to show 4 items */
+    max-width: calc(25% - 20px); /* Ensure the width doesn't exceed the container */
 }
 
 .detail-prompt-section {
