@@ -105,7 +105,7 @@ const PromptCard = ({ prompt, favoriteList }) => {
 
       <div className="component-prompt-card-footer">
         <Link
-          to={user != null ? `/prompts/detail-prompts/${prompt.id}` : "/login"}
+          to={user == null ? "/login" : user?.count_prompt === 0 && user?.userSub?.subscription?.type === 0 ? "/pricing" : `/prompts/detail-prompts/${prompt.id}` }
           className="component-view-prompt-button"
         >
           View Prompt
