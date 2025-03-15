@@ -74,6 +74,18 @@
   color: #FFFFFF;
 }
 
+.component-premium-tag-div button.favorite-button {
+  background: #5700C6;
+}
+
+.component-premium-tag-div button.favorite-button .anticon {
+  color: #FFFFFF;
+}
+
+.component-premium-tag-div button.favorite-button:hover {
+  background: #4e00b3;
+}
+
 .component-free-tag {
   height: 36px;
   width: 100px;

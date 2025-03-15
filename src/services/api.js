@@ -162,6 +162,17 @@ const api = {
             headers: { "Content-Type": "application/json" }
         });
     },
+    //Like Prompt
+    getFavoritePrompts: async (userId) => {
+        return axios.get(`${API_URL}/promptfavorite/${userId}`);
+    },
+    addFavoritePrompt: async (promptId, userId) => {
+        return axios.post(`${API_URL}/promptfavorite`, { prompt_id: promptId, user_id: userId });
+    },
+    removeFavoritePrompt: async (id) => {
+        return axios.delete(`${API_URL}/promptfavorite/${id}`);
+    },
+    
 };
 
 export default api;

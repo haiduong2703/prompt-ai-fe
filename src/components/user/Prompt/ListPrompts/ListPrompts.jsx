@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import "./ListPrompts.css";
 import { HomeOutlined, StarFilled, HeartOutlined } from "@ant-design/icons";
@@ -10,9 +10,12 @@ import arrow_prev from "../../../../asset/icon/arrow_prev.png";
 import arrow_next from "../../../../asset/icon/arrow_next.png";
 import kinh_lup from "../../../../asset/icon/kinh_lup.png";
 import phi_hanh_gia from "../../../../asset/imgae/phi_hanh_gia.png";
+import { UserContext } from "../../../../context/AuthContext";
+
 const ListPrompts = () => {
     const location = useLocation();
     const { category, activeSection } = location.state || {};
+    const { user } = useContext(UserContext); // Lấy user từ Context API
 
     const [prompts, setPrompts] = useState([]);
     const [topics, setTopics] = useState([]);
@@ -22,10 +25,14 @@ const ListPrompts = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [newestPrompts, setNewestPrompts] = useState([]);
+    const [favoriteList, setFavoriteList] = useState([]);
 
     useEffect(() => {
         fetchListTopic(category?.id);
         getListNewestPrompts(category?.id);
+        if (user != null) {
+            getFavoritePrompts();
+        }
     }, [])
     useEffect(() => {
         if (topicId == undefined) {
@@ -53,7 +60,15 @@ const ListPrompts = () => {
         } catch (error) {
             console.error("Error fetching prompts:", error);
         }
-    };
+    };  
+    const getFavoritePrompts = async () => {
+        try {
+            const resp = await api.getFavoritePrompts(user?.id);
+            setFavoriteList(resp.data);
+        } catch (error) {
+            console.error("Error fetching favorite prompts:", error);
+        }
+    }
     const handelSearch = async (value) => {
         try {
             setCurrentPage(1);
@@ -163,8 +178,7 @@ const ListPrompts = () => {
                             <PromptCard
                                 key={prompt.id}
                                 prompt={prompt}
-                                image_category={category?.image_card}
-                                activeSection={activeSection}
+                                favoriteList={favoriteList}
                             />
                         ))
                     )}
@@ -206,8 +220,7 @@ const ListPrompts = () => {
                             <PromptCard
                                 key={prompt.id}
                                 prompt={prompt}
-                                image_category={category?.image_card}
-                                activeSection={activeSection}
+                                favoriteList={favoriteList}
                             />
                         ))}
                     </div>

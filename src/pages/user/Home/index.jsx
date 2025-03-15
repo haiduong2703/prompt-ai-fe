@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../context/AuthContext";
 import "./index.css";
 import { Collapse } from "antd"; // Import Collapse từ Ant Design
 import { ArrowRightOutlined } from "@ant-design/icons";
@@ -273,6 +274,7 @@ const testimonials = [
 
 // Component Home
 const Home = () => {
+  const { user } = useContext(UserContext);
   const faqItems = faqs.map((faq) => ({
     key: faq.key,
     label: faq.question,
@@ -289,6 +291,7 @@ const Home = () => {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const totalSlides = Math.ceil(testimonials.length / slidesPerView);
   const [newestPrompts, setNewestPrompts] = useState([]);
+  const [favoriteList, setFavoriteList] = useState([]);
   const getListNewestPrompts = async () => {
     try {
       const query = new URLSearchParams({
@@ -303,6 +306,19 @@ const Home = () => {
       console.error("Error fetching newest prompts:", error);
     }
   };
+  useEffect(() => {
+    if (user != null) {
+      getFavoritePrompts();
+    }
+  }, []);
+  const getFavoritePrompts = async () => {
+    try {
+        const resp = await api.getFavoritePrompts(user?.id);
+        setFavoriteList(resp.data);
+    } catch (error) {
+        console.error("Error fetching favorite prompts:", error);
+    }
+}
   useEffect(() => {
     const handleResize = () => {
       getListNewestPrompts();
@@ -547,8 +563,9 @@ const Home = () => {
                 <PromptCard
                   key={prompt.id}
                   prompt={prompt}
+                  favoriteList={favoriteList}
                   // image_category={category?.image_card}
-                  activeSection={prompt?.Category?.Section}
+                  // activeSection={prompt?.Category?.Section}
                 />
               ))
             )}

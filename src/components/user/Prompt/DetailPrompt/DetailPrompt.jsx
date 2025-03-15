@@ -13,7 +13,6 @@ import copyIcon from "../../../../asset/icon/copy_icon.svg";
 import { UserContext } from "../../../../context/AuthContext";
 const DetailPrompt = () => {
     const location = useLocation();
-    const { activeSection, image_category, topicName } = location.state || {};
     const { id } = useParams();
     const [prompt, setPrompt] = useState([]);
     const [copyStatus, setCopyStatus] = useState(false);
@@ -27,7 +26,21 @@ const DetailPrompt = () => {
         additionalInfo: false
     });
     const { user } = useContext(UserContext); // Lấy user từ Context API
-
+    const [isNew, setIsNew] = useState(false);
+    const [favoriteList, setFavoriteList] = useState([]);
+    const getFavoritePrompts = async () => {
+        try {
+            const resp = await api.getFavoritePrompts(user?.id);
+            setFavoriteList(resp.data);
+        } catch (error) {
+            console.error("Error fetching favorite prompts:", error);
+        }
+    }
+    useEffect(() => {
+        if (user != null) {
+            getFavoritePrompts();
+        }
+    }, []);
     const copyToClipboard = () => {
         if (optimationRef.current) {
             const text = optimationRef.current.innerText; // Lấy nội dung text, bỏ thẻ HTML
@@ -56,7 +69,12 @@ const DetailPrompt = () => {
         try {
             const resp = await api.getPromptById(id);
             setPrompt(resp.data);
-            getListRelatedPrompts(resp?.data?.Category?.id, resp?.data?.Topic?.id, resp?.data?.id)
+            getListRelatedPrompts(resp?.data?.Category?.id, resp?.data?.topic?.id, resp?.data?.id);
+            const createdDate = new Date(resp?.data?.created_at);
+            const currentDate = new Date();
+            const daysDiff = (currentDate - createdDate) / (1000 * 60 * 60 * 24);
+            const temp = daysDiff <= 30;
+            setIsNew(temp);
         } catch (error) {
 
         }
@@ -76,12 +94,12 @@ const DetailPrompt = () => {
                 <div className="detail-prompt-content">
                     <div className="detail-prompt-header">
                         <div className="detail-prompt-header-section">
-                            <img src={activeSection?.description} alt="ChatGPT" />
+                            <img src={prompt?.Category?.Section?.description} alt="ChatGPT" />
                             <span>ChatGPT Prompts</span>
                         </div>
                         <div className="detail-prompt-premium-tag">
-                            <div className="detail-prompt-premium-tag-new">New</div>
-                            {prompt?.is_type === 2 ? (
+                            {isNew && <div className="detail-prompt-premium-tag-new">New</div>}
+                            {/* {prompt?.is_type === 2 ? (
                                 <div className="detail-prompt-premium-tag-premium">
                                     <StarFilled /> Premium
                                 </div>
@@ -89,7 +107,7 @@ const DetailPrompt = () => {
                                 <div className="detail-prompt-premium-tag-free">
                                     Free
                                 </div>
-                            )}
+                            )} */}
                         </div>
                     </div>
                     <div className="detail-prompt-title">
@@ -119,8 +137,8 @@ const DetailPrompt = () => {
                                     <div dangerouslySetInnerHTML={{ __html: prompt.text }} />
                                 </h2>
                             </div>
-                            <div className={`detail-prompt-paragraph-special-content-box ${!user?.UserSub ? 'blurred' : ''}`}>
-                                {user?.UserSub && (
+                            <div className={`detail-prompt-paragraph-special-content-box ${user?.userSub.subscription?.type > 1 ? '' : 'blurred'}`}>
+                                {user?.userSub.subscription?.type > 1 && (
                                     <button
                                         className="copy-button"
                                         onClick={copyToClipboard}
@@ -222,26 +240,24 @@ const DetailPrompt = () => {
                         )}
                     </div>
 
-                    {/* Danh sách prompt mới nhất */}
-                    <div className="related-prompts-container">
-                        <div className="related-prompts-title-box">
-                            <h2>More Prompts:</h2>
-                        </div>
-                        <div className="related-prompt-list-wrapper">
-                            <div className="related-prompt-list">
-                                {relatedPrompts.map((prompt) => (
-                                    <PromptCard
-                                        key={prompt.id}
-                                        prompt={prompt}
-                                        image_category={prompt?.Category?.image_card}
-                                        activeSection={activeSection}
-                                    />))}
-                            </div>
+                </div>
+
+                {/* Danh sách prompt mới nhất */}
+                <div className="related-prompts-container">
+                    <div className="related-prompts-title-box">
+                        <h2>More Prompts</h2>
+                    </div>
+                    <div className="related-prompt-list-wrapper">
+                        <div className="related-prompt-list">
+                            {relatedPrompts.map((prompt) => (
+                                <PromptCard
+                                    key={prompt.id}
+                                    prompt={prompt}
+                                    favoriteList={favoriteList}
+                                />))}
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     );
