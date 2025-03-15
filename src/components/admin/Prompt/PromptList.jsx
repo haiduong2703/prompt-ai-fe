@@ -21,6 +21,7 @@ import {
 import api from "../../../services/api";
 import PromptForm from "./PromptForm";
 import PromptDetail from "./PromptDetail";
+import PromptFormMid from "./PromptFormMid";
 
 const { Title } = Typography;
 const { Search } = Input;
@@ -33,6 +34,7 @@ const PromptList = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [categories, setCategories] = useState([]);
+  const [sections, setSections] = useState([]);
   const [topic, setTopic] = useState([]);
 
   const [filters, setFilters] = useState({
@@ -47,11 +49,14 @@ const PromptList = () => {
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [isViewModalVisible, setIsViewModalVisible] = useState(false);
   const [currentPrompt, setCurrentPrompt] = useState(null);
+  const [isCreateModalMidjourneyVisible, setIsCreateModalMidjourneyVisible] =
+    useState(false);
 
   useEffect(() => {
     fetchCategories();
     fetchPrompts();
     fetchTopics();
+    fetchSection();
   }, [page, pageSize, filters]);
 
   const fetchCategories = async () => {
@@ -60,6 +65,16 @@ const PromptList = () => {
       setCategories(response.data.data);
     } catch (error) {
       message.error("Failed to fetch categories");
+      console.error(error);
+    }
+  };
+  const fetchSection = async () => {
+    try {
+      const response = await api.getSections();
+      console.log(response.data);
+      setSections(response.data);
+    } catch (error) {
+      message.error("Failed to fetch section");
       console.error(error);
     }
   };
@@ -106,7 +121,10 @@ const PromptList = () => {
       console.error(error);
     }
   };
-
+  const showCreateModalMidjourney = () => {
+    // setCurrentPrompt(null);
+    setIsCreateModalMidjourneyVisible(true);
+  };
   const handleSearch = (value) => {
     setFilters({ ...filters, search: value });
     setPage(1);
@@ -253,13 +271,23 @@ const PromptList = () => {
         }}
       >
         <Title level={2}>Quản lý Prompts</Title>
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={showCreateModal}
-        >
-          Thêm mới
-        </Button>
+        <div>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={showCreateModal}
+            style={{ marginRight: 10 }}
+          >
+            Thêm mới ChatGPT
+          </Button>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={showCreateModalMidjourney}
+          >
+            Thêm mới Midjourney
+          </Button>
+        </div>
       </div>
 
       <div style={{ marginBottom: 16, display: "flex", gap: 16 }}>
@@ -324,10 +352,40 @@ const PromptList = () => {
           onSuccess={handleFormSuccess}
         />
       </Modal>
+      <Modal
+        title="Tạo mới Prompt mid"
+        open={isCreateModalMidjourneyVisible}
+        onCancel={handleModalCancel}
+        width={1000}
+        footer={null}
+      >
+        <PromptFormMid
+          categories={categories}
+          topic={topic}
+          onSuccess={handleFormSuccess}
+        />
+      </Modal>
 
       {/* Edit Modal */}
       <Modal
         title="Sửa thông tin Prompt"
+        open={isEditModalVisible}
+        onCancel={handleModalCancel}
+        width={1000}
+        footer={null}
+      >
+        {currentPrompt && (
+          <PromptForm
+            promptId={currentPrompt.id}
+            categories={categories}
+            topic={topic}
+            onSuccess={handleFormSuccess}
+          />
+        )}
+      </Modal>
+
+      <Modal
+        title="Sửa thông tin Prompt Mid"
         open={isEditModalVisible}
         onCancel={handleModalCancel}
         width={1000}
