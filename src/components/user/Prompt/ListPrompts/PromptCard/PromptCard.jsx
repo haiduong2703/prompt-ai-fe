@@ -4,6 +4,7 @@ import { StarFilled, HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../../../context/AuthContext";
 import api from "../../../../../services/api";
+import { Modal } from 'antd';
 
 const PromptCard = ({ prompt, favoriteList }) => {
   const createdDate = new Date(prompt.created_at);
@@ -56,6 +57,28 @@ const PromptCard = ({ prompt, favoriteList }) => {
     }
   }
 
+  const handleViewPrompt = () => {
+    if (user == null) {
+      navigate("/login");
+      return;
+    }
+
+    if (user?.count_prompt === 0 && user?.userSub?.subscription?.type === 1) {
+      Modal.confirm({
+        title: 'Thông báo',
+        content: 'Đã hết số lượng xem prompt mỗi ngày, Click vào đây để mua gói',
+        okText: 'Mua gói',
+        cancelText: 'Đóng',
+        onOk() {
+          navigate("/pricing");
+        }
+      });
+      return;
+    }
+
+    navigate(`/prompts/detail-prompts/${prompt.id}`);
+  };
+
   return (
     <div className="component-prompt-card-container">
       <div className="component-prompt-card">
@@ -104,12 +127,12 @@ const PromptCard = ({ prompt, favoriteList }) => {
       </div>
 
       <div className="component-prompt-card-footer">
-        <Link
-          to={user == null ? "/login" : user?.count_prompt === 0 && user?.userSub?.subscription?.type === 0 ? "/pricing" : `/prompts/detail-prompts/${prompt.id}` }
+        <button
+          onClick={handleViewPrompt}
           className="component-view-prompt-button"
         >
           View Prompt
-        </Link>
+        </button>
         {/* <div className="component-like-link-holder">
           <div className="component-like-link-holder-div-child">
             <HeartFilled />
