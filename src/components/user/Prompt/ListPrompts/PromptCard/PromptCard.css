@@ -74,6 +74,18 @@
   color: #FFFFFF;
 }
 
+.component-premium-tag-div button.favorite-button {
+  background: #5700C6;
+}
+
+.component-premium-tag-div button.favorite-button .anticon {
+  color: #FFFFFF;
+}
+
+.component-premium-tag-div button.favorite-button:hover {
+  background: #4e00b3;
+}
+
 .component-free-tag {
   height: 36px;
   width: 100px;
@@ -165,6 +177,7 @@
   line-height: 24px;
   text-decoration: none;
   transition: all 0.3s ease;
+  border: none;
 }
 
 .component-view-prompt-button:hover {
@@ -201,3 +214,21 @@
 .component-like-link-holder-div-child:hover svg {
   color: #FFFFFF;
 } */
+
+.custom-modal-confirm .ant-btn-primary:hover {
+  background-color: #4e00b3 !important;
+  border-color: #4e00b3 !important;
+}
+
+.custom-modal-confirm .ant-btn-default:hover {
+  color: #4e00b3 !important;
+  border-color: #4e00b3 !important;
+}
+.ant-modal-confirm .ant-modal-confirm-content {
+  font-weight: 400;
+  color: #1D1E25;
+}
+.ant-modal-confirm .ant-modal-confirm-title {
+  font-weight: 700;
+  color: #1D1E25;
+}
