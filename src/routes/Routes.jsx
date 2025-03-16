@@ -21,6 +21,7 @@ import BlogManager from "../components/admin/Blog";
 import BlogCategoryManager from "../components/admin/BlogCategory";
 import BlogDetailPage from "../pages/user/Blog/Detail";
 import TopicAdmin from "../components/admin/Topic";
+import InfoUser from "../components/user/Infomation/InfoUser";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
@@ -55,6 +56,7 @@ const RoutesMain = () => {
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />
+          {user && <Route path="user-information" element={<InfoUser />} />}
         </Route>
       )}
     </Routes>
