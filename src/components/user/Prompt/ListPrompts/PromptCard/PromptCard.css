@@ -213,3 +213,13 @@
 .component-like-link-holder-div-child:hover svg {
   color: #FFFFFF;
 } */
+
+.custom-modal-confirm .ant-btn-primary:hover {
+  background-color: #4e00b3 !important;
+  border-color: #4e00b3 !important;
+}
+
+.custom-modal-confirm .ant-btn-default:hover {
+  color: #4e00b3 !important;
+  border-color: #4e00b3 !important;
+}

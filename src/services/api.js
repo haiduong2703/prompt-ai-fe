@@ -161,6 +161,9 @@ const api = {
             headers: { "Content-Type": "application/json" }
         });
     },
+    updateCount: async (id) => {
+        return axios.put(`${API_URL}/users/count-prompt/${id}`);
+    },
     //Like Prompt
     getFavoritePrompts: async (userId) => {
         return axios.get(`${API_URL}/promptfavorite/${userId}`);
