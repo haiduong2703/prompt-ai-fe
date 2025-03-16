@@ -47,6 +47,7 @@ const PromptList = () => {
   // Modal states
   const [isCreateModalVisible, setIsCreateModalVisible] = useState(false);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [isEditModalMidVisible, setIsEditModalMidVisible] = useState(false);
   const [isViewModalVisible, setIsViewModalVisible] = useState(false);
   const [currentPrompt, setCurrentPrompt] = useState(null);
   const [currentPromptMid, setCurrentPromptMid] = useState(null);
@@ -154,10 +155,14 @@ const PromptList = () => {
   };
 
   const showEditModal = (prompt) => {
-    setCurrentPrompt(prompt);
-    setCurrentPromptMid(prompt);
+    if (prompt.Category.section_id === 1) {
+      setCurrentPrompt(prompt);
+      setIsEditModalVisible(true);
+    } else {
+      setCurrentPromptMid(prompt);
+      setIsEditModalMidVisible(true);
+    }
     // setCurrentPromptMid(null);
-    setIsEditModalVisible(true);
   };
 
   const showViewModal = (prompt) => {
@@ -169,6 +174,7 @@ const PromptList = () => {
   const handleModalCancel = () => {
     setIsCreateModalVisible(false);
     setIsEditModalVisible(false);
+    setIsEditModalMidVisible(false);
     setIsViewModalVisible(false);
     setIsCreateModalMidjourneyVisible(false);
     setCurrentPrompt(null);
@@ -393,7 +399,7 @@ const PromptList = () => {
 
       <Modal
         title="Sửa thông tin Prompt Mid"
-        open={isEditModalVisible}
+        open={isEditModalMidVisible}
         onCancel={handleModalCancel}
         width={1000}
         footer={null}
