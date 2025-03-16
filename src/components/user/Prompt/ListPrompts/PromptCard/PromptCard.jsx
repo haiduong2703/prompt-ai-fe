@@ -66,7 +66,7 @@ const PromptCard = ({ prompt, favoriteList }) => {
     if (user?.count_prompt === 0 && user?.userSub?.subscription?.type === 1) {
       Modal.confirm({
         title: 'Thông báo',
-        content: 'Đã hết số lượng xem prompt mỗi ngày, Click vào đây để nâng cấp ngay',
+        content: 'Bạn đã sử dụng hết số lượng prompt cho phép. Hãy click vào đây để nâng cấp ngay!',
         okText: 'Nâng cấp',
         cancelText: 'Đóng',
         className: 'custom-modal-confirm',
@@ -165,7 +165,7 @@ const PromptCard = ({ prompt, favoriteList }) => {
           onClick={handleViewPrompt}
           className="component-view-prompt-button"
         >
-          View Prompt
+          Xem Prompt
         </button>
         {/* <div className="component-like-link-holder">
           <div className="component-like-link-holder-div-child">

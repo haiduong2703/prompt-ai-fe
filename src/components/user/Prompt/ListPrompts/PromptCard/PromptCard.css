@@ -224,3 +224,11 @@
   color: #4e00b3 !important;
   border-color: #4e00b3 !important;
 }
+.ant-modal-confirm .ant-modal-confirm-content {
+  font-weight: 400;
+  color: #1D1E25;
+}
+.ant-modal-confirm .ant-modal-confirm-title {
+  font-weight: 700;
+  color: #1D1E25;
+}

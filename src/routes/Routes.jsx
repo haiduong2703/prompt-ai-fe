@@ -51,7 +51,7 @@ const RoutesMain = () => {
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />
-          <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />
+          {(user?.count_prompt > 0 || user?.userSub?.subscription?.type > 1)  && <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />}
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />
