@@ -24,6 +24,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import styles for React Quill
 import axios from "axios";
 import api from "../../../services/api";
+import QuillEditorItem from "../../QuillEditor";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -339,9 +340,18 @@ const BlogManager = () => {
               />
             )}
           </Form.Item>
-
-          <ReactQuill value={content} onChange={handleChange} />
-
+          <QuillEditorItem
+            label="Nội dung"
+            value={content}
+            onChange={handleChange}
+          />
+          {/* <QuillEditorItem
+        label="What This Prompt Does"
+        value={contentValues.what}
+        onChange={(value) =>
+          setContentValues((prev) => ({ ...prev, what: value }))
+        }
+      /> */}
           <Form.Item
             name="meta_description"
             label="Mô tả meta"

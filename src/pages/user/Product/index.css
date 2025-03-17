@@ -1,0 +1,235 @@
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container-product {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+}
+
+.header-product {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header-product h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #2D1A4B;
+    margin-bottom: 16px;
+}
+
+.header-product p {
+    font-size: 16px;
+    color: #666;
+}
+
+.filter-section-product {
+    margin-bottom: 40px;
+}
+
+.filter-buttons-product {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.filter-button-product {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #F4F0FF;
+    color: #6F42C1;
+    transition: all 0.3s ease;
+}
+
+.filter-button-product.active {
+    background-color: #6F42C1;
+    color: white;
+}
+
+.icon-product {
+    font-size: 16px;
+}
+
+.filter-tags-product {
+    display: flex;
+    gap: 12px;
+}
+
+.tag-group-product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tag-product {
+    padding: 6px 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background: white;
+    color: #4B5563;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tag-product.active {
+    background-color: #6F42C1;
+    color: white;
+    border-color: #6F42C1;
+}
+
+.tag-product.newest {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot-product {
+    width: 8px;
+    height: 8px;
+    background-color: #6F42C1;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.items-grid-product {
+    display: grid;
+    /* min-width: 1200px; */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.item-card-product {
+    background: #F4F0FF;
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.item-card-product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-product {
+    margin-bottom: 20px;
+}
+
+.status-badge-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: white;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status-badge-product .icon-product {
+    font-size: 16px;
+}
+
+.card-content-product {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.card-content-product h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2D1A4B;
+    margin-bottom: 24px;
+}
+
+.notion-icon-product {
+    width: 24px;
+    height: 24px;
+}
+
+.access-button-product {
+    width: 300px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #6F42C1;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card-image-product {
+    height: 96px;
+    width: 96px;
+}
+
+.access-button-product:hover {
+    background: #5829B4;
+}
+
+.arrow-product {
+    margin-left: 4px;
+}
+
+@media (max-width: 768px) {
+    .container-product {
+        padding: 20px;
+    }
+
+    .card-content-product {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-product h1 {
+        font-size: 28px;
+    }
+
+    .filter-section-product {
+        margin-bottom: 30px;
+    }
+
+    .filter-buttons-product {
+        overflow-x: auto;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+    }
+
+    .tag-group-product {
+        overflow-x: auto;
+        padding-bottom: 12px;
+        flex-wrap: nowrap;
+    }
+
+    .items-grid-product {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+    }
+
+    .item-card-product {
+        padding: 20px;
+    }
+}

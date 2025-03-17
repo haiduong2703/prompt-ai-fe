@@ -41,7 +41,7 @@ const Register = () => {
     }
 
     try {
-      const response = await api.verifyLogin(email, otp);
+      const response = await api.verifyOTP(email, otp);
 
       const data = await response.data;
       if (data) {
@@ -58,7 +58,6 @@ const Register = () => {
 
   return (
     <div className="register-page-container">
-
       <div className="register-page-form">
         <h2 className="register-page-title">Đăng ký</h2>
 
@@ -67,7 +66,7 @@ const Register = () => {
           <>
             <strong>Tên hiển thị</strong>
             <Input
-              style={{  marginBottom: "20px", padding: "10px 15px"}}
+              style={{ marginBottom: "20px", padding: "10px 15px" }}
               type="text"
               placeholder="Nhập tên của bạn"
               value={fullName}
@@ -75,7 +74,7 @@ const Register = () => {
             />
             <strong>Email đăng nhập</strong>
             <Input
-              style={{ marginBottom: "20px", padding: "10px 15px"}}
+              style={{ marginBottom: "20px", padding: "10px 15px" }}
               type="email"
               placeholder="Nhập email của bạn"
               value={email}
@@ -83,16 +82,14 @@ const Register = () => {
             />
             <strong>Mật khẩu</strong>
             <Input.Password
-              style={{ marginBottom: "20px", padding: "10px 15px"}}
+              style={{ marginBottom: "20px", padding: "10px 15px" }}
               placeholder="Nhập mật khẩu"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <div className="checkbox-item">
               <Checkbox />
-              <span>
-                Ghi nhớ mật khẩu
-              </span>
+              <span>Ghi nhớ mật khẩu</span>
             </div>
             {/* <div className="checkbox-item">
               <Checkbox />

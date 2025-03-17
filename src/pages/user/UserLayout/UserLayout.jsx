@@ -56,15 +56,15 @@ const UserLayout = ({ children }) => {
               Prompt
             </Link>
 
-            {/* <Link
-              to="/products"
+            <Link
+              to="/product"
               className={`user-nav-item ${
-                location.pathname === "/products" ? "user-active" : ""
+                location.pathname === "/product" ? "user-active" : ""
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tài Liệu AI
-            </Link> */}
+            </Link>
             {/* <div className="user-dropdown">
               <button className="user-dropdown-btn">
                 Tools <img src={arrowExpand} alt="" />
@@ -86,7 +86,7 @@ const UserLayout = ({ children }) => {
                 </Link>
               </div>
             </div> */}
-            {/* <Link
+            <Link
               to="/blog"
               className={`user-nav-item ${
                 location.pathname === "/blog" ? "user-active" : ""
@@ -94,7 +94,7 @@ const UserLayout = ({ children }) => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
-            </Link> */}
+            </Link>
             <Link
               to="/pricing"
               className={`user-nav-item ${

@@ -21,6 +21,8 @@ import BlogManager from "../components/admin/Blog";
 import BlogCategoryManager from "../components/admin/BlogCategory";
 import BlogDetailPage from "../pages/user/Blog/Detail";
 import TopicAdmin from "../components/admin/Topic";
+import ProductComponent from "../pages/user/Product";
+import ProductManager from "../components/admin/Product";
 import InfoUser from "../components/user/Infomation/InfoUser";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
@@ -42,12 +44,14 @@ const RoutesMain = () => {
           <Route path="sub" element={<SubscriptionManager />} />
           <Route path="blog" element={<BlogManager />} />
           <Route path="blogcategory" element={<BlogCategoryManager />} />
+          <Route path="products" element={<ProductManager />} />
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
           <Route path="login" element={<Login />} />
           <Route path="home" element={<Home />} />
+          <Route path="product" element={<ProductComponent />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
