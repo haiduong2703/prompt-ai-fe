@@ -1,0 +1,85 @@
+.info-favorite-prompt {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-favorite-prompt h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1D1E25;
+}
+
+.info-favorite-prompt p {
+  color: #1D1E25;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.info-favorite-section-filter {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.info-favorite-section-button {
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: none;
+  background: #F4F0FF;
+  color: #1D1E25;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.info-favorite-section-button:hover {
+  background: #DACDFF;
+}
+
+.info-favorite-section-button.active {
+  background: #DACDFFE5;
+  color: #5700C6;
+  font-weight: 700;
+}
+
+.info-favorite-prompt-list {
+    flex: 1;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px; /* Space for scrollbar */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .info-favorite-prompt-list > * {
+    flex: 0 0 360px; /* Fixed width for each card */
+  }
+  /* Custom scrollbar styles */
+.info-favorite-prompt-list::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .info-favorite-prompt-list::-webkit-scrollbar-track {
+    background: #F4F0FF;
+    border-radius: 4px;
+  }
+  
+  .info-favorite-prompt-list::-webkit-scrollbar-thumb {
+    background: #DACDFF;
+    border-radius: 4px;
+  }
+  
+  .info-favorite-prompt-list::-webkit-scrollbar-thumb:hover {
+    background: #5700C6;
+  }
+  
+  /* Firefox scrollbar */
+  .info-favorite-prompt-list {
+    scrollbar-width: thin;
+    scrollbar-color: #DACDFF #F4F0FF;
+  }
+

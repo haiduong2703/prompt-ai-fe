@@ -194,6 +194,9 @@ const api = {
     deleteProduct: async (id) => {
         return axios.delete(`${API_URL}/products/${id}`);
     },
+    getFavoritePromptsByUserId: async (userId, sectionId) => {
+        return axios.get(`${API_URL}/promptfavorite/list/by-section?user_id=${userId}&section_id=${sectionId}`);
+    },
 };
 
 export default api;

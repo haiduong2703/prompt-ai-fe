@@ -4,7 +4,6 @@ import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
 import logoImg from "../../../asset/imgae/logo.svg";
-import arrowExpand from "../../../asset/icon/arow_expand.svg";
 
 const UserLayout = ({ children }) => {
   const location = useLocation();
@@ -141,9 +140,11 @@ const UserLayout = ({ children }) => {
               <p onClick={handleLogout} className="user-logout">
                 Đăng Xuất
               </p>
-              <div className="user-avatar">
-                <img src={userLocal.avatar} alt="Avatar" />
-              </div>
+              <Link to="/user-information">
+                <div className="user-avatar">
+                  <img src={userLocal.avatar} alt="Avatar" />
+                </div>
+              </Link>
             </>
           ) : (
             <>
