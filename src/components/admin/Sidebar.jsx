@@ -40,6 +40,9 @@ const Sidebar = () => {
         <Menu.Item key="1" icon={<DashboardOutlined />}>
           <Link to="prompt">Quản lý Prompts</Link>
         </Menu.Item>
+        <Menu.Item key="9" icon={<DashboardOutlined />}>
+          <Link to="products">Quản lý sản phẩm</Link>
+        </Menu.Item>
         <Menu.Item key="2" icon={<AppstoreOutlined />}>
           <Link to="category">Quản lý thể loại</Link>
         </Menu.Item>

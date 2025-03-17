@@ -156,6 +156,11 @@ const api = {
             headers: { "Content-Type": "application/json" }
         });
     },
+    verifyOTP: async (email, otp) => {
+        return axios.post(`${API_URL}/users/verify-otp`, { email, otp }, {
+            headers: { "Content-Type": "application/json" }
+        });
+    },
     registerUser: async (fullName, email, password) => {
         return axios.post(`${API_URL}/users/register`, { full_name: fullName, email, password }, {
             headers: { "Content-Type": "application/json" }
@@ -174,7 +179,21 @@ const api = {
     removeFavoritePrompt: async (id) => {
         return axios.delete(`${API_URL}/promptfavorite/${id}`);
     },
-    
+    //Product
+
+    getProducts: async (page = 1, pageSize = 10) => {
+        return axios.get(`${API_URL}/products?page=${page}&pageSize=${pageSize}`);
+    },
+    createProduct: async (promptData) => {
+        return axios.post(`${API_URL}/products`, promptData);
+    },
+
+    updateProduct: async (id, promptData) => {
+        return axios.put(`${API_URL}/products/${id}`, promptData);
+    },
+    deleteProduct: async (id) => {
+        return axios.delete(`${API_URL}/products/${id}`);
+    },
 };
 
 export default api;

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { UserContext } from "../../../context/AuthContext";
 import "./index.css";
 import { Collapse } from "antd"; // Import Collapse từ Ant Design
@@ -282,6 +282,28 @@ const Home = () => {
     children: <p>{faq.answer}</p>,
   }));
   const navigate = useNavigate();
+  const marketplaceRef = useRef(null);
+
+  useEffect(() => {
+    const handleAutoScroll = () => {
+      if (window.innerWidth <= 768 && marketplaceRef.current) {
+        const scrollAmount = 1;
+        marketplaceRef.current.scrollLeft += scrollAmount;
+
+        if (
+          marketplaceRef.current.scrollLeft >=
+          marketplaceRef.current.scrollWidth -
+            marketplaceRef.current.clientWidth
+        ) {
+          marketplaceRef.current.scrollLeft = 0;
+        }
+      }
+    };
+
+    const scrollInterval = setInterval(handleAutoScroll, 30);
+    return () => clearInterval(scrollInterval);
+  }, []);
+
   const scrollContainer = (containerId, direction) => {
     const container = document.getElementById(containerId);
     const scrollAmount = direction === "next" ? 600 : -600;
@@ -314,12 +336,12 @@ const Home = () => {
   }, []);
   const getFavoritePrompts = async () => {
     try {
-        const resp = await api.getFavoritePrompts(user?.id);
-        setFavoriteList(resp.data);
+      const resp = await api.getFavoritePrompts(user?.id);
+      setFavoriteList(resp.data);
     } catch (error) {
-        console.error("Error fetching favorite prompts:", error);
+      console.error("Error fetching favorite prompts:", error);
     }
-}
+  };
   useEffect(() => {
     const handleResize = () => {
       getListNewestPrompts();
@@ -385,6 +407,7 @@ const Home = () => {
                     <img
                       style={{ marginLeft: "10px" }}
                       src={imgArrowUp}
+                      className="arrow-up"
                       alt="Arrow Up"
                     />
                   </button>
@@ -460,8 +483,12 @@ const Home = () => {
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
               </svg>
             </button>
-            <div className="marketplace-cards" id="marketplace-cards">
-              {marketplaceCards.map((card, index) => (
+            <div
+              className="marketplace-cards"
+              id="marketplace-cards"
+              ref={marketplaceRef}
+            >
+              {[...marketplaceCards, ...marketplaceCards].map((card, index) => (
                 <div key={index} className="marketplace-card">
                   <div className="card-content">
                     <h3>{card.title}</h3>
@@ -729,12 +756,15 @@ const Home = () => {
               </p>
               <button className="hire-creator-button">Bắt đầu ngay!!!🔥</button>
             </div>
-            <div className="solution-background"></div>
-            <img
-              src={imgBack3}
-              alt="AI Creator"
-              className="hire-creator-image"
-            />
+            <div style={{ height: "300px" }}>
+              {" "}
+              <div className="solution-background"></div>
+              <img
+                src={imgBack3}
+                alt="AI Creator"
+                className="hire-creator-image"
+              />
+            </div>
 
             <div className="hire-creator-decoration decoration-1"></div>
             <div className="hire-creator-decoration decoration-2"></div>

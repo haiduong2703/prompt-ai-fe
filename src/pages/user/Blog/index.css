@@ -1,6 +1,6 @@
 /* src/components/BlogList/BlogList.css */
-.blog-container {
-    /* max-width: 1200px; */
+.blog-container-list {
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -51,8 +51,10 @@ a {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 cột cố định, mỗi cột chiếm 1 phần bằng nhau */
     gap: 30px;
+    grid-auto-rows: minmax(100px, auto);
     margin-bottom: 40px;
 }
 
@@ -68,6 +70,7 @@ a {
 }
 
 .blog-image {
+    margin-bottom: 10px;
     height: 200px;
     overflow: hidden;
 }
@@ -113,10 +116,11 @@ a {
 
 /* .blog-footer {
     border-top: 1px solid #eee;
-        padding-top: 15px;
-        margin-top: auto;
-} */
+    padding-top: 15px;
+    margin-top: auto;
+}
 
+*/
 .author-info {
     display: flex;
     align-items: center;
@@ -183,6 +187,10 @@ a {
 @media (max-width: 768px) {
     .blog-grid {
         grid-template-columns: 1fr;
+    }
+
+    .blog-post {
+        width: 100%;
     }
 
     .blog-header h1 {

@@ -128,8 +128,8 @@
     /* Đổi thành transparent để lấy màu nền từ hero-container */
     padding: 40px;
     padding-top: 20px;
-    position: relative;
-    overflow: hidden;
+    /* position: relative;
+        overflow: hidden; */
     margin-top: 0;
     max-width: 1600px;
     margin: 0 auto;
@@ -218,7 +218,7 @@
     padding: 10px 20px;
     height: 56px;
     width: 205px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     cursor: pointer;
     /* display: inline-flex;
@@ -234,8 +234,13 @@
 
 .get-started-btn:hover {
     background-color: #4a00a8;
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(87, 0, 198, 0.2);
+}
+
+.arrow-up:hover {
+    color: #fff;
 }
 
 .hero-image {
@@ -251,7 +256,7 @@
     width: 100%;
     max-width: 500px;
     height: auto;
-    animation: float 6s ease-in-out infinite;
+    /* animation: float 6s ease-in-out infinite; */
 }
 
 @keyframes float {
@@ -392,12 +397,17 @@
     }
 
     .hero-wrap {
+        margin-top: 0;
         flex-direction: column-reverse;
-        gap: 20px;
+        gap: 60px;
     }
 
     .purple-text {
-        font-size: 20px;
+        font-size: 35px;
+    }
+
+    .hero-container {
+        height: auto;
     }
 
     /* .hero-text h1 {
@@ -416,11 +426,12 @@
     }
 
     .hero-image {
+
         order: -1;
     }
 
     .astronaut {
-        max-width: 200px;
+        max-width: 240px;
     }
 
     .partners-bar {
@@ -441,6 +452,7 @@
         flex-wrap: nowrap;
         overflow: hidden;
         width: 100%;
+        height: 60px;
         /* Đảm bảo container chiếm toàn bộ chiều rộng */
     }
 
@@ -539,7 +551,7 @@
     scrollbar-width: none;
     cursor: grab;
     touch-action: pan-x;
-    /* border-radius: 18px; */
+    position: relative;
 }
 
 .marketplace-cards:active {
@@ -665,14 +677,30 @@
     }
 
     .marketplace-cards {
-        gap: 15px;
-        margin: 0 -15px;
-        padding: 0 15px 15px;
+        display: flex;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 20px 0;
     }
 
     .marketplace-card {
-        min-width: 280px;
-        height: 280px;
+        flex: 0 0 auto;
+        width: 280px;
+        margin-right: 16px;
+        animation: scrollCards 20s linear infinite;
+    }
+
+    @keyframes scrollCards {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-280px * 5));
+            /* Adjust based on number of cards */
+        }
     }
 
     .marketplace-card .card-content {
@@ -685,6 +713,10 @@
 
     .marketplace-card .card-content p {
         font-size: 14px;
+    }
+
+    .scroll-nav-button {
+        display: none;
     }
 }
 
@@ -1280,6 +1312,7 @@
 @media (max-width: 768px) {
     .blog-header-container {
         flex-direction: column;
+        padding: 0 20px;
         gap: 20px;
     }
 
@@ -1291,9 +1324,24 @@
         width: 100%;
     }
 
+    .blog-posts {
+        display: flex;
+        justify-content: flex-start;
+
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 20px;
+        margin: 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
     .blog-post {
-        min-width: 280px;
-        width: 280px;
+        /* min-width: 280px;
+        width: 280px; */
         height: auto;
         min-height: 260px;
         padding: 16px;
@@ -1487,7 +1535,7 @@
 }
 
 .testimonials-content {
-    margin-left: 50px;
+    /* margin-left: 50px; */
     max-width: 1400px;
 }
 
@@ -1635,8 +1683,8 @@
 @media (max-width: 768px) {
     .testimonials-section {
         padding: 40px 20px;
-        flex-direction: column;
         background: #F4F0FF;
+        flex-direction: column-reverse;
     }
 
     .testimonials-header {
@@ -1709,6 +1757,9 @@
     .astronaut-image {
         width: 200px;
         margin-bottom: 24px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
@@ -1777,15 +1828,11 @@
     width: fit-content;
 }
 
-.hire-creator-button:hover {
-    background: #f0f0f0;
-}
-
 .hire-creator-image {
     position: absolute;
     right: 200px;
-    top: -25px;
-    width: 300px;
+    bottom: -300px;
+    width: 400px;
     height: auto;
     z-index: 2;
 }
@@ -1793,61 +1840,67 @@
 .solution-background {
     position: absolute;
     right: 105px;
-    /* top: -25px; */
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
-    /* Radial gradient for glowing effect */
     border-radius: 50%;
-    /* Circular shape for a natural glow */
-    z-index: -1;
-    /* Ensure it stays behind the main content */
+    z-index: 1;
     opacity: 0.8;
-    /* Adjust opacity for a glowing effect */
     filter: blur(20px);
-    /* Add blur for a softer glow */
 }
-
-/* .hire-creator-decoration {
-    position: absolute;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.decoration-1 {
-    top: -20px;
-    right: -20px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid white;
-    border-radius: 50%;
-}
-
-.decoration-2 {
-    bottom: -30px;
-    left: 40%;
-    width: 60px;
-    height: 60px;
-    border: 2px solid white;
-    border-radius: 50%;
-} */
 
 @media (max-width: 768px) {
+    .hire-creator-section {
+        padding: 24px;
+        margin: 20px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #6F42C1, #5727B0);
+    }
+
     .hire-creator-card {
-        padding: 30px;
-        text-align: center;
+        flex-direction: column-reverse;
+        text-align: left;
+        gap: 24px;
     }
 
     .hire-creator-content {
         max-width: 100%;
+        order: 2;
     }
 
-    .hire-creator-image {
-        display: none;
+    .hire-creator-title {
+        font-size: 24px;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+
+    .hire-creator-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+        line-height: 1.5;
     }
 
     .hire-creator-button {
-        margin: 0 auto;
+        width: 100%;
+        justify-content: center;
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .hire-creator-image {
+        position: relative;
+        right: auto;
+        top: -500px;
+        width: 100%;
+        height: auto;
+        order: 1;
+        margin-top: 20px;
+    }
+
+    .solution-background {
+        position: relative;
+        right: auto;
+        width: 100%;
     }
 }
 
@@ -2240,6 +2293,7 @@ body {
 
     .solutions-tags {
         flex-wrap: nowrap;
+        justify-content: flex-start;
         overflow-x: auto;
         padding-bottom: 16px;
         margin-bottom: 32px;
@@ -2248,17 +2302,22 @@ body {
     .tag {
         white-space: nowrap;
     }
+
+    .khoi1,
+    .khoi2,
+    .khoi3 {
+        display: none;
+    }
+
+
 }
 
 .prompt-list-container {
     text-align: center;
     margin-top: 50px;
-    /* display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; */
     max-width: 1200px;
     margin: 50px auto;
+    padding: 0 20px;
 }
 
 .prompt-list-container h1 {
@@ -2279,6 +2338,43 @@ body {
     max-width: 1600px;
 }
 
+@media (max-width: 768px) {
+    .prompt-list-container {
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .prompt-list-container h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    .prompt-list-home {
+        display: flex;
+        justify-content: flex-start;
+
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 16px;
+        padding: 20px;
+        margin: 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .prompt-list-home::-webkit-scrollbar {
+        display: none;
+    }
+
+    .prompt-list-home>* {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
+    }
+}
+
 .button-prompts {
     text-align: center;
     color: #5700C6;
@@ -2295,10 +2391,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* width: fit-content; */
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 50px;
-
 }

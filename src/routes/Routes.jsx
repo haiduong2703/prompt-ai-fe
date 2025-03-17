@@ -21,11 +21,13 @@ import BlogManager from "../components/admin/Blog";
 import BlogCategoryManager from "../components/admin/BlogCategory";
 import BlogDetailPage from "../pages/user/Blog/Detail";
 import TopicAdmin from "../components/admin/Topic";
+import ProductComponent from "../pages/user/Product";
+import ProductManager from "../components/admin/Product";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
-  const isAdmin = user && user.role === 2; // Kiểm tra role
-  // const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
+  // const isAdmin = user && user.role === 2; // Kiểm tra role
+  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
   useEffect(() => {
     document.title = "Promp";
@@ -41,17 +43,25 @@ const RoutesMain = () => {
           <Route path="sub" element={<SubscriptionManager />} />
           <Route path="blog" element={<BlogManager />} />
           <Route path="blogcategory" element={<BlogCategoryManager />} />
+          <Route path="products" element={<ProductManager />} />
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Navigate to="/home" replace />} />
           <Route path="login" element={<Login />} />
           <Route path="home" element={<Home />} />
+          <Route path="product" element={<ProductComponent />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />
-          {(user?.count_prompt > 0 || user?.userSub?.subscription?.type > 1)  && <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />}
+          {(user?.count_prompt > 0 ||
+            user?.userSub?.subscription?.type > 1) && (
+            <Route
+              path="prompts/detail-prompts/:id"
+              element={<DetailPrompt />}
+            />
+          )}
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />

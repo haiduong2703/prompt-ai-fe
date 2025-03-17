@@ -1,5 +1,15 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Form, Input, Button, Select, Spin, message } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  Spin,
+  message,
+  InputNumber,
+  Row,
+  Col,
+} from "antd";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import api from "../../../services/api";
@@ -26,7 +36,7 @@ const QuillEditorItem = ({ label, value, onChange }) => {
           const response = await api.uploadImage(formData);
           const url = response.data.imageUrls[0];
           const quill = quillRef.current.getEditor();
-          const range = quill.getSelection();
+          const range = quill.getSelection() || { index: 0 };
           quill.insertEmbed(range.index, "image", url);
         } catch (error) {
           message.error("Lỗi khi upload ảnh");
@@ -122,8 +132,6 @@ const QuillEditorItem = ({ label, value, onChange }) => {
 
 const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
   const [form] = Form.useForm();
-  console.log("joo", categories);
-  console.log(topic);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [contentValues, setContentValues] = useState({
@@ -138,6 +146,10 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
     addinformation: "",
   });
   const [categoriesMid, setCategoriesMid] = useState([]);
+  const [numPromDetails, setNumPromDetails] = useState(0); // Số lượng PromDetails
+  const [promDetails, setPromDetails] = useState([]); // Dữ liệu PromDetails
+  const [showPromDetailsForm, setShowPromDetailsForm] = useState(false);
+
   const fetchCategories = async () => {
     try {
       const response = await api.getCategoriesBySection(3);
@@ -147,10 +159,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       console.error(error);
     }
   };
+
   const isEditMode = !!promptId;
+
   useEffect(() => {
     fetchCategories();
   }, []);
+
   useEffect(() => {
     if (isEditMode) {
       fetchPromptDetails();
@@ -167,13 +182,15 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         addtip: "",
         addinformation: "",
       });
+      setNumPromDetails(0);
+      setPromDetails([]);
+      setShowPromDetailsForm(false);
     }
   }, [promptId, form]);
 
   const fetchPromptDetails = async () => {
     try {
       setLoading(true);
-
       const response = await api.getPromptById(promptId);
       const prompt = response.data;
 
@@ -197,6 +214,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         addtip: prompt.addtip,
         addinformation: prompt.addinformation,
       });
+
+      // Nếu có PromDetails từ API, cập nhật số lượng và dữ liệu
+      if (prompt.promDetails && prompt.promDetails.length > 0) {
+        setNumPromDetails(prompt.promDetails.length);
+        setPromDetails(prompt.promDetails);
+        setShowPromDetailsForm(true);
+      }
     } catch (error) {
       message.error("Lỗi khi lấy dữ liệu");
       console.error(error);
@@ -205,17 +229,39 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
     }
   };
 
+  const handleConfirmNumPromDetails = () => {
+    if (numPromDetails < 0) {
+      message.error("Số lượng không hợp lệ");
+      return;
+    }
+    setPromDetails(Array(numPromDetails).fill({ text: "", image: "" }));
+    setShowPromDetailsForm(true);
+  };
+
+  const handlePromDetailChange = (index, field, value) => {
+    const updatedPromDetails = [...promDetails];
+    updatedPromDetails[index] = {
+      ...updatedPromDetails[index],
+      [field]: value,
+    };
+    setPromDetails(updatedPromDetails);
+  };
+
   const handleSubmit = async (values) => {
     try {
       setSubmitting(true);
-      console.log("hiii", values);
       const promptData = {
         ...values,
         short_description: "1",
         what: values.what,
         ...contentValues,
+        promDetails: promDetails.map((detail) => ({
+          text: detail.text,
+          image: detail.image,
+          ...(detail.id && { id: detail.id }), // Nếu có id (edit mode), thêm vào
+        })),
       };
-
+      console.log("hii", promptData);
       if (isEditMode) {
         await api.updatePrompt(promptId, promptData);
         message.success("Cập nhật thành công!");
@@ -232,6 +278,9 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           addtip: "",
           addinformation: "",
         });
+        setNumPromDetails(0);
+        setPromDetails([]);
+        setShowPromDetailsForm(false);
         message.success("Tạo mới thành công!");
       }
 
@@ -269,18 +318,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         <Input placeholder="Nhập tiêu đề" />
       </Form.Item>
 
-      {/* <Form.Item
-        name="short_description"
-        label="Mô tả ngắn"
-        rules={[{ required: true, message: "Nhập mô tả ngắn" }]}
-      >
-        <Input.TextArea
-          placeholder="Nhập mô tả"
-          autoSize={{ minRows: 3, maxRows: 6 }}
-        />
-      </Form.Item> */}
-
-      {/* 🖊 Không dùng map, gọi từng component riêng biệt */}
       <QuillEditorItem
         label="Nội dung"
         value={contentValues.content}
@@ -304,13 +341,7 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           <Option value={2}>Premium</Option>
         </Select>
       </Form.Item>
-      {/* <QuillEditorItem
-        label="What This Prompt Does"
-        value={contentValues.what}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, what: value }))
-        }
-      /> */}
+
       <QuillEditorItem
         label="Ảnh nền phần bài viết"
         value={contentValues.output}
@@ -339,14 +370,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           setContentValues((prev) => ({ ...prev, OptimationGuide: value }))
         }
       />
-
-      {/* <QuillEditorItem
-        label="How To Use The Prompt"
-        value={contentValues.how}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, how: value }))
-        }
-      /> */}
       <QuillEditorItem
         label="Example Variables"
         value={contentValues.input}
@@ -354,28 +377,7 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           setContentValues((prev) => ({ ...prev, input: value }))
         }
       />
-      {/* <QuillEditorItem
-        label=""
-        value={contentValues.output}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, output: value }))
-        }
-      /> */}
 
-      <Form.Item
-        name="what"
-        label="Example Prompt Text"
-        rules={[{ required: true, message: "Nhập tiêu đề" }]}
-      >
-        <Input placeholder="Nhập tiêu đề" />
-      </Form.Item>
-      <QuillEditorItem
-        label="Example Prompt Image"
-        value={contentValues.how}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, how: value }))
-        }
-      />
       <QuillEditorItem
         label="Additional Tips"
         value={contentValues.addtip}
@@ -384,13 +386,50 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         }
       />
 
-      {/* <QuillEditorItem
-        label="Additional Information"
-        value={contentValues.addinformation}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, addinformation: value }))
-        }
-      /> */}
+      {/* Trường nhập số lượng PromDetails */}
+      <Form.Item label="Số lượng card con (PromDetails)">
+        <Row gutter={8}>
+          <Col span={18}>
+            <InputNumber
+              min={0}
+              value={numPromDetails}
+              onChange={(value) => setNumPromDetails(value)}
+              style={{ width: "100%" }}
+            />
+          </Col>
+          <Col span={6}>
+            <Button onClick={handleConfirmNumPromDetails}>Đồng ý</Button>
+          </Col>
+        </Row>
+      </Form.Item>
+
+      {/* Render các trường PromDetails */}
+      {showPromDetailsForm && (
+        <>
+          {promDetails.map((detail, index) => (
+            <div key={index} style={{ marginBottom: "20px" }}>
+              <h4>PromDetail {index + 1}</h4>
+              <Form.Item label="Text">
+                <Input.TextArea
+                  value={detail.text}
+                  onChange={(e) =>
+                    handlePromDetailChange(index, "text", e.target.value)
+                  }
+                  placeholder="Nhập text cho PromDetail"
+                  autoSize={{ minRows: 3, maxRows: 6 }}
+                />
+              </Form.Item>
+              <QuillEditorItem
+                label="Image"
+                value={detail.image}
+                onChange={(value) =>
+                  handlePromDetailChange(index, "image", value)
+                }
+              />
+            </div>
+          ))}
+        </>
+      )}
 
       <Form.Item>
         <Button type="primary" htmlType="submit" loading={submitting}>
@@ -400,4 +439,5 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
     </Form>
   );
 };
+
 export default PromptFormMid;

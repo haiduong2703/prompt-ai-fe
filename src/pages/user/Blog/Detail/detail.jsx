@@ -4,6 +4,54 @@ import "./index.css";
 import img from "../../../../asset/imgae/1.png";
 
 const BlogDetail = ({ blog }) => {
+  // const getAdjustedTime = (utcTimeString) => {
+  //   // Chuyển chuỗi UTC thành đối tượng Date
+  //   const utcDate = new Date(utcTimeString);
+
+  //   // Cộng thêm 7 tiếng (7 * 60 * 60 * 1000 milliseconds)
+  //   const adjustedDate = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000);
+
+  //   // Định dạng lại thành chuỗi dễ đọc (ví dụ: YYYY-MM-DD HH:mm:ss)
+  //   const year = adjustedDate.getFullYear();
+  //   const month = String(adjustedDate.getMonth() + 1).padStart(2, "0"); // Tháng bắt đầu từ 0
+  //   const day = String(adjustedDate.getDate()).padStart(2, "0");
+  //   const hours = String(adjustedDate.getHours()).padStart(2, "0");
+  //   const minutes = String(adjustedDate.getMinutes()).padStart(2, "0");
+  //   const seconds = String(adjustedDate.getSeconds()).padStart(2, "0");
+
+  //   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  // };
+  const getAdjustedDate = (utcTimeString) => {
+    // Chuyển chuỗi UTC thành đối tượng Date
+    const utcDate = new Date(utcTimeString);
+
+    // Cộng thêm 7 tiếng để chuyển sang UTC+7 (7 * 60 * 60 * 1000 milliseconds)
+    const adjustedDate = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000);
+
+    // Lấy ngày, tháng, năm
+    const day = adjustedDate.getDate(); // Lấy ngày (10)
+    const year = adjustedDate.getFullYear(); // Lấy năm (2025)
+
+    // Mảng chứa tên các tháng
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const month = months[adjustedDate.getMonth()]; // Lấy tên tháng (March)
+
+    // Định dạng kết quả: "10 March, 2025"
+    return `${day} ${month}, ${year}`;
+  };
   return (
     <div className="blog-detail-container">
       <article className="blog-detail-article">
@@ -13,13 +61,9 @@ const BlogDetail = ({ blog }) => {
 
           <div className="blog-detail-meta">
             <div className="blog-detail-author">
-              <img src={img} alt="Author" className="author-avatar" />
-              <div>
-                <p className="author-name">God of Prompt</p>
-                <p className="blog-date">
-                  {new Date(blog.published_at).toLocaleDateString()}
-                </p>
-              </div>
+              <p className="author-name">By Admin</p>
+              <strong>•</strong>
+              <p className="blog-date">{getAdjustedDate(blog.created_at)}</p>
             </div>
           </div>
 
@@ -62,13 +106,6 @@ const BlogDetail = ({ blog }) => {
             <h2>Table of Contents:</h2>
             <div dangerouslySetInnerHTML={{ __html: blog.table_of_contents }} />
           </nav>
-        )}
-
-        {/* Category */}
-        {blog?.category && (
-          <div className="blog-detail-category">
-            <span className="category-tag">{blog.category.name}</span>
-          </div>
         )}
       </article>
     </div>

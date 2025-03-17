@@ -5,7 +5,10 @@ import api from "../../../services/api";
 import { Link, useNavigate } from "react-router-dom"; // Add this import
 import "./index.css";
 import img from "../../../asset/imgae/1.png";
-
+import arrow_prev from "../../../asset/icon/arrow_prev.png";
+import arrow_next from "../../../asset/icon/arrow_next.png";
+import { ArrowRightOutlined } from "@ant-design/icons";
+import { Pagination } from "antd";
 const BlogList = () => {
   const navigate = useNavigate(); // Add this if you want to use programmatic navigation
   const [blogs, setBlogs] = useState([]);
@@ -33,10 +36,15 @@ const BlogList = () => {
   const handleBlogClick = (blogId) => {
     navigate(`/blog/${blogId}`);
   };
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
-    <div className="blog-container">
+    <div className="blog-container-list">
       <div className="blog-header">
-        <h1>Articles & Resources</h1>
+        <h1>Blog Articles & Resources</h1>
+        <p>Get free AI prompts, guides, tips & tricks.</p>
         {/* <div className="search-bar">
           <input
             type="text"
@@ -46,7 +54,7 @@ const BlogList = () => {
           />
           <button className="search-button">Search</button>
         </div> */}
-        <div className="search-container">
+        {/* <div className="search-container">
           <div className="search-wrapper">
             <svg
               className="search-icon"
@@ -69,7 +77,7 @@ const BlogList = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {loading ? (
@@ -77,32 +85,28 @@ const BlogList = () => {
       ) : (
         <>
           <div className="blog-grid">
-            {blogs.map((blog) => (
+            {blogs.map((post, index) => (
               <Link
-                to={`/blog/${blog.id}`}
+                to={`/blog/${post.id}`}
                 className="blog-card hover:shadow-lg transition-shadow"
+                key={index}
               >
-                <div key={blog.id} className="blog-card">
-                  <div className="blog-image">
-                    <img
-                      src={blog.featured_image || "/placeholder.jpg"}
-                      alt={blog.title}
-                    />
-                  </div>
+                <div key={index} className="blog-post">
+                  <div className="blog-dot"></div>
                   <div className="blog-content">
-                    <span className="blog-category">{blog.category?.name}</span>
-                    <h2 className="blog-title">{blog.title}</h2>
-                    <p className="blog-description">{blog.meta_description}</p>
-                    <div className="blog-footer">
-                      <div className="author-info">
-                        <img src={img} alt="Author" />
-                        <div>
-                          <p className="author-name">God of Prompt</p>
-                          <p className="blog-date">
-                            {new Date(blog.published_at).toLocaleDateString()}
-                          </p>
-                        </div>
+                    <span className="blog-read-time">{post.readTime}</span>
+                    <h3>{post.title}</h3>
+                    {post.featured_image && (
+                      <div className="blog-image">
+                        <img src={post.featured_image} alt={post.title} />
                       </div>
+                    )}
+                    <div className="blog-footer">
+                      <p>{post.meta_description}</p>
+
+                      <button className="blog-button">
+                        <ArrowRightOutlined />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -110,23 +114,31 @@ const BlogList = () => {
             ))}
           </div>
 
-          <div className="pagination">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage((prev) => prev - 1)}
-            >
-              Previous
-            </button>
-            <span>
-              {currentPage} of {totalPages}
-            </span>
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-            >
-              Next
-            </button>
-          </div>
+          <Pagination
+            className="pagination_list_prompts"
+            current={currentPage}
+            total={totalPages}
+            pageSize={10}
+            onChange={handleChangePage}
+            showSizeChanger={false}
+            itemRender={(_, type, originalElement) => {
+              if (type === "prev") {
+                return (
+                  <button className="pagination-arrow-btn prev">
+                    <img src={arrow_prev} alt="Previous" />
+                  </button>
+                );
+              }
+              if (type === "next") {
+                return (
+                  <button className="pagination-arrow-btn next">
+                    <img src={arrow_next} alt="Next" />
+                  </button>
+                );
+              }
+              return originalElement;
+            }}
+          />
         </>
       )}
     </div>
