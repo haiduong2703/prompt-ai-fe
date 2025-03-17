@@ -229,6 +229,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 0;
+  background-color: #fff;
   /* Loại bỏ padding-top để không có khoảng trắng giữa navbar và hero section */
 }
 
