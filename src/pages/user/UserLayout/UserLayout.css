@@ -146,10 +146,14 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-  width: 15%;
+  width: fit-content;
   /* Điều chỉnh khoảng cách giữa logout, icon menu, avatar */
 }
-
+.user-infomation-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .user-login-link {
   text-decoration: none;
   color: black;
@@ -164,8 +168,9 @@ body {
   color: black;
 }
 
-.user-logout {
-  color: black;
+.user-fullname {
+  color: #1D1E25;
+  font-weight: 700;
   text-decoration: none;
   font-size: 16px;
   padding: 8px 12px;
@@ -173,7 +178,7 @@ body {
   cursor: pointer;
 }
 
-.user-logout:hover,
+.user-fullname:hover,
 .user-login:hover,
 .user-signup:hover {
   color: #5700C6;
@@ -198,12 +203,12 @@ body {
 .user-avatar {
   width: 45px;
   height: 45px;
-  background-color: #5700C6;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border: none;
 }
 
 .user-avatar img {
@@ -372,7 +377,7 @@ body {
     display: none;
   }
 
-  .user-logout {
+  .user-fullname {
     display: none;
   }
 }
@@ -425,7 +430,7 @@ body {
     display: none;
   }
 
-  .user-logout {
+  .user-fullname {
     display: none;
   }
 

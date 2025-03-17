@@ -6,10 +6,13 @@ import { Divider } from "antd";
 import { HeartFilled, LogoutOutlined, UserOutlined, LockFilled } from "@ant-design/icons";
 import "./InfoUser.css";
 import { UserContext } from "../../../context/AuthContext";
+import { useUser } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const InfoUser = () => {
     const [activeMenu, setActiveMenu] = useState('account'); // account, password, favorites
     const { user } = useContext(UserContext); // Lấy user từ Context API
-
+    const { logout } = useUser();
+    const navigate = useNavigate();
     const renderContent = () => {
       switch (activeMenu) {
         case 'account':
@@ -22,7 +25,10 @@ const InfoUser = () => {
           return <AccountInfo />;
       }
     };
-  
+    const handleLogout = () => {
+      logout();
+      navigate("/login");
+    };
     return (
       <div className="info-user-container">
         <div className="info-user-sidebar">
@@ -46,7 +52,7 @@ const InfoUser = () => {
           </div>
           <Divider />
           <div className="info-user-menu-item">
-            <LogoutOutlined/><span>Thoát</span>
+            <LogoutOutlined/><span onClick={handleLogout}>Thoát</span>
           </div>
         </div>
   
