@@ -4,6 +4,7 @@ import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
 import logoImg from "../../../asset/imgae/logo.svg";
+import defaultAvatar from "../../../asset/imgae/default_avatar.png";
 
 const UserLayout = ({ children }) => {
   const location = useLocation();
@@ -137,13 +138,13 @@ const UserLayout = ({ children }) => {
         <div className="user-nav-right">
           {userLocal ? (
             <>
-              <p onClick={handleLogout} className="user-logout">
-                Đăng Xuất
-              </p>
-              <Link to="/user-information">
+              <Link to="/user-information" className="user-infomation-link">
                 <div className="user-avatar">
-                  <img src={userLocal.avatar} alt="Avatar" />
+                  {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />} 
                 </div>
+                <p className="user-fullname">
+                {userLocal.fullName}
+              </p>
               </Link>
             </>
           ) : (

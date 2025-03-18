@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import api from "../../../../services/api";
-import { StarFilled, RightOutlined } from "@ant-design/icons";
+import { StarFilled, RightOutlined, LockFilled } from "@ant-design/icons";
 import "./DetailPrompt.css";
 import whatIcon from "../../../../asset/imgae/icon_what.svg";
 import tipIcon from "../../../../asset/imgae/icon_tips.svg";
@@ -11,6 +11,7 @@ import outputIcon from "../../../../asset/imgae/output_icon.svg";
 import PromptCard from "../ListPrompts/PromptCard/PromptCard";
 import copyIcon from "../../../../asset/icon/copy_icon.svg";
 import { UserContext } from "../../../../context/AuthContext";
+import { Link } from "react-router-dom";
 const DetailPrompt = () => {
     const location = useLocation();
     const { id } = useParams();
@@ -137,8 +138,8 @@ const DetailPrompt = () => {
                                     <div dangerouslySetInnerHTML={{ __html: prompt.text }} />
                                 </h2>
                             </div>
-                            <div className={`detail-prompt-paragraph-special-content-box ${user?.userSub.subscription?.type > 1 ? '' : 'blurred'}`}>
-                                {user?.userSub.subscription?.type > 1 && (
+                            <div className={`detail-prompt-paragraph-special-content-box ${(user?.userSub.subscription?.type > 1 || user?.count_prompt > 0) ? '' : 'blurred'}`}>
+                                {(user?.userSub.subscription?.type > 1 || user?.count_prompt > 0) && (
                                     <button
                                         className="copy-button"
                                         onClick={copyToClipboard}
@@ -162,6 +163,16 @@ const DetailPrompt = () => {
                                     dangerouslySetInnerHTML={{ __html: prompt.OptimationGuide }}
                                 />
                             </div>
+                            {(user?.userSub?.subscription?.type === 1 && user?.count_prompt === 0) &&
+                                (<Link to="/pricing" className="detail-prompt-paragraph-special-content-link">
+                                    <LockFilled/>Nâng cấp ngay!
+                                </Link>)
+                            }
+                            {(!user) &&
+                                (<Link to="/login" className="detail-prompt-paragraph-special-content-link">
+                                    <LockFilled/>Đăng nhập để xem!
+                                </Link>)
+                            }
                         </div>
                     )}
 
