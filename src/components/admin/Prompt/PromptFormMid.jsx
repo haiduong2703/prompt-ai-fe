@@ -16,7 +16,6 @@ import api from "../../../services/api";
 
 const { Option } = Select;
 
-// 🖊 Component riêng cho mỗi Form.Item chứa ReactQuill
 const QuillEditorItem = ({ label, value, onChange }) => {
   const quillRef = useRef(null);
 
@@ -139,16 +138,18 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
     tips: "",
     text: "",
     how: "",
-    input: "",
     output: "",
     OptimationGuide: "",
     addtip: "",
     addinformation: "",
   });
   const [categoriesMid, setCategoriesMid] = useState([]);
-  const [numPromDetails, setNumPromDetails] = useState(0); // Số lượng PromDetails
-  const [promDetails, setPromDetails] = useState([]); // Dữ liệu PromDetails
+  const [numPromDetails, setNumPromDetails] = useState(0);
+  const [numExampleVariables, setNumExampleVariables] = useState(0);
+  const [promDetails, setPromDetails] = useState([]);
   const [showPromDetailsForm, setShowPromDetailsForm] = useState(false);
+  const [showExampleVariablesForm, setShowExampleVariablesForm] =
+    useState(false);
 
   const fetchCategories = async () => {
     try {
@@ -176,15 +177,16 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         tips: "",
         text: "",
         how: "",
-        input: "",
         output: "",
         OptimationGuide: "",
         addtip: "",
         addinformation: "",
       });
       setNumPromDetails(0);
+      setNumExampleVariables(0);
       setPromDetails([]);
       setShowPromDetailsForm(false);
+      setShowExampleVariablesForm(false);
     }
   }, [promptId, form]);
 
@@ -208,18 +210,27 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         tips: prompt.tips,
         text: prompt.text,
         how: prompt.how,
-        input: prompt.input,
         output: prompt.output,
         OptimationGuide: prompt.OptimationGuide,
         addtip: prompt.addtip,
         addinformation: prompt.addinformation,
       });
 
-      // Nếu có PromDetails từ API, cập nhật số lượng và dữ liệu
       if (prompt.promDetails && prompt.promDetails.length > 0) {
-        setNumPromDetails(prompt.promDetails.length);
-        setPromDetails(prompt.promDetails);
-        setShowPromDetailsForm(true);
+        const promDetailsType1 = prompt.promDetails.filter(
+          (item) => item.type === 1
+        );
+        const exampleVariablesType2 = prompt.promDetails.filter(
+          (item) => item.type === 2
+        );
+
+        setNumPromDetails(promDetailsType1.length);
+        setNumExampleVariables(exampleVariablesType2.length);
+        setPromDetails(
+          prompt.promDetails.map((item, idx) => ({ ...item, index: idx }))
+        );
+        setShowPromDetailsForm(promDetailsType1.length > 0);
+        setShowExampleVariablesForm(exampleVariablesType2.length > 0);
       }
     } catch (error) {
       message.error("Lỗi khi lấy dữ liệu");
@@ -234,17 +245,56 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       message.error("Số lượng không hợp lệ");
       return;
     }
-    setPromDetails(Array(numPromDetails).fill({ text: "", image: "" }));
+    const newPromDetails = Array.from({ length: numPromDetails }, (_, i) => ({
+      text: "",
+      image: "",
+      type: 1,
+      index: i,
+    }));
+    setPromDetails((prev) => [
+      ...prev.filter((item) => item.type === 2),
+      ...newPromDetails,
+    ]);
     setShowPromDetailsForm(true);
   };
 
-  const handlePromDetailChange = (index, field, value) => {
+  const handleConfirmNumExampleVariables = () => {
+    if (numExampleVariables < 0) {
+      message.error("Số lượng không hợp lệ");
+      return;
+    }
+    const newExampleVariables = Array.from(
+      { length: numExampleVariables },
+      (_, i) => ({
+        text: "",
+        image: "",
+        description: "",
+        type: 2,
+        index: i,
+      })
+    );
+    setPromDetails((prev) => [
+      ...prev.filter((item) => item.type === 1),
+      ...newExampleVariables,
+    ]);
+    setShowExampleVariablesForm(true);
+  };
+
+  const handlePromDetailChange = (index, field, value, type) => {
     const updatedPromDetails = [...promDetails];
-    updatedPromDetails[index] = {
-      ...updatedPromDetails[index],
-      [field]: value,
-    };
-    setPromDetails(updatedPromDetails);
+    const filteredItems = updatedPromDetails.filter(
+      (item) => item.type === type
+    );
+    const itemIndex = updatedPromDetails.findIndex(
+      (item) => item.type === type && filteredItems.indexOf(item) === index
+    );
+    if (itemIndex !== -1) {
+      updatedPromDetails[itemIndex] = {
+        ...updatedPromDetails[itemIndex],
+        [field]: value,
+      };
+      setPromDetails(updatedPromDetails);
+    }
   };
 
   const handleSubmit = async (values) => {
@@ -258,7 +308,9 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         promDetails: promDetails.map((detail) => ({
           text: detail.text,
           image: detail.image,
-          ...(detail.id && { id: detail.id }), // Nếu có id (edit mode), thêm vào
+          ...(detail.type === 2 && { description: detail.description }),
+          type: detail.type,
+          ...(detail.id && { id: detail.id }),
         })),
       };
       console.log("hii", promptData);
@@ -272,15 +324,16 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           tips: "",
           text: "",
           how: "",
-          input: "",
           output: "",
           OptimationGuide: "",
           addtip: "",
           addinformation: "",
         });
         setNumPromDetails(0);
+        setNumExampleVariables(0);
         setPromDetails([]);
         setShowPromDetailsForm(false);
+        setShowExampleVariablesForm(false);
         message.success("Tạo mới thành công!");
       }
 
@@ -371,14 +424,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         }
       />
       <QuillEditorItem
-        label="Example Variables"
-        value={contentValues.input}
-        onChange={(value) =>
-          setContentValues((prev) => ({ ...prev, input: value }))
-        }
-      />
-
-      <QuillEditorItem
         label="Additional Tips"
         value={contentValues.addtip}
         onChange={(value) =>
@@ -386,7 +431,7 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         }
       />
 
-      {/* Trường nhập số lượng PromDetails */}
+      {/* Trường nhập số lượng PromDetails (type 1) */}
       <Form.Item label="Số lượng card con (PromDetails)">
         <Row gutter={8}>
           <Col span={18}>
@@ -403,31 +448,95 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         </Row>
       </Form.Item>
 
-      {/* Render các trường PromDetails */}
+      {/* Trường nhập số lượng Example Variables (type 2) */}
+      <Form.Item label="Số lượng Example Variables">
+        <Row gutter={8}>
+          <Col span={18}>
+            <InputNumber
+              min={0}
+              value={numExampleVariables}
+              onChange={(value) => setNumExampleVariables(value)}
+              style={{ width: "100%" }}
+            />
+          </Col>
+          <Col span={6}>
+            <Button onClick={handleConfirmNumExampleVariables}>Đồng ý</Button>
+          </Col>
+        </Row>
+      </Form.Item>
+
+      {/* Render các trường PromDetails (type 1) */}
       {showPromDetailsForm && (
         <>
-          {promDetails.map((detail, index) => (
-            <div key={index} style={{ marginBottom: "20px" }}>
-              <h4>PromDetail {index + 1}</h4>
-              <Form.Item label="Text">
-                <Input.TextArea
-                  value={detail.text}
-                  onChange={(e) =>
-                    handlePromDetailChange(index, "text", e.target.value)
+          {promDetails
+            .filter((detail) => detail.type === 1)
+            .map((detail, index) => (
+              <div key={index} style={{ marginBottom: "20px" }}>
+                <h4>PromDetail {index + 1}</h4>
+                <Form.Item label="Text">
+                  <Input.TextArea
+                    value={detail.text}
+                    onChange={(e) =>
+                      handlePromDetailChange(index, "text", e.target.value, 1)
+                    }
+                    placeholder="Nhập text cho PromDetail"
+                    autoSize={{ minRows: 3, maxRows: 6 }}
+                  />
+                </Form.Item>
+                <QuillEditorItem
+                  label="Image"
+                  value={detail.image}
+                  onChange={(value) =>
+                    handlePromDetailChange(index, "image", value, 1)
                   }
-                  placeholder="Nhập text cho PromDetail"
-                  autoSize={{ minRows: 3, maxRows: 6 }}
                 />
-              </Form.Item>
-              <QuillEditorItem
-                label="Image"
-                value={detail.image}
-                onChange={(value) =>
-                  handlePromDetailChange(index, "image", value)
-                }
-              />
-            </div>
-          ))}
+              </div>
+            ))}
+        </>
+      )}
+
+      {/* Render các trường Example Variables (type 2) */}
+      {showExampleVariablesForm && (
+        <>
+          {promDetails
+            .filter((detail) => detail.type === 2)
+            .map((detail, index) => (
+              <div key={index} style={{ marginBottom: "20px" }}>
+                <h4>Example Variable {index + 1}</h4>
+                <Form.Item label="Text">
+                  <Input.TextArea
+                    value={detail.text}
+                    onChange={(e) =>
+                      handlePromDetailChange(index, "text", e.target.value, 2)
+                    }
+                    placeholder="Nhập text cho Example Variable"
+                    autoSize={{ minRows: 3, maxRows: 6 }}
+                  />
+                </Form.Item>
+                <QuillEditorItem
+                  label="Description"
+                  value={detail.description}
+                  onChange={(value) =>
+                    handlePromDetailChange(index, "description", value, 2)
+                  }
+                />
+                {/* <Form.Item label="Description">
+                  <Input.TextArea
+                    value={detail.description}
+                    onChange={(e) =>
+                      handlePromDetailChange(
+                        index,
+                        "description",
+                        e.target.value,
+                        2
+                      )
+                    }
+                    placeholder="Nhập description cho Example Variable"
+                    autoSize={{ minRows: 3, maxRows: 6 }}
+                  />
+                </Form.Item> */}
+              </div>
+            ))}
         </>
       )}
 

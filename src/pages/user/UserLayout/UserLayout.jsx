@@ -3,7 +3,7 @@ import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 import "./UserLayout.css";
 import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
-import logoImg from "../../../asset/imgae/logo.svg";
+import logoImg from "../../../asset/imgae/logo.png";
 import defaultAvatar from "../../../asset/imgae/default_avatar.png";
 
 const UserLayout = ({ children }) => {
@@ -30,8 +30,13 @@ const UserLayout = ({ children }) => {
     >
       <nav className="user-navbar">
         <Link to="/home" className="user-logo">
-          <img src={logoImg} alt="" style={{ color: "#5700C6" }} />
-          <span style={{ fontSize: "28px", fontWeight: "600" }}>Prom</span>
+          <img
+            src={logoImg}
+            alt=""
+            style={{ color: "#5700C6" }}
+            className="logo-img"
+          />
+          {/* <span style={{ fontSize: "28px", fontWeight: "600" }}>Prom</span> */}
         </Link>
         <div
           className={`user-nav-left ${isMobileMenuOpen ? "mobile-open" : ""}`}
@@ -105,7 +110,7 @@ const UserLayout = ({ children }) => {
               Gói Dịch Vụ
             </Link>
 
-            {/* <Link
+            <Link
               to="/contact"
               className={`user-nav-item ${
                 location.pathname === "/contact" ? "user-active" : ""
@@ -113,7 +118,7 @@ const UserLayout = ({ children }) => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Liên Hệ
-            </Link> */}
+            </Link>
 
             {/* Mobile Menu Auth Buttons */}
             <div className="mobile-auth-buttons">
@@ -140,11 +145,13 @@ const UserLayout = ({ children }) => {
             <>
               <Link to="/user-information" className="user-infomation-link">
                 <div className="user-avatar">
-                  {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />} 
+                  {userLocal.profile_image ? (
+                    <img src={userLocal.profile_image} alt="Avatar" />
+                  ) : (
+                    <img src={defaultAvatar} alt="Avatar" />
+                  )}
                 </div>
-                <p className="user-fullname">
-                {userLocal.fullName}
-              </p>
+                <p className="user-fullname">{userLocal.fullName}</p>
               </Link>
             </>
           ) : (

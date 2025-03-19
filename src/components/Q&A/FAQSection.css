@@ -130,8 +130,8 @@
 }
 
 .faq-more-action-container {
-  border: 1px solid #5700C6;
-  border-radius: 24px;
+  /* border: 1px solid #5700C6; */
+  /* border-radius: 24px; */
   padding: 24px;
   width: fit-content;
 }
@@ -141,7 +141,12 @@
   font-weight: 700;
   color: #1D1E25;
   text-align: center;
+}
+
+.faq-more-action-description {
+  text-align: center;
   margin-bottom: 24px;
+  font-size: 14px;
 }
 
 .faq-contact-list {

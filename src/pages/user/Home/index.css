@@ -256,6 +256,7 @@
     width: 100%;
     max-width: 500px;
     height: auto;
+    z-index: 1;
     /* animation: float 6s ease-in-out infinite; */
 }
 
@@ -288,6 +289,7 @@
     transform: translateX(-50%);
     justify-content: center;
     gap: 20px;
+    z-index: 3;
 }
 
 .users-count {
@@ -361,6 +363,7 @@
     background: white;
     align-items: center;
     /* gap: 24px; */
+    height: 100px;
     justify-content: space-around;
     min-width: 750px;
     /* overflow-x: auto; */
@@ -535,6 +538,7 @@
     font-weight: 700;
     cursor: pointer;
     display: flex;
+    font-size: 20px;
     align-items: center;
     border-radius: 96px;
     justify-content: center;
@@ -1894,7 +1898,7 @@
     .hire-creator-image {
         position: relative;
         right: auto;
-        top: -500px;
+        top: -600px;
         width: 100%;
         height: auto;
         order: 1;

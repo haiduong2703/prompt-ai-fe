@@ -122,8 +122,9 @@
 .footer-down-center {
   color: black !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  /* align-items: center;
+    justify-content: center; */
   flex-grow: 1;
   /* Menu sẽ tự căn giữa */
   gap: 25px;

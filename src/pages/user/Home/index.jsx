@@ -86,7 +86,7 @@ const marketplaceCards = [
     bgColor: "orange",
   },
   {
-    title: "AI Prompt",
+    title: "Chat GPT Prompts",
     description: "Tối ưu hiệu suất với AI Prompts vượt trội",
     imgSrc: imgAI,
     bgColor: "orange",
@@ -104,7 +104,7 @@ const marketplaceCards = [
     bgColor: "teal",
   },
   {
-    title: "Prompt Tùy Chỉnh",
+    title: "Gemini Prompts",
     description: "Tạo Prompt cá nhân hóa theo mục đích của bạn",
     imgSrc: imgGenProm,
     bgColor: "teal",
@@ -415,7 +415,7 @@ const Home = () => {
               </div>
             </div>
             <div className="partners-bar">
-              <div className="users-count">
+              {/* <div className="users-count">
                 <div className="users-count-item">
                   <div className="count-container">
                     <p className="count">10</p>
@@ -424,7 +424,7 @@ const Home = () => {
                   <p className="label">khách hàng hài lòng</p>
                 </div>
                 <div className="badge">Trở thành 1 trong số họ</div>
-              </div>
+              </div> */}
               <div className="partners-logos">
                 <div className="partner">
                   <img src={imgGPT} alt="ChatGPT" />
@@ -457,15 +457,15 @@ const Home = () => {
           <div className="collection-header">
             <div className="collection-title">
               <h2>
-                Thư Viện AI Lớn Nhất!
+                Thư Viện Prompt
                 <br />
-                Mọi Thứ Về AI!
+                Từ Những Nền Tảng AI Lớn Nhất
               </h2>
             </div>
             <div className="collection-cta">
               <p>
-                Thúc đẩy doanh số, làm chủ doanh nghiệp, bứt phá qua vạch đích
-                với hàng nghìn prompts được viết bởi chuyên gia
+                Nâng cao chất lượng, hiệu quả công việc, thúc đẩy năng suất với
+                hàng nghìn prompt AI khác nhau
               </p>
               <button className="view-more-btn">
                 Xem thêm<span>→</span>
@@ -748,13 +748,15 @@ const Home = () => {
           <div className="hire-creator-card">
             <div className="hire-creator-content">
               <h2 className="hire-creator-title">
-                Hãy tạo những dự án tuyệt vời và chính xác từ Prom
+                x10 Hiệu Suất Nhờ Sử Dụng Prompt AI Ngay Hôm Nay
               </h2>
-              <p className="hire-creator-description">
+              {/* <p className="hire-creator-description">
                 Tạo nội dung cho chính bạn một cách nhanh chóng và chuẩn xác
                 nhất
-              </p>
-              <button className="hire-creator-button">Bắt đầu ngay!!!🔥</button>
+              </p> */}
+              <button className="hire-creator-button">
+                Sử Dụng MIỄN PHÍ Ngay!!!🔥
+              </button>
             </div>
             <div style={{ height: "300px" }}>
               {" "}

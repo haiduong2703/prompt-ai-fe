@@ -21,8 +21,7 @@ const faqData = [
       "Các danh mục có tác động lớn nhất bao gồm Kinh doanh (Business) Marketing, SEO, Viết lách, Khởi nghiệp Solo và Năng suất làm việc (Productivity).",
   },
   {
-    question:
-      "Làm thế nào để tận dụng tối đa giá trị của Thư viện AI Prompt?",
+    question: "Làm thế nào để tận dụng tối đa giá trị của Thư viện AI Prompt?",
     answer:
       "Chỉ có một câu trả lời đúng: Hãy áp dụng hết để tiếp nhận thật nhiều thông tin, đưa ra quyết định logic nhất!",
   },
@@ -43,20 +42,18 @@ export default function FAQSection() {
   return (
     <div className="faq-section">
       <div className="faq-left">
-        <h2 className="faq-title">Q/A</h2>
+        <h2 className="faq-title">Những Câu Hỏi Thường Gặp</h2>
         <p className="faq-description">
-          Những hướng dẫn giúp bạn làm chủ cách viết Prompt. Vẫn còn thắc mắc?
-          Hãy khám phá các hướng dẫn của chúng tôi hoặc thử tạo một Prompt ngay
-          bây giờ!
+          Chúng tôi luôn ở đây sẵn sàng để giải đáp mọi thắc mắc của bạn
         </p>
-        <div className="faq-buttons">
+        {/* <div className="faq-buttons">
           <Link to="/contact">
             <button className="faq-btn primary">Hỏi Thêm Tại Đây</button>
           </Link>
           <Link to="/contact">
             <button className="faq-btn secondary">Liên Hệ</button>
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <div className="faq-right">
@@ -80,7 +77,10 @@ export default function FAQSection() {
 
       <div className="faq-more-action">
         <div className="faq-more-action-container">
-          <h3 className="faq-more-action-title">Bạn có những thắc mắc?</h3>
+          <h3 className="faq-more-action-title">Bạn có những câu hỏi khác?</h3>
+          <p className="faq-more-action-description">
+            Hãy liên hệ ngay với chúng tôi để được hỗ trợ tốt nhất
+          </p>
           <div className="faq-contact-list">
             {/* <div className="faq-contact-item">
               <span className="faq-contact-item-title">Zalo</span>
