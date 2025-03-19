@@ -110,11 +110,11 @@ const GeneratePrompt = () => {
             </div>
 
             <div className="generate-prompt-title-unique">
-              <h1>Generate Your <br />AI Prompts In One Click <img src={cursor_click} alt="cursor_click" /></h1>
-              <p className="generate-subtitle-unique">Get powerful AI prompts with ease — just describe your goal/prompt like you're chatting with a friend, and I'll handle the rest!</p>
+              <h1>Tạo Prompt <br />cá nhân hóa cho riêng bạn! <img src={cursor_click} alt="cursor_click" /></h1>
+              <p className="generate-subtitle-unique">Nhận prompt AI mạnh mẽ một cách dễ dàng — chỉ cần mô tả mục tiêu/prompt của bạn và Prom sẽ lo phần còn lại!</p>
 
               <div className="generate-free-label-unique">
-                <span>UNLIMITED FREE PROMPTS ENABLED</span>
+                <span>PROMPT MIỄN PHÍ KHÔNG GIỚI HẠN</span>
               </div>
             </div>
 
@@ -124,50 +124,50 @@ const GeneratePrompt = () => {
           </div>
 
           <div className="generate-prompt-input-section-unique">
-            <label htmlFor="goal-input">What's your goal?</label>
+            <label htmlFor="goal-input">Mục tiêu của Prompt bạn là gì?</label>
             <textarea
               id="goal-input"
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               maxLength={1000}
-              placeholder="Describe what you want to achieve..."
+              placeholder="Mô tả điều bạn muốn đạt được..."
               className="goal-textarea-unique"
             ></textarea>
             <div className="character-count-unique">
-              <span>Max: 1000 characters (150-200 words)</span>
+              <span>Tối đa: 1000 kí tự (150-200 từ)</span>
             </div>
 
             <button className="generate-button-unique" onClick={handleGeneratePrompt}>
-              Generate Prompt
+              Tạo Prompt
             </button>
 
-            <p className="max-note-unique">*Free for MAX plan members!</p>
+            <p className="max-note-unique">Miễn phí cho Premium Member!</p>
           </div>
         </div>
 
         <div className="generate-prompt-features-unique">
           <div className="generate-prompt-feature-item-unique">
             <span><img src={item1} alt="Login/Sign up" /></span>
-            <h3>Login / Sign up</h3>
-            <p>I will send your prompt to the registered email</p>
+            <h3>Đăng nhập / Đăng ký</h3>
+            <p>Prom sẽ gửi prompt của bạn tới email được đăng ký</p>
           </div>
 
           <div className="generate-prompt-feature-item-unique">
             <span><img src={item2} alt="Describe Your Goal" /></span>
-            <h3>Describe Your Goal</h3>
-            <p>I will deliver the prompt based on it</p>
+            <h3>Mô tả mục tiêu</h3>
+            <p>Prom sẽ chuẩn bị Prompt cá nhân hóa dựa vào mục tiêu</p>
           </div>
 
           <div className="generate-prompt-feature-item-unique">
             <span><img src={item3} alt="Unlimited Prompts" /></span>
-            <h3>Unlimited Prompts</h3>
-            <p>Free for MAX Plan Members</p>
+            <h3>Vô hạn lượt Prompt</h3>
+            <p>Chỉ dành cho người dùng Premium</p>
           </div>
 
           <div className="generate-prompt-feature-item-unique">
             <span><img src={item4} alt="Receive the Prompt" /></span >
-            <h3>Receive the Prompt</h3>
-            <p>Get your custom prompt & a PDF guide + CSV via email</p>
+            <h3>Nhận & Sử dụng</h3>
+            <p>Trong 24H bạn sẽ nhận được prompt qua email</p>
           </div>
         </div>
 
