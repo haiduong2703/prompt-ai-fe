@@ -447,7 +447,7 @@
 
   .prompt-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 8px;
   }
 
   .search-container-list-prompt {
@@ -523,7 +523,7 @@
 
   .prompt-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 8px;
   }
 
   .search-container-list-prompt {
