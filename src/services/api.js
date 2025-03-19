@@ -151,8 +151,8 @@ const api = {
             headers: { "Content-Type": "application/json" }
         });
     },
-    verifyLogin: async (email, otp) => {
-        return axios.post(`${API_URL}/users/login-verify`, { email, otp }, {
+    verifyLogin: async (email, otp, userIP) => {
+        return axios.post(`${API_URL}/users/login-verify`, { email, otp, ip_address: userIP }, {
             headers: { "Content-Type": "application/json" }
         });
     },

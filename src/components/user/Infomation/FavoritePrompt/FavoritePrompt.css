@@ -141,7 +141,7 @@
   .info-favorite-prompt-list {
     display: grid;
     grid-template-columns: 1fr 1fr; /* 2 columns with equal width */
-    grid-gap: 16px;
+    grid-gap: 8px;
     overflow-x: visible;
     padding-bottom: 0;
   }

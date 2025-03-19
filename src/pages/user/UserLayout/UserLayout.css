@@ -218,6 +218,30 @@ body {
   border-radius: 50%;
 }
 
+/* Mobile Avatar */
+.user-infomation-link-mobile {
+  display: none;
+}
+
+.user-avatar-mobile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* border: 1px solid #5700C6; */
+}
+
+.user-avatar-mobile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: none;
+}
+
 /* --- Spacer để tránh navbar che nội dung --- */
 .user-spacer {
   height: 70px;
@@ -382,6 +406,15 @@ body {
   .user-fullname {
     display: none;
   }
+
+  .user-infomation-link {
+    display: none;
+  }
+  
+  .user-infomation-link-mobile {
+    display: block;
+    margin-right: 5px;
+  }
 }
 
 .mobile-header-signup {
@@ -414,7 +447,7 @@ body {
   .user-nav-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 2px;
   }
 
   .user-menu-btn {

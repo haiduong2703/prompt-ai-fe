@@ -24,9 +24,8 @@ const UserLayout = ({ children }) => {
 
   return (
     <div
-      className={`user-container ${
-        location.pathname === "/home" ? "home-page" : ""
-      }`}
+      className={`user-container ${location.pathname === "/home" ? "home-page" : ""
+        }`}
     >
       <nav className="user-navbar">
         <Link to="/home" className="user-logo">
@@ -39,18 +38,16 @@ const UserLayout = ({ children }) => {
           <div className="user-nav-links">
             <Link
               to="/home"
-              className={`user-nav-item ${
-                location.pathname === "/home" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/home" ? "user-active" : ""
+                }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Trang chủ
             </Link>
             <Link
               to="/prompts"
-              className={`user-nav-item ${
-                location.pathname === "/prompts" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/prompts" ? "user-active" : ""
+                }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Prompt
@@ -58,9 +55,8 @@ const UserLayout = ({ children }) => {
 
             <Link
               to="/product"
-              className={`user-nav-item ${
-                location.pathname === "/product" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/product" ? "user-active" : ""
+                }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tài Liệu AI
@@ -88,18 +84,16 @@ const UserLayout = ({ children }) => {
             </div> */}
             <Link
               to="/blog"
-              className={`user-nav-item ${
-                location.pathname === "/blog" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/blog" ? "user-active" : ""
+                }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
             </Link>
             <Link
               to="/pricing"
-              className={`user-nav-item ${
-                location.pathname === "/pricing" ? "user-active" : ""
-              }`}
+              className={`user-nav-item ${location.pathname === "/pricing" ? "user-active" : ""
+                }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Gói Dịch Vụ
@@ -116,22 +110,23 @@ const UserLayout = ({ children }) => {
             </Link> */}
 
             {/* Mobile Menu Auth Buttons */}
-            <div className="mobile-auth-buttons">
-              <Link
-                to="/login"
-                className="mobile-login-btn"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Đăng Nhập
-              </Link>
-              <Link
-                to="/signup"
-                className="mobile-signup-btn"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Đăng Ký
-              </Link>
-            </div>
+            {!userLocal && (
+              <div className="mobile-auth-buttons">
+                <Link
+                  to="/login"
+                  className="mobile-login-btn"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Đăng Nhập
+                </Link>
+                <Link
+                  to="/signup"
+                  className="mobile-signup-btn"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Đăng Ký
+                </Link>
+              </div>)}
           </div>
         </div>
 
@@ -140,11 +135,16 @@ const UserLayout = ({ children }) => {
             <>
               <Link to="/user-information" className="user-infomation-link">
                 <div className="user-avatar">
-                  {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />} 
+                  {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />}
                 </div>
                 <p className="user-fullname">
-                {userLocal.fullName}
-              </p>
+                  {userLocal.fullName}
+                </p>
+              </Link>
+              <Link to="/user-information" className="user-infomation-link-mobile">
+                <div className="user-avatar-mobile">
+                  {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />}
+                </div>
               </Link>
             </>
           ) : (
@@ -172,6 +172,7 @@ const UserLayout = ({ children }) => {
               </Link>
             </>
           )}
+
           <button className="user-menu-btn" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? "✕" : "☰"}
           </button>
