@@ -8,51 +8,62 @@ import "./InfoUser.css";
 import { UserContext } from "../../../context/AuthContext";
 import { useUser } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
 const InfoUser = () => {
     const [activeMenu, setActiveMenu] = useState('account'); // account, password, favorites
     const { user } = useContext(UserContext); // Lấy user từ Context API
     const { logout } = useUser();
     const navigate = useNavigate();
+    
     const renderContent = () => {
       switch (activeMenu) {
         case 'account':
-          return <AccountInfo />;
+          return <AccountInfo user={user} onSwitchToPassword={handleChangePasswordClick} />;
         case 'password':
-          return <ChangePassword />;
+          return <ChangePassword user={user}/>;
         case 'favorites':
           return <FavoritePrompts user={user} />;
         default:
-          return <AccountInfo />;
+          return <AccountInfo user={user} onSwitchToPassword={handleChangePasswordClick} />;
       }
     };
+    
     const handleLogout = () => {
       logout();
       navigate("/login");
     };
+    
+    const handleChangePasswordClick = () => {
+      setActiveMenu('password');
+    };
+    
     return (
       <div className="info-user-container">
         <div className="info-user-sidebar">
+          <div className="info-user-menu-item-container">
           <div 
             className={`info-user-menu-item ${activeMenu === 'account' ? 'active' : ''}`}
             onClick={() => setActiveMenu('account')}
           >
-            <UserOutlined/><span>Thông tin tài khoản</span>
+            <UserOutlined/><span className="info-user-menu-item-text">Thông tin tài khoản</span>
           </div>
           <div 
             className={`info-user-menu-item ${activeMenu === 'password' ? 'active' : ''}`}
             onClick={() => setActiveMenu('password')}
           >
-            <LockFilled/><span>Đổi mật khẩu</span>
+            <LockFilled/><span className="info-user-menu-item-text">Đổi mật khẩu</span>
           </div>
           <div 
             className={`info-user-menu-item ${activeMenu === 'favorites' ? 'active' : ''}`}
             onClick={() => setActiveMenu('favorites')}
           >
-            <HeartFilled/><span>Prompt yêu thích</span>
+            <HeartFilled/><span className="info-user-menu-item-text">Prompt yêu thích</span>
           </div>
-          <Divider />
-          <div className="info-user-menu-item">
-            <LogoutOutlined/><span onClick={handleLogout}>Thoát</span>
+          </div>
+          <div className="mobile-divider"><Divider /></div>
+
+          <div className="info-user-menu-item logout-item" onClick={handleLogout}>
+            <LogoutOutlined/><span className="info-user-menu-item-text">Thoát</span>
           </div>
         </div>
   

@@ -304,9 +304,10 @@
 /* Ellipsis style */
 .pagination_list_prompts .ant-pagination-item-ellipsis {
   color: #1D1E25 !important;
-  font-weight: 700;
+  font-weight: 500 !important;
   font-size: 16px;
   line-height: 24px;
+  top: auto !important;
 }
 
 /* phần list dưới */
@@ -446,7 +447,7 @@
 
   .prompt-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 16px;
   }
 
   .search-container-list-prompt {
@@ -459,7 +460,8 @@
   }
 
   .newest-prompt-list > * {
-    flex: 0 0 260px;
+    flex: none;
+    width: 100%;
   }
 
   .newest-prompts-title-box h2 {
@@ -469,11 +471,48 @@
 
   .category-tags-list-prompt {
     gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
-
+  
   .category-tag-list-prompt {
     padding: 4px 12px;
     font-size: 12px;
+  }
+  
+  .pagination_list_prompts {
+    width: 100%;
+    margin-top: 24px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-item {
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 2px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-item a {
+    font-size: 14px;
+  }
+  
+  .pagination-arrow-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .pagination-arrow-btn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-prev,
+  .pagination_list_prompts .ant-pagination-next {
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -483,7 +522,7 @@
   }
 
   .prompt-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
 
@@ -505,19 +544,36 @@
 
   .newest-prompts-container {
     margin: 32px auto;
+    min-width: auto;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
   }
 
   .newest-prompt-list-wrapper {
     padding: 16px;
     gap: 16px;
+    flex-direction: column-reverse;
   }
 
   .newest-prompt-list-wrapper .astronaut-image {
-    width: 200px;
+    width: 100%;
+    max-width: 191px;
+  }
+
+  .newest-prompt-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    width: 100%;
+    gap: 16px;
+    padding-bottom: 16px;
   }
 
   .newest-prompt-list > * {
-    flex: 0 0 240px;
+    flex: 0 0 250px;
+    min-width: 250px;
+    max-width: 250px;
   }
 
   .newest-prompts-title-box h2 {
@@ -535,6 +591,65 @@
     padding: 8px 16px;
     font-size: 12px;
     width: 120px;
+  }
+
+  /* Ensure each prompt card fits properly on mobile */
+  .prompt-card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .pagination_list_prompts {
+    margin-top: 20px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-item {
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 1px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-item a {
+    font-size: 12px;
+  }
+  
+  .pagination-arrow-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .pagination-arrow-btn img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .pagination_list_prompts .ant-pagination-prev,
+  .pagination_list_prompts .ant-pagination-next {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Style ellipsis for mobile instead of hiding */
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    min-width: 24px !important;
+  }
+  
+  /* Hide all page numbers except current, current-1, and current+1 */
+  .pagination_list_prompts .ant-pagination-item:not(.ant-pagination-item-active):not(.ant-pagination-item-active + .ant-pagination-item):not(.ant-pagination-item-active + .ant-pagination-item + .ant-pagination-item):not(:nth-last-child(-n+3)):not(:first-child):not(:nth-child(2)) {
+    display: none !important;
+  }
+
+  .category-tags-list-prompt {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .category-tag-list-prompt {
+    white-space: nowrap;
   }
 }
 
