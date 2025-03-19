@@ -27,8 +27,8 @@ import InfoUser from "../components/user/Infomation/InfoUser";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
-  // const isAdmin = user && user.role === 2; // Kiểm tra role
-  const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
+  const isAdmin = user && user.role === 2; // Kiểm tra role
+  // const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
   useEffect(() => {
     document.title = "Promp";

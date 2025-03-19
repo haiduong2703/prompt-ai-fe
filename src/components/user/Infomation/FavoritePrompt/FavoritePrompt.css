@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 }
 
 .info-favorite-prompt h1 {
@@ -45,41 +46,153 @@
   font-weight: 700;
 }
 
+/* Desktop - Horizontal Scrolling */
 .info-favorite-prompt-list {
-    flex: 1;
     display: flex;
     gap: 24px;
     overflow-x: auto;
-    padding-bottom: 16px; /* Space for scrollbar */
+    padding-bottom: 16px;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-  }
-  
-  .info-favorite-prompt-list > * {
-    flex: 0 0 360px; /* Fixed width for each card */
-  }
-  /* Custom scrollbar styles */
+    width: 100%;
+}
+
+.prompt-card-wrapper {
+    flex: 0 0 360px;
+    min-width: 360px;
+    width: 360px;
+}
+
+/* Custom scrollbar styles */
 .info-favorite-prompt-list::-webkit-scrollbar {
     height: 8px;
-  }
+}
   
-  .info-favorite-prompt-list::-webkit-scrollbar-track {
+.info-favorite-prompt-list::-webkit-scrollbar-track {
     background: #F4F0FF;
     border-radius: 4px;
+}
+  
+.info-favorite-prompt-list::-webkit-scrollbar-thumb {
+    background: #DACDFF;
+    border-radius: 4px;
+}
+  
+.info-favorite-prompt-list::-webkit-scrollbar-thumb:hover {
+    background: #5700C6;
+}
+  
+/* Firefox scrollbar */
+.info-favorite-prompt-list {
+    scrollbar-width: thin;
+    scrollbar-color: #DACDFF #F4F0FF;
+}
+
+/* Loading and Empty States */
+.loading-state, .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    text-align: center;
+    width: 100%;
+    background-color: #F9F9F9;
+    border-radius: 12px;
+}
+
+.empty-state p {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.empty-state-subtitle {
+    color: #6B7280 !important;
+    font-size: 14px !important;
+}
+
+.loading-state {
+    color: #5700C6;
+    font-weight: 500;
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .info-favorite-prompt h1 {
+    font-size: 24px;
   }
   
-  .info-favorite-prompt-list::-webkit-scrollbar-thumb {
-    background: #DACDFF;
+  .info-favorite-prompt p {
+    font-size: 14px;
+  }
+  
+  .info-favorite-section-filter {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .info-favorite-section-button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  /* Switch to Grid Layout with 2 columns */
+  .info-favorite-prompt-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns with equal width */
+    grid-gap: 8px;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  
+  .prompt-card-wrapper {
+    width: 100%;
+    min-width: auto;
+    flex: none;
+  }
+  
+  .loading-state, .empty-state {
+    padding: 32px 16px;
+  }
+}
+
+/* Mobile (576px and below) */
+@media (max-width: 576px) {
+  /* Switch to single column */
+  .info-favorite-prompt-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .info-favorite-section-filter {
+    overflow-x: auto;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  
+  .info-favorite-section-filter::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  .info-favorite-section-filter::-webkit-scrollbar-thumb {
+    background-color: #DACDFFE5;
     border-radius: 4px;
   }
   
-  .info-favorite-prompt-list::-webkit-scrollbar-thumb:hover {
-    background: #5700C6;
+  .info-favorite-section-button {
+    white-space: nowrap;
+    padding: 4px 10px;
+    font-size: 12px;
   }
   
-  /* Firefox scrollbar */
-  .info-favorite-prompt-list {
-    scrollbar-width: thin;
-    scrollbar-color: #DACDFF #F4F0FF;
+  .empty-state p {
+    font-size: 14px;
   }
+  
+  .empty-state-subtitle {
+    font-size: 12px !important;
+  }
+}
 

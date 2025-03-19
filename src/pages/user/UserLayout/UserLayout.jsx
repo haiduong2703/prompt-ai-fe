@@ -121,22 +121,24 @@ const UserLayout = ({ children }) => {
             </Link>
 
             {/* Mobile Menu Auth Buttons */}
-            <div className="mobile-auth-buttons">
-              <Link
-                to="/login"
-                className="mobile-login-btn"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Đăng Nhập
-              </Link>
-              <Link
-                to="/signup"
-                className="mobile-signup-btn"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Đăng Ký
-              </Link>
-            </div>
+            {!userLocal && (
+              <div className="mobile-auth-buttons">
+                <Link
+                  to="/login"
+                  className="mobile-login-btn"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Đăng Nhập
+                </Link>
+                <Link
+                  to="/signup"
+                  className="mobile-signup-btn"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Đăng Ký
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 
@@ -152,6 +154,19 @@ const UserLayout = ({ children }) => {
                   )}
                 </div>
                 <p className="user-fullname">{userLocal.fullName}</p>
+              </Link>
+              <Link
+                to="/user-information"
+                className="user-infomation-link-mobile"
+              >
+                <div className="user-avatar-mobile">
+                  {userLocal.profile_image ? (
+                    <img src={userLocal.profile_image} alt="Avatar" />
+                  ) : (
+                    <img src={defaultAvatar} alt="Avatar" />
+                  )}
+                </div>
+                <p className="user-fullname-mobile">{userLocal.fullName}</p>
               </Link>
             </>
           ) : (
@@ -171,6 +186,13 @@ const UserLayout = ({ children }) => {
                 <button className="signup-button">Đăng Ký</button>
               </Link>
               <Link
+                to="/login"
+                className="mobile-header-signup"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="user-login">Đăng Nhập</span>
+              </Link>
+              <Link
                 to="/signup"
                 className="mobile-header-signup"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -179,6 +201,7 @@ const UserLayout = ({ children }) => {
               </Link>
             </>
           )}
+
           <button className="user-menu-btn" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? "✕" : "☰"}
           </button>

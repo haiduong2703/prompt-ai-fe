@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, Button, Divider, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/AuthContext";
@@ -10,8 +10,26 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
+  const [userIP, setUserIP] = useState("");
   const navigate = useNavigate();
   const { setUser } = useUser();
+
+  // Add IP detection on component mount
+  useEffect(() => {
+    // Function to get user IP
+    const getUserIP = async () => {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        setUserIP(data.ip);
+      } catch (error) {
+        console.error("Could not get IP address:", error);
+        setUserIP(""); // Set empty string if failed
+      }
+    };
+    
+    getUserIP();
+  }, []);
 
   // 🟢 Gửi OTP khi đăng nhập
   const handleSendOtp = async () => {
@@ -43,7 +61,7 @@ const Login = () => {
     }
 
     try {
-      const response = await api.verifyLogin(email, otp);
+      const response = await api.verifyLogin(email, otp, userIP);
 
       const data = await response.data;
       if (data) {

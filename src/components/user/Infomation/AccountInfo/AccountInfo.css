@@ -1,0 +1,460 @@
+.info-user-profile-container h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: 0%;
+    margin-bottom: 6px;
+}
+.info-user-profile-container .ant-divider {
+    margin: 12px 0;
+}
+.info-user-profile-container p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0%;
+    margin-bottom: 6px;
+}
+.info-user-profile-container h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0%;
+}
+.info-user-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.info-user-profile-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-user-profile-avatar img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.info-user-profile button {
+    background-color: #DACDFFE5;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 96px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #5700C6;
+}
+.info-user-profile-email h2{
+    margin-bottom: 12px;
+}
+.info-user-profile-gmail-list {
+    display: flex;
+    justify-items: center;
+    gap: 10px;
+}
+.info-user-profile-gmail h2 {
+    margin-bottom: 12px;
+}
+.info-user-profile-gmail {
+    margin-bottom: 24px;
+}
+.info-user-profile-gmail-list img {
+    width: 24px;
+    height: 24px;
+}
+.info-user-profile-device {
+    margin-bottom: 24px;
+}
+
+.info-user-profile-device h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.info-user-profile-device-list {
+    background: #F5F5F5;
+    border-radius: 12px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.info-user-profile-device-list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+}
+.info-user-profile-device-list div {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.info-user-profile-device-list div:nth-child(2n) {
+    color: #6B7280;
+    text-align: right;
+}
+
+.hien-tai {
+    background-color: #DACDFFE5;
+    color: #5700C6;
+    padding: 2px 8px;
+    border-radius: 96px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.info-user-profile-delete-account {
+    margin-bottom: 24px;
+}
+
+.info-user-profile-delete-account h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.delete-account-wrapper {
+    background-color: #F6F6F6;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.delete-account-text {
+    margin-bottom: 12px;
+    color: #6B7280;
+}
+
+.info-user-profile-delete-account button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: #F9F9F9;
+    border: none;
+    border-radius: 96px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #6B7280;
+    cursor: pointer;
+}
+
+.info-user-profile-delete-account button img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+}
+
+.info-user-profile-delete-account button:hover {
+    background: #FFE4E4;
+    color: #ED2828;
+}
+
+.info-user-profile-delete-account button:hover img {
+    opacity: 1;
+}
+
+.profile-section {
+    position: relative;
+}
+
+.thay-doi-btn, .doi-mat-khau-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #DACDFFE5;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 96px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #5700C6;
+    cursor: pointer;
+}
+
+.user-id {
+    color: #6B7280;
+    word-break: break-all;
+}
+
+/* Edit Profile Modal Styles */
+.edit-profile-modal .ant-modal-content {
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.edit-profile-modal .ant-modal-header {
+    margin-bottom: 24px;
+}
+
+.edit-profile-modal .ant-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: center;
+}
+.edit-profile-avatar-hint {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.edit-profile-avatar-hint p {
+    text-align: left;
+}
+.edit-profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.edit-profile-avatar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.edit-profile-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edit-profile-avatar .upload-button {
+    background-color: #DACDFFE5;
+    color: #5700C6;
+    padding: 4px 12px;
+    border-radius: 96px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.edit-profile-avatar .file-hint {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.edit-profile-form label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.edit-profile-form input {
+    padding: 8px 12px;
+    background: #F5F5F5;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+}
+.edit-profile-form input:focus {
+    outline: 1px solid #5700C6;
+}
+
+.edit-profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.edit-profile-actions button {
+    padding: 6px 16px;
+    border-radius: 96px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.edit-profile-actions .cancel-button {
+    background: transparent;
+    border: none;
+    background: #E0E0E0;
+    font-weight: 600;
+    line-height: 22px;
+    font-size: 16px;
+    padding: 8px 16px;
+
+}
+
+.edit-profile-actions .submit-button {
+    background: #5700C6;
+    color: white;
+    font-weight: 600;
+    line-height: 22px;
+    border: none;
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
+.edit-profile-actions .submit-button:hover {
+    background: #4a00a8;
+}
+
+@media screen and (max-width: 768px) {
+    .info-user-profile-container h1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+        margin-bottom: 16px;
+    }
+    
+    .info-user-profile-container h2 {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 22px;
+    }
+    
+    .info-user-profile-container h3 {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+    }
+    
+    .info-user-profile-avatar img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .info-user-profile-email h2,
+    .info-user-profile-gmail h2,
+    .info-user-profile-device h2,
+    .info-user-profile-delete-account h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .info-user-profile {
+        margin-bottom: 16px;
+    }
+    
+    .info-user-profile-gmail {
+        margin-bottom: 16px;
+    }
+    
+    .info-user-profile-device {
+        margin-bottom: 16px;
+    }
+    
+    .info-user-profile-delete-account {
+        margin-bottom: 16px;
+    }
+    
+    .info-user-profile button {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    
+    .thay-doi-btn, .doi-mat-khau-btn {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+    
+    .info-user-profile-device-list {
+        padding: 12px;
+        gap: 4px;
+    }
+    
+    .info-user-profile-device-list div {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    
+    .edit-profile-modal .ant-modal-content {
+        padding: 16px;
+    }
+    
+    .edit-profile-modal .ant-modal-title {
+        font-size: 18px;
+    }
+    
+    .edit-profile-content {
+        gap: 16px;
+    }
+    
+    .edit-profile-avatar img {
+        width: 64px;
+        height: 64px;
+    }
+    
+    .edit-profile-actions button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .delete-account-wrapper {
+        padding: 12px;
+    }
+    
+    .delete-account-text {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .info-user-profile-container {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .info-user-profile-device-list {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .info-user-profile-device-list div:nth-child(2n) {
+        text-align: left;
+        margin-left: 28px;
+        color: #6B7280;
+        margin-bottom: 8px;
+    }
+    
+    .info-user-profile-container {
+        padding: 0;
+    }
+    
+    .info-user-profile-gmail-list {
+        align-items: center;
+    }
+    
+    .thay-doi-btn, .doi-mat-khau-btn {
+        position: static;
+        margin-top: 4px;
+        display: inline-block;
+    }
+    
+    .profile-section {
+        margin-bottom: 8px;
+    }
+}

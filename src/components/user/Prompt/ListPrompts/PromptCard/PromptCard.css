@@ -232,3 +232,135 @@
   font-weight: 700;
   color: #1D1E25;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .component-prompt-card-container {
+    min-height: 200px;
+  }
+  
+  .component-prompt-card {
+    padding: 16px 12px;
+  }
+  
+  .component-prompt-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .component-premium-tag-div button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .component-premium-tag-div button .anticon {
+    font-size: 16px;
+  }
+  
+  .component-new-tag {
+    width: 50px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .component-prompt-card-body {
+    padding: 10px;
+  }
+  
+  .component-prompt-title {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 6px;
+  }
+  
+  .component-prompt-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .component-prompt-card-topic {
+    padding: 8px 12px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+  
+  .component-prompt-card-footer {
+    padding: 12px;
+  }
+  
+  .component-view-prompt-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .component-prompt-card-container {
+    min-height: 180px;
+  }
+  
+  .component-prompt-card {
+    padding: 12px 8px;
+  }
+  
+  .component-prompt-card-header {
+    margin-bottom: 12px;
+  }
+  
+  .component-prompt-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .component-premium-tag-div {
+    gap: 4px;
+  }
+  
+  .component-premium-tag-div button {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .component-premium-tag-div button .anticon {
+    font-size: 14px;
+  }
+  
+  .component-new-tag {
+    width: 40px;
+    height: 28px;
+    font-size: 10px;
+    line-height: 18px;
+  }
+  
+  .component-prompt-title {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 4px;
+  }
+  
+  .component-prompt-description {
+    font-size: 12px;
+    line-height: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .component-prompt-card-topic {
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .component-prompt-card-footer {
+    padding: 10px 8px;
+  }
+  
+  .component-view-prompt-button {
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
