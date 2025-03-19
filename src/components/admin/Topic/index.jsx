@@ -34,7 +34,6 @@ const TopicAdmin = () => {
 
   const fetchCategories = async () => {
     try {
-      console.log("helloo");
       const response = await api.getTopicsPage(page, pageSize);
       setCategories(response.data.topics);
       setTotal(response.data.totalItems);

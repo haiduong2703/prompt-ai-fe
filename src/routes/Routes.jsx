@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation  } from "react-router-dom";
 import PromptList from "../components/admin/Prompt/PromptList";
 import CategoryManager from "../components/admin/Category/CategoryAdmin";
 import AdminLayout from "../pages/admin/AdminLayout";
@@ -25,15 +25,40 @@ import ProductComponent from "../pages/user/Product";
 import ProductManager from "../components/admin/Product";
 import InfoUser from "../components/user/Infomation/InfoUser";
 import GeneratePrompt from "../pages/user/ToolsPage/GeneratePrompt/GeneratePrompt";
+import api from "../services/api";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
-  const { user } = useContext(UserContext); // Lấy user từ Context API
+  const { user, setUser } = useContext(UserContext); // Lấy user từ Context API
   const isAdmin = user && user.role === 2; // Kiểm tra role
   // const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
+  const location = useLocation();
   useEffect(() => {
     document.title = "Promp";
   }, []);
+  useEffect(() => {
+    if (user) {
+      GetUserInfo();  // Gọi lại hàm mỗi khi người dùng chuyển trang
+    }
+  }, [location.pathname]);
+  const GetUserInfo = async () => {
+    try {
+      const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+      const userUpdatedDate = new Date(user.updated_at).toISOString().split('T')[0]; // Get user's updated_at date in YYYY-MM-DD format
+      if (userUpdatedDate !== currentDate) {
+        const res = await api.getUserInfo(user.id);
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        const updatedUser = {
+          ...currentUser,
+          count_prompt: res.data.count_promt,
+          updated_at: res.data.updated_at
+        };
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setUser(updatedUser);
+      }
+    } catch (err) {
+    }
+  }
   return (
     <Routes>
       {isAdmin ? (

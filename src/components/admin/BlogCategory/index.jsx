@@ -34,7 +34,6 @@ const BlogCategoryManager = () => {
 
   const fetchCategories = async () => {
     try {
-      console.log("helloo");
       const response = await api.getBlogCategoryPage(page, pageSize);
       setCategories(response.data.categories);
       setTotal(response.data.totalPages);

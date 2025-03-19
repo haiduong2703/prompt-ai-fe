@@ -26,10 +26,6 @@ const Pricing = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  useEffect(() => {
-    console.log("user", user);
-  }, [])
   
   useEffect(() => {
     fetchDataSub(selectedPlan);
