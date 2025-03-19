@@ -52,7 +52,10 @@
   .logout-item {
     margin-top: auto;
   }
-  
+  .logout-icon {
+    width: 20px;
+    height: 20px;
+  }
   .info-user-content {
     flex: 1;
     max-width: 800px;

@@ -8,7 +8,7 @@ import "./InfoUser.css";
 import { UserContext } from "../../../context/AuthContext";
 import { useUser } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import logout_icon from "../../../../src/asset/icon/logout_icon.png";
 const InfoUser = () => {
     const [activeMenu, setActiveMenu] = useState('account'); // account, password, favorites
     const { user } = useContext(UserContext); // Lấy user từ Context API
@@ -63,7 +63,8 @@ const InfoUser = () => {
           <div className="mobile-divider"><Divider /></div>
 
           <div className="info-user-menu-item logout-item" onClick={handleLogout}>
-            <LogoutOutlined/><span className="info-user-menu-item-text">Thoát</span>
+            <img src={logout_icon} alt="logout" className="logout-icon"/>
+            <span className="info-user-menu-item-text">Thoát</span>
           </div>
         </div>
   
