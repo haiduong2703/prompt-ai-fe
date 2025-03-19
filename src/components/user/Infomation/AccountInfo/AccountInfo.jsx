@@ -36,7 +36,6 @@ const AccountInfo = ({ user }) => {
       const response = await api.getUserInfo(user.id);
       setUserInfo(response.data);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -45,7 +44,6 @@ const AccountInfo = ({ user }) => {
       const response = await api.getDeviceLog(user.id);
       setDeviceLog(response.data);
     } catch (error) {
-      console.log(error);
     };
   }
 
@@ -68,13 +66,11 @@ const AccountInfo = ({ user }) => {
       }
       await api.updateUserInfo(user.id, formData).then((res) => {
         const currentUser = JSON.parse(localStorage.getItem('user'));
-        console.log("response", res.data)
         const updatedUser = {
           ...currentUser,
           fullName: res.data?.user?.full_name,
           profile_image: res.data?.user?.profile_image
         };
-        console.log(updatedUser);
         localStorage.setItem('user', JSON.stringify(updatedUser));
         // Cập nhật UserContext
         setUser(updatedUser);

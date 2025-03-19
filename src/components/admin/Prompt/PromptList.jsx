@@ -73,7 +73,6 @@ const PromptList = () => {
   const fetchSection = async () => {
     try {
       const response = await api.getSections();
-      console.log(response.data);
       setSections(response.data);
     } catch (error) {
       message.error("Failed to fetch section");
@@ -83,7 +82,6 @@ const PromptList = () => {
   const fetchTopics = async () => {
     try {
       const topicRes = await api.getTopics();
-      console.log(topicRes.data);
       setTopic(topicRes.data);
     } catch (error) {
       message.error("Failed to fetch categories");

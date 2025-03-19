@@ -323,7 +323,6 @@ const Home = () => {
       }).toString();
 
       const response = await api.getPrompts(query);
-      console.log("hiii", response.data.data);
       setNewestPrompts(response.data.data);
     } catch (error) {
       console.error("Error fetching newest prompts:", error);

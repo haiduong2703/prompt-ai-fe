@@ -108,7 +108,6 @@ const CategoryManager = () => {
 
   const handleFileChange = (info, field) => {
     const file = info.file; // Lấy file từ Upload của Ant Design
-    console.log("hiii", info);
     if (file) {
       // Tạo URL preview ngay lập tức
       const previewUrl = URL.createObjectURL(file);
@@ -138,7 +137,6 @@ const CategoryManager = () => {
       // Upload ảnh khi nhấn Lưu
       if (imageFile) formData.append("image", imageFile);
       if (imageCardFile) formData.append("image_card", imageCardFile);
-      console.log(formData);
 
       if (editingCategory) {
         await api.updateCategories(editingCategory.id, formData);
