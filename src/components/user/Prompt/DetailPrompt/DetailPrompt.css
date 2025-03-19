@@ -498,7 +498,6 @@
 }
 
 .related-prompts-title-box {
-    padding-bottom: 20px;
     display: flex;
     justify-items: center;
 }
@@ -683,12 +682,98 @@
     background: #DACDFF;
     transform: translate(-50%, -50%) translateY(-2px);
 }
-
+@media screen and (max-width: 1200px) {
+    .related-prompt-list {
+        gap: 16px;
+        padding: 16px;
+    }
+    .related-prompts-container {
+        gap: 16px;
+        flex-direction: column-reverse;
+    }
+    .related-prompts-title-box {
+        padding-bottom: 0px;
+    }
+    .related-prompt-list-wrapper {
+        padding: 20px 0px;
+      }
+    .related-prompt-list {
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        gap: 8px;
+        padding-bottom: 16px;
+      }
+    
+      .related-prompt-list > * {
+        flex: 0 0 250px;
+        min-width: 250px;
+        max-width: 250px;
+      }
+}
+@media screen and (max-width: 992px) {
+    .related-prompt-list {
+        gap: 16px;
+        padding: 16px;
+    }
+    .related-prompts-container {
+        gap: 16px;
+        flex-direction: column-reverse;
+    }
+    .related-prompts-title-box {
+        padding-bottom: 0px;
+    }
+    .related-prompt-list-wrapper {
+        padding: 20px 0px;
+      }
+    .related-prompt-list {
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        gap: 8px;
+        padding-bottom: 16px;
+      }
+    
+      .related-prompt-list > * {
+        flex: 0 0 250px;
+        min-width: 250px;
+        max-width: 250px;
+      }
+}
 @media screen and (max-width: 768px) {
     .detail-prompt-paragraph-special-content-link {
         padding: 10px 20px;
         font-size: 14px;
     }
+    .related-prompts-container {
+        gap: 16px;
+        flex-direction: column-reverse;
+    }
+    .related-prompts-title-box {
+        padding-bottom: 0px;
+    }
+    .related-prompt-list-wrapper {
+        padding: 10px 0px;
+      }
+    .related-prompt-list {
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        gap: 8px;
+        padding-bottom: 16px;
+      }
+    
+      .related-prompt-list > * {
+        flex: 0 0 250px;
+        min-width: 250px;
+        max-width: 250px;
+      }
 }
 
 @media screen and (max-width: 576px) {
@@ -698,6 +783,32 @@
         width: 80%;
         text-align: center;
     }
+    .related-prompts-container {
+        gap: 16px;
+        flex-direction: column-reverse;
+    }
+    .related-prompts-title-box {
+        padding-bottom: 0px;
+    }
+    .related-prompt-list-wrapper {
+        padding: 10px 0px;
+      }
+    .related-prompt-list {
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        gap: 8px;
+        padding-bottom: 16px;
+      }
+    
+      .related-prompt-list > * {
+        flex: 0 0 250px;
+        min-width: 250px;
+        max-width: 250px;
+      }
+   
 }
 
 .detail-prompt-paragraph-special-content-box.blurred::after {

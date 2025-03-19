@@ -42,6 +42,15 @@ const DetailPrompt = () => {
             getFavoritePrompts();
         }
     }, []);
+    useEffect(() => {
+        setExpandedSections({
+            howToUse: false,
+            exampleInput: false,
+            exampleOutput: false,
+            additionalTips: false,
+            additionalInfo: false
+        });
+    }, [id]);
     const copyToClipboard = () => {
         if (optimationRef.current) {
             const text = optimationRef.current.innerText; // Lấy nội dung text, bỏ thẻ HTML
