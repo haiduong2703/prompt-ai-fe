@@ -34,7 +34,7 @@ const AccountInfo = ({ user }) => {
   const getUserInfo = async () => {
     try {
       const response = await api.getUserInfo(user.id);
-      setUserInfo(response.data);
+      setUserInfo(response.data?.data?.user);
     } catch (error) {
     }
   };

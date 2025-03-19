@@ -42,6 +42,14 @@ const RoutesMain = () => {
     }
   }, [location.pathname]);
   const GetUserInfo = async () => {
+    const res = await api.getUserInfo(user.id);
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    const updatedUser = {
+      ...currentUser,
+      count_prompt: res.data?.data?.user?.count_promt,
+      updated_at: res.data?.data?.user?.updated_at,
+      userSub: res.data?.data?.userSub
+    };
     try {
       const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
       const userUpdatedDate = new Date(user.updated_at).toISOString().split('T')[0]; // Get user's updated_at date in YYYY-MM-DD format
@@ -50,8 +58,9 @@ const RoutesMain = () => {
         const currentUser = JSON.parse(localStorage.getItem('user'));
         const updatedUser = {
           ...currentUser,
-          count_prompt: res.data.count_promt,
-          updated_at: res.data.updated_at
+          count_prompt: res.data?.data?.user?.count_promt,
+          updated_at: res.data?.data?.user?.updated_at,
+          userSub: res.data?.data?.userSub
         };
         localStorage.setItem('user', JSON.stringify(updatedUser));
         setUser(updatedUser);
