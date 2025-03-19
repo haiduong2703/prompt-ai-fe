@@ -169,6 +169,15 @@ const api = {
     updateCount: async (id) => {
         return axios.put(`${API_URL}/users/count-prompt/${id}`);
     },
+    getUserInfo: async (id) => {
+        return axios.get(`${API_URL}/users/${id}`);
+    },
+    updateUserInfo: async (id, data) => {
+        return axios.put(`${API_URL}/users/update-info/${id}`, data);
+    },
+    changePassword: async (id, password, newPassword) => {
+        return axios.put(`${API_URL}/users/change-password/${id}?password=${password}&newPassword=${newPassword}`);
+    },
     //Like Prompt
     getFavoritePrompts: async (userId) => {
         return axios.get(`${API_URL}/promptfavorite/${userId}`);
@@ -197,6 +206,12 @@ const api = {
     getFavoritePromptsByUserId: async (userId, sectionId) => {
         return axios.get(`${API_URL}/promptfavorite/list/by-section?user_id=${userId}&section_id=${sectionId}`);
     },
+
+    //device log
+    getDeviceLog: async (userId) => {
+        return axios.get(`${API_URL}/devicelogs/${userId}`);
+    },
+    
 };
 
 export default api;

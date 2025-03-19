@@ -13,13 +13,16 @@
   }
   .info-user-sidebar {
     width: 280px;
+    min-width: 280px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     background: #FAFAFA;
     border-radius: 8px;
     padding: 12px;
+    height: fit-content;
   }
+
   
   .info-user-menu-item {
     display: flex;
@@ -46,7 +49,100 @@
     font-weight: 700;
   }
   
+  .logout-item {
+    margin-top: auto;
+  }
+  
   .info-user-content {
     flex: 1;
     max-width: 800px;
+  }
+  
+  @media (max-width: 768px) {
+    .info-user-container {
+      flex-direction: column;
+      gap: 24px;
+      padding: 16px 12px;
+    }
+    
+    .info-user-container h1 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 32px;
+      margin-bottom: 12px;
+    }
+    
+    .info-user-sidebar {
+      width: 100%;
+      min-width: unset;
+      padding: 8px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .info-user-sidebar .info-user-menu-item-text {
+      display: none;
+    }
+    .info-user-menu-item-container {
+      display: flex;
+    }
+    .info-user-menu-item span {
+      white-space: nowrap;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .info-user-menu-item .logout-item {
+      right: 0;
+    }
+    .info-user-content {
+      padding: 0 10px;
+      width: 100%;
+    }
+    
+    .mobile-divider {
+      display: none;
+    }
+    
+    .logout-item {
+      margin-top: 0;
+    }
+    
+    .info-user-sidebar .ant-divider {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .info-user-container {
+      padding: 16px 8px;
+    }
+    
+    .info-user-sidebar {
+      overflow-x: auto;
+      justify-content: space-between;
+      padding: 8px 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .info-user-sidebar .info-user-menu-item-text {
+      display: none;
+    }
+    .info-user-sidebar::-webkit-scrollbar {
+      height: 3px;
+    }
+    
+    .info-user-sidebar::-webkit-scrollbar-thumb {
+      background-color: #DACDFFE5;
+      border-radius: 4px;
+    }
+    
+    .info-user-menu-item {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
   }
