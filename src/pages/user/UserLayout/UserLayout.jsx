@@ -5,6 +5,7 @@ import UserFooter from "../UserFooter/UserFooter";
 import { useUser } from "../../../context/AuthContext";
 import logoImg from "../../../asset/imgae/logo.png";
 import defaultAvatar from "../../../asset/imgae/default_avatar.png";
+import arrowExpand from "../../../asset/icon/arow_expand.svg";
 
 const UserLayout = ({ children }) => {
   const location = useLocation();
@@ -70,20 +71,28 @@ const UserLayout = ({ children }) => {
             >
               Tài Liệu AI
             </Link>
-            {/* <div className="user-dropdown">
-              <button className="user-dropdown-btn">
-                Tools <img src={arrowExpand} alt="" />
+            <Link
+              to="/generate-prompt"
+              className={`user-nav-item user-tools-nav ${location.pathname === "/generate-prompt" ? "user-active" : ""
+                }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Tools <img src={arrowExpand} alt="" />
+            </Link>
+            {/* <div className="user-dropdown-header">
+              <button className="user-dropdown-btn-header">
+                <span>Tools</span> <img src={arrowExpand} alt="" />
               </button>
               <div className="user-dropdown-menu">
                 <Link
-                  to="/tool1"
+                  to="/generate-prompt"
                   className="user-dropdown-item"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Prompts Generator
                 </Link>
                 <Link
-                  to="/tool2"
+                  to="/generate-prompt"
                   className="user-dropdown-item"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

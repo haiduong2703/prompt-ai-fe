@@ -24,6 +24,7 @@ import TopicAdmin from "../components/admin/Topic";
 import ProductComponent from "../pages/user/Product";
 import ProductManager from "../components/admin/Product";
 import InfoUser from "../components/user/Infomation/InfoUser";
+import GeneratePrompt from "../pages/user/ToolsPage/GeneratePrompt/GeneratePrompt";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user } = useContext(UserContext); // Lấy user từ Context API
@@ -61,6 +62,7 @@ const RoutesMain = () => {
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />
           {user && <Route path="user-information" element={<InfoUser />} />}
+          <Route path="generate-prompt" element={<GeneratePrompt />} />
         </Route>
       )}
     </Routes>
