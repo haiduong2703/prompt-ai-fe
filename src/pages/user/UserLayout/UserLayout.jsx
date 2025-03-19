@@ -145,6 +145,9 @@ const UserLayout = ({ children }) => {
                 <div className="user-avatar-mobile">
                   {userLocal.profile_image ? <img src={userLocal.profile_image} alt="Avatar" /> : <img src={defaultAvatar} alt="Avatar" />}
                 </div>
+                <p className="user-fullname-mobile">
+                  {userLocal.fullName}
+                </p>
               </Link>
             </>
           ) : (

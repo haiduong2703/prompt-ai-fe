@@ -412,8 +412,15 @@ body {
   }
   
   .user-infomation-link-mobile {
-    display: block;
-    margin-right: 5px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .user-fullname-mobile {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px;
+    color: #1D1E25;
   }
 }
 
