@@ -121,7 +121,7 @@ const ListPrompts = () => {
             <div className="list-prompts-container">
                 {/* Tiêu đề */}
                 <h1 className="list-prompts-container-title">
-                    {category?.prompt_count} {activeSection?.name} Prompts for {category?.name}
+                    {category?.prompt_count} {activeSection?.name} Prompts cho {category?.name}
                 </h1>
                 <p className="list-prompts-container-description">
                 Khám phá các Prompt AI tốt nhất cho ChatGPT và Midjourney được thiết kế để tăng cường doanh nghiệp của bạn và nâng cao năng suất làm việc.

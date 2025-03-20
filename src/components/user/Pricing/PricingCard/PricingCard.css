@@ -1,6 +1,6 @@
 .pricing-card {
     position: relative;
-    width: 320px;
+    width: fit-content;
     min-width: 300px;
     background: linear-gradient(154.91deg, #FFFFFF 8.79%, #E2D0FF 94.56%);
     border-radius: 36px;
