@@ -124,7 +124,7 @@ const ListPrompts = () => {
                     {category?.prompt_count} {activeSection?.name} Prompts for {category?.name}
                 </h1>
                 <p className="list-prompts-container-description">
-                    Discover the best AI prompts for ChatGPT & Midjourney designed to supercharge your business and boost your productivity.
+                Khám phá các Prompt AI tốt nhất cho ChatGPT và Midjourney được thiết kế để tăng cường doanh nghiệp của bạn và nâng cao năng suất làm việc.
                 </p>
                 {/* Nút chọn Premium / Free */}
                 {/* <div className={`filter-buttons ${isType === 2 ? 'premium-active' : 'free-active'}`}>
@@ -209,7 +209,7 @@ const ListPrompts = () => {
             {/* Danh sách prompt mới nhất */}
             <div className="newest-prompts-container">
                 <div className="newest-prompts-title-box">
-                    <h2>Newest ChatGPT Prompts for Sales</h2>
+                    <h2>Các Prompts {activeSection?.name} Mới Nhất Cho {category?.name}</h2>
                 </div>
                 <div className="newest-prompt-list-wrapper">
                     <div className="astronaut-image">

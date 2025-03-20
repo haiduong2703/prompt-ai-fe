@@ -200,7 +200,7 @@ const DetailPrompt = () => {
                         )}
                     </div>
 
-                    <div className="detail-prompt-section" onClick={() => toggleSection('exampleInput')}>
+                    {prompt.input && (<div className="detail-prompt-section" onClick={() => toggleSection('exampleInput')}>
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b17967b11f0ec779ce6_inbox-tray-svgrepo-com.svg" alt="Example input" />
@@ -213,9 +213,9 @@ const DetailPrompt = () => {
                                 <div dangerouslySetInnerHTML={{ __html: prompt.input }} />
                             </div>
                         )}
-                    </div>
+                    </div>)}
 
-                    <div className="detail-prompt-section" onClick={() => toggleSection('exampleOutput')}>
+                    {prompt.output && (<div className="detail-prompt-section" onClick={() => toggleSection('exampleOutput')}>
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1764188051455cd76d_outbox-tray-svgrepo-com.svg" alt="Example output" />
@@ -228,7 +228,7 @@ const DetailPrompt = () => {
                                 <div dangerouslySetInnerHTML={{ __html: prompt.output }} />
                             </div>
                         )}
-                    </div>
+                    </div>)}
 
                     <div className="detail-prompt-section" onClick={() => toggleSection('additionalTips')}>
                         <div className="detail-prompt-section-header">
@@ -265,7 +265,7 @@ const DetailPrompt = () => {
                 {/* Danh sách prompt mới nhất */}
                 <div className="related-prompts-container">
                     <div className="related-prompts-title-box">
-                        <h2>More Prompts</h2>
+                        <h2>Prompts Liên Quan</h2>
                     </div>
                     <div className="related-prompt-list-wrapper">
                         <div className="related-prompt-list">
