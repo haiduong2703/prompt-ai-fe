@@ -81,7 +81,7 @@ const prompts = [
 const marketplaceCards = [
   {
     title: "Khám Phá Thư Viện Prompts",
-    description: "Với hơn 25.000 Prompts",
+    description: "Với Hàng Nghìn Prompts",
     imgSrc: imgMarket,
     bgColor: "orange",
   },
@@ -397,7 +397,7 @@ const Home = () => {
                     <br />
                     <span className="purple-text">LỚN NHẤT VIỆT NAM</span>
                   </h1>
-                  <p>Hơn 25.000+ Prompt tạo ra từ các chuyên gia về AI</p>
+                  <p>Hàng nghìn Prompt tạo ra từ các chuyên gia về AI</p>
                   <button
                     className="get-started-btn"
                     onClick={() => navigate("/prompts")}

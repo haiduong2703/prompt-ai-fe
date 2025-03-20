@@ -73,8 +73,9 @@ const UserLayout = ({ children }) => {
             </Link>
             <Link
               to="/generate-prompt"
-              className={`user-nav-item user-tools-nav ${location.pathname === "/generate-prompt" ? "user-active" : ""
-                }`}
+              className={`user-nav-item user-tools-nav ${
+                location.pathname === "/generate-prompt" ? "user-active" : ""
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Tools <img src={arrowExpand} alt="" />
