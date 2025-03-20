@@ -41,8 +41,8 @@ const Pricing = () => {
   return (
     <div className="user-pricing-container">
       <div className="user-pricing-header">
-        <h1>x10 hiệu năng làm việc với gói<br/> Prompt phù hợp</h1>
-        <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt đầu tiên Việt Nam!</p>
+        <h1>Gấp đôi hiệu năng làm việc với gói<br/> PromptX phù hợp</h1>
+        <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
         <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>

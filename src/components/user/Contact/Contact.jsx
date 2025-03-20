@@ -7,7 +7,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    phone_number: "",
     message: "",
   });
 
@@ -34,8 +34,9 @@ const Contact = () => {
       .sendContacts({
         name: formData.name,
         email: formData.email,
-        phone: formData.phone,
+        phone_number: formData.phone_number,
         message: formData.message,
+        type: 1
       })
       .then((response) => {
         if (response) {
@@ -44,7 +45,7 @@ const Contact = () => {
           setFormData({
             name: "",
             email: "",
-            phone: "",
+            phone_number: "",
             message: "",
           });
         }
@@ -109,8 +110,8 @@ const Contact = () => {
                 <label>Phone Number (optional)</label>
                 <input
                   type="tel"
-                  name="phone"
-                  value={formData.phone}
+                  name="phone_number"
+                  value={formData.phone_number}
                   onChange={handleChange}
                   className="underline-input"
                 />
