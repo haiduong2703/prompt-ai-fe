@@ -13,7 +13,7 @@ const planLabels = {
 };
 
 const Pricing = () => {
-  const [selectedPlan, setSelectedPlan] = useState("Monthly");
+  const [selectedPlan, setSelectedPlan] = useState(1);
   const [dataSub, setDataSub] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const { user } = useContext(UserContext);
@@ -45,7 +45,7 @@ const Pricing = () => {
         <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
-        <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
+        {/* <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
           {Object.keys(planLabels).map((plan) => (
             <button
               key={plan}
@@ -57,7 +57,7 @@ const Pricing = () => {
           ))}
         </div>
 
-        <p><span className="discount-text">Tiết kiệm 33%</span> khi đăng ký gói năm</p>
+        <p><span className="discount-text">Tiết kiệm 33%</span> khi đăng ký gói năm</p> */}
       </div>
 
       <div className="user-pricing-list-card">
@@ -65,9 +65,11 @@ const Pricing = () => {
           dataSub.map((sub, index) => (
             <PricingCard
               key={sub.id}
+              id={sub.id}
+              type={sub.type}
               title={sub.name_sub}
-              price={`${parseFloat(sub.price).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`}
-              period={sub.type == 1 ? "tháng" : sub.type == 2 ? "năm" : "vĩnh viễn"}
+              price={sub.price}
+              period="tháng"
               features={{
                 description: sub.description || "Không có mô tả",
                 items: sub.ContentSubscriptions?.map((item) => ({
