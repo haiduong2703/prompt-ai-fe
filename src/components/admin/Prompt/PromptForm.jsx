@@ -10,8 +10,6 @@ const { Option } = Select;
 
 const PromptForm = ({ topic, promptId, categories, onSuccess }) => {
   const [form] = Form.useForm();
-  console.log("joo", categories);
-  console.log(topic);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [contentValues, setContentValues] = useState({

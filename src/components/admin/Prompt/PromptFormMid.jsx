@@ -313,7 +313,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
           ...(detail.id && { id: detail.id }),
         })),
       };
-      console.log("hii", promptData);
       if (isEditMode) {
         await api.updatePrompt(promptId, promptData);
         message.success("Cập nhật thành công!");

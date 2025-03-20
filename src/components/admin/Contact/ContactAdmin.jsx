@@ -36,7 +36,6 @@ const CategoryManager = () => {
 
   const fetchCategories = async () => {
     try {
-      console.log("helloo");
       const response = await api.getContactsPage(page, pageSize);
       setCategories(response.data.data);
       setTotal(response.data.totalPages);

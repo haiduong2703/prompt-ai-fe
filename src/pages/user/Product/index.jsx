@@ -20,7 +20,6 @@ const ProductComponent = () => {
         const response = await api.getProducts(currentPage, pageSize); // Gọi API getProducts
         setProducts(response.data.data); // Cập nhật dữ liệu vào state
         setTotalPages(response.data.total);
-        console.log("data", response.data.totalPages);
         setCurrentPage(response.data.currentPage);
         setLoading(false); // Tắt trạng thái loading
       } catch (err) {
