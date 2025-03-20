@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./GeneratePrompt.css";
 import astronault_tool from "../../../../asset/imgae/toolPage/astronault_tool.png";
 import sparkle_icon from "../../../../asset/imgae/toolPage/pen_tool.png";
@@ -11,6 +11,9 @@ import imgFeed from "../../../../asset/imgae/3.png";
 import imgAvt1 from "../../../../asset/imgae/avt1.png";
 import imgAvt2 from "../../../../asset/imgae/avt2.png";
 import imgAvt3 from "../../../../asset/imgae/avt3.png";
+import api from "../../../../services/api";
+import { UserContext } from "../../../../context/AuthContext";
+import { message } from "antd";
 const testimonials = [
   {
     rating: 5,
@@ -90,14 +93,35 @@ const testimonials = [
 
 const GeneratePrompt = () => {
   const [goal, setGoal] = useState("");
+  const { user } = useContext(UserContext);
+
   const scrollContainer = (containerId, direction) => {
     const container = document.getElementById(containerId);
     const scrollAmount = direction === "next-unique" ? 600 : -600;
     container.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
-  const handleGeneratePrompt = () => {
-    // Logic to generate prompt goes here
-    console.log("Generating prompt for:", goal);
+  const handleGeneratePrompt = async () => {
+    if (user?.userSub?.subscription?.type === 4) {
+      try {
+        await api.sendContacts({
+          name: user.fullName,
+          email: user.email,
+          message: goal,
+          type: 2
+        })
+        .then((res) => {
+          if (res) {
+            message.success("Gửi yêu cầu tạo Prompt thành công!", 5);
+            setGoal("");
+          }
+        })
+      } catch (error) {
+        message.error("Có lỗi xảy ra, vui lòng thử lại sau!")
+      }
+    } else {
+      message.error("Vui lòng nâng cấp lên Premium để sử dụng tính năng này!", 5);
+    }
+
   };
 
   return (
