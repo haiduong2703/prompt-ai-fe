@@ -31,7 +31,7 @@ const RoutesMain = () => {
   // const isAdmin = true; // Thay đổi logic này theo cách bạn xác định role
   console.log(isAdmin);
   useEffect(() => {
-    document.title = "Promp";
+    document.title = "Prom - Thư Viện Prompt AI Lớn Nhất Việt Nam!";
   }, []);
   return (
     <Routes>

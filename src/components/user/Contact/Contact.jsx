@@ -62,14 +62,13 @@ const Contact = () => {
     <div className="contact-container-box">
       <div className="contact-header">
         <h1>
-          Get in touch with us.
+          Liên hệ với chúng tôi.
           <br />
-          We're here to assist you.
+          Chúng tôi ở đây để hỗ trợ bạn.
         </h1>
         <p>
-          We're here to assist you. Please contact us by filling in the form
-          below and specify what you need, and we will respond as soon as
-          possible.
+          Vui lòng liên hệ với chung tôi bằng cách điền vào biểu mẫu bên dưới và
+          nêu rõ nhu cầu của bạn, chúng tôi sẽ phản hồi sớm nhất có thể.
         </p>
       </div>
       <div className="contact-container">
@@ -84,7 +83,7 @@ const Contact = () => {
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group-contact">
               <div className="form-group">
-                <label>Your Name</label>
+                <label>Tên</label>
                 <input
                   type="text"
                   name="name"
@@ -95,7 +94,7 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Email Address</label>
+                <label>Email</label>
                 <input
                   type="email"
                   name="email"
@@ -106,7 +105,7 @@ const Contact = () => {
                 />
               </div>
               <div className="form-group">
-                <label>Phone Number (optional)</label>
+                <label>Số điện thoại (Không bắt buộc)</label>
                 <input
                   type="tel"
                   name="phone"
@@ -117,7 +116,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="form-group">
-              <label>Message</label>
+              <label>Nội dung</label>
               <textarea
                 name="message"
                 value={formData.message}
@@ -131,8 +130,7 @@ const Contact = () => {
               className="submit-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending..." : "Leave us a Message"}{" "}
-              <span>→</span>
+              {isSubmitting ? "Đang gửi..." : "Gửi tin nhắn"} <span>→</span>
             </button>
             {submitStatus === "success" && (
               <p className="success-message">
@@ -148,30 +146,30 @@ const Contact = () => {
         </div>
       </div>
       <div className="contact-info">
-        <h2 style={{ fontSize: "20px" }}>CONTACT INFO</h2>
+        <h2 style={{ fontSize: "20px" }}>THÔNG TIN LIÊN HỆ</h2>
         <div className="contact-info-content">
-          <h2>We are always happy to assist you</h2>
+          <h2>Chúng tôi luôn sẵn sàng hỗ trợ bạn</h2>
           <div className="info-grid">
             <div className="info-column">
-              <h3>Email Address</h3>
+              <h3>Địa chỉ Email</h3>
               <p>—</p>
               <p>help@info.com</p>
-              <p>Assistance hours:</p>
-              <p>Monday - Friday 6AM - 8PM EST</p>
+              <p>Giờ hỗ trợ:</p>
+              <p>Thứ Hai - Thứ Sáu, 6h sáng - 8h tối (EST)</p>
             </div>
             <div className="info-column">
-              <h3>Phone Number</h3>
+              <h3>Số Điện Thoại</h3>
               <p>—</p>
               <p>(808) 999-34256</p>
-              <p>Assistance hours:</p>
-              <p>Monday - Friday 6 am to 8 pm EST</p>
+              <p>Giờ hỗ trợ:</p>
+              <p>Thứ Hai - Thứ Sáu, 6h sáng - 8h tối (EST)</p>
             </div>
             <div className="info-column">
               <h3>Discord</h3>
               <p>—</p>
               <p>Prom-io</p>
-              <p>Assistance hours:</p>
-              <p>Monday - Friday 6 am to 8 pm EST</p>
+              <p>Giờ hỗ trợ:</p>
+              <p>Thứ Hai - Thứ Sáu, 6h sáng - 8h tối (EST)</p>
             </div>
           </div>
         </div>

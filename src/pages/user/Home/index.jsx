@@ -755,7 +755,7 @@ const Home = () => {
                 nhất
               </p> */}
               <button className="hire-creator-button">
-                Sử Dụng MIỄN PHÍ Ngay!!!🔥
+                Sử Dụng MIỄN PHÍ Ngay🔥
               </button>
             </div>
             <div style={{ height: "300px" }}>

@@ -43,8 +43,8 @@ const BlogList = () => {
   return (
     <div className="blog-container-list">
       <div className="blog-header">
-        <h1>Blog Articles & Resources</h1>
-        <p>Get free AI prompts, guides, tips & tricks.</p>
+        <h1>Bài Viết Blog & Tài Nguyên</h1>
+        <p>Nhận miễn phí các gợi ý AI, hướng dẫn, mẹo và thủ thuật.</p>
         {/* <div className="search-bar">
           <input
             type="text"

@@ -180,8 +180,16 @@
     gap: 20px;
   }
 
+  .faq-title {
+    font-size: 24px;
+  }
+
   .faq-left {
     max-width: 100%;
+  }
+
+  .faq-question {
+    font-size: 18px;
   }
 
   .faq-contact-list {

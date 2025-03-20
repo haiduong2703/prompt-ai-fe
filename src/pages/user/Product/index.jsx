@@ -48,10 +48,10 @@ const ProductComponent = () => {
   return (
     <div className="container-product">
       <div className="header-product">
-        <h1>The Biggest Collection of AI Resources</h1>
+        <h1>Kho Tài Liệu AI</h1>
         <p>
-          Click on 'Access in Notion' below to access your purchased digital
-          products.
+          Nhấp vào 'Truy cập trong Notion' bên dưới để truy cập các sản phẩm số
+          mà bạn đã mua
         </p>
       </div>
 
@@ -100,7 +100,7 @@ const ProductComponent = () => {
                     alt="Notion"
                     className="notion-icon-product"
                   />
-                  Access in Notion
+                  Truy Cập Notion
                   <span className="arrow-product">→</span>
                 </a>
               ) : (
@@ -110,7 +110,7 @@ const ProductComponent = () => {
                     alt="Notion"
                     className="notion-icon-product"
                   />
-                  Access in Notion
+                  Truy Cập Notion
                   <span className="arrow-product">→</span>
                 </span>
               )}
