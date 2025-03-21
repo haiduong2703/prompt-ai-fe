@@ -1,0 +1,371 @@
+.component-prompt-card-container {
+    background: #F4F0FF;
+    border-radius: 16px;
+    width: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 240px;
+    border: 1px solid #E5E7EB;
+    cursor: pointer;
+  }
+  
+  .component-prompt-card-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.06);
+  }
+  
+  .component-prompt-card-midjourney {
+      width: 100%;
+      min-height: 400px;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      border-radius: 16px 16px 0 0;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .component-prompt-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    padding: 12px;
+  }
+  
+  .component-prompt-card-image-block {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .component-prompt-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .component-premium-tag-div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .component-premium-tag-div button {
+    width: 36px;
+    height: 36px;
+    border-radius: 100px;
+    background: #FFFFFF;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .component-premium-tag-div button:hover {
+    background: #5700C6;
+  }
+  
+  .component-premium-tag-div button .anticon {
+    font-size: 20px;
+    color: #5700C6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .component-premium-tag-div button:hover .anticon {
+    color: #FFFFFF;
+  }
+  
+  .component-premium-tag-div button.favorite-button {
+    background: #5700C6;
+  }
+  
+  .component-premium-tag-div button.favorite-button .anticon {
+    color: #FFFFFF;
+  }
+  
+  .component-premium-tag-div button.favorite-button:hover {
+    background: #4e00b3;
+  }
+  
+  .component-free-tag {
+    height: 36px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    background: #FFFFFF;
+    border-radius: 300px;
+    color: #1D1E25;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    border: none;
+  }
+  .component-new-tag {
+    width: 64px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ED2828;
+    border-radius: 300px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+  
+  .component-prompt-card-body {
+    flex: 1;
+    text-align: left;
+    background-color: #FFFFFF;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .component-prompt-card-body-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1D1E25
+  }
+  .component-prompt-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #1D1E25;
+    margin-bottom: 8px;
+  }
+  
+  .component-prompt-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #1D1E25;
+  }
+  
+  .component-prompt-card-topic {
+    background-color: #FFFFFF;
+    padding: 10px 16px;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #1D1E25;
+    text-align: center;
+  }
+  
+  .component-prompt-card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .component-view-prompt-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #DACDFFE5;
+    border-radius: 100px;
+    color: #5700C6;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  .component-view-prompt-button:hover {
+    background: #5700C6;
+    color: #FFFFFF;
+  }
+  
+  /* .component-like-link-holder {
+    display: flex;
+    align-items: center;
+  }
+  
+  .component-like-link-holder-div-child {
+    width: 36px;
+    height: 36px;
+    background: #F4F0FF;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .component-like-link-holder-div-child:hover {
+    background: #5700C6;
+  }
+  
+  .component-like-link-holder-div-child svg {
+    color: #5700C6;
+    font-size: 16px;
+  }
+  
+  .component-like-link-holder-div-child:hover svg {
+    color: #FFFFFF;
+  } */
+  
+  .custom-modal-confirm .ant-btn-primary:hover {
+    background-color: #4e00b3 !important;
+    border-color: #4e00b3 !important;
+  }
+  
+  .custom-modal-confirm .ant-btn-default:hover {
+    color: #4e00b3 !important;
+    border-color: #4e00b3 !important;
+  }
+  .ant-modal-confirm .ant-modal-confirm-content {
+    font-weight: 400;
+    color: #1D1E25;
+  }
+  .ant-modal-confirm .ant-modal-confirm-title {
+    font-weight: 700;
+    color: #1D1E25;
+  }
+  
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .component-prompt-card-container {
+      min-height: 200px;
+    }
+    
+    .component-prompt-card {
+      padding: 16px 12px;
+    }
+    
+    .component-prompt-icon {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .component-premium-tag-div button {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .component-premium-tag-div button .anticon {
+      font-size: 16px;
+    }
+    
+    .component-new-tag {
+      width: 50px;
+      height: 30px;
+      font-size: 12px;
+    }
+    
+    .component-prompt-card-body {
+      padding: 10px;
+    }
+    
+    .component-prompt-title {
+      font-size: 18px;
+      line-height: 24px;
+      margin-bottom: 6px;
+    }
+    
+    .component-prompt-description {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    
+    .component-prompt-card-topic {
+      padding: 8px 12px;
+      font-size: 16px;
+      line-height: 22px;
+    }
+    
+    .component-prompt-card-footer {
+      padding: 12px;
+    }
+    
+    .component-view-prompt-button {
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .component-prompt-card-container {
+      min-height: 180px;
+    }
+    
+    .component-prompt-card {
+      padding: 12px 8px;
+    }
+    
+    .component-prompt-card-header {
+      margin-bottom: 12px;
+    }
+    
+    .component-prompt-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .component-premium-tag-div {
+      gap: 4px;
+    }
+    
+    .component-premium-tag-div button {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .component-premium-tag-div button .anticon {
+      font-size: 14px;
+    }
+    
+    .component-new-tag {
+      width: 40px;
+      height: 28px;
+      font-size: 10px;
+      line-height: 18px;
+    }
+    
+    .component-prompt-title {
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 4px;
+    }
+    
+    .component-prompt-description {
+      font-size: 12px;
+      line-height: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .component-prompt-card-topic {
+      padding: 6px 10px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    
+    .component-prompt-card-footer {
+      padding: 10px 8px;
+    }
+    
+    .component-view-prompt-button {
+      padding: 6px 10px;
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }

@@ -1,0 +1,94 @@
+.detail-prompt-section-content-exampleVariables {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns with equal width */
+    grid-gap: 10px;
+    overflow-x: visible;
+    margin-top: 15px;
+}
+.detail-prompt-section-content-examplePrompts {
+    height: auto;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 10px;
+}
+.detail-prompt-section-example-prompt {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.component-prompt-card-container-examplePrompts {
+    background: #F4F0FF;
+    border-radius: 16px;
+    min-width: 320px;
+    height: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 240px;
+    border: 1px solid #E5E7EB;
+    cursor: pointer;
+}
+.detail-prompt-section-header-example-prompt {
+    margin-bottom: 20px;
+}
+.detail-prompt-exampleVariables {
+  margin-top: 20px; 
+}
+.detail-prompt-exampleVariables-title {
+    margin-bottom: 10px;
+}
+.detail-prompt-exampleVariables-title span {
+    font-size: 20px;
+    font-weight: 600;
+}
+.detail-prompt-section-content-exampleVariables-description p{
+    margin-bottom: 10px;
+    margin-left: 6px;
+}
+.detail-prompt-section-content-exampleVariables-description p:last-child{
+    margin-bottom: 0px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-prompt-exampleVariables-header {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.detail-prompt-exampleVariables-header:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.detail-prompt-section-content-examplePrompts::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .detail-prompt-section-content-examplePrompts::-webkit-scrollbar-track {
+    background: #F4F0FF;
+    border-radius: 4px;
+  }
+  
+  .detail-prompt-section-content-examplePrompts::-webkit-scrollbar-thumb {
+    background: #DACDFF;
+    border-radius: 4px;
+  }
+  
+  .detail-prompt-section-content-examplePrompts::-webkit-scrollbar-thumb:hover {
+    background: #5700C6;
+  }
+  
+  /* Firefox scrollbar */
+  .detail-prompt-section-content-examplePrompts {
+    scrollbar-width: thin;
+    scrollbar-color: #DACDFF #F4F0FF;
+  }
