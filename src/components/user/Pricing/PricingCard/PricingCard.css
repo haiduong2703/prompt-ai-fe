@@ -56,7 +56,19 @@
     margin-bottom: 0;
     white-space: nowrap;
 }
-  
+.pricing-card-switch {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 10px;
+}
+.pricing-card-switch  .ant-switch-inner {
+    background: #DACDFFE5 !important;
+}
+.pricing-card-switch .ant-switch .ant-switch-handle::before {
+    background-color: #5700C6;
+}
+
 .pricing-card-divider {
     margin: 15px 0;
     border: none;
@@ -237,4 +249,3 @@
     opacity: 0.5;
     transform: rotate(17deg);
 }
-  

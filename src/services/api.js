@@ -113,6 +113,9 @@ const api = {
     getSubDuration: async (duration) => {
         return axios.get(`${API_URL}/subscriptions/by-duration?duration=${duration}`);
     },
+    getSubByDurationAndType: async (duration, type) => {
+        return axios.get(`${API_URL}/subscriptions/by-duration-and-type?duration=${duration}&type=${type}`);
+    },
     //Blogs
 
     getBlogById: async (id) => {

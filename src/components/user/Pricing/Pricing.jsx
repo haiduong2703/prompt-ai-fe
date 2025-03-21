@@ -6,6 +6,7 @@ import pricingImgMobile from "../../../asset/imgae/pricing_img_mobile.png";
 import FAQSection from "../../Q&A/FAQSection";
 import api from "../../../services/api";
 import { UserContext } from "../../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const planLabels = {
   Monthly: "Tháng",
@@ -13,7 +14,7 @@ const planLabels = {
 };
 
 const Pricing = () => {
-  const [selectedPlan, setSelectedPlan] = useState("Monthly");
+  const [selectedPlan, setSelectedPlan] = useState(1);
   const [dataSub, setDataSub] = useState([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const { user } = useContext(UserContext);
@@ -26,7 +27,7 @@ const Pricing = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
+
   useEffect(() => {
     fetchDataSub(selectedPlan);
   }, [selectedPlan]);
@@ -41,11 +42,11 @@ const Pricing = () => {
   return (
     <div className="user-pricing-container">
       <div className="user-pricing-header">
-        <h1>Gấp đôi hiệu năng làm việc với gói<br/> PromptX phù hợp</h1>
+        <h1>Hiệu suất vượt trội với<br /> gói Prom phù hợp!</h1>
         <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
-        <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
+        {/* <div className={`user-pricing-header-options ${selectedPlan.toLowerCase()}`}>
           {Object.keys(planLabels).map((plan) => (
             <button
               key={plan}
@@ -57,7 +58,7 @@ const Pricing = () => {
           ))}
         </div>
 
-        <p><span className="discount-text">Tiết kiệm 33%</span> khi đăng ký gói năm</p>
+        <p><span className="discount-text">Tiết kiệm 33%</span> khi đăng ký gói năm</p> */}
       </div>
 
       <div className="user-pricing-list-card">
@@ -65,9 +66,11 @@ const Pricing = () => {
           dataSub.map((sub, index) => (
             <PricingCard
               key={sub.id}
+              id={sub.id}
+              type={sub.type}
               title={sub.name_sub}
-              price={`${parseFloat(sub.price).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`}
-              period={sub.type == 1 ? "tháng" : sub.type == 2 ? "năm" : "vĩnh viễn"}
+              price={sub.price}
+              period="tháng"
               features={{
                 description: sub.description || "Không có mô tả",
                 items: sub.ContentSubscriptions?.map((item) => ({
@@ -75,7 +78,7 @@ const Pricing = () => {
                   included: item.included,
                 })) || [],
               }}
-              buttonText={(user === null && sub.name_sub === "Free") ? "Sign up" : sub.id === user?.userSub?.sub_id ? "Current" : (user !== null && sub.name_sub === "Free") ? "Current" :"Get Access"}
+              buttonText={(user === null) ? "Đăng ký" : sub.type === user?.userSub?.subscription?.type ? "Hiện tại" : (user !== null && sub.name_sub === "Free") ? "Mặc định" : "Nâng cấp"}
               isPopular={sub.is_popular}
             />
           ))
@@ -84,7 +87,9 @@ const Pricing = () => {
         )}
       </div>
       <div className="user-pricing-card-list-tools">
-        <img src={isMobile ? pricingImgMobile : pricingToolImg} alt="" />
+        <Link to="/product">
+          <img src={isMobile ? pricingImgMobile : pricingToolImg} alt="" />
+        </Link>
       </div>
       <div className="user-pricing-faq">
         <FAQSection />
