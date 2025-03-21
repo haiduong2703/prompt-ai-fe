@@ -11,7 +11,7 @@ import arrow_next from "../../../../asset/icon/arrow_next.png";
 import kinh_lup from "../../../../asset/icon/kinh_lup.png";
 import phi_hanh_gia from "../../../../asset/imgae/phi_hanh_gia.png";
 import { UserContext } from "../../../../context/AuthContext";
-
+import MidjourneyPromptCard from "./MidjourneyPromptCard/MidjourneyPromptCard";
 const ListPrompts = () => {
     const location = useLocation();
     const { category, activeSection } = location.state || {};
@@ -173,7 +173,16 @@ const ListPrompts = () => {
                 <div className="prompt-list">
                     {prompts.length === 0 ? (
                         <p>No prompts found</p>
-                    ) : (
+                    ) : activeSection?.name === "Midjourney" ? (
+                        prompts.map((prompt) => (
+                            <MidjourneyPromptCard
+                                key={prompt.id}
+                                prompt={prompt}
+                                favoriteList={favoriteList}
+                            />
+                        ))
+                    ) :
+                    (
                         prompts.map((prompt) => (
                             <PromptCard
                                 key={prompt.id}

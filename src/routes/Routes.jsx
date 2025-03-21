@@ -26,6 +26,7 @@ import ProductManager from "../components/admin/Product";
 import InfoUser from "../components/user/Infomation/InfoUser";
 import GeneratePrompt from "../pages/user/ToolsPage/GeneratePrompt/GeneratePrompt";
 import api from "../services/api";
+import DetailMidjourneyPrompt from "../components/user/Prompt/DetailMidjourneyPrompt/DetailMidjourneyPrompt";
 const RoutesMain = () => {
   //Giả sử có một cách để xác định role (có thể từ context/redux store)
   const { user, setUser } = useContext(UserContext); // Lấy user từ Context API
@@ -84,6 +85,7 @@ const RoutesMain = () => {
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />
           <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />
+          <Route path="prompts/detail-prompts-midjourney/:id" element={<DetailMidjourneyPrompt />} />
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />
