@@ -71,7 +71,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
         <p className="pricing-card-subtitle">{features.description}</p>
         <div className="pricing-card-switch">
           <p>
-            <span className="discount-text">Giảm 33%</span> khi thanh toán theo năm
+            <span className="discount-text">Giảm 50%</span> khi thanh toán theo năm
           </p>
           <Switch
             checked={durationActive === 2}
