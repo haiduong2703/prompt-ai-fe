@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import CountUp from "react-countup"; // Thư viện đếm số
 import "./PricingCard.css"; // Import CSS
@@ -13,6 +13,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
   const [durationActive, setDurationActive] = useState(1);
   const [priceState, setPriceState] = useState(price);
   const [prevPrice, setPrevPrice] = useState(price);
+  const [triggerCountUp, setTriggerCountUp] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
   const handleSwitchDuration = async (checked) => {
@@ -26,15 +27,26 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
     try {
       const res = await api.getSubByDurationAndType(newDuration, type);
       if (res && res.data) {
-        setPrevPrice(priceState); // Lưu giá hiện tại làm giá bắt đầu cho hiệu ứng đếm
+        setPrevPrice(priceState);
         setPriceState(res.data.price);
+        setTriggerCountUp(true);
       }
     } catch (error) {
       console.error("Error fetching updated price:", error);
     } finally {
-      setIsFetching(false); // Sau khi gọi API xong, đặt lại trạng thái fetching
+      setIsFetching(false);
     }
   };
+
+  useEffect(() => {
+    if (triggerCountUp) {
+      const timer = setTimeout(() => {
+        setTriggerCountUp(false);
+      }, 200);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [triggerCountUp]);
 
   return (
     <div className={`pricing-card ${isPopular ? "popular-card" : ""}`}>
@@ -51,7 +63,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
               `${parseFloat(value).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`
             }
             // key được thay đổi mỗi khi giá thay đổi để kích hoạt hiệu ứng đếm lại
-            key={priceState}
+            key={triggerCountUp ? priceState : prevPrice} // Kích hoạt hiệu ứng khi giá thay đổi bởi switch
             style={{ fontSize: "48px", fontWeight: "700" }}
           />
           <span>/{period}</span>
@@ -63,7 +75,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
           </p>
           <Switch
             checked={durationActive === 2}
-            onChange={handleSwitchDuration} // Gọi hàm khi chuyển đổi switch
+            onChange={handleSwitchDuration}
           />
         </div>
       </div>
@@ -90,7 +102,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
         ))}
       </ul>
       {(buttonText === "Hiện tại" || buttonText === "Mặc định" || buttonText === "Đăng ký")
-        && type === 1 ?
+        && type === 1 ? 
         (<Link to={buttonText === "Đăng ký" ? "/login" : ""}>
           <button
             className="pricing-card-signup-button"
