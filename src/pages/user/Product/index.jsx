@@ -118,7 +118,7 @@ const ProductComponent = () => {
                   /> */}
                   Nâng cấp
                   <span className="arrow-product">→</span>
-                </a>
+                </a> 
               )}
             </div>
           </div>

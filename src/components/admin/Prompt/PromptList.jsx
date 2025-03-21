@@ -63,7 +63,7 @@ const PromptList = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await api.getCategories();
+      const response = await api.getCategoriesPage(1, 1000);
       setCategories(response.data.data);
     } catch (error) {
       message.error("Failed to fetch categories");

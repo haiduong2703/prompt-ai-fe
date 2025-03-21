@@ -177,3 +177,19 @@
     height: 16px;
   }
 }
+
+/* Add these styles to your existing CSS file */
+.coming-soon-card {
+  opacity: 0.6;
+  pointer-events: auto;
+  position: relative;
+}
+
+.coming-soon-card .category-item {
+  cursor: default;
+}
+
+.coming-soon-card .user-category-card-content span {
+  color: #6c7293;
+  font-weight: 500;
+}

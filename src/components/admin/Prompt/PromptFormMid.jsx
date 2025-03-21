@@ -196,6 +196,7 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       const response = await api.getPromptById(promptId);
       const prompt = response.data;
 
+      // Điền dữ liệu chính vào form
       form.setFieldsValue({
         title: prompt.title,
         short_description: prompt.short_description,
@@ -205,32 +206,51 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
         topic_id: prompt.topic_id,
       });
 
+      // Điền dữ liệu nội dung vào contentValues
       setContentValues({
-        content: prompt.content,
-        tips: prompt.tips,
-        text: prompt.text,
-        how: prompt.how,
-        output: prompt.output,
-        OptimationGuide: prompt.OptimationGuide,
-        addtip: prompt.addtip,
-        addinformation: prompt.addinformation,
+        content: prompt.content || "",
+        tips: prompt.tips || "",
+        text: prompt.text || "",
+        how: prompt.how || "",
+        output: prompt.output || "",
+        OptimationGuide: prompt.OptimationGuide || "",
+        addtip: prompt.addtip || "",
+        addinformation: prompt.addinformation || "",
       });
 
-      if (prompt.promDetails && prompt.promDetails.length > 0) {
-        const promDetailsType1 = prompt.promDetails.filter(
+      // Xử lý PromDetails
+      if (prompt.PromDetails && prompt.PromDetails.length > 0) {
+        const promDetailsType1 = prompt.PromDetails.filter(
           (item) => item.type === 1
         );
-        const exampleVariablesType2 = prompt.promDetails.filter(
+        const exampleVariablesType2 = prompt.PromDetails.filter(
           (item) => item.type === 2
         );
 
+        // Cập nhật số lượng
         setNumPromDetails(promDetailsType1.length);
         setNumExampleVariables(exampleVariablesType2.length);
+
+        // Cập nhật dữ liệu PromDetails
         setPromDetails(
-          prompt.promDetails.map((item, idx) => ({ ...item, index: idx }))
+          prompt.PromDetails.map((item, idx) => ({
+            ...item,
+            index: idx,
+            text: item.text || "",
+            image: item.image || "",
+            description: item.description || "",
+          }))
         );
+
+        // Hiển thị form ngay lập tức nếu có dữ liệu
         setShowPromDetailsForm(promDetailsType1.length > 0);
         setShowExampleVariablesForm(exampleVariablesType2.length > 0);
+      } else {
+        setNumPromDetails(0);
+        setNumExampleVariables(0);
+        setPromDetails([]);
+        setShowPromDetailsForm(false);
+        setShowExampleVariablesForm(false);
       }
     } catch (error) {
       message.error("Lỗi khi lấy dữ liệu");
@@ -245,17 +265,22 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       message.error("Số lượng không hợp lệ");
       return;
     }
-    const newPromDetails = Array.from({ length: numPromDetails }, (_, i) => ({
-      text: "",
-      image: "",
-      type: 1,
-      index: i,
-    }));
+    const existingPromDetails = promDetails.filter((item) => item.type === 1);
+    const newPromDetails = Array.from(
+      { length: numPromDetails - existingPromDetails.length },
+      (_, i) => ({
+        text: "",
+        image: "",
+        type: 1,
+        index: existingPromDetails.length + i,
+      })
+    );
     setPromDetails((prev) => [
-      ...prev.filter((item) => item.type === 2),
-      ...newPromDetails,
+      ...prev.filter((item) => item.type === 2), // Giữ lại type 2
+      ...existingPromDetails, // Giữ lại các PromDetails hiện có
+      ...newPromDetails, // Thêm mới
     ]);
-    setShowPromDetailsForm(true);
+    setShowPromDetailsForm(numPromDetails > 0);
   };
 
   const handleConfirmNumExampleVariables = () => {
@@ -263,21 +288,25 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       message.error("Số lượng không hợp lệ");
       return;
     }
+    const existingExampleVariables = promDetails.filter(
+      (item) => item.type === 2
+    );
     const newExampleVariables = Array.from(
-      { length: numExampleVariables },
+      { length: numExampleVariables - existingExampleVariables.length },
       (_, i) => ({
         text: "",
         image: "",
         description: "",
         type: 2,
-        index: i,
+        index: existingExampleVariables.length + i,
       })
     );
     setPromDetails((prev) => [
-      ...prev.filter((item) => item.type === 1),
-      ...newExampleVariables,
+      ...prev.filter((item) => item.type === 1), // Giữ lại type 1
+      ...existingExampleVariables, // Giữ lại các Example Variables hiện có
+      ...newExampleVariables, // Thêm mới
     ]);
-    setShowExampleVariablesForm(true);
+    setShowExampleVariablesForm(numExampleVariables > 0);
   };
 
   const handlePromDetailChange = (index, field, value, type) => {
@@ -465,12 +494,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       </Form.Item>
 
       {/* Render các trường PromDetails (type 1) */}
-      {showPromDetailsForm && (
+      {showPromDetailsForm && numPromDetails > 0 && (
         <>
           {promDetails
             .filter((detail) => detail.type === 1)
+            .slice(0, numPromDetails) // Chỉ hiển thị đúng số lượng
             .map((detail, index) => (
-              <div key={index} style={{ marginBottom: "20px" }}>
+              <div key={detail.id || index} style={{ marginBottom: "20px" }}>
                 <h4>PromDetail {index + 1}</h4>
                 <Form.Item label="Text">
                   <Input.TextArea
@@ -495,12 +525,13 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
       )}
 
       {/* Render các trường Example Variables (type 2) */}
-      {showExampleVariablesForm && (
+      {showExampleVariablesForm && numExampleVariables > 0 && (
         <>
           {promDetails
             .filter((detail) => detail.type === 2)
+            .slice(0, numExampleVariables) // Chỉ hiển thị đúng số lượng
             .map((detail, index) => (
-              <div key={index} style={{ marginBottom: "20px" }}>
+              <div key={detail.id || index} style={{ marginBottom: "20px" }}>
                 <h4>Example Variable {index + 1}</h4>
                 <Form.Item label="Text">
                   <Input.TextArea
@@ -519,21 +550,6 @@ const PromptFormMid = ({ topic, promptId, categories, onSuccess }) => {
                     handlePromDetailChange(index, "description", value, 2)
                   }
                 />
-                {/* <Form.Item label="Description">
-                  <Input.TextArea
-                    value={detail.description}
-                    onChange={(e) =>
-                      handlePromDetailChange(
-                        index,
-                        "description",
-                        e.target.value,
-                        2
-                      )
-                    }
-                    placeholder="Nhập description cho Example Variable"
-                    autoSize={{ minRows: 3, maxRows: 6 }}
-                  />
-                </Form.Item> */}
               </div>
             ))}
         </>

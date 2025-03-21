@@ -83,12 +83,16 @@ const UserFooter = () => {
             <h2 className="title-right-box">Thông tin</h2>
             <p>
               <div className="footer-down-center">
-                <Link to="/home">Trang chủ</Link>
-                <Link to="/prompts">Prompt</Link>
-                <Link to="/products">Tài Liệu AI</Link>
-                <Link to="/tools">Tools</Link>
-                <Link to="/blog">Blog</Link>
-                <Link to="/pricing">Gói dịch vụ</Link>
+                <div className="footer-link">
+                  <Link to="/home">Trang chủ</Link>
+                  <Link to="/prompts">Prompt</Link>
+                  <Link to="/products">Tài Liệu AI</Link>
+                </div>
+                <div className="footer-link">
+                  <Link to="/tools">Tools</Link>
+                  <Link to="/blog">Blog</Link>
+                  <Link to="/pricing">Gói dịch vụ</Link>
+                </div>
               </div>
             </p>
           </div>

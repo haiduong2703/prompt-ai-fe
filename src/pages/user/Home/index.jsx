@@ -320,9 +320,11 @@ const Home = () => {
       const query = new URLSearchParams({
         page: 1,
         pageSize: 8,
+        category_id: 8,
+        is_type: 1,
       }).toString();
 
-      const response = await api.getPrompts(query);
+      const response = await api.getPromptsByCategoryId(1, 8, 8, "", "", 1);
       setNewestPrompts(response.data.data);
     } catch (error) {
       console.error("Error fetching newest prompts:", error);

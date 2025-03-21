@@ -1,220 +1,226 @@
-// src/services/api.js
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+// Tạo instance của axios với cấu hình mặc định
+const axiosInstance = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+// Interceptor để thêm token vào header của mỗi request
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token'); // Lấy token từ localStorage
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`; // Thêm token vào header
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
 const api = {
     // Prompt APIs
     getPrompts: async (query) => {
-        return axios.get(`${API_URL}/prompts?${query}`);
+        return axiosInstance.get(`/prompts?${query}`);
     },
     uploadImage: async (data) => {
-        return axios.post(`${API_URL}/prompts/upload`, data);
+        return axiosInstance.post(`/prompts/upload`, data);
     },
     getPromptById: async (id) => {
-        return axios.get(`${API_URL}/prompts/${id}`);
+        return axiosInstance.get(`/prompts/${id}`);
     },
-
     createPrompt: async (promptData) => {
-        return axios.post(`${API_URL}/prompts`, promptData);
+        return axiosInstance.post(`/prompts`, promptData);
     },
-
     updatePrompt: async (id, promptData) => {
-        return axios.put(`${API_URL}/prompts/${id}`, promptData);
+        return axiosInstance.put(`/prompts/${id}`, promptData);
     },
-
     deletePrompt: async (id) => {
-        return axios.delete(`${API_URL}/prompts/${id}`);
+        return axiosInstance.delete(`/prompts/${id}`);
     },
     getPromptsByCategoryId: async (page = 1, pageSize = 12, category_id, topic_id, search_text, is_type) => {
-        return axios.get(`${API_URL}/prompts/by-category?page=${page}&pageSize=${pageSize}&category_id=${category_id}&topic_id=${topic_id}&search_text=${search_text}&is_type=${is_type}`)
+        return axiosInstance.get(`/prompts/by-category?page=${page}&pageSize=${pageSize}&category_id=${category_id}&topic_id=${topic_id}&search_text=${search_text}&is_type=${is_type}`);
     },
     getPromptsContentByCategoryId: async (category_id) => {
-        return axios.get(`${API_URL}/prompts/topics/by-category?category_id=${category_id}`)
+        return axiosInstance.get(`/prompts/topics/by-category?category_id=${category_id}`);
     },
     getNewestPromptsByCategoryId: async (category_id) => {
-        return axios.get(`${API_URL}/prompts/newest?category_id=${category_id}`)
+        return axiosInstance.get(`/prompts/newest?category_id=${category_id}`);
     },
     getRelatedPrompts: async (current_id, category_id, topic_id) => {
-        return axios.get(`${API_URL}/prompts/related?current_id=${current_id}&category_id=${category_id}&topic_id=${topic_id}`)
+        return axiosInstance.get(`/prompts/related?current_id=${current_id}&category_id=${category_id}&topic_id=${topic_id}`);
     },
     // Category APIs
     getCategories: async () => {
-        return axios.get(`${API_URL}/categories`);
+        return axiosInstance.get(`/categories`);
     },
     getCategoriesPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/categories?page=${page}&pageSize=${pageSize}`);
+        return axiosInstance.get(`/categories?page=${page}&pageSize=${pageSize}`);
     },
     getCategoriesBySection: async (sectionId) => {
-        return axios.get(`${API_URL}/categories/by-sectionId/${sectionId}`);
+        return axiosInstance.get(`/categories/by-sectionId/${sectionId}`);
     },
     createCategories: async (promptData) => {
-        return axios.post(`${API_URL}/categories`, promptData);
+        return axiosInstance.post(`/categories`, promptData);
     },
-
     updateCategories: async (id, promptData) => {
-        return axios.put(`${API_URL}/categories/${id}`, promptData);
+        return axiosInstance.put(`/categories/${id}`, promptData);
     },
-
     deleteCategories: async (id) => {
-        return axios.delete(`${API_URL}/categories/${id}`);
+        return axiosInstance.delete(`/categories/${id}`);
     },
-    //Section APIS
+    // Section APIs
     getSections: async () => {
-        return axios.get(`${API_URL}/sections`);
+        return axiosInstance.get(`/sections`);
     },
-    //Topic APIS
+    // Topic APIs
     getTopics: async () => {
-        return axios.get(`${API_URL}/topic`);
+        return axiosInstance.get(`/topic`);
     },
     getTopicsPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/topic/list?page=${page}&pageSize=${pageSize}`);
+        return axiosInstance.get(`/topic/list?page=${page}&pageSize=${pageSize}`);
     },
     createTopics: async (promptData) => {
-        return axios.post(`${API_URL}/topic`, promptData);
+        return axiosInstance.post(`/topic`, promptData);
     },
-
     updateTopics: async (id, promptData) => {
-        return axios.put(`${API_URL}/topic/${id}`, promptData);
+        return axiosInstance.put(`/topic/${id}`, promptData);
     },
-
     deleteTopics: async (id) => {
-        return axios.delete(`${API_URL}/topic/${id}`);
+        return axiosInstance.delete(`/topic/${id}`);
     },
-    //Contact APIS
+    // Contact APIs
     getContacts: async () => {
-        return axios.get(`${API_URL}/contact`);
+        return axiosInstance.get(`/contact`);
     },
     getContactsPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/contact/list?page=${page}&pageSize=${pageSize}`);
+        return axiosInstance.get(`/contact/list?page=${page}&pageSize=${pageSize}`);
     },
     sendContacts: async (data) => {
-        return axios.post(`${API_URL}/contact`, data);
+        return axiosInstance.post(`/contact`, data);
     },
     repContacts: async (id, data) => {
-        return axios.put(`${API_URL}/contact/${id}`, {
-            reply: data
-        });
+        return axiosInstance.put(`/contact/${id}`, { reply: data });
     },
-    //Sub
+    // Sub APIs
     getSubPage: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/subscriptions/list?page=${page}&pageSize=${pageSize}`);
+        return axiosInstance.get(`/subscriptions/list?page=${page}&pageSize=${pageSize}`);
     },
     createSub: async (promptData) => {
-        return axios.post(`${API_URL}/subscriptions`, promptData);
+        return axiosInstance.post(`/subscriptions`, promptData);
     },
-
     updateSub: async (id, promptData) => {
-        return axios.put(`${API_URL}/subscriptions/${id}`, promptData);
+        return axiosInstance.put(`/subscriptions/${id}`, promptData);
     },
     deleteSub: async (id) => {
-        return axios.delete(`${API_URL}/subscriptions/${id}`);
+        return axiosInstance.delete(`/subscriptions/${id}`);
     },
     getSubDuration: async (duration) => {
-        return axios.get(`${API_URL}/subscriptions/by-duration?duration=${duration}`);
+        return axiosInstance.get(`/subscriptions/by-duration?duration=${duration}`);
     },
     getSubByDurationAndType: async (duration, type) => {
-        return axios.get(`${API_URL}/subscriptions/by-duration-and-type?duration=${duration}&type=${type}`);
+        return axiosInstance.get(`/subscriptions/by-duration-and-type?duration=${duration}&type=${type}`);
     },
-    //Blogs
-
+    // Blog APIs
     getBlogById: async (id) => {
-        return axios.get(`${API_URL}/blog/${id}`);
+        return axiosInstance.get(`/blog/${id}`);
     },
     getBlogPage: async (page = 1, pageSize = 10, search) => {
-        return axios.get(`${API_URL}/blog/list?page=${page}&pageSize=${pageSize}&search=${search}`);
+        return axiosInstance.get(`/blog/list?page=${page}&pageSize=${pageSize}&search=${search}`);
     },
     createBlog: async (promptData) => {
-        return axios.post(`${API_URL}/blog`, promptData);
+        return axiosInstance.post(`/blog`, promptData);
     },
-
     updateBlog: async (id, promptData) => {
-        return axios.put(`${API_URL}/blog/${id}`, promptData);
+        return axiosInstance.put(`/blog/${id}`, promptData);
     },
-    //Blogs Categories
+    // Blog Category APIs
     getBlogCategory: async () => {
-        return axios.get(`${API_URL}/blogcategory`);
+        return axiosInstance.get(`/blogcategory`);
     },
     getBlogCategoryPage: async () => {
-        return axios.get(`${API_URL}/blogcategory/list`);
+        return axiosInstance.get(`/blogcategory/list`);
     },
     createBlogCategory: async (promptData) => {
-        return axios.post(`${API_URL}/blogcategory`, promptData);
+        return axiosInstance.post(`/blogcategory`, promptData);
     },
-
     updateBlogCategory: async (id, promptData) => {
-        return axios.put(`${API_URL}/blogcategory/${id}`, promptData);
+        return axiosInstance.put(`/blogcategory/${id}`, promptData);
     },
     deleteBlogCategory: async (id) => {
-        return axios.delete(`${API_URL}/blogcategory/${id}`);
+        return axiosInstance.delete(`/blogcategory/${id}`);
     },
-    //User 
+    // User APIs
     loginUser: async (email) => {
-        return axios.post(`${API_URL}/users/login`, { email }, {
-            headers: { "Content-Type": "application/json" }
-        });
+        const response = await axiosInstance.post(`/users/login`, { email });
+        const { token } = response.data; // Lấy token từ response
+        if (token) {
+            localStorage.setItem('token', token); // Lưu token vào localStorage
+        }
+        return response;
     },
     verifyLogin: async (email, otp, userIP) => {
-        return axios.post(`${API_URL}/users/login-verify`, { email, otp, ip_address: userIP }, {
-            headers: { "Content-Type": "application/json" }
-        });
+        const response = await axiosInstance.post(`/users/login-verify`, { email, otp, ip_address: userIP });
+        const { token } = response.data; // Lấy token từ response
+        if (token) {
+            localStorage.setItem('token', token); // Lưu token vào localStorage
+        }
+        return response;
     },
     verifyOTP: async (email, otp) => {
-        return axios.post(`${API_URL}/users/verify-otp`, { email, otp }, {
-            headers: { "Content-Type": "application/json" }
-        });
+        return axiosInstance.post(`/users/verify-otp`, { email, otp });
     },
     registerUser: async (fullName, email, password) => {
-        return axios.post(`${API_URL}/users/register`, { full_name: fullName, email, password }, {
-            headers: { "Content-Type": "application/json" }
-        });
+        return axiosInstance.post(`/users/register`, { full_name: fullName, email, password });
     },
     updateCount: async (id) => {
-        return axios.put(`${API_URL}/users/count-prompt/${id}`);
+        return axiosInstance.put(`/users/count-prompt/${id}`);
     },
     getUserInfo: async (id) => {
-        return axios.get(`${API_URL}/users/${id}`);
+        return axiosInstance.get(`/users/${id}`);
     },
     updateUserInfo: async (id, data) => {
-        return axios.put(`${API_URL}/users/update-info/${id}`, data);
+        return axiosInstance.put(`/users/update-info/${id}`, data);
     },
     changePassword: async (id, password, newPassword) => {
-        return axios.put(`${API_URL}/users/change-password/${id}?password=${password}&newPassword=${newPassword}`);
+        return axiosInstance.put(`/users/change-password/${id}?password=${password}&newPassword=${newPassword}`);
     },
-    //Like Prompt
+    // Like Prompt APIs
     getFavoritePrompts: async (userId) => {
-        return axios.get(`${API_URL}/promptfavorite/${userId}`);
+        return axiosInstance.get(`/promptfavorite/${userId}`);
     },
     addFavoritePrompt: async (promptId, userId) => {
-        return axios.post(`${API_URL}/promptfavorite`, { prompt_id: promptId, user_id: userId });
+        return axiosInstance.post(`/promptfavorite`, { prompt_id: promptId, user_id: userId });
     },
     removeFavoritePrompt: async (id) => {
-        return axios.delete(`${API_URL}/promptfavorite/${id}`);
+        return axiosInstance.delete(`/promptfavorite/${id}`);
     },
-    //Product
-
+    // Product APIs
     getProducts: async (page = 1, pageSize = 10) => {
-        return axios.get(`${API_URL}/products?page=${page}&pageSize=${pageSize}`);
+        return axiosInstance.get(`/products?page=${page}&pageSize=${pageSize}`);
     },
     createProduct: async (promptData) => {
-        return axios.post(`${API_URL}/products`, promptData);
+        return axiosInstance.post(`/products`, promptData);
     },
-
     updateProduct: async (id, promptData) => {
-        return axios.put(`${API_URL}/products/${id}`, promptData);
+        return axiosInstance.put(`/products/${id}`, promptData);
     },
     deleteProduct: async (id) => {
-        return axios.delete(`${API_URL}/products/${id}`);
+        return axiosInstance.delete(`/products/${id}`);
     },
     getFavoritePromptsByUserId: async (userId, sectionId) => {
-        return axios.get(`${API_URL}/promptfavorite/list/by-section?user_id=${userId}&section_id=${sectionId}`);
+        return axiosInstance.get(`/promptfavorite/list/by-section?user_id=${userId}&section_id=${sectionId}`);
     },
-
-    //device log
+    // Device Log APIs
     getDeviceLog: async (userId) => {
-        return axios.get(`${API_URL}/devicelogs/${userId}`);
+        return axiosInstance.get(`/devicelogs/${userId}`);
     },
-    
 };
 
 export default api;

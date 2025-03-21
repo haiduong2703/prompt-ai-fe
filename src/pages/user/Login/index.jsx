@@ -12,14 +12,14 @@ const Login = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [userIP, setUserIP] = useState("");
   const navigate = useNavigate();
-  const { setUser } = useUser();
+  const { login } = useUser();
 
   // Add IP detection on component mount
   useEffect(() => {
     // Function to get user IP
     const getUserIP = async () => {
       try {
-        const response = await fetch('https://api.ipify.org?format=json');
+        const response = await fetch("https://api.ipify.org?format=json");
         const data = await response.json();
         setUserIP(data.ip);
       } catch (error) {
@@ -27,7 +27,7 @@ const Login = () => {
         setUserIP(""); // Set empty string if failed
       }
     };
-    
+
     getUserIP();
   }, []);
 
@@ -66,7 +66,8 @@ const Login = () => {
       const data = await response.data;
       if (data) {
         message.success("Login successful!");
-        setUser(data.user); // Cập nhật trạng thái người dùng
+        console.log(data);
+        login(data.user, data.token); // Cập nhật trạng thái người dùng
         if (data.user.role === 2) {
           navigate("/admin");
         } else {
@@ -107,7 +108,8 @@ const Login = () => {
         ) : (
           <>
             <p className="code-message">
-              Mã xác thực gồm 6 chữ số đã được gửi đến email của bạn. Nhập nó dưới đây.
+              Mã xác thực gồm 6 chữ số đã được gửi đến email của bạn. Nhập nó
+              dưới đây.
             </p>
             <Input
               placeholder="123456"
@@ -125,7 +127,9 @@ const Login = () => {
         )}
 
         <Divider>Hoặc</Divider>
-        <Button className="login-page-btn-yellow">Đăng nhập với mật khẩu</Button>
+        <Button className="login-page-btn-yellow">
+          Đăng nhập với mật khẩu
+        </Button>
 
         <p className="login-page-signup-text">
           Bạn chưa có tài khoản? <Link to="/signup">Đăng ký</Link>
