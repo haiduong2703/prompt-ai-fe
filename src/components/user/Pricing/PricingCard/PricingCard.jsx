@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CountUp from "react-countup"; // Thư viện đếm số
 import "./PricingCard.css"; // Import CSS
 import xCicle from "../../../../asset/icon/x_circle.svg";
 import checkCircle from "../../../../asset/icon/check_circle.svg";
@@ -11,6 +12,7 @@ import { Switch } from "antd";
 const PricingCard = ({ id, type, title, price, period, features, buttonText, isPopular }) => {
   const [durationActive, setDurationActive] = useState(1);
   const [priceState, setPriceState] = useState(price);
+  const [prevPrice, setPrevPrice] = useState(price);
   const [isFetching, setIsFetching] = useState(false);
 
   const handleSwitchDuration = async (checked) => {
@@ -24,6 +26,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
     try {
       const res = await api.getSubByDurationAndType(newDuration, type);
       if (res && res.data) {
+        setPrevPrice(priceState); // Lưu giá hiện tại làm giá bắt đầu cho hiệu ứng đếm
         setPriceState(res.data.price);
       }
     } catch (error) {
@@ -35,18 +38,32 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
 
   return (
     <div className={`pricing-card ${isPopular ? "popular-card" : ""}`}>
-      {isPopular && <div className="popular-badge">Most Popular</div>}
+      {isPopular && <div className="popular-badge">Bán chạy nhất</div>}
       <div className="pricing-card-header">
         <h2 className="pricing-card-title">{title}</h2>
         <p className="pricing-card-price">
-          {`${parseFloat(priceState).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`}<span>/{period}</span>
+          <CountUp
+            start={Number(prevPrice)}
+            end={Number(priceState)}
+            duration={1}
+            // Sử dụng formattingFn để định dạng theo kiểu tiền tệ Việt Nam
+            formattingFn={(value) =>
+              `${parseFloat(value).toLocaleString("vi-VN", { maximumFractionDigits: 0 })}đ`
+            }
+            // key được thay đổi mỗi khi giá thay đổi để kích hoạt hiệu ứng đếm lại
+            key={priceState}
+            style={{ fontSize: "48px", fontWeight: "700" }}
+          />
+          <span>/{period}</span>
         </p>
         <p className="pricing-card-subtitle">{features.description}</p>
         <div className="pricing-card-switch">
-          <p><span className="discount-text">Giảm 33%</span> khi thanh toán theo năm</p>
+          <p>
+            <span className="discount-text">Giảm 33%</span> khi thanh toán theo năm
+          </p>
           <Switch
             checked={durationActive === 2}
-            onChange={handleSwitchDuration} // Call the function when the switch is toggled
+            onChange={handleSwitchDuration} // Gọi hàm khi chuyển đổi switch
           />
         </div>
       </div>
@@ -55,7 +72,13 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
       <ul className="pricing-card-features">
         {features.items.map((item, index) => (
           <li key={index} className="pricing-card-feature">
-            <span className={item.included ? "pricing-card-icon pricing-icon-check" : "pricing-card-icon pricing-icon-cross"}>
+            <span
+              className={
+                item.included
+                  ? "pricing-card-icon pricing-icon-check"
+                  : "pricing-card-icon pricing-icon-cross"
+              }
+            >
               {item.included ? (
                 <img src={isPopular ? checkCirclePopular : checkCircle} alt="" />
               ) : (
@@ -66,19 +89,35 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
           </li>
         ))}
       </ul>
-      {buttonText === "Current" || buttonText === "Sign up" ? (
-        <Link to={buttonText === "Sign up" ? "/login" : ""}>
-          <button className="pricing-card-signup-button" style={{ backgroundColor: "#ffffff" }}>
+      {(buttonText === "Hiện tại" || buttonText === "Mặc định" || buttonText === "Đăng ký")
+        && type === 1 ?
+        (<Link to={buttonText === "Đăng ký" ? "/login" : ""}>
+          <button
+            className="pricing-card-signup-button"
+            style={{ backgroundColor: "#ffffff" }}
+          >
             {buttonText}
           </button>
         </Link>
-      ) : (
-        <Link to={buttonText === "Access" ? "" : ""}>
-          <button className="pricing-card-access-button" style={{ backgroundColor: "#5700C6" }}>
-            {buttonText}
-          </button>
-        </Link>
-      )}
+        ) : buttonText === "Đăng ký" && type !== 1 ? (
+          <Link to={buttonText === "Đăng ký" ? "/login" : ""}>
+            <button
+              className="pricing-card-access-button"
+              style={{ backgroundColor: "#5700C6" }}
+            >
+              {buttonText}
+            </button>
+          </Link>
+        ) : (
+          <Link to={buttonText === "Nâng cấp" ? "" : ""}>
+            <button
+              className="pricing-card-access-button"
+              style={{ backgroundColor: "#5700C6" }}
+            >
+              {buttonText}
+            </button>
+          </Link>
+        )}
       {isPopular && <img src={eclipsePricing} alt="" className="eclipse-image" />}
     </div>
   );
