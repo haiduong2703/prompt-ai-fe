@@ -55,7 +55,6 @@ export default function FAQSection() {
           </Link>
         </div> */}
       </div>
-
       <div className="faq-right">
         {faqData.map((item, index) => (
           <div
@@ -99,6 +98,7 @@ export default function FAQSection() {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

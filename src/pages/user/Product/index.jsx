@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./index.css";
 import notionLogo from "../../../asset/imgae/notilogo.png";
 import chatProduct from "../../../asset/imgae/chatproduct.jpg";
@@ -6,6 +6,7 @@ import api from "../../../services/api"; // Giả sử bạn có file api.js đ�
 import { Pagination } from "antd";
 import arrow_prev from "../../../asset/icon/arrow_prev.png";
 import arrow_next from "../../../asset/icon/arrow_next.png";
+import { UserContext } from "../../../context/AuthContext";
 const ProductComponent = () => {
   const [products, setProducts] = useState([]); // State để lưu danh sách sản phẩm
   const [loading, setLoading] = useState(true); // State để xử lý trạng thái loading
@@ -13,6 +14,7 @@ const ProductComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [pageSize, setPageSize] = useState(10);
+  const { user } = useContext(UserContext); // Lấy user từ Context API
   // Fetch dữ liệu từ API khi component mount
   useEffect(() => {
     const fetchProducts = async () => {
@@ -87,7 +89,7 @@ const ProductComponent = () => {
                 </div>
                 <h3>{item.name}</h3>
               </div>
-              {item.link ? (
+              {user?.userSub?.subscription.type !== 1 ? (
                 <a
                   href={item.link}
                   className="access-button-product"
@@ -103,15 +105,20 @@ const ProductComponent = () => {
                   <span className="arrow-product">→</span>
                 </a>
               ) : (
-                <span className="access-button-product disabled">
-                  <img
+                <a
+                  href="/pricing"
+                  className="access-button-product"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {/* <img
                     src={notionLogo}
                     alt="Notion"
                     className="notion-icon-product"
-                  />
-                  Truy Cập Notion
+                  /> */}
+                  Nâng cấp
                   <span className="arrow-product">→</span>
-                </span>
+                </a>
               )}
             </div>
           </div>
