@@ -315,7 +315,7 @@ const DetailMidjourneyPrompt = () => {
               </div>
             </div>
           )}
-          {prompt?.tips && (
+          {/* {prompt?.tips && (
             <div className="detail-prompt-paragraph">
               <div>
                 <h2 className="prompt-sub-title-paragraph">
@@ -336,7 +336,7 @@ const DetailMidjourneyPrompt = () => {
                 className="detail-prompt-paragraph-content"
               />
             </div>
-          )}
+          )} */}
           {examplePrompts && examplePrompts.length > 0 && (
             <div className="detail-prompt-section-example-prompt">
               <div className="detail-prompt-section-header-example-prompt">
@@ -466,7 +466,7 @@ const DetailMidjourneyPrompt = () => {
                     src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1794800782b59bafcc_lightbulb.svg"
                     alt="Additional tips"
                   />
-                  <span>Mẹo bổ sung</span>
+                  <span>Gợi ý</span>
                 </div>
                 <RightOutlined
                   rotate={expandedSections.additionalTips ? 90 : 0}
