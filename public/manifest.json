@@ -1,0 +1,21 @@
+{
+  "short_name": "Prompt VN",
+  "name": "Thư Viện Prompt AI Lớn Nhất Việt Nam",
+  "description": "Ứng dụng Thư Viện Prompt AI với các công cụ và tài nguyên AI mạnh mẽ.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "AppLogo512.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "AppLogo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
