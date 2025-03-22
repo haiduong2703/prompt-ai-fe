@@ -26,11 +26,11 @@ const UserLayout = () => {
   return (
     <div
       className={`user-container ${
-        location.pathname === "/" ? "home-page" : ""
+        location.pathname === "/home" ? "home-page" : ""
       }`}
     >
       <nav className="user-navbar">
-        <Link to="/" className="user-logo">
+        <Link to="/home" className="user-logo">
           <img
             src={logoImg}
             alt=""
@@ -44,9 +44,9 @@ const UserLayout = () => {
         >
           <div className="user-nav-links">
             <Link
-              to="/"
+              to="/home"
               className={`user-nav-item ${
-                location.pathname === "/" ? "user-active" : ""
+                location.pathname === "/home" ? "user-active" : ""
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
