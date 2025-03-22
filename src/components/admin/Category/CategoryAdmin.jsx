@@ -128,26 +128,55 @@ const CategoryManager = () => {
     try {
       const values = await form.validateFields();
       const formData = new FormData();
+
+      // Thêm các trường thông thường vào FormData
       Object.keys(values).forEach((key) => {
         if (key !== "image" && key !== "image_card") {
           formData.append(key, values[key]);
         }
       });
 
-      // Upload ảnh khi nhấn Lưu
-      if (imageFile) formData.append("image", imageFile);
-      if (imageCardFile) formData.append("image_card", imageCardFile);
+      // Debug: Kiểm tra file trước khi thêm vào FormData
+      console.log("Image File:", imageFile);
+      console.log("Image Card File:", imageCardFile);
+
+      // Upload ảnh khi nhấn Lưu - đảm bảo gửi đúng đối tượng File
+      if (imageFile) {
+        console.log("Image file type:", imageFile.type);
+        console.log("Image file name:", imageFile.name);
+        console.log("Image file size:", imageFile.size);
+        formData.append("image", imageFile, imageFile.name);
+      }
+
+      if (imageCardFile) {
+        console.log("Image card file type:", imageCardFile.type);
+        console.log("Image card file name:", imageCardFile.name);
+        console.log("Image card file size:", imageCardFile.size);
+        formData.append("image_card", imageCardFile, imageCardFile.name);
+      }
+
+      // Kiểm tra nội dung của FormData trước khi gửi
+      console.log("FormData entries:");
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
 
       if (editingCategory) {
-        await api.updateCategories(editingCategory.id, formData);
+        const response = await api.updateCategories(
+          editingCategory.id,
+          formData
+        );
+        console.log("Server response:", response);
         message.success("Cập nhật thành công");
       } else {
-        await api.createCategories(formData);
+        const response = await api.createCategories(formData);
+        console.log("Server response:", response);
         message.success("Thêm mới thành công");
       }
       fetchCategories();
       handleModalCancel();
     } catch (error) {
+      console.error("Error details:", error);
       message.error(
         "Lỗi khi lưu: " + (error.response?.data?.message || error.message)
       );
@@ -172,12 +201,13 @@ const CategoryManager = () => {
     onChange: ({ fileList: newFileList }) => {
       setFileList(newFileList);
       if (newFileList.length > 0 && newFileList[0].originFileObj) {
-        // Create preview URL only for valid file
-        const url = URL.createObjectURL(newFileList[0].originFileObj);
+        // Lưu file gốc
+        const fileObj = newFileList[0].originFileObj;
+        console.log("Upload image file object:", fileObj);
+        // Create preview URL
+        const url = URL.createObjectURL(fileObj);
         setImageUrl(url);
-        setImageFile(newFileList[0].originFileObj);
-        // Clean up the old URL
-        return () => URL.revokeObjectURL(url);
+        setImageFile(fileObj);
       } else {
         setImageUrl("");
         setImageFile(null);
@@ -209,12 +239,13 @@ const CategoryManager = () => {
     onChange: ({ fileList: newFileList }) => {
       setFileListCard(newFileList);
       if (newFileList.length > 0 && newFileList[0].originFileObj) {
-        // Create preview URL only for valid file
-        const url = URL.createObjectURL(newFileList[0].originFileObj);
+        // Lưu file gốc
+        const fileObj = newFileList[0].originFileObj;
+        console.log("Upload image card file object:", fileObj);
+        // Create preview URL
+        const url = URL.createObjectURL(fileObj);
         setImageCardUrl(url);
-        setImageCardFile(newFileList[0].originFileObj);
-        // Clean up the old URL
-        return () => URL.revokeObjectURL(url);
+        setImageCardFile(fileObj);
       } else {
         setImageCardUrl("");
         setImageCardFile(null);
