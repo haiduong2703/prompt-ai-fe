@@ -69,7 +69,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
           <span>/{period}</span>
         </p>
         <p className="pricing-card-subtitle">{features.description}</p>
-        <div className="pricing-card-switch">
+        {type != 1 && <div className="pricing-card-switch">
           <p>
             <span className="discount-text">Giảm 50%</span> khi thanh toán theo năm
           </p>
@@ -77,7 +77,7 @@ const PricingCard = ({ id, type, title, price, period, features, buttonText, isP
             checked={durationActive === 2}
             onChange={handleSwitchDuration}
           />
-        </div>
+        </div>}
       </div>
       <hr className="pricing-card-divider" />
 
