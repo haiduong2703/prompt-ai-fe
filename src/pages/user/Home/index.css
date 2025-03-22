@@ -2331,7 +2331,7 @@ body {
         }
     }
 
-    .component-prompt-card-container {
+    .component-prompt-card-container.home {
         animation: scrollCardsPrompts 40s linear infinite;
     }
 
