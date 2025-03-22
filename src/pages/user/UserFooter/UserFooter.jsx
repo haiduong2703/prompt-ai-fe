@@ -31,7 +31,7 @@ const UserFooter = () => {
       label: "Thông tin",
       children: (
         <div className="footer-down-center">
-          <Link to="/home">Trang chủ</Link>
+          <Link to="/">Trang chủ</Link>
           <Link to="/prompts">Prompt</Link>
           <Link to="/products">Tài Liệu AI</Link>
           <Link to="/tools">Tools</Link>
@@ -119,7 +119,7 @@ const UserFooter = () => {
             <div>
               <div className="footer-down-center">
                 <div className="footer-link">
-                  <Link to="/home">Trang chủ</Link>
+                  <Link to="/">Trang chủ</Link>
                   <Link to="/prompts">Prompt</Link>
                   <Link to="/products">Tài Liệu AI</Link>
                 </div>
