@@ -65,6 +65,7 @@
 }
 
 .footer-up-right-paragraph {
+  width: fit-content;
   text-align: left;
   float: right;
   right: 0;
@@ -135,7 +136,9 @@
   display: flex;
   flex-direction: column;
 }
-
+.footer-link a {
+  margin-bottom: 10px;
+}
 .footer-down-center a {
   color: black;
   text-decoration: none;

@@ -7,7 +7,7 @@ import logoImg from "../../../asset/imgae/logo.png";
 import defaultAvatar from "../../../asset/imgae/default_avatar.png";
 import arrowExpand from "../../../asset/icon/arow_expand.svg";
 
-const UserLayout = ({ children }) => {
+const UserLayout = () => {
   const location = useLocation();
   const userLocal = JSON.parse(localStorage.getItem("user"));
   const { user, logout } = useUser();

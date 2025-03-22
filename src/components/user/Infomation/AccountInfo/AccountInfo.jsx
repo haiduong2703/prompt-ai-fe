@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Fragment  } from "react";
 import api from "../../../../../src/services/api";
 import defaultAvatar from "../../../../../src/asset/imgae/default_avatar.png";
 import { Divider, Modal } from "antd";
@@ -114,15 +114,15 @@ const AccountInfo = ({ user }) => {
         <h2>Thiết bị đăng nhập</h2>
         <div className="info-user-profile-device-list">
           {deviceLog?.map((item) => (
-            <>
-              <div key={item.id} style={{ fontSize: "14px", lineHeight: "22px", fontWeight: "500" }} className="info-user-profile-device-list-item">
+            <React.Fragment key={item.id}>
+              <div  style={{ fontSize: "14px", lineHeight: "22px", fontWeight: "500" }} className="info-user-profile-device-list-item">
                 <img src={browser_icon} alt="browser" style={{ width: "20px", height: "20px" }} />
                 {item.os} ({item.browser})
               </div>
               <div style={{ fontSize: "14px", lineHeight: "22px", fontWeight: "500" }}>
                 {formatLoginTime(item.login_time)}
               </div>
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
