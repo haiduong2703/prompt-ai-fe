@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation  } from "react-router-dom";
 import PromptList from "../components/admin/Prompt/PromptList";
 import CategoryManager from "../components/admin/Category/CategoryAdmin";
 import AdminLayout from "../pages/admin/AdminLayout";
@@ -39,29 +39,28 @@ const RoutesMain = () => {
   }, []);
   useEffect(() => {
     if (user) {
-      GetUserInfo(); // Gọi lại hàm mỗi khi người dùng chuyển trang
+      GetUserInfo();  // Gọi lại hàm mỗi khi người dùng chuyển trang
     }
   }, [location.pathname]);
   const GetUserInfo = async () => {
     try {
-      const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
-      const userUpdatedDate = new Date(user.updated_at)
-        .toISOString()
-        .split("T")[0]; // Get user's updated_at date in YYYY-MM-DD format
+      const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+      const userUpdatedDate = new Date(user.updated_at).toISOString().split('T')[0]; // Get user's updated_at date in YYYY-MM-DD format
       if (userUpdatedDate !== currentDate) {
         const res = await api.getUserInfo(user.id);
-        const currentUser = JSON.parse(localStorage.getItem("user"));
+        const currentUser = JSON.parse(localStorage.getItem('user'));
         const updatedUser = {
           ...currentUser,
           count_prompt: res.data?.data?.user?.count_promt,
           updated_at: res.data?.data?.user?.updated_at,
-          userSub: res.data?.data?.userSub,
+          userSub: res.data?.data?.userSub
         };
-        localStorage.setItem("user", JSON.stringify(updatedUser));
+        localStorage.setItem('user', JSON.stringify(updatedUser));
         setUser(updatedUser);
       }
-    } catch (err) {}
-  };
+    } catch (err) {
+    }
+  }
   return (
     <Routes>
       {isAdmin ? (
@@ -77,18 +76,16 @@ const RoutesMain = () => {
         </Route>
       ) : (
         <Route path="/" element={<UserLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Navigate to="/home" replace />} />
           <Route path="login" element={<Login />} />
+          <Route path="home" element={<Home />} />
           <Route path="product" element={<ProductComponent />} />
           <Route path="prompts" element={<PromptLibrary />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="contact" element={<Contact />} />
           <Route path="prompts/list-prompts" element={<ListPrompts />} />
           <Route path="prompts/detail-prompts/:id" element={<DetailPrompt />} />
-          <Route
-            path="prompts/detail-prompts-midjourney/:id"
-            element={<DetailMidjourneyPrompt />}
-          />
+          <Route path="prompts/detail-prompts-midjourney/:id" element={<DetailMidjourneyPrompt />} />
           <Route path="signup" element={<Register />} />
           <Route path="blog" element={<BlogLayout />} />
           <Route path="blog/:id" element={<BlogDetailPage />} />

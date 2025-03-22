@@ -61,7 +61,7 @@ const Login = () => {
       if (data) {
         message.success("Login successful!");
         login(data.user, data.token);
-        navigate(data.user.role === 2 ? "/admin" : "/");
+        navigate(data.user.role === 2 ? "/admin" : "/home");
       }
     } catch (error) {
       message.error("Server error, please try again");
@@ -80,7 +80,7 @@ const Login = () => {
       if (data) {
         message.success("Đăng nhập thành công!");
         login(data.user, data.token);
-        navigate(data.user.role === 2 ? "/admin" : "/");
+        navigate(data.user.role === 2 ? "/admin" : "/home");
       }
     } catch (error) {
       message.error(
