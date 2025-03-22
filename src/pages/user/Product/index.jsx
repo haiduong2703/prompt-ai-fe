@@ -60,9 +60,9 @@ const ProductComponent = () => {
         {products.map((item) => (
           <div key={item.id} className="item-card-product">
             <div className="card-header-product">
-              <div className="icon-product-container">
+              {/* <div className="icon-product-container">
                 <img src={item?.Section?.description} alt="" />
-              </div>
+              </div> */}
               <div className="status-badge-product">
                 <p className="icon-product">
                   {/* {item.status === "Premium" ? "⭐" : "♡"} */}

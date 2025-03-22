@@ -12,12 +12,12 @@
 }
 
 .pricing-card-header {
-    min-height: 120px;
+    height: 160px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
-  
+
 .pricing-card-title {
     font-size: 20px;
     font-weight: 500;
@@ -27,7 +27,7 @@
     margin: 0;
     margin-top: 10px;
 }
-  
+
 .pricing-card-price {
     margin-top: 15px;
     font-size: 46px;
@@ -37,7 +37,7 @@
     color: #1D1E25;
     margin-bottom: 0;
 }
-  
+
 .pricing-card-price span {
     font-size: 14px;
     line-height: 100%;
@@ -45,7 +45,7 @@
     letter-spacing: 0%;
     color: #111116;
 }
-  
+
 .pricing-card-subtitle {
     color: #1D1E25;
     margin-top: 10px;
@@ -56,15 +56,18 @@
     margin-bottom: 0;
     white-space: nowrap;
 }
+
 .pricing-card-switch {
     margin-top: 20px;
     margin-bottom: 5px;
     display: flex;
     gap: 10px;
 }
-.pricing-card-switch  .ant-switch-inner {
+
+.pricing-card-switch .ant-switch-inner {
     background: #DACDFFE5 !important;
 }
+
 .pricing-card-switch .ant-switch .ant-switch-handle::before {
     background-color: #5700C6;
 }
@@ -76,14 +79,14 @@
     background: #1D1E25;
     opacity: 0.1;
 }
-  
+
 .pricing-card-features {
     list-style: none;
     padding: 0;
     text-align: left;
     font-weight: 500;
 }
-  
+
 .pricing-card-feature {
     display: flex;
     align-items: center;
@@ -93,18 +96,18 @@
     color: #555;
     margin: 15px 0;
 }
-  
+
 .pricing-card-icon {
     font-size: 16px;
     font-weight: bold;
     margin-right: 8px;
     display: flex;
 }
-    
+
 .pricing-icon-check {
     color: #00ff00;
 }
-  
+
 .pricing-icon-cross {
     color: #ff4d4d;
 }
@@ -121,10 +124,11 @@
     font-weight: 700;
     line-height: 24px;
 }
-  
+
 .pricing-card-acesss-button:hover {
     opacity: 0.9;
 }
+
 .pricing-card-signup-button {
     width: 100%;
     color: #5700C6;
@@ -137,10 +141,11 @@
     line-height: 20px;
     font-weight: 700;
 }
-  
+
 .pricing-card-signup-button:hover {
     opacity: 0.9;
 }
+
 /* Khi là thẻ popular, toàn bộ chữ sẽ là màu trắng */
 .popular-card {
     background: #111116;
@@ -178,7 +183,7 @@
 }
 
 /* Badge "Most Popular" */
-.popular-badge {  
+.popular-badge {
     position: absolute;
     top: -14px;
     left: 50%;
@@ -196,41 +201,46 @@
     letter-spacing: -1%;
     margin-bottom: 10px;
 }
+
 /* Responsive cho điện thoại */
 @media (max-width: 768px) {
-  .pricing-card {
-      width: 90%; /* Cho card rộng hơn khi màn hình nhỏ */
-      padding: 15px;
-      margin: 10px auto;
-  }
-  .pricing-card-header {
-    min-height: 90px;
-}
-  .pricing-card-title {
-      font-size: 18px;
-  }
+    .pricing-card {
+        width: 90%;
+        /* Cho card rộng hơn khi màn hình nhỏ */
+        padding: 15px;
+        margin: 10px auto;
+    }
 
-  .pricing-card-price {
-      font-size: 28px;
-  }
+    .pricing-card-header {
+        min-height: 90px;
+    }
 
-  .pricing-card-features {
-      font-size: 14px;
-  }
+    .pricing-card-title {
+        font-size: 18px;
+    }
 
-  .pricing-card-feature {
-      font-size: 13px;
-  }
+    .pricing-card-price {
+        font-size: 28px;
+    }
 
-  .pricing-card-access-button,
-  .pricing-card-signup-button {
-      padding: 12px;
-      font-size: 14px;
-  }
-  .popular-badge {
-      font-size: 10px;
-      padding: 5px 12px;
-  }
+    .pricing-card-features {
+        font-size: 14px;
+    }
+
+    .pricing-card-feature {
+        font-size: 13px;
+    }
+
+    .pricing-card-access-button,
+    .pricing-card-signup-button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .popular-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
 }
 
 .popular-card .pricing-card-divider {

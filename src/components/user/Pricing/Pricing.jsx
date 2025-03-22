@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Pricing.css";
 import PricingCard from "./PricingCard/PricingCard";
-import pricingToolImg from "../../../asset/imgae/pricing_img.png"
+import pricingToolImg from "../../../asset/imgae/pricing_img.png";
 import pricingImgMobile from "../../../asset/imgae/pricing_img_mobile.png";
 import FAQSection from "../../Q&A/FAQSection";
 import api from "../../../services/api";
@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const planLabels = {
   Monthly: "Tháng",
-  Yearly: "Năm"
+  Yearly: "Năm",
 };
 
 const Pricing = () => {
@@ -24,25 +24,26 @@ const Pricing = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    fetchDataSub(selectedPlan);
+    // fetchDataSub(selectedPlan);
   }, [selectedPlan]);
   const fetchDataSub = async () => {
     try {
       const resp = await api.getSubDuration(selectedPlan);
       setDataSub(resp.data);
-    } catch (error) {
-
-    }
-  }
+    } catch (error) {}
+  };
   return (
     <div className="user-pricing-container">
       <div className="user-pricing-header">
-        <h1>Hiệu suất vượt trội với<br /> gói Prom phù hợp!</h1>
+        <h1>
+          Hiệu suất vượt trội với
+          <br /> gói Prom phù hợp!
+        </h1>
         <p>Nâng cấp để truy cập KHÔNG GIỚI HẠN thư viện Prompt cao cấp</p>
 
         {/* Tab chọn gói với hiệu ứng động */}
@@ -73,12 +74,21 @@ const Pricing = () => {
               period="tháng"
               features={{
                 description: sub.description || "Không có mô tả",
-                items: sub.ContentSubscriptions?.map((item) => ({
-                  text: item.content,
-                  included: item.included,
-                })) || [],
+                items:
+                  sub.ContentSubscriptions?.map((item) => ({
+                    text: item.content,
+                    included: item.included,
+                  })) || [],
               }}
-              buttonText={(user === null) ? "Đăng ký" : sub.type === user?.userSub?.subscription?.type ? "Hiện tại" : (user !== null && sub.name_sub === "Free") ? "Mặc định" : "Nâng cấp"}
+              buttonText={
+                user === null
+                  ? "Đăng ký"
+                  : sub.type === user?.userSub?.subscription?.type
+                  ? "Hiện tại"
+                  : user !== null && sub.name_sub === "Free"
+                  ? "Mặc định"
+                  : "Nâng cấp"
+              }
               isPopular={sub.is_popular}
             />
           ))
