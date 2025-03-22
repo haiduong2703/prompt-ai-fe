@@ -525,9 +525,9 @@ const Home = () => {
           <div className="solutions-container">
             <h2 className="section-title">Giải pháp toàn diện cho bạn</h2>
             <p className="section-description">
-              Khám phá những Prompts tốt nhất cho ChatGPT & Midjourney được
-              thiết kế để thúc đẩy doanh nghiệp & dự án cá nhân của bạn tăng
-              năng suất.
+              Khám phá những Prompt tốt nhất cho ChatGPT & Midjourney được thiết
+              kế để thúc đẩy doanh nghiệp & dự án cá nhân của bạn tăng năng
+              suất.
             </p>
 
             <div className="solutions-tags">

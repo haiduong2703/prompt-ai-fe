@@ -204,7 +204,11 @@ const api = {
         return axiosInstance.get(`/users/${id}`);
     },
     updateUserInfo: async (id, data) => {
-        return axiosInstance.put(`/users/update-info/${id}`, data);
+        return axiosInstance.put(`/users/update-info/${id}`, data, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            }
+        });
     },
     changePassword: async (id, password, newPassword) => {
         return axiosInstance.put(`/users/change-password/${id}?password=${password}&newPassword=${newPassword}`);
