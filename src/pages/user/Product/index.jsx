@@ -66,7 +66,7 @@ const ProductComponent = () => {
               <div className="status-badge-product">
                 <p className="icon-product">
                   {/* {item.status === "Premium" ? "⭐" : "♡"} */}
-                  Free
+                  Pro
                 </p>
                 {/* <span className="status-text-product">{item.status}</span> */}
               </div>

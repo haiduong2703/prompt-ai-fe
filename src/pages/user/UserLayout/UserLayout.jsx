@@ -78,7 +78,7 @@ const UserLayout = ({ children }) => {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Tools <img src={arrowExpand} alt="" />
+              Tools
             </Link>
             {/* <div className="user-dropdown-header">
               <button className="user-dropdown-btn-header">

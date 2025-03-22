@@ -89,13 +89,13 @@ export default function FAQSection() {
             <div className="faq-contact-item">
               <span className="faq-contact-item-title">Email</span>
               <br />
-              <span className="faq-contact-item-content">contact@prom.io</span>
+              <span className="faq-contact-item-content">support@prom.vn</span>
             </div>
-            <div className="faq-contact-item">
+            {/* <div className="faq-contact-item">
               <span className="faq-contact-item-title">Discord</span>
               <br />
               <span className="faq-contact-item-content">@support_prom.io</span>
-            </div>
+            </div> */}
           </div>
         </div>
 

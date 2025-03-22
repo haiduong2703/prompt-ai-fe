@@ -128,13 +128,13 @@ const DetailPrompt = () => {
                     </div>
                     {prompt?.what && <div className="detail-prompt-paragraph" >
                         <div>
-                            <h2 className="prompt-sub-title-paragraph"> <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b173a7b5743b3e11e3a_tools.svg" alt="icon" style={{ width: "24px", height: "24px", marginRight: "8px" }} />What This Prompt Does</h2>
+                            <h2 className="prompt-sub-title-paragraph"> <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b173a7b5743b3e11e3a_tools.svg" alt="icon" style={{ width: "24px", height: "24px", marginRight: "8px" }} />Prompt này làm gì</h2>
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: prompt.what }} className="detail-prompt-paragraph-content" />
                     </div>}
                     {prompt?.tips && <div className="detail-prompt-paragraph">
                         <div>
-                            <h2 className="prompt-sub-title-paragraph"><img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1794800782b59bafcc_lightbulb.svg" alt="icon" style={{ width: "24px", height: "24px", marginRight: "8px" }} />Tips</h2>
+                            <h2 className="prompt-sub-title-paragraph"><img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1794800782b59bafcc_lightbulb.svg" alt="icon" style={{ width: "24px", height: "24px", marginRight: "8px" }} />Mẹo</h2>
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: prompt.tips }} className="detail-prompt-paragraph-content" />
                     </div>
@@ -189,7 +189,7 @@ const DetailPrompt = () => {
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b173a7b5743b3e11e37_questions.svg" alt="How to use" />
-                                <span>How To Use The Prompt</span>
+                                <span>Cách sử dụng Prompt</span>
                             </div>
                             <RightOutlined rotate={expandedSections.howToUse ? 90 : 0} />
                         </div>
@@ -204,7 +204,7 @@ const DetailPrompt = () => {
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b17967b11f0ec779ce6_inbox-tray-svgrepo-com.svg" alt="Example input" />
-                                <span>Example Input</span>
+                                <span>Ví dụ đầu vào</span>
                             </div>
                             <RightOutlined rotate={expandedSections.exampleInput ? 90 : 0} />
                         </div>
@@ -219,7 +219,7 @@ const DetailPrompt = () => {
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1764188051455cd76d_outbox-tray-svgrepo-com.svg" alt="Example output" />
-                                <span>Example Output</span>
+                                <span>Ví dụ đầu ra</span>
                             </div>
                             <RightOutlined rotate={expandedSections.exampleOutput ? 90 : 0} />
                         </div>
@@ -234,7 +234,7 @@ const DetailPrompt = () => {
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b1794800782b59bafcc_lightbulb.svg" alt="Additional tips" />
-                                <span>Additional Tips</span>
+                                <span>Mẹo bổ sung</span>
                             </div>
                             <RightOutlined rotate={expandedSections.additionalTips ? 90 : 0} />
                         </div>
@@ -249,7 +249,7 @@ const DetailPrompt = () => {
                         <div className="detail-prompt-section-header">
                             <div className="detail-prompt-section-title">
                                 <img src="https://cdn.prod.website-files.com/64808cc9f88d76f4355b870a/666e3b173a7b5743b3e11e3a_tools.svg" alt="Additional information" />
-                                <span>Additional Information</span>
+                                <span>Thông tin bổ sung</span>
                             </div>
                             <RightOutlined rotate={expandedSections.additionalInfo ? 90 : 0} />
                         </div>
