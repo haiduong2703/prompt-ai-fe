@@ -5,18 +5,23 @@ const API_URL = process.env.REACT_APP_API_URL;
 // Tạo instance của axios với cấu hình mặc định
 const axiosInstance = axios.create({
     baseURL: API_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
 
-// Interceptor để thêm token vào header của mỗi request
+// Interceptor để thêm token và xử lý Content-Type phù hợp cho mỗi request
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token'); // Lấy token từ localStorage
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`; // Thêm token vào header
         }
+
+        // Kiểm tra nếu data là FormData thì set Content-Type là multipart/form-data
+        if (config.data instanceof FormData) {
+            config.headers['Content-Type'] = 'multipart/form-data';
+        } else {
+            config.headers['Content-Type'] = 'application/json';
+        }
+
         return config;
     },
     (error) => {
@@ -66,11 +71,11 @@ const api = {
     getCategoriesBySection: async (sectionId) => {
         return axiosInstance.get(`/categories/by-sectionId/${sectionId}`);
     },
-    createCategories: async (promptData) => {
-        return axiosInstance.post(`/categories`, promptData);
+    createCategories: async (categoryData) => {
+        return axiosInstance.post(`/categories`, categoryData);
     },
-    updateCategories: async (id, promptData) => {
-        return axiosInstance.put(`/categories/${id}`, promptData);
+    updateCategories: async (id, categoryData) => {
+        return axiosInstance.put(`/categories/${id}`, categoryData);
     },
     deleteCategories: async (id) => {
         return axiosInstance.delete(`/categories/${id}`);
@@ -167,6 +172,19 @@ const api = {
     },
     verifyLogin: async (email, otp, userIP) => {
         const response = await axiosInstance.post(`/users/login-verify`, { email, otp, ip_address: userIP });
+        const { token } = response.data; // Lấy token từ response
+        if (token) {
+            localStorage.setItem('token', token); // Lưu token vào localStorage
+        }
+        return response;
+    },
+    // Hàm mới cho đăng nhập bằng mật khẩu
+    passwordLogin: async (email, password, userIP) => {
+        const response = await axiosInstance.post(`/users/login-password`, {
+            email,
+            password,
+            ip_address: userIP
+        });
         const { token } = response.data; // Lấy token từ response
         if (token) {
             localStorage.setItem('token', token); // Lưu token vào localStorage

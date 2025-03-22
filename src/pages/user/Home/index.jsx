@@ -37,6 +37,11 @@ import logoClaude from "../../../asset/imgae/logoclaude.png";
 import api from "../../../services/api";
 import imgArrowUp from "../../../asset/imgae/arrow-up.png";
 import imgBack3 from "../../../asset/imgae/imgback3.png";
+import cta1 from "../../../asset/imgae/cta1.png";
+import cta2 from "../../../asset/imgae/cta2.png";
+import cta3 from "../../../asset/imgae/cta3.png";
+import cta4 from "../../../asset/imgae/cta4.png";
+import line from "../../../asset/imgae/line.png";
 // Dữ liệu prompts
 const prompts = [
   {
@@ -399,7 +404,7 @@ const Home = () => {
                     <br />
                     <span className="purple-text">LỚN NHẤT VIỆT NAM</span>
                   </h1>
-                  <p>Hàng nghìn Prompt tạo ra từ các chuyên gia về AI</p>
+                  <p>Hàng ngàn Prompts tạo ra từ các chuyên gia về AI</p>
                   <button
                     className="get-started-btn"
                     onClick={() => navigate("/prompts")}
@@ -526,6 +531,7 @@ const Home = () => {
             </p>
 
             <div className="solutions-tags">
+              {/* First set of tags */}
               <span className="tag">Khởi Nghiệp</span>
               <span className="tag">Tiktokers</span>
               <span className="tag">Chủ Doanh Nghiệp</span>
@@ -755,9 +761,11 @@ const Home = () => {
                 Tạo nội dung cho chính bạn một cách nhanh chóng và chuẩn xác
                 nhất
               </p> */}
-              <button className="hire-creator-button">
-                Sử Dụng MIỄN PHÍ Ngay🔥
-              </button>
+              <div className="hire-creator-buttons">
+                <button className="hire-creator-button">
+                  Sử Dụng MIỄN PHÍ Ngay🔥
+                </button>
+              </div>
             </div>
             <div style={{ height: "300px" }}>
               {" "}
@@ -768,10 +776,15 @@ const Home = () => {
                 className="hire-creator-image"
               />
             </div>
-
+            <img src={cta1} alt="" className="cta-image-1" />
+            <img src={cta2} alt="" className="cta-image-2" />
+            <img src={cta3} alt="" className="cta-image-3" />
+            <img src={cta4} alt="" className="cta-image-4" />
             <div className="hire-creator-decoration decoration-1"></div>
             <div className="hire-creator-decoration decoration-2"></div>
           </div>
+          <img src={line} alt="" className="line-hire-1" />
+          <img src={line} alt="" className="line-hire-2" />
         </section>
 
         {/* Giải pháp toàn diện section */}

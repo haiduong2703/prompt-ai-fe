@@ -89,7 +89,7 @@ const ProductComponent = () => {
                 </div>
                 <h3>{item.name}</h3>
               </div>
-              {user?.userSub?.subscription.type !== 1 ? (
+              {user && user?.userSub?.subscription.type !== 1 ? (
                 <a
                   href={item.link}
                   className="access-button-product"
@@ -118,7 +118,7 @@ const ProductComponent = () => {
                   /> */}
                   Nâng cấp
                   <span className="arrow-product">→</span>
-                </a> 
+                </a>
               )}
             </div>
           </div>

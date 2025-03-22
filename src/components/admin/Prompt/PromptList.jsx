@@ -42,6 +42,7 @@ const PromptList = () => {
     category: null,
     status: null,
     is_type: null,
+    topic: null,
   });
 
   // Modal states
@@ -98,6 +99,7 @@ const PromptList = () => {
         ...(filters.category && { category_id: filters.category }),
         ...(filters.status !== null && { status: filters.status }),
         ...(filters.is_type !== null && { is_type: filters.is_type }),
+        ...(filters.topic !== null && { topic_id: filters.topic }),
       }).toString();
 
       const response = await api.getPrompts(query);
@@ -142,6 +144,11 @@ const PromptList = () => {
 
   const handleTypeFilter = (value) => {
     setFilters({ ...filters, is_type: value });
+    setPage(1);
+  };
+
+  const handleTopicFilter = (value) => {
+    setFilters({ ...filters, topic: value });
     setPage(1);
   };
 
@@ -317,6 +324,18 @@ const PromptList = () => {
           {categories.map((category) => (
             <Option key={category.id} value={category.id}>
               {category.name}
+            </Option>
+          ))}
+        </Select>
+        <Select
+          style={{ width: 200 }}
+          placeholder="Filter by topic"
+          onChange={handleTopicFilter}
+          allowClear
+        >
+          {topic.map((item) => (
+            <Option key={item.id} value={item.id}>
+              {item.name}
             </Option>
           ))}
         </Select>
